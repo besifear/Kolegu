@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Question;
+
 class PagesController extends Controller{
 
 	public function getIndex(){
-		return view('pages.welcome');
+        $questions = Question::all();
+		return view('pages.welcome')->withQuestions($questions);
 	}
 
 	public function getAbout(){

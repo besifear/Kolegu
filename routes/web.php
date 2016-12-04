@@ -17,6 +17,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/order/{orderBy}','HomeController@filter',compact('orderBy'));
+
 Route::resource('posts','PostController');
 
 Route::resource('categories','CategoryController');
