@@ -11,7 +11,7 @@
           <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand" href="#">K</a>
+        <a class="navbar-brand" href="/">K</a>
 
         <div class="col-md-10 col-sm-10 col-xs-8">
             <form class="navbar-form" role="search">
@@ -29,8 +29,8 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse col-sm-4 col-xs-12 pull-right" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><b class="glyphicon glyphicon-send"></b> Pyet</a></li>
-          <li><a href="#"><b class="glyphicon glyphicon-comment"></b> Pergjigju</a></li>
+          <li><a href="/questions/create"><b class="glyphicon glyphicon-send"></b> Pyet</a></li>
+          <li><a href="/"><b class="glyphicon glyphicon-comment"></b> Pergjigju</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-bell"></b> Notifications</a>
             <ul class="dropdown-menu">
@@ -48,7 +48,8 @@
             <ul class="dropdown-menu">
               <li><a href="#">Profile</a></li>
               <li><a href="#">Settings</a></li>
-              <li><a href="categories/create">Create Category</a></li>
+              <li><a href="/categories/create">Create Category</a></li>
+              <li><a href="/Kategorite">Selected Categories</a></li>
               <li class="divider"></li>
               <li><a href="#">Logout</a></li>
             </ul>

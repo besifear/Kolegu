@@ -20,7 +20,11 @@
 
 		    {{ Form::label('content','Content:')}}
 		    {{ Form::textarea('content',null,array('class' => 'form-control','required'=>''))}}
+        {{ Form::label('category','Category:')}}
+        <select class="form-control">
 
+          <option>1</option>
+        </select>
 		    {{ Form::submit('Post Question',array('class' => 'btn btn-success btn-lg btn-block','style' => 'margin-top : 20px' ))}}
 		{!! Form::close() !!}
   		</div>

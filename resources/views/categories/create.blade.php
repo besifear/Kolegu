@@ -1,6 +1,6 @@
  @extends('main')
 
-  @section('title',' | Create Post')
+  @section('title',' | Create Categorys')
 
   @section('stylesheets')
 
@@ -16,10 +16,10 @@
   		<hr>
   		{!! Form::open(array('route' => 'categories.store','data-parsley-validate'=>'')) !!}
 		    {{ Form::label('name','Name:')}}
-		    {{ Form::text('name',null,array('class' => 'form-control','required'=>'','maxlength'=>'255'))}}
+		    {{ Form::text('name',null,array('class' => 'form-control','required'=>'','maxlength'=>'50'))}}
 
 		    {{ Form::label('description','Description:')}}
-		    {{ Form::textarea('description',null,array('class' => 'form-control','required'=>''))}}
+		    {{ Form::textarea('description',null,array('class' => 'form-control','required'=>'','maxlength'=>'200'))}}
 
 		    {{ Form::submit('Create Category',array('class' => 'btn btn-success btn-lg btn-block','style' => 'margin-top : 20px' ))}}
 		{!! Form::close() !!}

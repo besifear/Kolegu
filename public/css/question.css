@@ -5,6 +5,15 @@ padding: 60px 0px;
 background-color: rgb(220, 220, 220);
 }*/
 
+.info > a{
+    color: rgb(0,0,0);
+}
+
+.info > a:hover , .info > a:visited{
+    text-decoration:none;
+    margin-left:0;
+}
+
 .event-list {
 list-style: none;
 font-family: 'Lato', sans-serif;

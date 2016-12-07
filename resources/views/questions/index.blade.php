@@ -31,7 +31,7 @@
                             <li><a href="signup.html">Resurs 2</a></li>
                         </ul>
                     </li>
-                    <li class="current"><a href="index.html"><i class="glyphicon glyphicon-home"></i> CV</a></li>
+                    <li class="current"><a href="#"><i class="glyphicon glyphicon-home"></i> CV</a></li>
                     <!--<li><a href="calendar.html"><i class="glyphicon glyphicon-calendar"></i> Calendar</a></li>
                     <li><a href="stats.html"><i class="glyphicon glyphicon-stats"></i> Statistics (Charts)</a></li>
                     <li><a href="tables.html"><i class="glyphicon glyphicon-list"></i> Tables</a></li>
@@ -57,52 +57,75 @@
                               <span class="caret"></span>
                           </button>
                           <ul class="dropdown-menu pull-right" role="menu">
-                              <li><a href="#">Action</a>
+                              <li><a href="/order/Newest">Newest</a>
                               </li>
-                              <li><a href="#">Another action</a>
+                              <li><a href="/order/A-Z">A-Z</a>
                               </li>
-                              <li><a href="#">Something else here</a>
+                              <li><a href="/order/Z-A">Z-A</a>
                               </li>
-                              <li class="divider"></li>
-                              <li><a href="#">Separated link</a>
-                              </li>
+                              
                           </ul>
                       </div>
                   </div>
                 </div>
                 <div class="content-box-large box-with-header">
-                koment
-                @foreach($questions as $question)
-                  <tr>
-                    <th>{{$question->id}}</th>
-                    <td>{{$question->title}}</td>
-                    <td>{{ substr($question->content,0,50)}}{{strlen($question->content)>50 ? "..." : ""}}</td>
-question                    <td> <a href="{{route('questions.show',$question->id)}}" class="btn btn-default btn-sm">View</a> <a href="{{route('questions.edit',$question->id)}}" class="btn btn-default btn-sm">Edit</a> </td>
-                  </tr>
-                @endforeach
-                deri qitu koment
+                
                   <ul class="event-list">
-                    <li>
+                  @foreach($questions as $question)
+                    <li class="questionListItem">
                       <div class="social">
                         <ul>
-                          <li class="facebook" style="width:33%;"><a href="#"><span class="glyphicon glyphicon-chevron-up"></span><br><small>136</small></a></li>
-                          <li class="twitter" style="width:33%;"><a href="#"><span class="glyphicon glyphicon-chevron-down"></span><br><small>42</small></a></li>
+
+                              <li class="facebook" style="width:33%;">
+                                  <form action="/upvote" method="post">
+
+                                      <input type="hidden" value="{{$question->QuestionID}}" name="QuestionID" />
+                                      {{csrf_field()}}
+                                      <button type="submit">
+                                      <span class="glyphicon glyphicon-chevron-up"></span><br>
+                                        <small>
+                                          {{--*App\QuestionEvaluation::where([
+                                                           ['QuestionID','=',$question->QuestionID],
+                                                           ['Username','=','Admini'],
+                                                           ['Vote','=','Yes'],
+                                                   ])->count()--}}
+                                            {{$question->upVotes->count()}}
+                                        </small>
+                                  </button>
+                                  </form>
+                              </li>
+
+
+                                <li class="twitter" style="width:33%;">
+
+                          <form action="/downvote" method="post">
+                          <input type="hidden" value="{{$question->QuestionID}}" name="QuestionID" />
+                            {{csrf_field()}}
+                            <button type="submit">
+                            <span class="glyphicon glyphicon-chevron-down"></span><br><small>
+                                    {{$question->downVotes->count()}}
+                          </small></button>
+                          </form>
+                          </li>
                           <li class="google-plus" style="width:33%;"><a href="#"><span class="glyphicon glyphicon-comment"></span><br><small>7</small></a></li>
                         </ul>
                       </div>
+                        <a class="questionLink" href="/questions/{{$question->QuestionID}}">
                       <div class="info">
-                        <h2 class="title">{{$question->title}}</h2>
-                        <p class="desc">{{ substr($question->content,0,50)}}{{strlen($question->content)>50 ? "..." : ""}}</p>
+                        <h2 class="title">{{$question->Title}}</h2>
+                        <p class="desc">{{ substr($question->Content,0,70)}}{{strlen($question->Content)>70 ? "..." : ""}}</p>
                         <ul style="width:auto; float: left;">
-                          <li><a href="#website">tag1</a></li>
-                          <li><a href="#website">tag2</a></li>
+                          <li><a href="/categories">{{$question->CategoryName}}</a></li>
                         </ul>
                         <ul style="width: auto; float: left;" class="pull-right">
-                          <li><p style="font-size: 9pt;">Posted 69 minutes ago by <a>IlliPilli</a></p></li>
+                          <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}}  by <a>{{$question->Username}}</a></p></li>
                         </ul>
                       </div>
+                        </a>
                     </li>
                     <hr>
+                    <br>
+                    @endforeach
                   </ul>
               </div>
               </div>

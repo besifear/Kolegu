@@ -4,20 +4,27 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\QuestionEvaluation;
+
 class Question extends Model
 {
-    public function category(){
-        return $this->belongsTo('App\Category');
 
+    public function upVotes(){
+        return $this->hasMany('App\QuestionEvaluation','QuestionID')->where('Vote','=','Yes');
+	}
 
+	public function downVotes(){
+        return $this->hasMany('App\QuestionEvaluation','QuestionID')->where('Vote','=','No');
     }
 
-    public function user(){
-        return $this->belongsTo('App\User');
+    public function allEvaluations(){
+    	return $this->hasMany('App\QuestionEvaluation','QuestionID');
     }
 
+    public function allAnswers(){
+        return $this->hasMany('App\Answer','QuestionID');
+    }
 
-
-    protected $table="question";
-
+	public $primaryKey='QuestionID';
+    public $table = "question";
 }

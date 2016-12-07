@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Category;
 
+use App\SelectedCategory;
+
 use Session;
 
 class CategoryController extends Controller
@@ -19,7 +21,7 @@ class CategoryController extends Controller
     {
         $categories=Category::all();
 
-        return view('category.index')->with('categories',$categories);
+        return view('categories.index')->withCategories($categories);
     }
 
     /**
@@ -28,8 +30,10 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('categories.create');
+    { 
+       
+            return view('categories.create');
+       
     }
 
     /**
@@ -42,23 +46,26 @@ class CategoryController extends Controller
     {
         //validate data
         $this -> validate($request ,array(
-                'name' => 'required | max:255',
-                'description'  => 'required'
+                'name' => 'required | max:50',
+                'description'  => 'required | max:200'
             ));
 
         //save to database
         
         $category=new Category;
 
-        $category->title = $request->title;
-        $category->body = $request->body;
+        $category->name = $request->name;
+        $category->description = $request->description;
+        
+
+        //Category::create([$category]);
 
         $category->save();
         //redirect to another page
 
-        Session::flash('success','Your post was successfully saved!');
+        Session::flash('success','Your category was successfully saved!');
 
-        return redirect()->route('categories.show',$category->id);
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -67,10 +74,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($name)
     {
-        $category=Category::find($id);
-        return view ('category.show')->withCategory($category);
+        $category=Category::find($name);
+        return view ('categories.show')->withCategory($category);
     }
 
     /**
@@ -105,5 +112,35 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function seeCategories(){
+
+        $categories=Category::leftJoin('SelectedCategory','CategoryName','=','Name')
+            ->where('Username','NOT CHECK IN','Admini')->orWhereNull('Username')->get();
+
+        $userCategories=SelectedCategory::where('Username','=','Admini') ->get();
+
+
+        return view ('categories.categoriesuser')->with(array('categories'=>$categories,'userCategories'=>$userCategories));
+
+
+
+        }
+
+    public function selectCategory($categoryName){
+            $selectedCategory=SelectedCategory::where('CategoryName', $categoryName)->first();
+        if($selectedCategory==null){
+        
+        SelectedCategory::create([
+             'CategoryName'=>$categoryName,
+             'Username'=>'Admini'
+        ]);
+
+        }else{
+             SelectedCategory::where('CategoryName', $categoryName)->delete();
+        }
+
+        return redirect('/Kategorite');
     }
 }

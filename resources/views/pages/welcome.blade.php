@@ -57,11 +57,11 @@
                               <span class="caret"></span>
                           </button>
                           <ul class="dropdown-menu pull-right" role="menu">
-                              <li><a href="/order/Newest">Newest</a>
+                              <li><a href="#">Action</a>
                               </li>
-                              <li><a href="/order/A-Z">A-Z</a>
+                              <li><a href="#">Another action</a>
                               </li>
-                              <li><a href="/order/Z-A">Z-A</a>
+                              <li><a href="#">Something else here</a>
                               </li>
                               <li class="divider"></li>
                               <li><a href="#">Separated link</a>
@@ -70,11 +70,8 @@
                       </div>
                   </div>
                 </div>
-
-
                 <div class="content-box-large box-with-header">
                   <ul class="event-list">
-                      @foreach($questions as $question)
                     <li>
                       <div class="social">
                         <ul>
@@ -84,20 +81,18 @@
                         </ul>
                       </div>
                       <div class="info">
-                        <h2 class="title">{{$question->title}}</h2>
-                        <p class="desc">{{$question->content}}</p>
+                        <h2 class="title">Question</h2>
+                        <p class="desc">Description</p>
                         <ul style="width:auto; float: left;">
-                          <li><a href="#website">{{$question->category->name}}</a></li>
+                          <li><a href="#website">tag1</a></li>
+                          <li><a href="#website">tag2</a></li>
                         </ul>
                         <ul style="width: auto; float: left;" class="pull-right">
-                          <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}} by: <a>{{$question->user->username}}</a></p></li>
+                          <li><p style="font-size: 9pt;">Posted 69 minutes ago by <a>IlliPilli</a></p></li>
                         </ul>
                       </div>
-
                     </li>
-
                     <hr>
-                      @endforeach
                   </ul>
               </div>
               </div>
