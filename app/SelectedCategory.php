@@ -15,7 +15,9 @@ class SelectedCategory extends Model
         'CategoryName', 'Username'
     ];
 	
-    protected $table='selectedcategory';
+    
 
     public $timestamps=false;
+
+    protected $table = 'selectedcategories';
 }

@@ -112,13 +112,13 @@
                       </div>
                         <a class="questionLink" href="/questions/{{$question->QuestionID}}">
                       <div class="info">
-                        <h2 class="title">{{$question->Title}}</h2>
-                        <p class="desc">{{ substr($question->Content,0,70)}}{{strlen($question->Content)>70 ? "..." : ""}}</p>
+                        <h2 class="title">{{$question->title}}</h2>
+                        <p class="desc">{{ substr($question->content,0,70)}}{{strlen($question->content)>70 ? "..." : ""}}</p>
                         <ul style="width:auto; float: left;">
-                          <li><a href="/categories">{{$question->CategoryName}}</a></li>
+                          <li><a href="/categories">{{$question->category_id}}</a></li>
                         </ul>
                         <ul style="width: auto; float: left;" class="pull-right">
-                          <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}}  by <a>{{$question->Username}}</a></p></li>
+                          <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}}  by <a>{{$question->user_id}}</a></p></li>
                         </ul>
                       </div>
                         </a>

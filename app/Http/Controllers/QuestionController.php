@@ -19,7 +19,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $questions=Question::orderBy('QuestionID', 'DESC')->get();
+        $questions=Question::orderBy('id', 'DESC')->get();
 
         return view('questions.index')->with('questions',$questions);
     }
@@ -57,8 +57,8 @@ class QuestionController extends Controller
 
         $question->title = $request->title;
         $question->content = $request->content;
-        $question->categoryname = $request->categoryname;
-        $question->username = "Admini";
+        $question->category_id = $request->category_id;
+        $question->user_id = Auth::user()->id;
 
         
 

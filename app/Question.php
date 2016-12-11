@@ -25,6 +25,5 @@ class Question extends Model
         return $this->hasMany('App\Answer','QuestionID');
     }
 
-	public $primaryKey='QuestionID';
-    public $table = "question";
+	
 }

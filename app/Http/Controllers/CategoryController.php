@@ -10,6 +10,8 @@ use App\SelectedCategory;
 
 use Session;
 
+use Auth;
+
 class CategoryController extends Controller
 {
    /**
@@ -74,9 +76,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($name)
+    public function show($id)
     {
-        $category=Category::find($name);
+        $category=Category::find($id);
         return view ('categories.show')->withCategory($category);
     }
 
@@ -116,29 +118,35 @@ class CategoryController extends Controller
 
     public function seeCategories(){
 
-        $categories=Category::leftJoin('SelectedCategory','CategoryName','=','Name')
-            ->where('Username','NOT CHECK IN','Admini')->orWhereNull('Username')->get();
-
-        $userCategories=SelectedCategory::where('Username','=','Admini') ->get();
+        $categories=Category::leftJoin('SelectedCategories','category_id','=','categories.id')
+            ->where('user_id','NOT CHECK IN',Auth::user()->id)->orWhereNull('user_id')->get();
+        
+            foreach($categories as $category){
+                echo $category;
+            }
+            /*
+        
+        $userCategories=SelectedCategory::where('user_id','=','1') ->get();
 
 
         return view ('categories.categoriesuser')->with(array('categories'=>$categories,'userCategories'=>$userCategories));
 
 
-
+*/
         }
 
-    public function selectCategory($categoryName){
-            $selectedCategory=SelectedCategory::where('CategoryName', $categoryName)->first();
+    public function selectCategory($category_id){
+            $selectedCategory=SelectedCategory::where('category_id', $category_id)->first();
         if($selectedCategory==null){
         
         SelectedCategory::create([
-             'CategoryName'=>$categoryName,
-             'Username'=>'Admini'
+             'category_id'=>$category_id,
+             'user_id'=>Auth::user()->id
+
         ]);
 
         }else{
-             SelectedCategory::where('CategoryName', $categoryName)->delete();
+             SelectedCategory::where('category_id', $category_id)->delete();
         }
 
         return redirect('/Kategorite');

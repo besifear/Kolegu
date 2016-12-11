@@ -31,7 +31,7 @@ Route::resource('answers','AnswerController');
 
 Route::get('Kategorite','CategoryController@seeCategories');
 
-Route::post('Kategorite/{categoryName}','CategoryController@selectCategory',compact('categoryName'));
+Route::post('Kategorite/{category_id}','CategoryController@selectCategory',compact('category_id'));
 
 Route::post('upvote','QuestionEvaluationController@upVote');
 

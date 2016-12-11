@@ -15,9 +15,9 @@
     @foreach($categories as $category)
       <div class="col-xs-6 col-md-3">
         <a  class="thumbnail">
-          <img src="https://getuikit.com/docs/images/placeholder_600x400.svg" alt="{{$category->Name}}">
-          <form class="categoryform" method="post" action="Kategorite/{{$category->Name}}">
-           <button type="submit"  class="btn btn-danger  btn-block">{{$category->Name}}</button>
+          <img src="https://getuikit.com/docs/images/placeholder_600x400.svg" alt="{{$category->id}}">
+          <form class="categoryform" method="post" action="Kategorite/{{$category->id}}">
+           <button type="submit"  class="btn btn-danger  btn-block">{{$category->id}}</button>
            {{csrf_field()}}
            </form>
         </a>
@@ -34,7 +34,7 @@
                   <a  class="thumbnail">
                       <img src="https://getuikit.com/docs/images/placeholder_600x400.svg" alt="{{$userCategory->CategoryName}}">
                       <form class="categoryform" method="post" action="Kategorite/{{$userCategory->CategoryName}}">
-                          <button type="submit"  class="btn btn-danger  btn-block">{{$userCategory->CategoryName}}</button>
+                          <button type="submit"  class="btn btn-danger  btn-block">{{$userCategory->category_id}}</button>
                           {{csrf_field()}}
                       </form>
                   </a>
