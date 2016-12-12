@@ -35,7 +35,6 @@
                     <div class="pull-right">
                       <button class="btn btn-success btn-xs">Edit</button>
                       <button class="btn btn-danger btn-xs">Delete</button>
-
                       <br><br>
                     </div>
                     <hr style="clear: both;">
@@ -75,7 +74,8 @@
 					<dt>Last Updated:</dt>
 					<dd>{{ date('j/m/Y H:i',strtotime ($question->updated_at)) }}</dd>
 				</dl>
-				<hr>
+                @if(Auth::user()->id==$question->user_id)
+                    <hr>
 				<div class="row">
 					<div class="col-sm-6">
 						<a href="#" class="btn btn-primary btn-block">Edit</a>
@@ -90,6 +90,7 @@
 						
 						</div>
 				</div>
+                    @endif
 			</div>
 		</div>		
 	</div>	
