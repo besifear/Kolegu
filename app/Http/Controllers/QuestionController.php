@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Question;
-
 use App\Category;
 
+use Auth;
 use Session;
 
 class QuestionController extends Controller
@@ -45,7 +45,7 @@ class QuestionController extends Controller
     {
          //validate data
         $this -> validate($request ,array(
-                'title' => 'required | max:50',
+                'title' => 'required | max:50|unique:questions',
                 'content'  => 'required | max:500'
             ));
 

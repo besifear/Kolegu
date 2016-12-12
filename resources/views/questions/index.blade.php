@@ -79,7 +79,7 @@
                               <li class="facebook" style="width:33%;">
                                   <form action="/upvote" method="post">
 
-                                      <input type="hidden" value="{{$question->QuestionID}}" name="QuestionID" />
+                                      <input type="hidden" value="{{$question->id}}" name="id" />
                                       {{csrf_field()}}
                                       <button type="submit">
                                       <span class="glyphicon glyphicon-chevron-up"></span><br>
@@ -99,7 +99,7 @@
                                 <li class="twitter" style="width:33%;">
 
                           <form action="/downvote" method="post">
-                          <input type="hidden" value="{{$question->QuestionID}}" name="QuestionID" />
+                          <input type="hidden" value="{{$question->id}}" name="id" />
                             {{csrf_field()}}
                             <button type="submit">
                             <span class="glyphicon glyphicon-chevron-down"></span><br><small>
@@ -110,12 +110,12 @@
                           <li class="google-plus" style="width:33%;"><a href="#"><span class="glyphicon glyphicon-comment"></span><br><small>7</small></a></li>
                         </ul>
                       </div>
-                        <a class="questionLink" href="/questions/{{$question->QuestionID}}">
+                        <a class="questionLink" href="/questions/{{$question->id}}">
                       <div class="info">
                         <h2 class="title">{{$question->title}}</h2>
                         <p class="desc">{{ substr($question->content,0,70)}}{{strlen($question->content)>70 ? "..." : ""}}</p>
                         <ul style="width:auto; float: left;">
-                          <li><a href="/categories">{{$question->category_id}}</a></li>
+                          <li><a href="/categories">{{$question->category->name}}</a></li>
                         </ul>
                         <ul style="width: auto; float: left;" class="pull-right">
                           <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}}  by <a>{{$question->user_id}}</a></p></li>

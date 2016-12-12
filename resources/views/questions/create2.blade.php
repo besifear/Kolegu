@@ -43,9 +43,9 @@
                       <br>
 
                       {{ Form::label('categoryname','Category:')}}
-                      <select name="categoryname" class="form-control" >
+                      <select name="category_id" class="form-control" >
                       @foreach($categories as $category)
-                        <option ">{{$category->Name}}</option>
+                        <option value="{{$category->id}}">{{$category->name}}</option>
                       @endforeach  
                       </select>
 

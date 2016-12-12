@@ -8,11 +8,11 @@ class SelectedCategory extends Model
 {
 
     public function category(){
-        return $this->belongsTo('App\Category','CategoryName');
+        return $this->belongsTo('App\Category','category_id');
     }
 
 	protected $fillable = [
-        'CategoryName', 'Username'
+        'category_id', 'user_id'
     ];
 	
     

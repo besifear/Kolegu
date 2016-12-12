@@ -5,14 +5,14 @@
 @section('content')
 	<div class="row">
 		<div class="col-md-8">
-			<h1>{{ $question->Title }}</h1>
-			<p class="lead">{{$question->Content}}</p>
+			<h1>{{ $question->title }}</h1>
+			<p class="lead">{{$question->content}}</p>
 			<hr>
-			<p class="lead">Created by :{{$question->Username}}</p>
+			<p class="lead">Created by :{{$question->user->username}}</p>
 			<hr>
 			<h4>Answers</h4>
                   <hr>
-                  @foreach(App\Answer::where('QuestionID','=',$question->QuestionID)->get() as $answer)
+                  @foreach(App\Answer::where('question_id','=',$question->id)->get() as $answer)
                   <ul class="event-list answer">
                     <li>
                       <div class="social">
@@ -26,9 +26,9 @@
                       <div class="info answerinfo">
 
                         
-                        <p class="desc">{{$answer->Content}}</p>
+                        <p class="desc">{{$answer->content}}</p>
                         <ul style="width: auto; float: left;" class="pull-right">
-                          <li><p style="font-size: 9pt;">Posted {{$answer->created_at->diffForHumans()}}  by <a>{{$answer->Username}}</a></p></li>
+                          <li><p style="font-size: 9pt;">Posted {{$answer->created_at->diffForHumans()}}  by <a>{{$answer->user->name}}</a></p></li>
                         </ul>
                       </div>
                     </li>
@@ -46,7 +46,7 @@
                   	{!! Form::open(['route' => ['answers.store' , 'method' => 'POST']]) !!}
 					{{ Form::label('content','Content:')}}
 		    		{{ Form::textarea('content',null,array('class' => 'form-control','required'=>'','maxlength'=>'500'))}}
-		    		<input type="hidden" name="questionid" value={{$question->QuestionID}}>	 
+		    		<input type="hidden" name="id" value={{$question->id}}>
 					{!! Form::submit('Post',['class' => 'btn btn-primary btn-block'])!!}
 
 					{!! Form::close()!!}	
@@ -57,7 +57,7 @@
                       	
                       </textarea>
                       <input type="hidden" name="_method" value="POST"/> 
-                      <input type="hidden" name="questionid" value={{$question->QuestionID}}/> 
+                      <input type="hidden" name="questionid" value={{$question->id}}/>
                       <!--<span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>-->
                   	<!--  </div>
                     <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right">Post</button>
@@ -81,7 +81,7 @@
 						<a href="#" class="btn btn-primary btn-block">Edit</a>
 					</div>
 						<div class="col-sm-6">
-							{!! Form::open(['route' => ['questions.destroy' , $question->QuestionID], 'method' => 'DELETE']) !!}
+							{!! Form::open(['route' => ['questions.destroy' , $question->id], 'method' => 'DELETE']) !!}
 							
 							{!! Form::submit('Delete',['class' => 'btn btn-danger btn-block'])!!}
 

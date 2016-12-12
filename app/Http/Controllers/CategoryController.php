@@ -119,34 +119,42 @@ class CategoryController extends Controller
     public function seeCategories(){
 
         $categories=Category::leftJoin('SelectedCategories','category_id','=','categories.id')
-            ->where('user_id','NOT CHECK IN',Auth::user()->id)->orWhereNull('user_id')->get();
-        
-            foreach($categories as $category){
-                echo $category;
-            }
-            /*
-        
-        $userCategories=SelectedCategory::where('user_id','=','1') ->get();
+            ->where('user_id','NOT CHECK IN',Auth::user()->id)->orWhereNull('user_id')->get(['categories.id','name','description']);
 
 
-        return view ('categories.categoriesuser')->with(array('categories'=>$categories,'userCategories'=>$userCategories));
+
+        /*foreach($categories as $category){
+            echo $category;
+        }
+        */
+
+    $userCategories=SelectedCategory::where('user_id','=','1') ->get();
 
 
-*/
+    return view ('categories.categoriesuser')->with(array('categories'=>$categories,'userCategories'=>$userCategories));
+
+
+
         }
 
     public function selectCategory($category_id){
-            $selectedCategory=SelectedCategory::where('category_id', $category_id)->first();
+        $selectedCategory=SelectedCategory::where([
+                ['category_id', $category_id],
+                ['user_id',Auth::user()->id]
+            ])->first();
+
         if($selectedCategory==null){
-        
+
         SelectedCategory::create([
              'category_id'=>$category_id,
              'user_id'=>Auth::user()->id
-
         ]);
 
         }else{
-             SelectedCategory::where('category_id', $category_id)->delete();
+             SelectedCategory::where([
+                 ['category_id', $category_id],
+                 ['user_id',Auth::user()->id]
+             ])->delete();
         }
 
         return redirect('/Kategorite');

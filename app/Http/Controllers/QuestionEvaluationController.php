@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\QuestionEvaluation;
-
 use App\Category;
+
 use Session;
+use Auth;
 
 class QuestionEvaluationController extends Controller
 {
@@ -46,17 +47,17 @@ class QuestionEvaluationController extends Controller
 
     public function upVote(Request $request){
         $questionEv=QuestionEvaluation::where([
-            ['QuestionID','=',$request->QuestionID],
-            ['Username','=','Admini'],
+            ['question_id','=',$request->id],
+            ['user_id','=',Auth::user()->id],
         ])->first();
 
         if(($questionEv)==null) {
             $questionEv = new QuestionEvaluation;
-            $questionEv->Vote = 'Yes';
-            $questionEv->QuestionID = $request->QuestionID;
-            $questionEv->Username = 'Admini';
+            $questionEv->vote = 'Yes';
+            $questionEv->question_id = $request->id;
+            $questionEv->user_id = Auth::user()->id;
         }else{
-            $questionEv->Vote = 'Yes';
+            $questionEv->vote = 'Yes';
         }
 
         //Category::create([$category]);
@@ -71,17 +72,17 @@ class QuestionEvaluationController extends Controller
 
     public function downVote(Request $request){
         $questionEv=QuestionEvaluation::where([
-            ['QuestionID','=',$request->QuestionID],
-            ['Username','=','Admini'],
+            ['question_id','=',$request->id],
+            ['user_id','=',Auth::user()->id],
         ])->first();
 
         if(($questionEv)==null) {
             $questionEv = new QuestionEvaluation;
-            $questionEv->Vote = 'No';
-            $questionEv->QuestionID = $request->QuestionID;
-            $questionEv->Username = 'Admini';
+            $questionEv->vote = 'No';
+            $questionEv->question_id= $request->id;
+            $questionEv->user_id = Auth::user()->id;
         }else{
-            $questionEv->Vote = 'No';
+            $questionEv->vote = 'No';
         }
         //Category::create([$category]);
 

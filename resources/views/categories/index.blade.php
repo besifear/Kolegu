@@ -28,8 +28,8 @@
 				<tbody>
 					@foreach($categories as $category)
 						<tr>
-							<td>{{$category->Name}}</td>
-							<td>{{ substr($category->Description,0,50)}}{{strlen($category->Description)>50 ? "..." : ""}}</td>
+							<td>{{$category->name}}</td>
+							<td>{{ substr($category->description,0,50)}}{{strlen($category->description)>50 ? "..." : ""}}</td>
 							<td> <a href="#" class="btn btn-default btn-sm">View</a> <a href="#" class="btn btn-default btn-sm">Edit</a> </td>
 						</tr>
 					@endforeach

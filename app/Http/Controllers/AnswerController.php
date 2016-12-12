@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Answer;
 
 use Session;
+use Auth;
 
 class AnswerController extends Controller
 {
@@ -41,7 +41,7 @@ class AnswerController extends Controller
         //validate data
         $this -> validate($request ,array(
                
-                'content'  => 'required | max:500'
+                'content'  => 'required | max:500| unique:answers'
             ));
 
         //save to database
@@ -49,8 +49,8 @@ class AnswerController extends Controller
         $answer=new Answer;
 
         $answer->content = $request->content;
-        $answer->questionid = $request->questionid;
-        $answer->username = 'Admini';
+        $answer->question_id = $request->id;
+        $answer->user_id = Auth::user()->id;
         
 
         //Category::create([$category]);
@@ -60,7 +60,7 @@ class AnswerController extends Controller
 
         Session::flash('success','Your comment was successfully posted!');
 
-        return redirect()->route('questions.show',$answer->questionid);
+        return redirect()->route('questions.show',$answer->question->id);
     }
 
     /**

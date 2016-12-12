@@ -17,7 +17,7 @@
         <a  class="thumbnail">
           <img src="https://getuikit.com/docs/images/placeholder_600x400.svg" alt="{{$category->id}}">
           <form class="categoryform" method="post" action="Kategorite/{{$category->id}}">
-           <button type="submit"  class="btn btn-danger  btn-block">{{$category->id}}</button>
+           <button type="submit"  class="btn btn-danger  btn-block">{{$category->name}}</button>
            {{csrf_field()}}
            </form>
         </a>
@@ -32,9 +32,9 @@
           @foreach($userCategories as $userCategory)
               <div class="col-xs-6 col-md-3">
                   <a  class="thumbnail">
-                      <img src="https://getuikit.com/docs/images/placeholder_600x400.svg" alt="{{$userCategory->CategoryName}}">
-                      <form class="categoryform" method="post" action="Kategorite/{{$userCategory->CategoryName}}">
-                          <button type="submit"  class="btn btn-danger  btn-block">{{$userCategory->category_id}}</button>
+                      <img src="https://getuikit.com/docs/images/placeholder_600x400.svg" alt="{{$userCategory->category->name}}">
+                      <form class="categoryform" method="post" action="Kategorite/{{$userCategory->category->id}}">
+                          <button type="submit"  class="btn btn-danger  btn-block">{{$userCategory->category->name}}</button>
                           {{csrf_field()}}
                       </form>
                   </a>
