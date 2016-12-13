@@ -21,6 +21,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        if(auth::guest())
+            return view('auth.login');
+        if(!auth::user()->role=='Admin')
+            return redirect('/');
+
+
         $categories=Category::all();
 
         return view('categories.index')->withCategories($categories);
@@ -32,10 +38,13 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    { 
-       
-            return view('categories.create');
-       
+    {
+        if(auth::guest())
+            return view('auth.login');
+        if(!auth::user()->role=='Admin')
+            return redirect('/');
+
+        return view('categories.create');
     }
 
     /**
@@ -46,6 +55,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        if(auth::guest())
+            return view('auth.login');
+        if(!auth::user()->role=='Admin')
+            return redirect('/');
+
         //validate data
         $this -> validate($request ,array(
                 'name' => 'required | max:50',
