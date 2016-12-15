@@ -52,7 +52,7 @@
                 <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-user"></b> User</a>
             <ul class="dropdown-menu">
-              <li><a href="/profile">Profile</a></li>
+              <li><a href="/users/{{Auth::user()->id}}">Profile</a></li>
               <li><a href="#">Settings</a></li>
               <li><a href="/categories/create">Create Category</a></li>
               <li><a href="/Kategorite">Selected Categories</a></li>

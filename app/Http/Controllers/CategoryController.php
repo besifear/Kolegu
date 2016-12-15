@@ -21,10 +21,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        if(auth::guest())
+        if(Auth::guest())
             return view('auth.login');
-        if(!auth::user()->role=='Admin')
-            return redirect('/');
+        
 
 
         $categories=Category::all();

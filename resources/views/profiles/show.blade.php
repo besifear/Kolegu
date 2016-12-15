@@ -132,10 +132,57 @@
                                                 <ul style="width: auto; float: left;" class="pull-right">
                                                   <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}}  by <a>{{$question->user->username}}</a></p></li>
                                                 </ul>
+                                            </div>
+                                        </li>    
                                       @endforeach
                                     </div>
                                     <div class="tab-pane fade in" id="tab2">
-                                      <h3>This is tab 2</h3>
+                                      @foreach(App\Answer::where('user_id','=',$user->id)->get() as $answer)
+                                        
+                                        <ul class="event-list answer">
+                                            <li>
+                                              <div class="social">
+                                                <ul>
+                                                  <li class="facebook" style="width:33%;">
+                                                          <form action="/answerupvote" method="post">
+
+                                                              <input type="hidden" value="{{$answer->id}}" name="id" />
+                                                              {{csrf_field()}}
+                                                              <button type="submit" >
+                                                              <span class="glyphicon glyphicon-chevron-up"></span><br>
+                                                                <small>
+                                                                    {{$answer->upVotes->count()}}
+                                                                </small>
+                                                          </button>
+                                                          </form>
+                                                      </li>
+
+                                                      <li class="twitter" style="width:33%;">
+
+                                                        <form action="/answerdownvote" method="post">
+                                                        <input type="hidden" value="{{$answer->id}}" name="id" />
+                                                          {{csrf_field()}}
+                                                          <button type="submit">
+                                                            <span class="glyphicon glyphicon-chevron-down"></span><br><small>
+                                                                    {{$answer->downVotes->count()}}
+                                                            </small>
+                                                          </button>
+                                                        </form>
+                                                      </li>
+                                                  <li class="google-plus" style="width:33%;"><a href="#"><span class="glyphicon glyphicon-comment"></span><br><small>7</small></a></li>
+                                                </ul>
+                                              </div>
+                                              
+                                              <div class="info answerinfo">
+
+                                                
+                                                <p class="desc">{{$answer->content}}</p>
+                                                <ul style="width: auto; float: left;" class="pull-right">
+                                                  <li><p style="font-size: 9pt;">Posted {{$answer->created_at->diffForHumans()}}  by <a>{{$answer->user->username}}</a></p></li>
+                                                </ul>
+                                            </div>
+                                        </li>    
+                                      @endforeach
                                     </div>
                                     <div class="tab-pane fade in" id="tab3">
                                       <h3>This is tab 3</h3>
