@@ -74,6 +74,7 @@
 					<dt>Last Updated:</dt>
 					<dd>{{ date('j/m/Y H:i',strtotime ($question->updated_at)) }}</dd>
 				</dl>
+                @if(Auth::check())
                 @if(Auth::user()->id==$question->user_id)
                     <hr>
 				<div class="row">
@@ -90,6 +91,7 @@
 						
 						</div>
 				</div>
+                    @endif
                     @endif
 			</div>
 		</div>		
