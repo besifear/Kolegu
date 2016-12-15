@@ -9,3 +9,5 @@
 
 	<script type="text/javascript" src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
     <script src="{{URL::asset('asset/js/bootstrap.min.js')}}"></script>
+    <script src="{{URL::asset('js/custom.js')}}"></script>
+    <script src="https://use.fontawesome.com/62b05711ad.js"></script>

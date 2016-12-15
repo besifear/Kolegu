@@ -17,6 +17,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/profile',function(){
+	return view('pages.profile');
+});
+
 Route::get('/order/{orderBy}','QuestionController@filter',compact('orderBy'));
 
 Route::resource('posts','PostController');
@@ -29,10 +33,16 @@ Route::resource('questionsev','QuestionEvaluationController');
 
 Route::resource('answers','AnswerController');
 
+Route::resource('users','UserController');
+
 Route::get('Kategorite','CategoryController@seeCategories');
 
 Route::post('Kategorite/{category_id}','CategoryController@selectCategory',compact('category_id'));
 
-Route::post('upvote','QuestionEvaluationController@upVote');
+Route::post('questionupvote','QuestionEvaluationController@upVote');
 
-Route::post('downvote','QuestionEvaluationController@downVote');
+Route::post('questiondownvote','QuestionEvaluationController@downVote');
+
+Route::post('answerupvote','AnswerEvaluationController@upVote');
+
+Route::post('answerdownvote','AnswerEvaluationController@downVote');

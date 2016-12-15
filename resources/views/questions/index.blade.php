@@ -77,7 +77,7 @@
                         <ul>
 
                               <li class="facebook" style="width:33%;">
-                                  <form action="/upvote" method="post">
+                                  <form action="/questionupvote" method="post">
 
                                       <input type="hidden" value="{{$question->id}}" name="id" />
                                       {{csrf_field()}}
@@ -98,7 +98,7 @@
 
                                 <li class="twitter" style="width:33%;">
 
-                          <form action="/downvote" method="post">
+                          <form action="/questiondownvote" method="post">
                           <input type="hidden" value="{{$question->id}}" name="id" />
                             {{csrf_field()}}
                             <button type="submit">
@@ -118,7 +118,7 @@
                           <li><a href="/categories">{{$question->category->name}}</a></li>
                         </ul>
                         <ul style="width: auto; float: left;" class="pull-right">
-                          <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}}  by <a>{{$question->user_id}}</a></p></li>
+                          <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}}  by <a>{{$question->user->username}}</a></p></li>
                         </ul>
                       </div>
                         </a>

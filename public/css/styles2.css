@@ -15,6 +15,9 @@ body {
   margin: auto;
 }
 
+.categoryform{
+  margin-bottom:0px;
+}
 /* Footer */
 
 /*footer{
@@ -91,7 +94,7 @@ footer .copy{
    font-size:12px;
    padding:4px 8px;
    margin:0px 2px;
-   border-radius:5px !important;
+   border-radius:15px !important;
 }
 
 .header .navbar{
@@ -222,7 +225,7 @@ footer .copy{
 .content-box, .content-box-large {
    margin-bottom:30px;
    background:#fff;
-   border-radius:5px;
+   border-radius:10px;
    padding:10px;
    border-left:1px solid #eee;
    border-top:1px solid #eee;
@@ -596,13 +599,13 @@ body {
 .media
  {
      /*box-shadow:0px 0px 4px -2px #000;*/
-     margin: 0px 0;
-     padding:0px;
+     margin: 20px 0;
+     padding:30px;
  }
  .media-body {
    margin: 25px 0;
    padding-left: 20px;
-   border-left: 1px solid #F0F0F0;
+   border-left: 1px solid black;
    float: left;
  }
  .media-side {
@@ -623,7 +626,6 @@ body {
      -webkit-transform:rotate(360deg);
      /*-webkit-font-smoothing:antialiased;*/
  }
- 
  /*end profile css*/
 
 
@@ -706,6 +708,6 @@ body {
       padding:6px 12px;
       border-bottom:0px;
       box-shadow:0px 0px 1px #0fa6bc;
-      border-radius:5px;
+      border-radius:10px;
    }
 }

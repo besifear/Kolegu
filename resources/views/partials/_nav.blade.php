@@ -33,8 +33,8 @@
           <li><a href="/"><b class="glyphicon glyphicon-comment"></b> Pergjigju</a></li>
 
             @if(Auth::guest())
-                <li><a href="{{url('/login')}}"><b class="glyphicon glyphicon-send"></b> Login</a></li>
-                <li><a href="{{ url('/register') }}"><b class="glyphicon glyphicon-send"></b> Register</a></li>
+                <li><a href="{{url('/login')}}"><b class="glyphicon glyphicon-log-in"></b> Login</a></li>
+                <li><a href="{{ url('/register') }}"><b class="fa fa-key"></b> Register</a></li>
             @else
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-bell"></b> Notifications</a>
@@ -52,7 +52,7 @@
                 <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-user"></b> User</a>
             <ul class="dropdown-menu">
-              <li><a href="#">Profile</a></li>
+              <li><a href="/profile">Profile</a></li>
               <li><a href="#">Settings</a></li>
               <li><a href="/categories/create">Create Category</a></li>
               <li><a href="/Kategorite">Selected Categories</a></li>

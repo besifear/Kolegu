@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Answer;
 
-use Session;
-use Auth;
-use Redirect;
-class AnswerController extends Controller
+use App\User;
+
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,29 +36,7 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-        //validate data
-        $this -> validate($request ,array(
-               
-                'content'  => 'required | max:500| unique:answers'
-            ));
-
-        //save to database
-        
-        $answer=new Answer;
-
-        $answer->content = $request->content;
-        $answer->question_id = $request->id;
-        $answer->user_id = Auth::user()->id;
-        
-
-        //Category::create([$category]);
-
-        $answer->save();
-        //redirect to another page
-
-        Session::flash('success','Your comment was successfully posted!');
-
-        return redirect()->route('questions.show',$answer->question->id);
+        //
     }
 
     /**
@@ -71,7 +47,9 @@ class AnswerController extends Controller
      */
     public function show($id)
     {
-        //
+        $user=User::find($id);
+
+        return view ('profiles.show')->withUser($user);
     }
 
     /**
@@ -105,19 +83,6 @@ class AnswerController extends Controller
      */
     public function destroy($id)
     {
-        $answer=Answer::find($id);
-
-        $evaluations=$answer->allEvaluations;
-
-        
-
-        foreach($evaluations as $eval){
-            $eval->delete();
-        }
-
-        
-        $answer->delete();
-
-        return Redirect::back();
+        //
     }
 }

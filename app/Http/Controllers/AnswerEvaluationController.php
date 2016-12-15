@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use App\AnswerEvaluation;
+
 use App\Answer;
 
-use Session;
 use Auth;
+
 use Redirect;
-class AnswerController extends Controller
+class AnswerEvaluationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,29 +41,7 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-        //validate data
-        $this -> validate($request ,array(
-               
-                'content'  => 'required | max:500| unique:answers'
-            ));
-
-        //save to database
-        
-        $answer=new Answer;
-
-        $answer->content = $request->content;
-        $answer->question_id = $request->id;
-        $answer->user_id = Auth::user()->id;
-        
-
-        //Category::create([$category]);
-
-        $answer->save();
-        //redirect to another page
-
-        Session::flash('success','Your comment was successfully posted!');
-
-        return redirect()->route('questions.show',$answer->question->id);
+        //
     }
 
     /**
@@ -105,19 +86,54 @@ class AnswerController extends Controller
      */
     public function destroy($id)
     {
-        $answer=Answer::find($id);
+        //
+    }
 
-        $evaluations=$answer->allEvaluations;
+    public function upVote(Request $request){
+        $answerEv=AnswerEvaluation::where([
+            ['answer_id','=',$request->id],
+            ['user_id','=',Auth::user()->id],
+        ])->first();
 
-        
-
-        foreach($evaluations as $eval){
-            $eval->delete();
+        if(($answerEv)==null) {
+            $answerEv = new AnswerEvaluation;
+            $answerEv->vote = 'Yes';
+            $answerEv->answer_id = $request->id;
+            $answerEv->user_id = Auth::user()->id;
+        }else{
+            $answerEv->vote = 'Yes';
         }
 
+        //Category::create([$category]);
+
+        $answerEv->save();
+        //redirect to another page
+
         
-        $answer->delete();
+         return Redirect::back();
+        //return redirect('questions/2');
+    }
+
+    public function downVote(Request $request){
+        $answerEv=AnswerEvaluation::where([
+            ['answer_id','=',$request->id],
+            ['user_id','=',Auth::user()->id],
+        ])->first();
+
+        if(($answerEv)==null) {
+            $answerEv = new AnswerEvaluation;
+            $answerEv->vote = 'No';
+            $answerEv->answer_id= $request->id;
+            $answerEv->user_id = Auth::user()->id;
+        }else{
+            $answerEv->vote = 'No';
+        }
+        //Category::create([$category]);
+
+        $answerEv->save();
+        //redirect to another page
 
         return Redirect::back();
+        //return redirect('questions/2');
     }
 }
