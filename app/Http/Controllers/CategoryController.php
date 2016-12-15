@@ -21,6 +21,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        if(auth::guest())
+            return view('auth.login');
+        if(!auth::user()->role=='Admin')
+            return redirect('/');
+
+
         $categories=Category::all();
 
         return view('categories.index')->withCategories($categories);
@@ -32,10 +38,13 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    { 
-       
-            return view('categories.create');
-       
+    {
+        if(auth::guest())
+            return view('auth.login');
+        if(!auth::user()->role=='Admin')
+            return redirect('/');
+
+        return view('categories.create');
     }
 
     /**
@@ -46,6 +55,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        if(auth::guest())
+            return view('auth.login');
+        if(!auth::user()->role=='Admin')
+            return redirect('/');
+
         //validate data
         $this -> validate($request ,array(
                 'name' => 'required | max:50',
@@ -117,40 +131,47 @@ class CategoryController extends Controller
     }
 
     public function seeCategories(){
+        //qetu kthehet arrayi prej databazes per kategorite qe kane mbet te pazgjedhuna prej userit
+        $categories=Category::distinct()->whereNotIn('categories.id',
+            Category::join('selectedcategories','category_id','=','categories.id')->distinct()
+            ->where('user_id','=',Auth::user()->id)->get(['categories.id'])
+        )->get(['categories.id','name','description']);
 
-        $categories=Category::leftJoin('SelectedCategories','category_id','=','categories.id')
-            ->where('user_id','NOT CHECK IN',Auth::user()->id)->orWhereNull('user_id')->get(['categories.id','name','description']);
-
-
-
-        /*foreach($categories as $category){
-            echo $category;
-        }
+        /*
+            OLD QUERY per gjdo rast mos e fshij !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        $categories=Category::leftJoin('SelectedCategories','category_id','=','categories.id')->distinct()
+            ->where('user_id','!=',Auth::user()->id)->orWhereNull('user_id')->get(['categories.id','name','description']);
         */
 
-    $userCategories=SelectedCategory::where('user_id','=','1') ->get();
+        //qetu kthehen arrayi prej databazes per kategorite qe i ka zgjedh useri.
+        $userCategories=SelectedCategory::where('user_id','=',Auth::user()->id)->get();
 
-
-    return view ('categories.categoriesuser')->with(array('categories'=>$categories,'userCategories'=>$userCategories));
-
-
-
+            return view ('categories.categoriesuser')->with(
+                array('categories'=>$categories,'userCategories'=>$userCategories));
         }
 
+        /*
+          Metoda selectCategory nqs nuk e ka t'zgjedht qet kategori shkon ja shton te selected categories
+          nqs e ka ne selected categories edhe e selekton ather e hek prej atyhit
+        */
     public function selectCategory($category_id){
+        // e lyp ndatabaze
         $selectedCategory=SelectedCategory::where([
                 ['category_id', $category_id],
                 ['user_id',Auth::user()->id]
             ])->first();
 
+        //e kqyr a o null
         if($selectedCategory==null){
 
+            // nqs sosht athere e krijon ndatabaze 1 rresht te selectedCategory qe tregon qe qeky user e ka zgjedh qet kategori
         SelectedCategory::create([
              'category_id'=>$category_id,
              'user_id'=>Auth::user()->id
         ]);
 
         }else{
+            //perndryshe nqs ekziston qajo selectedcategori ather i bjen qe useri o ka don me e fshi qat selectedcategory
              SelectedCategory::where([
                  ['category_id', $category_id],
                  ['user_id',Auth::user()->id]

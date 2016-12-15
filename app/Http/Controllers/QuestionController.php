@@ -30,7 +30,9 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
+        if(auth::guest())
+            return view('auth.login');
         $categories=Category::all();
         return view('questions.create2')->withCategories($categories);
     }
@@ -43,6 +45,8 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
+        if(auth::guest())
+            return view('auth.login');
          //validate data
         $this -> validate($request ,array(
                 'title' => 'required | max:50|unique:questions',
@@ -132,7 +136,8 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        
+        if(auth::guest())
+            return view('auth.login');
         $question=Question::find($id);
 
         $evaluations=$question->allEvaluations;

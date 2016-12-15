@@ -114,7 +114,9 @@
 					<dt>Last Updated:</dt>
 					<dd>{{ date('j/m/Y H:i',strtotime ($question->updated_at)) }}</dd>
 				</dl>
-           @if(Auth::user()->id==$question->user_id)
+
+                @if(Auth::check())
+                @if(Auth::user()->id==$question->user_id)
                     <hr>
       				<div class="row">
       					<div class="col-sm-6">
@@ -127,10 +129,12 @@
 
       							{!! Form::close()!!}	
 
-      						
-      						</div>
-      				</div>
-           @endif
+
+						
+						</div>
+				</div>
+                    @endif
+                    @endif
 			</div>
 		</div>		
 	</div>	

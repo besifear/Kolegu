@@ -38,6 +38,8 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
+        if(auth::guest())
+            return view('auth.login');
         //validate data
         $this -> validate($request ,array(
                
