@@ -127,10 +127,7 @@
 
       							{!! Form::submit('Delete',['class' => 'btn btn-danger btn-block'])!!}
 
-      							{!! Form::close()!!}	
-
-
-						
+      							{!! Form::close()!!}
 						</div>
 				</div>
                     @endif

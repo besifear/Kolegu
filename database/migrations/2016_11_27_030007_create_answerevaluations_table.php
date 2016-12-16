@@ -34,7 +34,7 @@ class CreateAnswerevaluationsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('answerevaluation');
+		Schema::drop('answerevaluations');
 	}
 
 }

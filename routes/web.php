@@ -35,6 +35,8 @@ Route::resource('answers','AnswerController');
 
 Route::resource('users','UserController');
 
+Route::resource('messages', 'MessageController');
+
 Route::get('Kategorite','CategoryController@seeCategories');
 
 Route::post('Kategorite/{category_id}','CategoryController@selectCategory',compact('category_id'));
