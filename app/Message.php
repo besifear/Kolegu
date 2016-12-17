@@ -8,7 +8,8 @@ class Message extends Model
 {
     //
 
+
     protected $fillable=[
-        'subject', 'content', 'sender_id', 'reciever_id'
+        'subject', 'content', 'sender_id', 'reciever_id','status'
     ];
 }

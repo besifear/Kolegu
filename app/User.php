@@ -9,6 +9,14 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public function messages(){
+       return $this->hasMany('App\Message','reciever_id');
+    }
+
+    public function unseenMessages(){
+        return $this->hasMany('App\Message','reciever_id')->where('status','=','no');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
