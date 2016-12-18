@@ -113,8 +113,8 @@
                       </div>
                         <a  href="/questions/{{$question->id}}">
                       <div class="info">
-                        <h2 class="title">{{$question->title}}</h2>
-                        <p class="desc">{{ substr($question->content,0,70)}}{{strlen($question->content)>70 ? "..." : ""}}</p>
+                        <h2 class="title">{{substr($question->title,0,40)}}{{strlen($question->title)>40 ? "..." : ""}}</h2>
+                        <p class="desc">{{ substr($question->content,0,70)}}{{strlen($question->content)>40 ? "..." : ""}}</p>
                         <ul style="width:auto; float: left;">
                           <li><a href="/categories">{{$question->category->name}}</a></li>
                         </ul>

@@ -124,11 +124,10 @@
                                                               <li class="google-plus" style="width:33%;"><a href="#"><span class="glyphicon glyphicon-comment"></span><br><small>7</small></a></li>
                                                             </ul>
                                                           </div>
-                                                          <a class="questionLink" href="/questions/{{$question->id}}"></a>
+                                                          
                                                           <div class="info answerinfo">
-
-                                                            <h2 class="title">{{$question->title}}</h2>
-                                                            <p class="desc">{{$question->content}}</p>
+                                                          <a class="questionLink title" href="/questions/{{$question->id}}">{{substr($question->title,0,40)}}{{strlen($question->title)>40 ? "..." : ""}}</a>
+                                                            <p class="desc">{{ substr($question->content,0,70)}}{{strlen($question->content)>40 ? "..." : ""}}</p>
                                                             <ul style="width: auto; float: left;" class="pull-right">
                                                               <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}}  by <a>{{$question->user->username}}</a></p></li>
                                                             </ul>
