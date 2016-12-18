@@ -16,11 +16,9 @@
                                     <h2 class="media-heading">{{$user->username}}<small> Autist</small></h2>
                                     <h4>Software Developer at <a href="#">Kitrrat.io</a></h4>
                                     <hr style="margin:8px auto">
-
-                                    <span class="label label-default">HTML5/CSS3</span>
-                                    <span class="label label-default">jQuery</span>
-                                    <span class="label label-info">Laravel</span>
-                                    <span class="label label-default">Android</span>
+                                    @foreach(App\SelectedCategory::where('user_id','=',$user->id)->get() as $selectedcategory)
+                                      <span class="label label-info">{{$selectedcategory->category->name}}</span>
+                                    @endforeach
                                 </div>
                                 <div class="media-side pull-right">
                                     <p><span class="glyphicon glyphicon-repeat"></span> Member for 10 months</p>
