@@ -111,9 +111,10 @@
                           <li class="google-plus" style="width:33%;"><a href="#"><span class="glyphicon glyphicon-comment"></span><br><small>7</small></a></li>
                         </ul>
                       </div>
-                        <a  href="/questions/{{$question->id}}"></a>
+                        
                       <div class="info">
-                        <h2 class="title">{{substr($question->title,0,40)}}{{strlen($question->title)>40 ? "..." : ""}}</h2>
+                      <a  class="title" href="/questions/{{$question->id}}">{{substr($question->title,0,40)}}{{strlen($question->title)>40 ? "..." : ""}}</a>
+                        
                         <p class="desc">{{ substr($question->content,0,70)}}{{strlen($question->content)>40 ? "..." : ""}}</p>
                         <ul style="width:auto; float: left;">
                           <li><a href="/categories">{{$question->category->name}}</a></li>
