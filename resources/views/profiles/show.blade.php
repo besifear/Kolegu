@@ -128,6 +128,9 @@
                                                           <div class="info answerinfo">
                                                           <a class="questionLink title" href="/questions/{{$question->id}}">{{substr($question->title,0,40)}}{{strlen($question->title)>40 ? "..." : ""}}</a>
                                                             <p class="desc">{{ substr($question->content,0,70)}}{{strlen($question->content)>40 ? "..." : ""}}</p>
+                                                            <ul style="width:auto; float: left;">
+                                                              <li><a href="/categories">{{$question->category->name}}</a></li>
+                                                            </ul>
                                                             <ul style="width: auto; float: left;" class="pull-right">
                                                               <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}}  by <a>{{$question->user->username}}</a></p></li>
                                                             </ul>
