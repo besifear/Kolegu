@@ -119,7 +119,10 @@
                                                                       </button>
                                                                     </form>
                                                                   </li>
-                                                              <li class="google-plus" style="width:33%;"><a href="#"><span class="glyphicon glyphicon-comment"></span><br><small>7</small></a></li>
+                                                              <li class="google-plus" style="width:33%;">
+                                                              <a href="/questions/{{$question->id}}"><span class="glyphicon glyphicon-comment"></span><br><small>
+                                                                {{$question->allAnswers->count()}}
+                                                              </small></a></li>
                                                             </ul>
                                                           </div>
                                                           
@@ -177,8 +180,7 @@
                                               </div>
                                               
                                               <div class="info answerinfo">
-
-                                                
+                                                <br>
                                                 <p class="desc">{{$answer->content}}</p>
                                                 <ul style="width: auto; float: left;" class="pull-right">
                                                   <li >
