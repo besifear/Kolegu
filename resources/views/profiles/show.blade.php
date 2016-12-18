@@ -106,49 +106,52 @@
                                     <div class="tab-pane fade in active" id="tab1">
                                       @foreach(App\Question::where('user_id','=',$user->id)->get() as $question)
 
-                                        <ul class="event-list answer">
-                                            <li>
-                                              <div class="social">
-                                                <ul>
-                                                  <li class="facebook" style="width:33%;">
-                                                          <form action="/answerupvote" method="post">
+                                        <div class="content-box-large box-with-header">
+                                            <ul class="event-list answer">
+                                                <li>
+                                                        <div class="social">
+                                                            <ul>
+                                                              <li class="facebook" style="width:33%;">
+                                                                      <form action="/answerupvote" method="post">
 
-                                                              <input type="hidden" value="{{$question->id}}" name="id" />
-                                                              {{csrf_field()}}
-                                                              <button type="submit" >
-                                                              <span class="glyphicon glyphicon-chevron-up"></span><br>
-                                                                <small>
-                                                                    {{$question->upVotes->count()}}
-                                                                </small>
-                                                          </button>
-                                                          </form>
-                                                      </li>
+                                                                          <input type="hidden" value="{{$question->id}}" name="id" />
+                                                                          {{csrf_field()}}
+                                                                          <button type="submit" >
+                                                                          <span class="glyphicon glyphicon-chevron-up"></span><br>
+                                                                            <small>
+                                                                                {{$question->upVotes->count()}}
+                                                                            </small>
+                                                                      </button>
+                                                                      </form>
+                                                                  </li>
 
-                                                      <li class="twitter" style="width:33%;">
+                                                                  <li class="twitter" style="width:33%;">
 
-                                                        <form action="/answerdownvote" method="post">
-                                                        <input type="hidden" value="{{$question->id}}" name="id" />
-                                                          {{csrf_field()}}
-                                                          <button type="submit">
-                                                            <span class="glyphicon glyphicon-chevron-down"></span><br><small>
-                                                                    {{$question->downVotes->count()}}
-                                                            </small>
-                                                          </button>
-                                                        </form>
-                                                      </li>
-                                                  <li class="google-plus" style="width:33%;"><a href="#"><span class="glyphicon glyphicon-comment"></span><br><small>7</small></a></li>
-                                                </ul>
-                                              </div>
+                                                                    <form action="/answerdownvote" method="post">
+                                                                    <input type="hidden" value="{{$question->id}}" name="id" />
+                                                                      {{csrf_field()}}
+                                                                      <button type="submit">
+                                                                        <span class="glyphicon glyphicon-chevron-down"></span><br><small>
+                                                                                {{$question->downVotes->count()}}
+                                                                        </small>
+                                                                      </button>
+                                                                    </form>
+                                                                  </li>
+                                                              <li class="google-plus" style="width:33%;"><a href="#"><span class="glyphicon glyphicon-comment"></span><br><small>7</small></a></li>
+                                                            </ul>
+                                                          </div>
+                                                          <a class="questionLink" href="/questions/{{$question->id}}"></a>
+                                                          <div class="info answerinfo">
 
-                                              <div class="info answerinfo">
-
-
-                                                <p class="desc">{{$question->content}}</p>
-                                                <ul style="width: auto; float: left;" class="pull-right">
-                                                  <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}}  by <a>{{$question->user->username}}</a></p></li>
-                                                </ul>
-                                            </div>
-                                        </li>
+                                                            <h2 class="title">{{$question->title}}</h2>
+                                                            <p class="desc">{{$question->content}}</p>
+                                                            <ul style="width: auto; float: left;" class="pull-right">
+                                                              <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}}  by <a>{{$question->user->username}}</a></p></li>
+                                                            </ul>
+                                                           </div> 
+                                                    </li>  
+                                            </ul>
+                                        </div>
                                       @endforeach
                                     </div>
                                     <div class="tab-pane fade in" id="tab2">
@@ -193,6 +196,12 @@
 
                                                 <p class="desc">{{$answer->content}}</p>
                                                 <ul style="width: auto; float: left;" class="pull-right">
+                                                  <li >
+                                                      <a class="questionLink" href="/questions/{{$answer->question->id}}">
+
+                                                        Answered at question :{{$answer->question->title}}
+                                                      </a>
+                                                  </li>  
                                                   <li><p style="font-size: 9pt;">Posted {{$answer->created_at->diffForHumans()}}  by <a>{{$answer->user->username}}</a></p></li>
                                                 </ul>
                                             </div>

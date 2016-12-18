@@ -68,10 +68,11 @@
                       </div>
                   </div>
                 </div>
+                @foreach($questions as $question)
                 <div class="content-box-large box-with-header">
                 
                   <ul class="event-list">
-                  @foreach($questions as $question)
+                  
                     <li class="questionListItem">
                       <div class="social">
                         <ul>
@@ -110,7 +111,7 @@
                           <li class="google-plus" style="width:33%;"><a href="#"><span class="glyphicon glyphicon-comment"></span><br><small>7</small></a></li>
                         </ul>
                       </div>
-                        <a class="questionLink" href="/questions/{{$question->id}}">
+                        <a  href="/questions/{{$question->id}}">
                       <div class="info">
                         <h2 class="title">{{$question->title}}</h2>
                         <p class="desc">{{ substr($question->content,0,70)}}{{strlen($question->content)>70 ? "..." : ""}}</p>
@@ -125,9 +126,10 @@
                     </li>
                     <hr>
                     <br>
-                    @endforeach
+                    
                   </ul>
               </div>
+              @endforeach
               </div>
             </div>
           </div>
