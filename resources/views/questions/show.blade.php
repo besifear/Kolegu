@@ -13,6 +13,7 @@
 			<h4>Answers</h4>
                   <hr>
                   @foreach(App\Answer::where('question_id','=',$question->id)->get() as $answer)
+                  <div class="content-box-large box-with-header">
                   <ul class="event-list answer">
                     <li>
                       <div class="social">
@@ -61,6 +62,8 @@
                         </ul>
                       </div>
                     </li>
+                    </ul>
+                    </div>
                     <div class="pull-right">
 
                          @if(Auth::user()->id==$answer->user_id)

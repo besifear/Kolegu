@@ -140,7 +140,7 @@
                                     </div>
                                     <div class="tab-pane fade in" id="tab2">
                                       @foreach(App\Answer::where('user_id','=',$user->id)->get() as $answer)
-                                        
+                                        <div class="content-box-large box-with-header">
                                         <ul class="event-list answer">
                                             <li>
                                               <div class="social">
@@ -189,7 +189,9 @@
                                                   <li><p style="font-size: 9pt;">Posted {{$answer->created_at->diffForHumans()}}  by <a>{{$answer->user->username}}</a></p></li>
                                                 </ul>
                                             </div>
-                                        </li>    
+                                        </li>  
+                                        </ul>
+                                       </div>   
                                       @endforeach
                                     </div>
                                     <div class="tab-pane fade in" id="tab3">
