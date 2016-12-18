@@ -8,8 +8,8 @@
             <div class="col-lg-12">
                 <div class="content-box">
                     <div class="panel-body">
-                            <div class="media">
-                                <a class="pull-left" href="#">
+                        <div class="media">
+                            <a class="pull-left" href="#">
                                     <img class="media-object dp img-circle" src="images/facebook.png" style="width: 150px;height:150px;">
                                 </a>
                                 <div class="media-body">
@@ -22,6 +22,7 @@
                                     <span class="label label-info">Laravel</span>
                                     <span class="label label-default">Android</span>
                                 </div>
+
                                 <div class="media-side pull-right">
                                     <p><span class="glyphicon glyphicon-repeat"></span> Member for 10 months</p>
                                     <p><span class="glyphicon glyphicon-time"></span> Last seen 32 minutes ago</p>

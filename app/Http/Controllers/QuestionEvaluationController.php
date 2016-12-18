@@ -9,6 +9,7 @@ use App\Category;
 
 use Session;
 use Auth;
+use Redirect;
 
 class QuestionEvaluationController extends Controller
 {
@@ -57,6 +58,7 @@ class QuestionEvaluationController extends Controller
             $questionEv->question_id = $request->id;
             $questionEv->user_id = Auth::user()->id;
         }else{
+            
             $questionEv->vote = 'Yes';
         }
 
@@ -67,7 +69,7 @@ class QuestionEvaluationController extends Controller
 
         
 
-        return redirect('/');
+        return Redirect::back();
     }
 
     public function downVote(Request $request){
@@ -90,7 +92,7 @@ class QuestionEvaluationController extends Controller
         //redirect to another page
 
 
-        return redirect('/');
+        return Redirect::back();
     }
     /**
      * Display the specified resource.

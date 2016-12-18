@@ -39,7 +39,11 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-bell"></b> Notifications</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
+                        <li><a href="/messages">Messages
+                                @if(Auth::user()->unseenMessages->count()!=0)
+                                ({{Auth::user()->unseenMessages->count()}})
+                                @endif
+                            </a></li>
                         <li class="divider"></li>
                         <li><a href="#">Another action</a></li>
                         <li class="divider"></li>

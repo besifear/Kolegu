@@ -12,14 +12,31 @@
 			<hr>
 			<h4>Answers</h4>
                   <hr>
-                  @foreach(App\Answer::where('question_id','=',$question->id)->get() as $answer)
                   <div class="content-box-large box-with-header">
+                  @foreach(App\Answer::where('question_id','=',$question->id)->get() as $answer)
+                  
                   <ul class="event-list answer">
                     <li>
                       <div class="social">
                         <ul>
                           <li class="facebook" style="width:33%;">
-                                  <form action="/answerupvote" method="post">
+
+
+                                  <a href="{{ url('/answerupvote') }}"
+                                     onclick="event.preventDefault();
+                                    document.getElementById('upvoteAnswer-form').submit();">
+                                    <span class="glyphicon glyphicon-chevron-up">
+                                      
+                                    </span>
+                                    <br>
+                                    <small>{{$answer->upVotes->count()}}</small>
+                                  </a>
+                                  <form id="upvoteAnswer-form" action="{{ url('/answerupvote') }}" method="POST" style="display: none;">
+                                      <input type="hidden" value="{{$answer->id}}" name="id" />
+                                      {{ csrf_field() }}
+                                  </form>
+
+                                  <!--<form action="/answerupvote" method="post">
 
                                       <input type="hidden" value="{{$answer->id}}" name="id" />
                                       {{csrf_field()}}
@@ -34,12 +51,26 @@
                                             {{$answer->upVotes->count()}}
                                         </small>
                                   </button>
-                                  </form>
+                                  </form>-->
                               </li>
 
                               <li class="twitter" style="width:33%;">
 
-                                <form action="/answerdownvote" method="post">
+                              <a href="{{ url('/answerdownvote') }}"
+                                     onclick="event.preventDefault();
+                                    document.getElementById('downvoteAnswer-form').submit();">
+                                    <span class="glyphicon glyphicon-chevron-down">
+                                      
+                                    </span>
+                                    <br>
+                                    <small>{{$answer->downVotes->count()}}</small>
+                                  </a>
+                                  <form id="downvoteAnswer-form" action="{{ url('/answerdownvote') }}" method="POST" style="display: none;">
+                                      <input type="hidden" value="{{$answer->id}}" name="id" />
+                                      {{ csrf_field() }}
+                                  </form>
+
+                                <!--<form action="/answerdownvote" method="post">
                                 <input type="hidden" value="{{$answer->id}}" name="id" />
                                   {{csrf_field()}}
                                   <button type="submit">
@@ -47,9 +78,9 @@
                                             {{$answer->downVotes->count()}}
                                     </small>
                                   </button>
-                                </form>
+                                </form>-->
                               </li>
-                          <li class="google-plus" style="width:33%;"><a href="#"><span class="glyphicon glyphicon-comment"></span><br><small>7</small></a></li>
+                          
                         </ul>
                       </div>
                       
@@ -63,7 +94,6 @@
                       </div>
                     </li>
                     </ul>
-                    </div>
                     <div class="pull-right">
 
                          @if(Auth::user()->id==$answer->user_id)
@@ -75,13 +105,17 @@
 
                                 {!! Form::close()!!}  
 
-                          <br><br>
+                          
                         @endif
 
-                      <br><br>
+                      <br>
                     </div>
                     <hr style="clear: both;">
+
+                    
+                    
                     @endforeach
+                    </div>
                   </ul>
                   <div id="result"></div>
                   <h3>Your answer</h3>
@@ -130,10 +164,7 @@
 
       							{!! Form::submit('Delete',['class' => 'btn btn-danger btn-block'])!!}
 
-      							{!! Form::close()!!}	
-
-
-						
+      							{!! Form::close()!!}
 						</div>
 				</div>
                     @endif

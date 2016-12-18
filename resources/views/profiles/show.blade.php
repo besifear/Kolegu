@@ -35,19 +35,34 @@
                                             		</div>
                                             		<div class="modal-body">
 
-                                                        <!-- content goes here -->
-                                            			<form>
+                                                    {!! Form::open(array('route' => 'messages.store','data-parsley-validate'=>'')) !!}
+                                                        {{ Form::hidden('reciever_id',$user->id)}}
+                                                        <div class="form-group">
+                                                    {{ Form::label('subject','Subject:')}}
+                                                    {{ Form::text('subject',null,array('class' => 'form-control','required'=>'','maxlength'=>'50'))}}
+                                                        </div>
+                                                        <div class="form-group">
+                                                            {{ Form::label('content','Message:')}}
+                                                            {{ Form::textarea('content',null,array('class' => 'form-control','id'=>'exampleInputEmail1','required'=>'','maxlength'=>'500'))}}
+
+                                                        </div>
+                                                    {{ Form::submit('Send Message',array('class' => 'btn btn-default'))}}
+                                                    {!! Form::close() !!}
+                                                        <!--
+                                            			<form action="messages" method="post">
+                                                            {{csrf_field()}}
+                                                            <input name="reciver_id" type="hidden" value="{{$user->id}}">
                                                           <div class="form-group">
                                                             <label for="exampleInputEmail1">Subject</label>
-                                                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+                                                            <input name="subject" type="text"  class="form-control" id="exampleInputEmail1" placeholder="">
                                                           </div>
                                                           <div class="form-group">
                                                             <label for="exampleInputPassword1">Message</label>
-                                                            <textarea class="form-control" id="exampleInputPassword1" placeholder=""></textarea>
+                                                            <textarea name="message" class="form-control"  id="exampleInputPassword1" placeholder=""></textarea>
                                                           </div>
                                                           <button type="submit" class="btn btn-default">Submit</button>
                                                         </form>
-
+                                                        -->
                                             		</div>
                                             	</div>
                                               </div>
@@ -87,37 +102,45 @@
                         <div class="well">
                               <div class="tab-content">
                                     <div class="tab-pane fade in active" id="tab1">
+                                     <div class="content-box-large box-with-header">
                                       @foreach(App\Question::where('user_id','=',$user->id)->get() as $question)
-                                        <div class="content-box-large box-with-header">
+
+                                       
                                             <ul class="event-list answer">
                                                 <li>
                                                         <div class="social">
                                                             <ul>
                                                               <li class="facebook" style="width:33%;">
-                                                                      <form action="/answerupvote" method="post">
-
+                                                                      <a href="{{ url('/questionupvote') }}"
+                                                                         onclick="event.preventDefault();
+                                                                        document.getElementById('upvoteQuestion-form').submit();">
+                                                                        <span class="glyphicon glyphicon-chevron-up">
+                                                                          
+                                                                        </span>
+                                                                        <br>
+                                                                        <small>{{$question->upVotes->count()}}</small>
+                                                                      </a>
+                                                                      <form id="upvoteQuestion-form" action="{{ url('/questionupvote') }}" method="POST" style="display: none;">
                                                                           <input type="hidden" value="{{$question->id}}" name="id" />
-                                                                          {{csrf_field()}}
-                                                                          <button type="submit" >
-                                                                          <span class="glyphicon glyphicon-chevron-up"></span><br>
-                                                                            <small>
-                                                                                {{$question->upVotes->count()}}
-                                                                            </small>
-                                                                      </button>
+                                                                          {{ csrf_field() }}
                                                                       </form>
                                                                   </li>
 
                                                                   <li class="twitter" style="width:33%;">
 
-                                                                    <form action="/answerdownvote" method="post">
-                                                                    <input type="hidden" value="{{$question->id}}" name="id" />
-                                                                      {{csrf_field()}}
-                                                                      <button type="submit">
-                                                                        <span class="glyphicon glyphicon-chevron-down"></span><br><small>
-                                                                                {{$question->downVotes->count()}}
-                                                                        </small>
-                                                                      </button>
-                                                                    </form>
+                                                                    <a href="{{ url('/questiondownvote') }}"
+                                                                     onclick="event.preventDefault();
+                                                                    document.getElementById('downvoteQuestion-form').submit();">
+                                                                    <span class="glyphicon glyphicon-chevron-down">
+                                                                      
+                                                                    </span>
+                                                                    <br>
+                                                                    <small>{{$question->downVotes->count()}}</small>
+                                                                  </a>
+                                                                  <form id="downvoteQuestion-form" action="{{ url('/questiondownvote') }}" method="POST" style="display: none;">
+                                                                      <input type="hidden" value="{{$question->id}}" name="id" />
+                                                                      {{ csrf_field() }}
+                                                                  </form>
                                                                   </li>
                                                               <li class="google-plus" style="width:33%;">
                                                               <a href="/questions/{{$question->id}}"><span class="glyphicon glyphicon-comment"></span><br><small>
@@ -138,49 +161,59 @@
                                                            </div> 
                                                     </li>  
                                             </ul>
-                                        </div>   
-                                                  
+                                        <hr>
                                       @endforeach
+                                      </div>
                                     </div>
                                     <div class="tab-pane fade in" id="tab2">
+
+                                    <div class="content-box-large box-with-header">
                                       @foreach(App\Answer::where('user_id','=',$user->id)->get() as $answer)
-                                        <div class="content-box-large box-with-header">
+
                                         <ul class="event-list answer">
                                             <li>
                                               <div class="social">
                                                 <ul>
                                                   <li class="facebook" style="width:33%;">
-                                                          <form action="/answerupvote" method="post">
-
+                                                          <a href="{{ url('/answerupvote') }}"
+                                                             onclick="event.preventDefault();
+                                                            document.getElementById('upvoteAnswer-form').submit();">
+                                                            <span class="glyphicon glyphicon-chevron-up">
+                                                              
+                                                            </span>
+                                                            <br>
+                                                            <small>{{$answer->upVotes->count()}}</small>
+                                                          </a>
+                                                          <form id="upvoteAnswer-form" action="{{ url('/answerupvote') }}" method="POST" style="display: none;">
                                                               <input type="hidden" value="{{$answer->id}}" name="id" />
-                                                              {{csrf_field()}}
-                                                              <button type="submit" >
-                                                              <span class="glyphicon glyphicon-chevron-up"></span><br>
-                                                                <small>
-                                                                    {{$answer->upVotes->count()}}
-                                                                </small>
-                                                          </button>
+                                                              {{ csrf_field() }}
                                                           </form>
                                                       </li>
 
                                                       <li class="twitter" style="width:33%;">
 
-                                                        <form action="/answerdownvote" method="post">
-                                                        <input type="hidden" value="{{$answer->id}}" name="id" />
-                                                          {{csrf_field()}}
-                                                          <button type="submit">
-                                                            <span class="glyphicon glyphicon-chevron-down"></span><br><small>
-                                                                    {{$answer->downVotes->count()}}
-                                                            </small>
-                                                          </button>
+                                                        <a href="{{ url('/answerdownvote') }}"
+                                                           onclick="event.preventDefault();
+                                                          document.getElementById('downvoteAnswer-form').submit();">
+                                                          <span class="glyphicon glyphicon-chevron-down">
+                                                            
+                                                          </span>
+                                                          <br>
+                                                          <small>{{$answer->downVotes->count()}}</small>
+                                                        </a>
+                                                        <form id="downvoteAnswer-form" action="{{ url('/answerdownvote') }}" method="POST" style="display: none;">
+                                                            <input type="hidden" value="{{$answer->id}}" name="id" />
+                                                            {{ csrf_field() }}
                                                         </form>
                                                       </li>
-                                                  <li class="google-plus" style="width:33%;"><a href="#"><span class="glyphicon glyphicon-comment"></span><br><small>7</small></a></li>
+                                                  
                                                 </ul>
                                               </div>
-                                              
+
                                               <div class="info answerinfo">
+
                                                 <br>
+
                                                 <p class="desc">{{$answer->content}}</p>
                                                 <ul style="width: auto; float: left;" class="pull-right">
                                                   <li >
@@ -192,10 +225,13 @@
                                                   <li><p style="font-size: 9pt;">Posted {{$answer->created_at->diffForHumans()}}  by <a>{{$answer->user->username}}</a></p></li>
                                                 </ul>
                                             </div>
-                                        </li>  
+
+                                          </li>  
+                                          
                                         </ul>
-                                       </div>   
+                                         <hr>
                                       @endforeach
+                                      </div> 
                                     </div>
                                     <div class="tab-pane fade in" id="tab3">
                                       <h3>This is tab 3</h3>

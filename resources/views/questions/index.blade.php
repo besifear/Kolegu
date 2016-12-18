@@ -68,8 +68,10 @@
                       </div>
                   </div>
                 </div>
-                @foreach($questions as $question)
+
                 <div class="content-box-large box-with-header">
+                @foreach($questions as $question)
+                
                 
                   <ul class="event-list">
                   
@@ -78,7 +80,23 @@
                         <ul>
 
                               <li class="facebook" style="width:33%;">
-                                  <form action="/questionupvote" method="post">
+
+                                  <a href="{{ url('/questionupvote') }}"
+                                     onclick="event.preventDefault();
+                                    document.getElementById('upvoteQuestion-form').submit();">
+                                    <span class="glyphicon glyphicon-chevron-up">
+                                      
+                                    </span>
+                                    <br>
+                                    <small>{{$question->upVotes->count()}}</small>
+                                  </a>
+                                  <form id="upvoteQuestion-form" action="{{ url('/questionupvote') }}" method="POST" style="display: none;">
+                                      <input type="hidden" value="{{$question->id}}" name="id" />
+                                      {{ csrf_field() }}
+                                  </form>
+
+
+                                  <!--<form action="/questionupvote" method="post">
 
                                       <input type="hidden" value="{{$question->id}}" name="id" />
                                       {{csrf_field()}}
@@ -93,20 +111,32 @@
                                             {{$question->upVotes->count()}}
                                         </small>
                                   </button>
-                                  </form>
+                                  </form>-->
                               </li>
 
 
                                 <li class="twitter" style="width:33%;">
-
-                          <form action="/questiondownvote" method="post">
+                                  <a href="{{ url('/questiondownvote') }}"
+                                     onclick="event.preventDefault();
+                                    document.getElementById('downvoteQuestion-form').submit();">
+                                    <span class="glyphicon glyphicon-chevron-down">
+                                      
+                                    </span>
+                                    <br>
+                                    <small>{{$question->downVotes->count()}}</small>
+                                  </a>
+                                  <form id="downvoteQuestion-form" action="{{ url('/questiondownvote') }}" method="POST" style="display: none;">
+                                      <input type="hidden" value="{{$question->id}}" name="id" />
+                                      {{ csrf_field() }}
+                                  </form>
+                          <!--<form action="/questiondownvote" method="post">
                           <input type="hidden" value="{{$question->id}}" name="id" />
                             {{csrf_field()}}
                             <button type="submit">
                             <span class="glyphicon glyphicon-chevron-down"></span><br><small>
                                     {{$question->downVotes->count()}}
                           </small></button>
-                          </form>
+                          </form>-->
                           </li>
                           <li class="google-plus" style="width:33%;"><a href="/questions/{{$question->id}}"><span class="glyphicon glyphicon-comment"></span><br><small>{{$question->allAnswers->count()}}</small></a></li>
                         </ul>
@@ -126,8 +156,9 @@
                         </a>
                     </li>
                   </ul>
-              </div>
+              <hr>
               @endforeach
+              </div>
               </div>
             </div>
           </div>
