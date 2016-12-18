@@ -37,6 +37,10 @@ Route::resource('users','UserController');
 
 Route::resource('messages', 'MessageController');
 
+Route::post('deleteall','MessageController@destroyAll');
+
+Route::post('markasread','MessageController@markAsRead');
+
 Route::get('Kategorite','CategoryController@seeCategories');
 
 Route::post('Kategorite/{category_id}','CategoryController@selectCategory',compact('category_id'));

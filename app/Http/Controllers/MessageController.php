@@ -17,6 +17,8 @@ class MessageController extends Controller
      */
     public function index()
     {
+        $messages = Message::where('reciever_id','=',Auth::user()->id)->orderBy('created_at','desc')->get();
+        return view('messages.index')->withMessages($messages);
         //
     }
 
@@ -62,7 +64,7 @@ class MessageController extends Controller
 
         $message=Message::find($id);
         $user_id=Auth::user()->id;
-        if($user_id==$message->sender_id || $user_id==$message->reciver_id) {
+        if($user_id==$message->sender_id || $user_id==$message->reciever_id) {
             $sender=User::find($message->sender_id);
             $message->status='yes';
             $message->save();
@@ -71,7 +73,8 @@ class MessageController extends Controller
                 'message' => $message,
                 'sender'=> $sender
             ));
-        }
+        }else
+            echo'Nuk je i autorizum me e pa kete pyetje';
 
     }
 
@@ -109,4 +112,25 @@ class MessageController extends Controller
         Message::find($id)->delete();
         return redirect()->route('messages.index');
     }
+
+    public function destroyAll(Request $request)
+    {
+        foreach ($request->ids as $id)
+            Message::find($id)->delete();
+        return redirect()->route('messages.index');
+    }
+
+    public function markAsRead(Request $request)
+    {
+        foreach ($request->ids as $id)
+        {
+            $message=Message::find($id);
+            $message->status='yes';
+            $message->save();
+        }
+        return redirect()->route('messages.index');
+    }
+
+
 }
+?>

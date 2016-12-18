@@ -40,9 +40,26 @@
                             More <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Delete selected messages</a></li>
+
+                            <li><a href="{{ url('/deletemessages') }}"
+                                   onclick="event.preventDefault();
+                        document.getElementById('deleteAll-form').submit();">Delete all marked
+                                </a>
+
+                                <form id="deleteAll-form" action="{{ url('/deletemessages') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
                             <li class="divider"></li>
-                            <li><a href="#">Mark all as read</a></li>
+                            <li><a href="{{ url('/markasread') }}"
+                                   onclick="event.preventDefault();
+                        document.getElementById('markAsReadForm-form').submit();">Mark all as read
+                                </a>
+                                <form id="markAsReadForm-form" action="{{ url('/markasread') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+
                         </ul>
                     </div>
                     <!--<div class="pull-right">
@@ -58,28 +75,29 @@
                     </div>-->
             </div>
             <hr>
+            @foreach($messages as $message)
             <div class="row">
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="home">
-                            <div class="list-group">
-                                <div class="list-group-item">
+                            <div class="list-group" name="ids">
+                                <div class="list-group-item" value="{{$message->id}}">
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox" name="sample[]">
                                         </label>
                                     </div>
-                                    <a href="#" data-toggle="modal" data-target="#inboxModal">
+                                    <a href="/messages/{{$message->id}}" >
                                         <span class="name" style="min-width: 120px;
-                                            display: inline-block;">Bhaumik Patel</span> <span class="">This is big title</span>
-                                        <span class="text-muted" style="font-size: 12px;">- Hi hello how r u ?</span>
+                                            display: inline-block;">{{$message->sender->username}}</span> <span class="">{{$message->subject}}</span>
+                                        <span class="text-muted" style="font-size: 12px;">{{$message->content}}</span>
                                         <span
-                                            class="badge pull-right">12:10 AM</span>
+                                            class="badge pull-right">{{$message->created_at->diffForHumans()}}</span>
                                             <span class="pull-right"><span class="glyphicon glyphicon-ok">
                                             </span></span>
                                     </a>
                                 </div>
-
+    <!--
                                 <div class="modal fade" id="inboxModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                       <div class="modal-content">
@@ -89,7 +107,7 @@
                                           </div>
                                           <div class="modal-body">
 
-                                              <!-- content goes here -->
+
                                               <ul class="event-list">
                                                 <li>
                                                   <div class="info">
@@ -107,11 +125,13 @@
                                       </div>
                                     </div>
                                 </div>
+                                -->
                             </div>
                         </div>
                     </div>
 
             </div>
+                @endforeach
         </div>
     </div>
 
