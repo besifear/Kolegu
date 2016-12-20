@@ -13,7 +13,7 @@
                                     <img class="media-object dp img-circle" src="images/facebook.png" style="width: 150px;height:150px;">
                                 </a>
                                 <div class="media-body">
-                                    <h2 class="media-heading">{{$user->username}}<small> Autist</small></h2>
+                                    <h2 class="media-heading">{{$user->username}}<small> Developer</small></h2>
                                     <h4>Software Developer at <a href="#">Kitrrat.io</a></h4>
                                     <hr style="margin:8px auto">
                                     @foreach(App\SelectedCategory::where('user_id','=',$user->id)->get() as $selectedcategory)
@@ -25,7 +25,8 @@
                                     <p><span class="glyphicon glyphicon-time"></span> Last seen 32 minutes ago</p>
                                     <hr>
                                     <div class="centered">
-                                        <a href="#" data-toggle="modal" data-target="#messageModal" class="btn btn-primary btn-xs center-block"><i class="fa fa-envelope"></i> Send message</a>&nbsp;&nbsp;
+                                        <a style="margin-right: 12px;" href="#" data-toggle="modal" data-target="#messageModal" class="btn btn-primary btn-sm center-block col-lg-5"><i class="fa fa-envelope"></i></a>
+                                        <a href="/messages" style="margin-left: 12px;"  data-toggle="modal" data-target="#inboxModal" class="btn btn-warning btn-sm center-block col-lg-5"><i class="fa fa-inbox"></i></a>
                                             <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                               <div class="modal-dialog">
                                             	<div class="modal-content">
