@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Message;
 use App\User;
 use Auth;
@@ -115,6 +116,7 @@ class MessageController extends Controller
 
     public function destroyAll(Request $request)
     {
+
         foreach ($request->ids as $id)
             Message::find($id)->delete();
         return redirect()->route('messages.index');

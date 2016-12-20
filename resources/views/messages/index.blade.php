@@ -16,7 +16,17 @@
                         <button type="button" class="btn btn-default">
                             <div class="checkbox" style="margin: 0;">
                                 <label> Select all
-                                    <input style="margin-left: -20px !important;" type="checkbox" name="sample" class="selectall">
+                                    <input id="checkAllBox" style="margin-left: -20px !important;" type="checkbox" name="sample" class="selectall"
+                                           onclick="
+                                           var ids=document.getElementsByName('ids[]');
+
+                                           if(checkAllBox=document.getElementById('checkAllBox').checked===true)
+                                               for(var i=0;i<ids.length;i++)
+                                                    ids[i].checked=true;
+                                           else
+                                               for(var i=0;i<ids.length;i++)
+                                                    ids[i].checked=false;"
+                                           >
                                 </label>
                             </div>
                         </button>
@@ -32,7 +42,8 @@
                             <li><a href="#">Unstarred</a></li>
                         </ul>-->
                     </div>
-                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Refresh">
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Refresh"
+                            onclick="history.go(0);">
                         &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-refresh"></span>&nbsp;&nbsp;&nbsp;</button>
                     <!-- Single button -->
                     <div class="btn-group">
@@ -41,23 +52,19 @@
                         </button>
                         <ul class="dropdown-menu" role="menu">
 
-                            <li><a href="{{ url('/deletemessages') }}"
-                                   onclick="event.preventDefault();
-                        document.getElementById('deleteAll-form').submit();">Delete all marked
+                            <li><a onclick="event.preventDefault();
+                                   document.getElementById('messagesForm').setAttribute('action','/deletemessages');
+                                   document.getElementById('messagesForm').submit();">Delete all marked
                                 </a>
 
-                                <form id="deleteAll-form" action="{{ url('/deletemessages') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
+
                             </li>
                             <li class="divider"></li>
-                            <li><a href="{{ url('/markasread') }}"
-                                   onclick="event.preventDefault();
-                        document.getElementById('markAsReadForm-form').submit();">Mark all as read
+                            <li><a
+                                        onclick="event.preventDefault();
+                                        document.getElementById('messagesForm').setAttribute('action','/markasread');
+                                        document.getElementById('messagesForm').submit();">Mark all as read
                                 </a>
-                                <form id="markAsReadForm-form" action="{{ url('/markasread') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
                             </li>
 
                         </ul>
@@ -75,16 +82,19 @@
                     </div>-->
             </div>
             <hr>
-            @foreach($messages as $message)
+
+            <form id="messagesForm" action="" method="POST">
+                @foreach($messages as $message)
             <div class="row">
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="home">
-                            <div class="list-group" name="ids">
-                                <div class="list-group-item" value="{{$message->id}}">
+                            <div class="list-group" >
+
+                                <div class="list-group-item" >
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="sample[]">
+                                            <input type="checkbox" name="ids[]" id="ids[]" value="{{$message->id}}">
                                         </label>
                                     </div>
                                     <a href="/messages/{{$message->id}}" >
@@ -132,6 +142,9 @@
 
             </div>
                 @endforeach
+                {{ csrf_field() }}
+            </form>
+
         </div>
     </div>
 
