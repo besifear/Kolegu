@@ -45,13 +45,67 @@
                                 @endif
                             </a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Another action</a></li>
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#suggestionModal">Send Suggestion</a>
+                        </li>
+                        @if(Auth::check())
+                            @if(Auth::user()->role=='Admin')
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="{{ route('suggestions.index') }}">See Suggestions</a>
+                                </li>
+                            @endif
+                        @endif
                         <li class="divider"></li>
                         <li><a href="#">Something else here</a></li>
                         <li class="divider"></li>
                         <li><a href="#">Separated link</a></li>
                     </ul>
                 </li>
+
+
+                <div class="modal fade" id="suggestionModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title" id="lineModalLabel">Send Suggestion</h4>
+                            </div>
+                            <div class="modal-body">
+
+                                {!! Form::open(array('route' => 'suggestions.store','data-parsley-validate'=>'')) !!}
+                                {{ Form::hidden('user_id',Auth::user()->id)}}
+                                <div class="form-group">
+                                    {{ Form::label('title','Title:')}}
+                                    {{ Form::text('title',null,array('class' => 'form-control','required'=>'','maxlength'=>'50'))}}
+                                </div>
+                                <div class="form-group">
+                                    {{ Form::label('content','Content:')}}
+                                    {{ Form::textarea('content',null,array('class' => 'form-control','id'=>'exampleInputEmail1','required'=>'','maxlength'=>'600'))}}
+
+                                </div>
+                            {{ Form::submit('Send Suggestion',array('class' => 'btn btn-default'))}}
+                            {!! Form::close() !!}
+                            <!--
+                                            			<form action="messages" method="post">
+                                                            {{csrf_field()}}
+                                    <input name="reciver_id" type="hidden" value="{{Auth::user()->id}}">
+                                                          <div class="form-group">
+                                                            <label for="exampleInputEmail1">Subject</label>
+                                                            <input name="subject" type="text"  class="form-control" id="exampleInputEmail1" placeholder="">
+                                                          </div>
+                                                          <div class="form-group">
+                                                            <label for="exampleInputPassword1">Message</label>
+                                                            <textarea name="message" class="form-control"  id="exampleInputPassword1" placeholder=""></textarea>
+                                                          </div>
+                                                          <button type="submit" class="btn btn-default">Submit</button>
+                                                        </form>
+                                                        -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
                 <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-user"></b> User</a>

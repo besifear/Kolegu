@@ -18,9 +18,26 @@ class MessageController extends Controller
      */
     public function index()
     {
+        if(Auth::check()){
         $messages = Message::where('reciever_id','=',Auth::user()->id)->orderBy('created_at','desc')->get();
         return view('messages.index')->withMessages($messages);
+        }
+        else
+            return view('auth.login');
         //
+    }
+
+
+
+    public function orderMessagesBy(Request $request){
+        if(Auth::check()){
+            $messages = Message::orderBy($request->orderBy,$request->ascOrDsc)->get();
+            return view('messages.index')->withMessages($messages);
+        }
+        else
+            return view('auth.login');
+
+
     }
 
     /**
