@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Message;
 use App\User;
 use Auth;
@@ -17,9 +18,26 @@ class MessageController extends Controller
      */
     public function index()
     {
+        if(Auth::check()){
         $messages = Message::where('reciever_id','=',Auth::user()->id)->orderBy('created_at','desc')->get();
         return view('messages.index')->withMessages($messages);
+        }
+        else
+            return view('auth.login');
         //
+    }
+
+
+
+    public function orderMessagesBy(Request $request){
+        if(Auth::check()){
+            $messages = Message::orderBy($request->orderBy,$request->ascOrDsc)->get();
+            return view('messages.index')->withMessages($messages);
+        }
+        else
+            return view('auth.login');
+
+
     }
 
     /**
@@ -115,6 +133,7 @@ class MessageController extends Controller
 
     public function destroyAll(Request $request)
     {
+
         foreach ($request->ids as $id)
             Message::find($id)->delete();
         return redirect()->route('messages.index');

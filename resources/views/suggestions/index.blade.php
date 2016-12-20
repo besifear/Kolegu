@@ -7,7 +7,7 @@
 
     <div class="content-box">
         <div class="panel-title">
-            <h4>Inbox</h4>
+            <h4>Suggestions</h4>
         </div>
         <div class="panel-body">
             <div class="row">
@@ -134,7 +134,7 @@
             <hr>
 
             <form id="messagesForm" action="" method="POST">
-                @foreach($messages as $message)
+                @foreach($suggestions as $suggestion)
             <div class="row">
                     <!-- Tab panes -->
                     <div class="tab-content">
@@ -144,15 +144,15 @@
                                 <div class="list-group-item" >
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="ids[]" id="ids[]" value="{{$message->id}}">
+                                            <input type="checkbox" name="ids[]" id="ids[]" value="{{$suggestion->id}}">
                                         </label>
                                     </div>
-                                    <a href="/messages/{{$message->id}}" >
+                                    <a href="/suggestions/{{$suggestion->id}}" >
                                         <span class="name" style="min-width: 120px;
-                                            display: inline-block;">{{$message->sender->username}}</span> <span class="">{{$message->subject}}</span>
-                                        <span class="text-muted" style="font-size: 12px;">{{$message->content}}</span>
+                                            display: inline-block;">{{$suggestion->sender->username}}</span> <span class="">{{$suggestion->title}}</span>
+                                        <span class="text-muted" style="font-size: 12px;">{{$suggestion->content}}</span>
                                         <span
-                                            class="badge pull-right">{{$message->created_at->diffForHumans()}}</span>
+                                            class="badge pull-right">{{$suggestion->created_at->diffForHumans()}}</span>
                                             <span class="pull-right"><span class="glyphicon glyphicon-ok">
                                             </span></span>
                                     </a>
