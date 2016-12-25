@@ -14,7 +14,7 @@
                   <hr>
                   <div class="content-box-large box-with-header">
                   @foreach(App\Answer::where('question_id','=',$question->id)->get() as $answer)
-                  
+
                   <ul class="event-list answer">
                     <li>
                       <div class="social">
@@ -26,7 +26,7 @@
                                      onclick="event.preventDefault();
                                     document.getElementById('upvoteAnswer-form').submit();">
                                     <span class="glyphicon glyphicon-chevron-up">
-                                      
+
                                     </span>
                                     <br>
                                     <small>{{$answer->upVotes->count()}}</small>
@@ -60,7 +60,7 @@
                                      onclick="event.preventDefault();
                                     document.getElementById('downvoteAnswer-form').submit();">
                                     <span class="glyphicon glyphicon-chevron-down">
-                                      
+
                                     </span>
                                     <br>
                                     <small>{{$answer->downVotes->count()}}</small>
@@ -80,40 +80,41 @@
                                   </button>
                                 </form>-->
                               </li>
-                          
-                        </ul>
-                      </div>
-                      
-                      <div class="info answerinfo">
 
-                        
-                        <p class="desc">{{$answer->content}}</p>
-                        <ul style="width: auto; float: left;" class="pull-right">
-                          <li><p style="font-size: 9pt;">Posted {{$answer->created_at->diffForHumans()}}  by <a>{{$answer->user->username}}</a></p></li>
                         </ul>
                       </div>
+
+                        <div class="info answerinfo">
+
+
+                            <p class="desc">{{$answer->content}}</p>
+                            <ul style="width: auto; float: left;" class="pull-right">
+                                <li><p style="font-size: 9pt;">Posted {{$answer->created_at->diffForHumans()}}  by <a>{{$answer->user->username}}</a></p></li>
+                            </ul>
+                        </div>
                     </li>
                     </ul>
-                    <div class="pull-right">
+                          <div class="pull-right">
+                              @if(Auth::check())
+                                  @if(Auth::user()->id==$answer->user_id)
 
-                         @if(Auth::user()->id==$answer->user_id)
-                         
 
-                                {!! Form::open(['route' => ['answers.destroy' , $answer->id], 'method' => 'DELETE']) !!}
-                                
-                                {!! Form::submit('Delete',['class' => 'btn btn-danger btn-xs'])!!}
+                                      {!! Form::open(['route' => ['answers.destroy' , $answer->id], 'method' => 'DELETE']) !!}
 
-                                {!! Form::close()!!}  
+                                      {!! Form::submit('Delete',['class' => 'btn btn-danger btn-xs'])!!}
 
-                          
-                        @endif
+                                      {!! Form::close()!!}
 
-                      <br>
-                    </div>
+
+                                  @endif
+                              @endif
+
+                              <br>
+                          </div>
                     <hr style="clear: both;">
 
-                    
-                    
+
+
                     @endforeach
                     </div>
                   </ul>
@@ -172,4 +173,9 @@
 			</div>
 		</div>		
 	</div>	
+@stop
+
+@section('scripts')
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-585fc7f429fa1254"></script>
 @stop
