@@ -17,7 +17,7 @@ class CreateAchievementsTable extends Migration
         {
             $table->integer('id', true);
             $table->string('description',300);
-            $table->integer('reputationaward', 11);
+            $table->integer('reputationaward');
             $table->string('difficulty',20);
 
         });
