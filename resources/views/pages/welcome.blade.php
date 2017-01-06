@@ -27,9 +27,9 @@
                          </a>
                          <!-- Sub menu -->
                          <ul>
-                            <li><a href="login.html">Resurs 1</a></li>
-                            <li><a href="signup.html">Resurs 2</a></li>
-                        </ul>
+                             <li><a href="/resources">All</a></li>
+                             <li><a href="#">Add Later</a></li>
+                         </ul>
                     </li>
                     <li class="current"><a href="index.html"><i class="glyphicon glyphicon-home"></i> CV</a></li>
                     <!--<li><a href="calendar.html"><i class="glyphicon glyphicon-calendar"></i> Calendar</a></li>

@@ -19,7 +19,8 @@ class CreateResourcerepliesTable extends Migration
             $table->string('content', 500);
             $table->timestamps();
             $table->integer('resource_id');
-
+            $table->integer('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('resource_id')->references('id')->on('resources');
 
         });

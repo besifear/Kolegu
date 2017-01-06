@@ -26,10 +26,7 @@
                             <span class="caret pull-right"></span>
                          </a>
                          <!-- Sub menu -->
-                         <ul>
-                        <li><a href="/resources">All</a></li>
-                            <li><a href="#">Add Later</a></li>
-                        </ul>
+                         <ul>                             <li><a href="/resources">All</a></li>                             <li><a href="#">Add Later</a></li>                         </ul>
                     </li>
                     <li class="current"><a href="#"><i class="glyphicon glyphicon-home"></i> CV</a></li>
                     <!--<li><a href="calendar.html"><i class="glyphicon glyphicon-calendar"></i> Calendar</a></li>
@@ -70,9 +67,9 @@
                 </div>
 
                 <div class="content-box-large box-with-header">
-                @foreach($questions as $question)
+                @foreach($resources as $resource)
                 
-                
+
                   <ul class="event-list">
 
                     <li class="questionListItem">
@@ -83,9 +80,9 @@
 
                                   <a
                                      onclick="event.preventDefault();
-                                    document.getElementById('question_id').setAttribute('value', '{{$question->id}}');
-                                             var forma = document.getElementById('voteQuestion-form');
-                                                 forma.setAttribute('action','\\questionupvote');
+                                    document.getElementById('resource_id').setAttribute('value', '{{$resource->id}}');
+                                             var forma = document.getElementById('voteResource-form');
+                                                 forma.setAttribute('action','\\resourceupvote');
                                                  forma.submit();
                                              ">
 
@@ -93,14 +90,14 @@
                                       
                                     </span>
                                     <br>
-                                    <small>{{$question->upVotes->count()}}</small>
+                                    <small>{{$resource->votes('Yes')->count()}}</small>
                                   </a>
 
 
 
                                   <!--<form action="/questionupvote" method="post">
 
-                                      <input type="hidden" value="{{$question->id}}" name="id" />
+                                      <input type="hidden" value="{{$resource->id}}" name="id" />
                                       {{csrf_field()}}
                                       <button type="submit">
                                       <span class="glyphicon glyphicon-chevron-up"></span><br>
@@ -110,7 +107,7 @@
                                                            ['Username','=','Admini'],
                                                            ['Vote','=','Yes'],
                                                    ])->count()--}}
-                                            {{$question->upVotes->count()}}
+                                            {{$resource->votes('Yes')->count()}}
                                         </small>
                                   </button>
                                   </form>-->
@@ -121,39 +118,39 @@
                                   <a
                                      onclick="
                                      event.preventDefault();
-                                     document.getElementById('question_id').setAttribute('value','{{$question->id}}');
-                                      var forma = document.getElementById('voteQuestion-form');
-                                          forma.setAttribute('action','questiondownvote');
+                                     document.getElementById('resource_id').setAttribute('value','{{$resource->id}}');
+                                      var forma = document.getElementById('voteResource-form');
+                                          forma.setAttribute('action','resourcedownvote');
                                           forma.submit();
                                              ">
                                     <span class="glyphicon glyphicon-chevron-down">
                                       
                                     </span>
                                     <br>
-                                    <small>{{$question->downVotes->count()}}</small>
+                                    <small>{{$resource->votes('No')->count()}}</small>
                                   </a>
-                          <!--<form action="/questiondownvote" method="post">
-                          <input type="hidden" value="{{$question->id}}" name="id" />
+                          <!--<form action="/resourcedownvote" method="post">
+                          <input type="hidden" value="{{$resource->id}}" name="id" />
                             {{csrf_field()}}
                             <button type="submit">
                             <span class="glyphicon glyphicon-chevron-down"></span><br><small>
-                                    {{$question->downVotes->count()}}
+                                    {{$resource->votes('No')->count()}}
                           </small></button>
                           </form>-->
                           </li>
-                          <li class="google-plus" style="width:33%;"><a href="/questions/{{$question->id}}"><span class="glyphicon glyphicon-comment"></span><br><small>{{$question->allAnswers->count()}}</small></a></li>
+                          <li class="google-plus" style="width:33%;"><a href="/resources/{{$resource->id}}"><span class="glyphicon glyphicon-comment"></span><br></a></li>
                         </ul>
                       </div>
                         
                       <div class="info">
-                      <a  class="title" href="/questions/{{$question->id}}">{{substr($question->title,0,40)}}{{strlen($question->title)>40 ? "..." : ""}}</a>
+                      <a  class="title" href="/resources/{{$resource->id}}">{{substr($resource->title,0,40)}}{{strlen($resource->title)>40 ? "..." : ""}}</a>
                         
-                        <p class="desc">{{ substr($question->content,0,70)}}{{strlen($question->content)>40 ? "..." : ""}}</p>
+                        <p class="desc">{{ substr($resource->content,0,70)}}{{strlen($resource->content)>40 ? "..." : ""}}</p>
                         <ul style="width:auto; float: left;">
-                          <li><a href="/categories">{{$question->category->name}}</a></li>
+                          <li><a href="/categories">{{$resource->category->name}}</a></li>
                         </ul>
                         <ul style="width: auto; float: left;" class="pull-right">
-                          <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}}  by <a href="/users/{{$question->user->id}}">{{$question->user->username}}</a></p></li>
+                          <li><p style="font-size: 9pt;">Posted {{$resource->created_at->diffForHumans()}}  by <a href="/users/{{$resource->user->id}}">{{$resource->user->username}}</a></p></li>
                         </ul>
                       </div>
                         </a>
@@ -161,9 +158,9 @@
                   </ul>
               <hr>
               @endforeach
-                    <form id="voteQuestion-form"   method="POST" style="display: none;">
-                        <input type="hidden" id= "question_id" name="question_id" />
-                        {{ csrf_field() }}
+                    <form id="voteResource-form"   method="POST" style="display: none;">
+                        <input type="hidden" id= "resource_id" name="resource_id" />
+                        {{ csrf_field()}}
                     </form>
 
               </div>

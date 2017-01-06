@@ -18,8 +18,10 @@ class CreateResourceevaluationsTable extends Migration
             $table->integer('id', true);
             $table->string('vote',3);
             $table->integer('resource_id');
+            $table->integer('user_id');
 
             $table->foreign('resource_id')->references('id')->on('resources');
+            $table->foreign('user_id')->references('id')->on('users');
 
         });
     }

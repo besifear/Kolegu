@@ -2,7 +2,7 @@
       <div class="shrinkednav">
 
       <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header col-lg-8 col-md-12 col-sm-5 col-xs-12">
+      <div class="navbar-header col-lg-7 col-md-12 col-sm-5 col-xs-12">
 
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
           <span class="sr-only">Toggle navigation</span>
@@ -29,8 +29,10 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse col-sm-4 col-xs-12 pull-right" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/questions/create"><b class="glyphicon glyphicon-send"></b> Pyet</a></li>
+            <li><a href="/resources/create"><b class="glyphicon glyphicon-arrow-left "></b> Shto Resurse</a></li>
+            <li><a href="/questions/create"><b class="glyphicon glyphicon-send"></b> Pyet</a></li>
           <li><a href="/"><b class="glyphicon glyphicon-comment"></b> Pergjigju</a></li>
+
 
             @if(Auth::guest())
                 <li><a href="{{url('/login')}}"><b class="glyphicon glyphicon-log-in"></b> Login</a></li>
