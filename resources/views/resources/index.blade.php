@@ -1,6 +1,6 @@
 @extends('main')
 
-  @section('title',' | Homepage')
+  @section('title',' | Resources')
 
   @section('content')
 
@@ -28,7 +28,7 @@
                          <!-- Sub menu -->
                          <ul>
                             <li><a href="/resources/create">Resurs 1</a></li>
-                            <li><a href="/resources">Resurs 2</a></li>
+                            <li><a href="signup.html">Resurs 2</a></li>
                         </ul>
                     </li>
                     <li class="current"><a href="/sendEmail"><i class="glyphicon glyphicon-home"></i> CV</a></li>
@@ -68,9 +68,9 @@
                       </div>
                   </div>
                 </div>
-
-                <div class="content-box-large box-with-header">
-                @foreach($questions as $question)
+                @foreach($resources as $resource)
+                <div class="content-box-large box-with-header clearfix" >
+                
                 
                 
                   <ul class="event-list">
@@ -88,30 +88,13 @@
                                       
                                     </span>
                                     <br>
-                                    <small>{{$question->upVotes->count()}}</small>
+                                    <small>7</small>
                                   </a>
                                   <form id="upvoteQuestion-form" action="{{ url('/questionupvote') }}" method="POST" style="display: none;">
-                                      <input type="hidden" value="{{$question->id}}" name="id" />
+                                      <input type="hidden" value="{{$resource->id}}" name="id" />
                                       {{ csrf_field() }}
                                   </form>
 
-
-                                  <!--<form action="/questionupvote" method="post">
-
-                                      <input type="hidden" value="{{$question->id}}" name="id" />
-                                      {{csrf_field()}}
-                                      <button type="submit">
-                                      <span class="glyphicon glyphicon-chevron-up"></span><br>
-                                        <small>
-                                          {{--*App\QuestionEvaluation::where([
-                                                           ['QuestionID','=',$question->QuestionID],
-                                                           ['Username','=','Admini'],
-                                                           ['Vote','=','Yes'],
-                                                   ])->count()--}}
-                                            {{$question->upVotes->count()}}
-                                        </small>
-                                  </button>
-                                  </form>-->
                               </li>
 
 
@@ -123,42 +106,54 @@
                                       
                                     </span>
                                     <br>
-                                    <small>{{$question->downVotes->count()}}</small>
+                                    <small>7</small>
                                   </a>
                                   <form id="downvoteQuestion-form" action="{{ url('/questiondownvote') }}" method="POST" style="display: none;">
-                                      <input type="hidden" value="{{$question->id}}" name="id" />
+                                      <input type="hidden" value="{{$resource->id}}" name="id" />
                                       {{ csrf_field() }}
                                   </form>
-                          <!--<form action="/questiondownvote" method="post">
-                          <input type="hidden" value="{{$question->id}}" name="id" />
-                            {{csrf_field()}}
-                            <button type="submit">
-                            <span class="glyphicon glyphicon-chevron-down"></span><br><small>
-                                    {{$question->downVotes->count()}}
-                          </small></button>
-                          </form>-->
+                       
                           </li>
-                          <li class="google-plus" style="width:33%;"><a href="/questions/{{$question->id}}"><span class="glyphicon glyphicon-comment"></span><br><small>{{$question->allAnswers->count()}}</small></a></li>
+                          <li class="google-plus" style="width:33%;"><a href="/questions/{{$resource->id}}"><span class="glyphicon glyphicon-comment"></span><br><small>7</small></a></li>
                         </ul>
                       </div>
                         
                       <div class="info">
-                        <a  class="title" href="/questions/{{$question->id}}">{{substr($question->title,0,40)}}{{strlen($question->title)>40 ? "..." : ""}}</a>
-                          
-                          <p class="desc">{{ substr($question->content,0,70)}}{{strlen($question->content)>40 ? "..." : ""}}</p>
-                          <ul style="width:auto; float: left;">
-                            <li><a href="/categories">{{$question->category->name}}</a></li>
-                          </ul>
-                          <ul style="width: auto; float: left;" class="pull-right">
-                            <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}}  by <a>{{$question->user->username}}</a></p></li>
-                          </ul>
+                          <a  class="title" href="/resources/{{$resource->id}}">{{substr($resource->title,0,40)}}{{strlen($resource->title)>40 ? "..." : ""}}</a>
+                        
+                          <p class="desc">{{ substr($resource->content,0,70)}}{{strlen($resource->content)>40 ? "..." : ""}}</p>
+                          <div class="row">
+                            <ul class="thumbnails">
+                              <div class="col-md-2">
+                                <div class="thumbnail">
+                                    @if(substr($resource->mime, 0, 5) == 'image') 
+                                    <a target="_blank" href="/fileentry/get/{{$resource->filename}}"><img src="{{route('getentry', $resource->filename)}}" alt="Click Link!!" class="img-responsive" /></a>
+                                    
+                                    @else
+                                    <a target="_blank" href="/fileentry/get/{{$resource->filename}}"><img src="images/filelogo.png" alt="Click Link!!" class="img-responsive" /></a>
+                                    
+                                    @endif
+                                      <div class="caption">
+                                        <a target="_blank" href="/fileentry/get/{{$resource->filename}}">{{ substr($resource->original_filename,0,5)}}{{strlen($resource->original_filename)>5 ? "..." : ""}}</a>
+                                      </div>
+                                  </div>
+                                 </div> 
+                               </ul>
+                             </div>
+                        <ul style="width:auto; float: left;">
+                          <li><a href="/categories">{{$resource->category->name}}</a></li>
+                        </ul>
+                        <ul style="width: auto; float: left;" class="pull-right">
+                          <li><p style="font-size: 9pt;">Posted {{$resource->created_at->diffForHumans()}}  by <a>{{$resource->user->username}}</a></p></li>
+                        </ul>
                       </div>
                         </a>
                     </li>
                   </ul>
               <hr>
-              @endforeach
+              
               </div>
+              @endforeach
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
  @extends('main')
 
-  @section('title',' | Create Post')
+  @section('title',' | Upload File')
 
   @section('stylesheets')
 
@@ -12,15 +12,12 @@
 
   	<div class="row">
   		<div class="col-md-8 col-md-offset-2">
-  		<h1>Ask a new Question</h1>
+  		<h1>Upload Resources</h1>
   		<hr>
   		{!! Form::open(array('route' => 'questions.store','data-parsley-validate'=>'')) !!}
 		    {!! Form::label('Product Image') !!}
-        {!! Form::file('image', null) !!}
-        <select class="form-control">
-
-          <option>1</option>
-        </select>
+    {!! Form::file('image', null) !!}
+        
 		    {{ Form::submit('Post Question',array('class' => 'btn btn-success btn-lg btn-block','style' => 'margin-top : 20px' ))}}
 		{!! Form::close() !!}
   		</div>

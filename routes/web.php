@@ -21,6 +21,10 @@ Route::get('/profile',function(){
 	return view('pages.profile');
 });
 
+Route::get('/upload',function(){
+	return view('pages.upload');
+});
+
 Route::get('/order/{orderBy}','QuestionController@filter',compact('orderBy'));
 
 Route::resource('posts','PostController');
@@ -39,6 +43,8 @@ Route::resource('messages', 'MessageController');
 
 Route::resource('suggestions','SuggestionController');
 
+Route::resource('resources','ResourceController');
+
 Route::post('deletemessages','MessageController@destroyAll');
 
 Route::post('markasread','MessageController@markAsRead');
@@ -56,3 +62,20 @@ Route::post('questiondownvote','QuestionEvaluationController@downVote');
 Route::post('answerupvote','AnswerEvaluationController@upVote');
 
 Route::post('answerdownvote','AnswerEvaluationController@downVote');
+
+Route::get('sendEmail', 'UserController@sendEmail');
+
+
+
+//TEST
+
+	
+	Route::get('fileentry', 'FileEntryController@index');
+	Route::get('fileentry/get/{filename}', [
+			'as' => 'getentry', 'uses' => 'ResourceController@get']);
+	Route::post('fileentry/add', [ 
+		    'as' => 'addentry', 'uses' => 'FileEntryController@add']);
+	
+
+
+//END TEST

@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 use App\User;
 
+use Auth;
+
+use Mail;
+
+use Redirect;
+
 class UserController extends Controller
 {
     /**
@@ -37,6 +43,17 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+    }
+   
+    public function sendEmail()
+    {
+        $user = Auth::user();
+
+        Mail::send('questions/indexanswered', ['user' => $user], function ($m) use ($user) {
+            $m->from('edonzi@outlook.com', 'Your Application');
+
+            $m->to($user->email, $user->name)->subject('Po bojka o baaab!');
+        });
     }
 
     /**
