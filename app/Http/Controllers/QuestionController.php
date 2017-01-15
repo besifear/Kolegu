@@ -18,10 +18,25 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+
+    {   
+
+
         $questions=Question::orderBy('id', 'DESC')->get();
 
-        return view('questions.index')->with('questions',$questions);
+        $topquestion=new Question;
+
+        
+        foreach($questions as $testquestion){
+            if( empty($topquestion) OR ($testquestion->upVotes->count()>$topquestion->upVotes->count()) )
+            {
+                $topquestion=$testquestion;
+            }
+            
+        }
+        
+
+        return view('questions.index')->with('questions',$questions)->with('topquestion',$topquestion);
     }
 
     /**
