@@ -32,7 +32,13 @@
                             <li><a href="#">Add Later</a></li>
                         </ul>
                     </li>
-                    <li class="current"><a href="/sendEmail"><i class="glyphicon glyphicon-home"></i> CV</a></li>
+                    <li class="current"><a href="#"><i class="glyphicon glyphicon-home"></i> CV</a></li>
+                    @if(!Auth::guest())
+                      @if(Auth::user()->role=='Admin')
+                    <li class="current"><a href="/sendemailtousers"><i class="glyphicon glyphicon-envelope"></i> Email Users</a></li>
+
+                      @endif
+                    @endif
                     <!--<li><a href="calendar.html"><i class="glyphicon glyphicon-calendar"></i> Calendar</a></li>
                     <li><a href="stats.html"><i class="glyphicon glyphicon-stats"></i> Statistics (Charts)</a></li>
                     <li><a href="tables.html"><i class="glyphicon glyphicon-list"></i> Tables</a></li>

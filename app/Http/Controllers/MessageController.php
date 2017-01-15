@@ -8,6 +8,10 @@ use App\Message;
 use App\User;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
+use Mail;
+use App\Question;
+use App\SelectedCategory;
+use Illuminate\Database\Eloquent\Collection;
 
 class MessageController extends Controller
 {
@@ -148,6 +152,31 @@ class MessageController extends Controller
             $message->save();
         }
         return redirect()->route('messages.index');
+    }
+
+    public function emailallusers(){
+        if(!Auth::user()->role=='Admin')
+            return redirect('/');
+        $users =User::all();
+
+        foreach($users as $user){
+
+            $selectedCategories=$user->selectedCategories;
+
+            $questions=array();
+            foreach($selectedCategories as $selectedCategory){
+                $question=Question::where('category_id','=',$selectedCategory->category_id)->inRandomOrder()->first();
+                array_push($questions,$question);
+            }
+            $questionsCollection=new Collection($questions);
+
+            Mail::send('emails.popularquestions',['questions'=>$questionsCollection],function($message) use ($user){
+                $message->to($user->email,$user->username)->subject('You\'re daily doze of autism!');
+            });
+
+        }
+
+        return redirect('/');
     }
 
 

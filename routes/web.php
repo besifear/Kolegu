@@ -57,6 +57,8 @@ Route::post('resourceupvote','ResourceEvaluationController@upVote' );
 
 Route::post('resourcedownvote','ResourceEvaluationController@downVote' );
 
+Route::get('sendemailtousers','MessageController@emailallusers');
+
 Route::resource('messages', 'MessageController');
 
 Route::resource('suggestions','SuggestionController');

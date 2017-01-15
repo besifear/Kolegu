@@ -1,0 +1,1 @@
+You just logged in into your Kolegu Account {{$name}}.

@@ -17,6 +17,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Message','reciever_id')->where('status','=','no');
     }
 
+    public function selectedCategories(){
+        return $this->hasMany('App\SelectedCategory');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
