@@ -27,6 +27,8 @@ Route::get('/upload',function(){
 
 Route::get('/order/{orderBy}','QuestionController@filter',compact('orderBy'));
 
+Route::get('/orderresources/{orderBy}','ResourceController@filter',compact('orderBy'));
+
 Route::resource('posts','PostController');
 
 Route::resource('categories','CategoryController');
@@ -38,6 +40,22 @@ Route::resource('questionsev','QuestionEvaluationController');
 Route::resource('answers','AnswerController');
 
 Route::resource('users','UserController');
+
+Route::resource('resources','ResourceController');
+
+Route::resource('resourcereplies','ResourceReplyController');
+
+Route::resource('resourceevaluations','ResourceEvaluationController');
+
+Route::resource('resourcereplyevaluations','ResourceReplyEvaluationController');
+
+Route::post('resourcereplyupvote','ResourceReplyEvaluationController@upVote' );
+
+Route::post('resourcereplydownvote','ResourceReplyEvaluationController@downVote' );
+
+Route::post('resourceupvote','ResourceEvaluationController@upVote' );
+
+Route::post('resourcedownvote','ResourceEvaluationController@downVote' );
 
 Route::resource('messages', 'MessageController');
 

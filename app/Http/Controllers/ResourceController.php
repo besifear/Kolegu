@@ -11,6 +11,7 @@ use Illuminate\Http\Response;
 use Auth;
 use Session;
 
+
 class ResourceController extends Controller
 {
     /**
@@ -20,9 +21,11 @@ class ResourceController extends Controller
      */
     public function index()
     {
+
         $resources=Resource::orderBy('id', 'DESC')->get();
 
         return view('resources.index')->with('resources',$resources);
+
     }
 
     /**
@@ -32,11 +35,13 @@ class ResourceController extends Controller
      */
     public function create()
 
-    {   $categories=Category::all();
-        return view ('resources/create')->withCategories($categories);
+    {
+        if(auth::guest())
+            return view('auth.login');
+        $categories=Category::all();
+        return view('resources.create')->withCategories($categories);
     }
 
-    
     /**
      * Store a newly created resource in storage.
      *
@@ -44,16 +49,17 @@ class ResourceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+
     {   
+        if(auth::guest())
+            return view('auth.login');
+
         $this -> validate($request ,array(
                 'title' => 'required | max:50|unique:questions',
                 'content'  => 'required | max:500'
             )); 
-
-
         $resource = new Resource();
         $file = $request->file('filefield');
-
         $extension = $file->getClientOriginalExtension();
         Storage::disk('local')->put($file->getFilename().'.'.$extension,  File::get($file));
         $resource->title = $request->title;
@@ -64,11 +70,8 @@ class ResourceController extends Controller
         $resource->mime = $file->getClientMimeType();
         $resource->original_filename = $file->getClientOriginalName();
         $resource->filename = $file->getFilename().'.'.$extension;
-
         $resource->save();
-
-        Session::flash('success','Your question was successfully saved!');
-
+        Session::flash('success','Your resource was successfully saved!');
         return redirect()->route('resources.index');
     }
 
@@ -80,8 +83,9 @@ class ResourceController extends Controller
      */
     public function show($id)
     {
-        $resource=Resource::find($id);
-        return view ('resources.show')->withResource($resource);
+
+        return View('resources.show')->withResource(Resource::find($id));
+
     }
 
     /**
@@ -102,6 +106,9 @@ class ResourceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+
     public function update(Request $request, $id)
     {
         //
@@ -115,7 +122,8 @@ class ResourceController extends Controller
      */
     public function destroy($id)
     {
-        //
+         Resource::find($id)->delete();
+        return redirect('/resources');
     }
 
     public function get($filename){
@@ -123,5 +131,22 @@ class ResourceController extends Controller
         $file = Storage::disk('local')->get($entry->filename);
         return (new Response($file, 200))
               ->header('Content-Type', $entry->mime);
+
+    }
+    public function filter($orderBy){
+        if($orderBy == "Newest"){
+
+            $resources = Resource::orderBy('created_at', 'desc')->get();
+        }
+        elseif ($orderBy == "A-Z" ){
+            $resources = Resource::orderBy('title')->get();
+
+        }
+        elseif ($orderBy == "Z-A"){
+            $resources = Resource::orderBy('title' ,'desc')->get();
+
+
+        }
+        return view ('resources.index')->withResources($resources);
     }
 }

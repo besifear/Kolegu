@@ -27,8 +27,9 @@
                          </a>
                          <!-- Sub menu -->
                          <ul>
-                            <li><a href="/resources/create">Resurs 1</a></li>
-                            <li><a href="/resources">Resurs 2</a></li>
+
+                        <li><a href="/resources">All</a></li>
+                            <li><a href="#">Add Later</a></li>
                         </ul>
                     </li>
                     <li class="current"><a href="/sendEmail"><i class="glyphicon glyphicon-home"></i> CV</a></li>
@@ -74,26 +75,28 @@
                 
                 
                   <ul class="event-list">
-                  
+
                     <li class="questionListItem">
                       <div class="social">
                         <ul>
 
                               <li class="facebook" style="width:33%;">
 
-                                  <a href="{{ url('/questionupvote') }}"
+                                  <a
                                      onclick="event.preventDefault();
-                                    document.getElementById('upvoteQuestion-form').submit();">
+                                    document.getElementById('question_id').setAttribute('value', '{{$question->id}}');
+                                             var forma = document.getElementById('voteQuestion-form');
+                                                 forma.setAttribute('action','\\questionupvote');
+                                                 forma.submit();
+                                             ">
+
                                     <span class="glyphicon glyphicon-chevron-up">
                                       
                                     </span>
                                     <br>
                                     <small>{{$question->upVotes->count()}}</small>
                                   </a>
-                                  <form id="upvoteQuestion-form" action="{{ url('/questionupvote') }}" method="POST" style="display: none;">
-                                      <input type="hidden" value="{{$question->id}}" name="id" />
-                                      {{ csrf_field() }}
-                                  </form>
+
 
 
                                   <!--<form action="/questionupvote" method="post">
@@ -116,19 +119,20 @@
 
 
                                 <li class="twitter" style="width:33%;">
-                                  <a href="{{ url('/questiondownvote') }}"
-                                     onclick="event.preventDefault();
-                                    document.getElementById('downvoteQuestion-form').submit();">
+                                  <a
+                                     onclick="
+                                     event.preventDefault();
+                                     document.getElementById('question_id').setAttribute('value','{{$question->id}}');
+                                      var forma = document.getElementById('voteQuestion-form');
+                                          forma.setAttribute('action','questiondownvote');
+                                          forma.submit();
+                                             ">
                                     <span class="glyphicon glyphicon-chevron-down">
                                       
                                     </span>
                                     <br>
                                     <small>{{$question->downVotes->count()}}</small>
                                   </a>
-                                  <form id="downvoteQuestion-form" action="{{ url('/questiondownvote') }}" method="POST" style="display: none;">
-                                      <input type="hidden" value="{{$question->id}}" name="id" />
-                                      {{ csrf_field() }}
-                                  </form>
                           <!--<form action="/questiondownvote" method="post">
                           <input type="hidden" value="{{$question->id}}" name="id" />
                             {{csrf_field()}}
@@ -143,21 +147,27 @@
                       </div>
                         
                       <div class="info">
-                        <a  class="title" href="/questions/{{$question->id}}">{{substr($question->title,0,40)}}{{strlen($question->title)>40 ? "..." : ""}}</a>
-                          
-                          <p class="desc">{{ substr($question->content,0,70)}}{{strlen($question->content)>40 ? "..." : ""}}</p>
-                          <ul style="width:auto; float: left;">
-                            <li><a href="/categories">{{$question->category->name}}</a></li>
-                          </ul>
-                          <ul style="width: auto; float: left;" class="pull-right">
-                            <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}}  by <a>{{$question->user->username}}</a></p></li>
-                          </ul>
+
+                      <a  class="title" href="/questions/{{$question->id}}">{{substr($question->title,0,40)}}{{strlen($question->title)>40 ? "..." : ""}}</a>
+                        
+                        <p class="desc">{{ substr($question->content,0,70)}}{{strlen($question->content)>40 ? "..." : ""}}</p>
+                        <ul style="width:auto; float: left;">
+                          <li><a href="/categories">{{$question->category->name}}</a></li>
+                        </ul>
+                        <ul style="width: auto; float: left;" class="pull-right">
+                          <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}}  by <a href="/users/{{$question->user->id}}">{{$question->user->username}}</a></p></li>
+                        </ul>
                       </div>
                         </a>
                     </li>
                   </ul>
               <hr>
               @endforeach
+                    <form id="voteQuestion-form"   method="POST" style="display: none;">
+                        <input type="hidden" id= "question_id" name="question_id" />
+                        {{ csrf_field() }}
+                    </form>
+
               </div>
               </div>
             </div>

@@ -5,15 +5,39 @@
 @section('content')
 	<div class="row">
 		<div class="col-md-8">
-			<h1>{{ $question->title }}</h1>
-			<p class="lead">{{$question->content}}</p>
+			<h1>{{ $resource->title }}</h1>
+			<p class="lead">{{$resource->content}}</p>
+                          <div class="row">
+                            <ul class="thumbnails">
+                              <div class="col-md-5">
+                                <div class="thumbnail">
+                                    @if(substr($resource->mime, 0, 5) == 'image') 
+                                    <a target="_blank" href="/fileentry/get/{{$resource->filename}}"><img src="{{route('getentry', $resource->filename)}}" alt="Click Link!!" class="img-responsive" /></a>
+                                    
+                                    @else
+                                    <a target="_blank" href="/fileentry/get/{{$resource->filename}}"><img src="/images/filelogo.png" alt="Click Link!!" class="img-responsive" /></a>
+                                    
+                                    @endif
+                                      <div class="caption">
+                                        <a target="_blank" href="/fileentry/get/{{$resource->filename}}">{{ substr($resource->original_filename,0,255)}}{{strlen($resource->original_filename)>25 ? "..." : ""}}</a>
+                                      </div>
+                                  </div>
+                                 </div> 
+                               </ul>
+                             </div>
 			<hr>
-			<p class="lead">Created by :{{$question->user->username}}</p>
+			<p class="lead">Created by :{{$resource->user->username}}</p>
 			<hr>
-			<h4>Answers</h4>
+			<h4>Replys</h4>
                   <hr>
                   <div class="content-box-large box-with-header">
-                  @foreach(App\Answer::where('question_id','=',$question->id)->get() as $answer)
+
+                      <form id="resourceReply-form"  method="POST" style="display: none;">
+                          <input id="resourceReplyId" type="hidden" name="resourceReplyId" />
+                          {{ csrf_field() }}
+                      </form>
+
+                  @foreach(App\ResourceReply::where('resource_id','=',$resource->id)->get() as $resourceReply)
 
                   <ul class="event-list answer">
                     <li>
@@ -22,33 +46,33 @@
                           <li class="facebook" style="width:33%;">
 
 
-                                  <a href="{{ url('/answerupvote') }}"
+                                  <a
                                      onclick="event.preventDefault();
-                                    document.getElementById('upvoteAnswer-form').submit();">
+                                     document.getElementById('resourceReplyId').setAttribute('value', '{{$resourceReply->id}}');
+                                     var forma =  document.getElementById('resourceReply-form');
+                                             forma.setAttribute('action', '/resourcereplyupvote');
+                                    forma.submit();">
                                     <span class="glyphicon glyphicon-chevron-up">
 
                                     </span>
                                     <br>
-                                    <small>{{$answer->upVotes->count()}}</small>
+                                    <small>{{$resourceReply->upVotes->count()}}</small>
                                   </a>
-                                  <form id="upvoteAnswer-form" action="{{ url('/answerupvote') }}" method="POST" style="display: none;">
-                                      <input type="hidden" value="{{$answer->id}}" name="id" />
-                                      {{ csrf_field() }}
-                                  </form>
+
 
                                   <!--<form action="/answerupvote" method="post">
 
-                                      <input type="hidden" value="{{$answer->id}}" name="id" />
+                                      <input type="hidden" value="{{$resourceReply->id}}" name="id" />
                                       {{csrf_field()}}
                                       <button type="submit" >
                                       <span class="glyphicon glyphicon-chevron-up"></span><br>
                                         <small>
                                           {{--*App\QuestionEvaluation::where([
-                                                           ['QuestionID','=',$answer->QuestionID],
+                                                           ['QuestionID','=',$resourceReply->QuestionID],
                                                            ['Username','=','Admini'],
                                                            ['Vote','=','Yes'],
                                                    ])->count()--}}
-                                            {{$answer->upVotes->count()}}
+                                            {{$resourceReply->upVotes->count()}}
                                         </small>
                                   </button>
                                   </form>-->
@@ -56,26 +80,27 @@
 
                               <li class="twitter" style="width:33%;">
 
-                              <a href="{{ url('/answerdownvote') }}"
+                              <a
                                      onclick="event.preventDefault();
-                                    document.getElementById('downvoteAnswer-form').submit();">
+                                 document.getElementById('resourceReplyId').setAttribute('value', '{{$resourceReply->id}}');
+                                  var forma =  document.getElementById('resourceReply-form');
+                                  forma.setAttribute('action', '/resourcereplydownvote');
+                                  forma.submit();">
+
                                     <span class="glyphicon glyphicon-chevron-down">
 
                                     </span>
                                     <br>
-                                    <small>{{$answer->downVotes->count()}}</small>
+                                    <small>{{$resourceReply->downVotes->count()}}</small>
                                   </a>
-                                  <form id="downvoteAnswer-form" action="{{ url('/answerdownvote') }}" method="POST" style="display: none;">
-                                      <input type="hidden" value="{{$answer->id}}" name="id" />
-                                      {{ csrf_field() }}
-                                  </form>
+
 
                                 <!--<form action="/answerdownvote" method="post">
-                                <input type="hidden" value="{{$answer->id}}" name="id" />
+                                <input type="hidden" value="{{$resourceReply->id}}" name="id" />
                                   {{csrf_field()}}
                                   <button type="submit">
                                     <span class="glyphicon glyphicon-chevron-down"></span><br><small>
-                                            {{$answer->downVotes->count()}}
+                                            {{$resourceReply->downVotes->count()}}
                                     </small>
                                   </button>
                                 </form>-->
@@ -87,20 +112,20 @@
                         <div class="info answerinfo">
 
 
-                            <p class="desc">{{$answer->content}}</p>
+                            <p class="desc">{{$resourceReply->content}}</p>
                             <ul style="width: auto; float: left;" class="pull-right">
-                                <li><p style="font-size: 9pt;">Posted {{$answer->created_at->diffForHumans()}}  by <a>{{$answer->user->username}}</a></p></li>
+                                <li><p style="font-size: 9pt;">Posted {{$resourceReply->created_at->diffForHumans()}}  by <a>{{$resourceReply->user->username}}</a></p></li>
                             </ul>
                         </div>
                     </li>
                     </ul>
                           <div class="pull-right">
                               @if(Auth::check())
-                                  @if(Auth::user()->id==$answer->user_id)
+                                  @if(Auth::user()->id==$resourceReply->user_id)
 
 
-                                      {!! Form::open(['route' => ['answers.destroy' , $answer->id], 'method' => 'DELETE']) !!}
-
+                                      {!! Form::open(['route' => ['resourcereplies.destroy' , $resourceReply->id], 'method' => 'DELETE']) !!}
+                                            {{csrf_field()}}
                                       {!! Form::submit('Delete',['class' => 'btn btn-danger btn-xs'])!!}
 
                                       {!! Form::close()!!}
@@ -119,22 +144,22 @@
                     </div>
                   </ul>
                   <div id="result"></div>
-                  <h3>Your answer</h3>
-                  	{!! Form::open(['route' => ['answers.store' , 'method' => 'POST']]) !!}
+                  <h3>Your Reply</h3>
+                  	{!! Form::open(['route' => ['resourcereplies.store' , 'method' => 'POST']]) !!}
           					{{ Form::label('content','Content:')}}
           		    		{{ Form::textarea('content',null,array('class' => 'form-control','required'=>'','maxlength'=>'500'))}}
-          		    		<input type="hidden" name="id" value={{$question->id}}>
+          		    		<input type="hidden" name="id" value={{$resource->id}}>
           					{!! Form::submit('Post',['class' => 'btn btn-primary btn-block'])!!}
 
-          					{!! Form::close()!!}	
+          					{!! Form::close()!!}
 					       <br><br>
                   <!--<form id="answer-form" class="" action="answers/store" method="POST">
                     <div class="form-group">
                       <textarea id="content" class="form-control" type="textarea" id="message" placeholder="Write your answer" maxlength="140" rows="7">
-                      	
+
                       </textarea>
-                      <input type="hidden" name="_method" value="POST"/> 
-                      <input type="hidden" name="questionid" value={{$question->id}}/>
+                      <input type="hidden" name="_method" value="POST"/>
+                      <input type="hidden" name="questionid" value={{$resource->id}}/>
                       <!--<span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>-->
                   	<!--  </div>
                     <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right">Post</button>
@@ -146,22 +171,22 @@
 			<div class="well">
 				<dl class="dl-horizontal">
 					<dt>Created At :</dt>
-					<dd>{{ date('j/m/Y H:i',strtotime ($question->created_at)) }}</dd>
+					<dd>{{ date('j/m/Y H:i',strtotime ($resource->created_at)) }}</dd>
 				</dl>
 				<dl class="dl-horizontal">
 					<dt>Last Updated:</dt>
-					<dd>{{ date('j/m/Y H:i',strtotime ($question->updated_at)) }}</dd>
+					<dd>{{ date('j/m/Y H:i',strtotime ($resource->updated_at)) }}</dd>
 				</dl>
 
                 @if(Auth::check())
-                @if(Auth::user()->id==$question->user_id)
+                @if(Auth::user()->id==$resource->user_id)
                     <hr>
       				<div class="row">
       					<div class="col-sm-6">
       						<a href="#" class="btn btn-primary btn-block">Edit</a>
       					</div>
       						<div class="col-sm-6">
-      							{!! Form::open(['route' => ['questions.destroy' , $question->id], 'method' => 'DELETE']) !!}
+      							{!! Form::open(['route' => ['resources.destroy' , $resource->id], 'method' => 'DELETE']) !!}
 
       							{!! Form::submit('Delete',['class' => 'btn btn-danger btn-block'])!!}
 
@@ -171,8 +196,8 @@
                     @endif
                     @endif
 			</div>
-		</div>		
-	</div>	
+		</div>
+	</div>
 @stop
 
 @section('scripts')

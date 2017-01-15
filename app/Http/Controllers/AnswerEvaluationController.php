@@ -13,6 +13,8 @@ use Auth;
 use Redirect;
 class AnswerEvaluationController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -90,6 +92,9 @@ class AnswerEvaluationController extends Controller
     }
 
     public function upVote(Request $request){
+        if(Auth::guest())
+            return view('auth.login');
+
         $answerEv=AnswerEvaluation::where([
             ['answer_id','=',$request->id],
             ['user_id','=',Auth::user()->id],
@@ -115,6 +120,9 @@ class AnswerEvaluationController extends Controller
     }
 
     public function downVote(Request $request){
+        if(Auth::guest())
+            return view('auth.login');
+
         $answerEv=AnswerEvaluation::where([
             ['answer_id','=',$request->id],
             ['user_id','=',Auth::user()->id],

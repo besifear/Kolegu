@@ -1,4 +1,4 @@
- @extends('main')
+@extends('main')
 
   @section('title',' | Upload Resources')
 
@@ -40,7 +40,30 @@
                       @endforeach  
                       </select>
                       <br>
-                      <input type="file" name="filefield" >
+
+                      <div class="input-group">
+                                <span class="input-group-btn">
+                                    <button id="fake-file-button-browse" type="button" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-file"></span> Select file
+                                    </button>
+                                </span>
+                                <input type="file" name="filefield" id="files-input-upload" style="display:none">
+                                <input type="text" id="fake-file-input-name" disabled="disabled" placeholder="File not selected" class="form-control">
+                                
+                            </div>
+
+                            <script type="text/javascript">
+                            // Fake file upload
+                            document.getElementById('fake-file-button-browse').addEventListener('click', function() {
+                              document.getElementById('files-input-upload').click();
+                            });
+
+                            document.getElementById('files-input-upload').addEventListener('change', function() {
+                              document.getElementById('fake-file-input-name').value = this.value;
+
+                              document.getElementById('fake-file-button-upload').removeAttribute('disabled');
+                            });
+                        </script>
 
                       {{ Form::submit('Post Resources',array('class' => 'btn btn-primary btn-md pull-right','style' => 'margin-top : 20px' ))}}
                   {!! Form::close() !!}

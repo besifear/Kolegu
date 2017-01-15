@@ -13,6 +13,7 @@ use Redirect;
 
 class QuestionEvaluationController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -47,48 +48,58 @@ class QuestionEvaluationController extends Controller
     }
 
     public function upVote(Request $request){
+        if(Auth::guest())
+            return view('auth.login');
+
         $questionEv=QuestionEvaluation::where([
-            ['question_id','=',$request->id],
+            ['question_id','=',$request->question_id],
             ['user_id','=',Auth::user()->id],
         ])->first();
 
         if(($questionEv)==null) {
             $questionEv = new QuestionEvaluation;
             $questionEv->vote = 'Yes';
-            $questionEv->question_id = $request->id;
+            $questionEv->question_id= $request->question_id;
             $questionEv->user_id = Auth::user()->id;
-        }else{
-            
-            $questionEv->vote = 'Yes';
+            $questionEv->save();
+        }else {
+            if ($questionEv->vote != 'Yes') {
+                $questionEv->vote = 'Yes';
+                $questionEv->save();
+            } else
+                $questionEv->delete();
         }
-
-        //Category::create([$category]);
-
-        $questionEv->save();
-        //redirect to another page
-
         
 
         return Redirect::back();
     }
 
     public function downVote(Request $request){
+        if(Auth::guest())
+            return view('auth.login');
+
         $questionEv=QuestionEvaluation::where([
-            ['question_id','=',$request->id],
+            ['question_id','=',$request->question_id],
             ['user_id','=',Auth::user()->id],
         ])->first();
 
         if(($questionEv)==null) {
             $questionEv = new QuestionEvaluation;
             $questionEv->vote = 'No';
-            $questionEv->question_id= $request->id;
+            $questionEv->question_id= $request->question_id;
             $questionEv->user_id = Auth::user()->id;
+            $questionEv->save();
         }else{
-            $questionEv->vote = 'No';
+            if($questionEv->vote!='No'){
+                $questionEv->vote = 'No';
+                $questionEv->save();
+            }
+            else
+                $questionEv->delete();
         }
         //Category::create([$category]);
 
-        $questionEv->save();
+
         //redirect to another page
 
 
@@ -100,6 +111,7 @@ class QuestionEvaluationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show($id)
     {
         //

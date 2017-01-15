@@ -96,7 +96,7 @@
                             </div>
                             <div class="btn-group" role="group">
                                 <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab">
-                                    <div class="hidden-xs">idk</div>
+                                    <div class="hidden-xs">Resources</div>
                                 </button>
                             </div>
                         </div>
@@ -235,7 +235,131 @@
                                       </div> 
                                     </div>
                                     <div class="tab-pane fade in" id="tab3">
-                                      <h3>This is tab 3</h3>
+                                      @foreach(App\Resource::where('user_id','=',$user->id)->get() as $resource)
+                                        <div class="content-box-large box-with-header clearfix" >
+                                        
+                                        
+                                        
+                                          <ul class="event-list">
+                                          
+
+                                            <li class="questionListItem">
+                                              <div class="social">
+                                                <ul>
+
+                                                      <li class="facebook" style="width:33%;">
+
+
+                                                          <a
+                                                             onclick="event.preventDefault();
+                                                            document.getElementById('resource_id').setAttribute('value', '{{$resource->id}}');
+                                                                     var forma = document.getElementById('voteResource-form');
+                                                                         forma.setAttribute('action','\\resourceupvote');
+                                                                         forma.submit();
+                                                                     ">
+
+
+                                                            <span class="glyphicon glyphicon-chevron-up">
+                                                              
+                                                            </span>
+                                                            <br>
+
+                                                            <small>{{$resource->votes('Yes')->count()}}</small>
+                                                          </a>
+
+
+
+                                                          <!--<form action="/questionupvote" method="post">
+
+                                                              <input type="hidden" value="{{$resource->id}}" name="id" />
+                                                              {{csrf_field()}}
+                                                              <button type="submit">
+                                                              <span class="glyphicon glyphicon-chevron-up"></span><br>
+                                                                <small>
+                                                                  {{--*App\QuestionEvaluation::where([
+                                                                                   ['QuestionID','=',$question->QuestionID],
+                                                                                   ['Username','=','Admini'],
+                                                                                   ['Vote','=','Yes'],
+                                                                           ])->count()--}}
+                                                                    {{$resource->votes('Yes')->count()}}
+                                                                </small>
+                                                          </button>
+                                                          </form>-->
+
+                                                      </li>
+
+
+                                                        <li class="twitter" style="width:33%;">
+
+                                                          <a
+                                                             onclick="
+                                                             event.preventDefault();
+                                                             document.getElementById('resource_id').setAttribute('value','{{$resource->id}}');
+                                                              var forma = document.getElementById('voteResource-form');
+                                                                  forma.setAttribute('action','resourcedownvote');
+                                                                  forma.submit();
+                                                                     ">
+
+                                                            <span class="glyphicon glyphicon-chevron-down">
+                                                              
+                                                            </span>
+                                                            <br>
+
+                                                            <small>{{$resource->votes('No')->count()}}</small>
+                                                          </a>
+                                                  <!--<form action="/resourcedownvote" method="post">
+                                                  <input type="hidden" value="{{$resource->id}}" name="id" />
+                                                    {{csrf_field()}}
+                                                    <button type="submit">
+                                                    <span class="glyphicon glyphicon-chevron-down"></span><br><small>
+                                                            {{$resource->votes('No')->count()}}
+                                                  </small></button>
+                                                  </form>-->
+                                                  </li>
+                                                  <li class="google-plus" style="width:33%;"><a href="/resources/{{$resource->id}}"><span class="glyphicon glyphicon-comment"></span><br><small>{{$resource->allAnswers->count()}}</small></a></li>
+
+                                                </ul>
+                                              </div>
+                                                
+                                              <div class="info">
+
+                                                  <a  class="title" href="/resources/{{$resource->id}}">{{substr($resource->title,0,40)}}{{strlen($resource->title)>40 ? "..." : ""}}</a>
+                                                
+                                                  <p class="desc">{{ substr($resource->content,0,70)}}{{strlen($resource->content)>40 ? "..." : ""}}</p>
+                                                  <div class="row">
+                                                    <ul class="thumbnails">
+                                                      <div class="col-md-2">
+                                                        <div class="thumbnail">
+                                                            @if(substr($resource->mime, 0, 5) == 'image') 
+                                                            <a target="_blank" href="/fileentry/get/{{$resource->filename}}"><img src="{{route('getentry', $resource->filename)}}" alt="Click Link!!" class="img-responsive" /></a>
+                                                            
+                                                            @else
+                                                            <a target="_blank" href="/fileentry/get/{{$resource->filename}}"><img src="/images/filelogo.png" alt="Click Link!!" class="img-responsive" /></a>
+                                                            
+                                                            @endif
+                                                              <div class="caption">
+                                                                <a target="_blank" href="/fileentry/get/{{$resource->filename}}">{{ substr($resource->original_filename,0,5)}}{{strlen($resource->original_filename)>5 ? "..." : ""}}</a>
+                                                              </div>
+                                                          </div>
+                                                         </div> 
+                                                       </ul>
+                                                     </div>
+
+                                                <ul style="width:auto; float: left;">
+                                                  <li><a href="/categories">{{$resource->category->name}}</a></li>
+                                                </ul>
+                                                <ul style="width: auto; float: left;" class="pull-right">
+
+                                                  <li><p style="font-size: 9pt;">Posted {{$resource->created_at->diffForHumans()}}  by <a>{{$resource->user->username}}</a></p></li>
+
+                                                </ul>
+                                              </div>
+                                                </a>
+                                            </li>
+                                          </ul>
+                                      <hr>
+                                  </div>
+                                      @endforeach
                                     </div>
                               </div>
                         </div>
