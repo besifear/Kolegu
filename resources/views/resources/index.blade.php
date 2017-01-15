@@ -165,6 +165,9 @@
                                     @if(substr($resource->mime, 0, 5) == 'image') 
                                     <a target="_blank" href="/fileentry/get/{{$resource->filename}}"><img src="{{route('getentry', $resource->filename)}}" alt="Click Link!!" class="img-responsive" /></a>
                                     
+                                    @elseif($resource->mime == 'application/pdf') 
+                                    <a target="_blank" href="/fileentry/get/{{$resource->filename}}"><img src="/images/pdflogo.png" alt="Click Link!!" class="img-responsive" /></a>
+
                                     @else
                                     <a target="_blank" href="/fileentry/get/{{$resource->filename}}"><img src="/images/filelogo.png" alt="Click Link!!" class="img-responsive" /></a>
                                     
@@ -187,7 +190,7 @@
                         </ul>
                         <ul style="width: auto; float: left;" class="pull-right">
 
-                          <li><p style="font-size: 9pt;">Posted {{$resource->created_at->diffForHumans()}}  by <a>{{$resource->user->username}}</a></p></li>
+                          <li><p style="font-size: 9pt;">Posted {{$resource->created_at->diffForHumans()}}  by <a href="/users/{{$resource->user->id}}">{{$resource->user->username}}</a></p></li>
 
                         </ul>
                       </div>

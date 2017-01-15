@@ -163,6 +163,7 @@
                   </ul>
               <hr>
               @endforeach
+
                     <form id="voteQuestion-form"   method="POST" style="display: none;">
                         <input type="hidden" id= "question_id" name="question_id" />
                         {{ csrf_field() }}
@@ -176,10 +177,22 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="content-box-header">
-                  <div class="panel-title">Related</div>
+                  <div class="panel-title">Top Trending</div>
                 </div>
                 <div class="content-box-large box-with-header">
-                  questions
+                  <ul class="event-list">
+
+                    <li class="questionListItem">
+                      
+                      <div class="info">
+                        <a  class="title" href="/questions/{{$topquestion->id}}">• {{substr($topquestion->title,0,10)}}{{strlen($topquestion->title)>10 ? "..." : ""}}</a>
+                        
+                        
+                      </div>
+                        </a>
+                    </li>
+                  </ul>
+
               </div>
               </div>
             </div>

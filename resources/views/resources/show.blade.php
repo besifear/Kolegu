@@ -19,7 +19,7 @@
                                     
                                     @endif
                                       <div class="caption">
-                                        <a target="_blank" href="/fileentry/get/{{$resource->filename}}">{{ substr($resource->original_filename,0,255)}}{{strlen($resource->original_filename)>25 ? "..." : ""}}</a>
+                                        <a target="_blank" href="/fileentry/get/{{$resource->filename}}">{{ substr($resource->original_filename,0,37)}}{{strlen($resource->original_filename)>37 ? "..." : ""}}</a>
                                       </div>
                                   </div>
                                  </div> 
