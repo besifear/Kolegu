@@ -10,6 +10,7 @@ class UserAchievement extends Model
 
     protected $fillable = ['achievement_id', 'user_id'];
 
-    protected $table="userachievement";
+    protected $table="userachievements";
+    public $timestamps = false;
 
 }

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Question;
 use App\Category;
+use App\User;
 
 use Auth;
 use Session;
@@ -89,34 +90,46 @@ class QuestionController extends Controller
         $question->save();
         //redirect to another page
 
-        if(Question::where(Auth::user()->id,'=','user_id')->count()==1){
-            if(UserAchievement::where(['user_id','=',Auth::user()->id],['achievement_id','=','1'])->get()==null){
+        if(Question::where('questions.user_id','=',Auth::user()->id)->count()==1){
 
+
+            if(UserAchievement::where([['user_id','=',Auth::user()->id],['achievement_id','=','1']])->get()->count()==0){
                 UserAchievement::create([
                     'achievement_id'=>'1',
                     'user_id'=>Auth::user()->id
                 ]);
 
+                if(Auth::user()->reputation==null){
+                    Auth::user()->reputation=0;
+                }
                 Auth::user()->reputation+=Achievement::find('1')->reputationaward;
+                Auth::user()->save();
 
-                Session::flash('success','You have posted your first question! Congrats you won 25 reputation!');
+                Session::flash('success','You have posted your first question! Congrats you won 10 reputation!');
             }
-        } else if(Question::where(Auth::user()->id,'=','user_id')->count()==5){
-            if(UserAchievement::where(['user_id','=',Auth::user()->id],['achievement_id','=','3'])->get()==null){
+        } else if(Question::where('questions.user_id','=',Auth::user()->id)->count()==5){
+            
+            if(UserAchievement::where([['user_id','=',Auth::user()->id],['achievement_id','=','3']])->get()->count()==0){
                 UserAchievement::create([
                     'achievement_id'=>'3',
                     'user_id'=>Auth::user()->id
                 ]);
-
+                
+                if(Auth::user()->reputation==null){
+                    Auth::user()->reputation=0;
+                }
                 Auth::user()->reputation+=Achievement::find('3')->reputationaward;
-
+                Auth::user()->save();
                 Session::flash('success','You have posted five questions! Congrats you won 25 reputation!');
             }
         }
 
 
 
-        Session::flash('success','Your question was successfully saved!');
+        else
+        {
+            Session::flash('success','Your question was successfully saved!');
+        }   
 
         return redirect()->route('questions.index');
     }
