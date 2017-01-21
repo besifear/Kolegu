@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Achievement;
+use App\UserAchievement;
 use Illuminate\Http\Request;
 
 use App\Question;
@@ -9,6 +11,7 @@ use App\Category;
 
 use Auth;
 use Session;
+
 
 class QuestionController extends Controller
 {
@@ -85,6 +88,33 @@ class QuestionController extends Controller
 
         $question->save();
         //redirect to another page
+
+        if(Question::where(Auth::user()->id,'=','user_id')->count()==1){
+            if(UserAchievement::where(['user_id','=',Auth::user()->id],['achievement_id','=','1'])->get()==null){
+
+                UserAchievement::create([
+                    'achievement_id'=>'1',
+                    'user_id'=>Auth::user()->id
+                ]);
+
+                Auth::user()->reputation+=Achievement::find('1')->reputationaward;
+
+                Session::flash('success','You have posted your first question! Congrats you won 25 reputation!');
+            }
+        } else if(Question::where(Auth::user()->id,'=','user_id')->count()==5){
+            if(UserAchievement::where(['user_id','=',Auth::user()->id],['achievement_id','=','3'])->get()==null){
+                UserAchievement::create([
+                    'achievement_id'=>'3',
+                    'user_id'=>Auth::user()->id
+                ]);
+
+                Auth::user()->reputation+=Achievement::find('3')->reputationaward;
+
+                Session::flash('success','You have posted five questions! Congrats you won 25 reputation!');
+            }
+        }
+
+
 
         Session::flash('success','Your question was successfully saved!');
 

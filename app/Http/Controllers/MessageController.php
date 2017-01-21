@@ -166,7 +166,9 @@ class MessageController extends Controller
             $questions=array();
             foreach($selectedCategories as $selectedCategory){
                 $question=Question::where('category_id','=',$selectedCategory->category_id)->inRandomOrder()->first();
-                array_push($questions,$question);
+                if($question!=null) {
+                    array_push($questions, $question);
+                }
             }
             $questionsCollection=new Collection($questions);
 
