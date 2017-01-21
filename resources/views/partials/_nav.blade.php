@@ -116,6 +116,8 @@
               <li><a href="#">Settings</a></li>
               <li><a href="/categories/create">Create Category</a></li>
               <li><a href="/Kategorite">Selected Categories</a></li>
+              <li><a href="/achievements">See Achievements</a></li>
+              <li><a href="/achievements/create">Create Achievement</a></li>
               <li class="divider"></li>
               <li><a href="{{ url('/logout') }}"
                      onclick="event.preventDefault();

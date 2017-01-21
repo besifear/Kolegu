@@ -9,4 +9,5 @@ class Achievement extends Model
     //
 
     public $fillable=['description','reputationaward','difficulty'];
+    public $timestamps = false;
 }

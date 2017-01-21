@@ -12,5 +12,4 @@ class UserAchievement extends Model
 
     protected $table="userachievement";
 
-
 }
