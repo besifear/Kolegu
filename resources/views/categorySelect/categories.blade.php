@@ -19,7 +19,7 @@
   
     <div class="col-xs-6 col-md-3">
       <a  class="thumbnail">
-        <img src="https://getuikit.com/docs/images/placeholder_600x400.svg" alt="{{$category->Name}}">
+        <img src="/images/subjects.png" alt="{{$category->Name}}">
         <form method="post" action="Kategorite/{{$category->Name}}">
          <button type="submit"  class="btn btn-danger  btn-block">{{$category->Name}}</button>
          {{csrf_field()}}

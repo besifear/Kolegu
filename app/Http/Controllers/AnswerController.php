@@ -8,6 +8,9 @@ use App\Answer;
 use Session;
 use Auth;
 use Redirect;
+use App\Achievement;
+use App\UserAchievement;
+
 class AnswerController extends Controller
 {
     /**
@@ -59,6 +62,29 @@ class AnswerController extends Controller
 
         $answer->save();
         //redirect to another page
+
+        if(Answer::where(Auth::user()->id,'=','user_id')->count()==1){
+            if(UserAchievement::where(['user_id','=',Auth::user()->id],['achievement_id','=','2'])->get()==null){
+                UserAchievement::create([
+                    'achievement_id'=>'2',
+                    'user_id'=>Auth::user()->id
+                ]);
+                Auth::user()->reputation+=Achievement::find('2')->reputationaward;
+
+                Session::flash('success','You have posted your first answer! Congrats you won 10 reputation!');
+
+            }else if(Answer::where(Auth::user()->id,'=','user_id')->count()==5) {
+                if (UserAchievement::where(['user_id', '=', Auth::user()->id], ['achievement_id', '=', '4'])->get() == null) {
+                    UserAchievement::create([
+                        'achievement_id' => '4',
+                        'user_id' => Auth::user()->id
+                    ]);
+                    Auth::user()->reputation += Achievement::find('4')->reputationaward;
+
+                    Session::flash('success','You have posted five answers! Congrats you won 25 reputation!');
+                }
+            }
+
 
         Session::flash('success','Your comment was successfully posted!');
 

@@ -191,7 +191,7 @@
                     <li class="questionListItem">
                       
                       <div class="info">
-                        <a  class="title" href="/questions/{{$topquestion->id}}">• {{substr($topquestion->title,0,10)}}{{strlen($topquestion->title)>10 ? "..." : ""}}</a>
+                        <a  class="title" href="/questions/{{$topquestion->id}}">• {{substr($topquestion->title,0,20)}}{{strlen($topquestion->title)>20 ? "..." : ""}}</a>
                         
                         
                       </div>

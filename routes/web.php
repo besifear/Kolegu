@@ -65,6 +65,8 @@ Route::resource('suggestions','SuggestionController');
 
 Route::resource('resources','ResourceController');
 
+Route::resource('achievements','AchievementController');
+
 Route::post('deletemessages','MessageController@destroyAll');
 
 Route::post('markasread','MessageController@markAsRead');
