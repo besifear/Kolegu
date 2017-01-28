@@ -146,7 +146,7 @@ class MessageController extends Controller
             }
             $questionsCollection=new Collection($questions);
             Mail::send('emails.popularquestions',['questions'=>$questionsCollection],function($message) use ($user){
-                $message->to($user->email,$user->username)->subject('You\'re daily doze of autism!');
+                $message->to($user->email,$user->username)->subject('You\'re daily doze of knowledge!');
             });
         }
         return redirect('/');

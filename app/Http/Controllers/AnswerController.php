@@ -63,13 +63,17 @@ class AnswerController extends Controller
         $answer->save();
         //redirect to another page
 
-        if(Answer::where(Auth::user()->id,'=','user_id')->count()==1){
-            if(UserAchievement::where(['user_id','=',Auth::user()->id],['achievement_id','=','2'])->get()==null){
+        /*if(Answer::where('answers.user_id','=',Auth::user()->id)->count()==1){
+            if(UserAchievement::where([['user_id','=',Auth::user()->id],['achievement_id','=','2']])->get()->count()==0){
                 UserAchievement::create([
                     'achievement_id'=>'2',
                     'user_id'=>Auth::user()->id
                 ]);
+                if(Auth::user()->reputation==null){
+                    Auth::user()->reputation=0;
+                }
                 Auth::user()->reputation+=Achievement::find('2')->reputationaward;
+                Auth::user()->save();
 
                 Session::flash('success','You have posted your first answer! Congrats you won 10 reputation!');
 
@@ -83,7 +87,7 @@ class AnswerController extends Controller
 
                     Session::flash('success','You have posted five answers! Congrats you won 25 reputation!');
                 }
-            }
+            }*/
 
 
         Session::flash('success','Your comment was successfully posted!');

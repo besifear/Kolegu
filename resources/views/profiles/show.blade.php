@@ -21,7 +21,7 @@
                                     @endforeach
                                 </div>
                                 <div class="media-side pull-right">
-                                    <p><span class="glyphicon glyphicon-repeat"></span> Member for 10 months</p>
+                                    <p><span class="glyphicon glyphicon-repeat"></span> Joined {{$user->created_at->diffForHumans()}}</p>
                                     <p><span class="glyphicon glyphicon-time"></span> Last seen 32 minutes ago</p>
                                     <hr>
                                     <div class="centered">
