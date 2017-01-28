@@ -87,6 +87,9 @@ Route::post('answerdownvote','AnswerEvaluationController@downVote');
 
 Route::get('sendEmail', 'UserController@sendEmail');
 
+Route::post('searches', ['as' => 'searches', 'uses' => 'SearchController@search']);
+ 
+
 
 
 //TEST

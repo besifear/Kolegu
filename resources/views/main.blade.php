@@ -4,6 +4,7 @@
     @include('partials._head')
   </head>  
   <body>
+  <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
 
     <!-- Default Bootstrap Navbar -->
     @include('partials._nav')
