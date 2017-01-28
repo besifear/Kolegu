@@ -92,7 +92,7 @@
                                      onclick="event.preventDefault();
                                     document.getElementById('question_id').setAttribute('value', '{{$question->id}}');
                                              var forma = document.getElementById('voteQuestion-form');
-                                                 forma.setAttribute('action','\\questionupvote');
+                                                 forma.setAttribute('action','questionupvote');
                                                  forma.submit();
                                              ">
 

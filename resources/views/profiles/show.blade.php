@@ -122,7 +122,7 @@
                                                                         <small>{{$question->upVotes->count()}}</small>
                                                                       </a>
                                                                       <form id="upvoteQuestion-form" action="{{ url('/questionupvote') }}" method="POST" style="display: none;">
-                                                                          <input type="hidden" value="{{$question->id}}" name="id" />
+                                                                          <input type="hidden" value="{{$question->id}}" name="question_id" />
                                                                           {{ csrf_field() }}
                                                                       </form>
                                                                   </li>
@@ -139,7 +139,7 @@
                                                                     <small>{{$question->downVotes->count()}}</small>
                                                                   </a>
                                                                   <form id="downvoteQuestion-form" action="{{ url('/questiondownvote') }}" method="POST" style="display: none;">
-                                                                      <input type="hidden" value="{{$question->id}}" name="id" />
+                                                                      <input type="hidden" value="{{$question->id}}" name="question_id" />
                                                                       {{ csrf_field() }}
                                                                   </form>
                                                                   </li>
@@ -186,7 +186,7 @@
                                                             <small>{{$answer->upVotes->count()}}</small>
                                                           </a>
                                                           <form id="upvoteAnswer-form" action="{{ url('/answerupvote') }}" method="POST" style="display: none;">
-                                                              <input type="hidden" value="{{$answer->id}}" name="id" />
+                                                              <input type="hidden" value="{{$answer->id}}" name="question_id" />
                                                               {{ csrf_field() }}
                                                           </form>
                                                       </li>
@@ -203,7 +203,7 @@
                                                           <small>{{$answer->downVotes->count()}}</small>
                                                         </a>
                                                         <form id="downvoteAnswer-form" action="{{ url('/answerdownvote') }}" method="POST" style="display: none;">
-                                                            <input type="hidden" value="{{$answer->id}}" name="id" />
+                                                            <input type="hidden" value="{{$answer->id}}" name="question_id" />
                                                             {{ csrf_field() }}
                                                         </form>
                                                       </li>
