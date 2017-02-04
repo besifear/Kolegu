@@ -5,13 +5,110 @@
 @section('content')
 	<div class="row">
 		<div class="col-md-8">
-			<h1>{{ $question->title }}</h1>
-			<p class="lead">{{$question->content}}</p>
-			<hr>
-			<p class="lead">Created by :{{$question->user->username}}</p>
-			<hr>
-			<h4>Answers</h4>
-                  <hr>
+			
+    <h3>Question :</h3>
+      <div class="content-box-large box-with-header">
+                
+                
+                
+                  <ul class="event-list">
+
+                    <li class="questionListItem">
+                      <div class="social">
+                        <ul>
+
+                              <li class="facebook" style="width:33%;">
+
+                                  <a
+                                     onclick="event.preventDefault();
+                                    document.getElementById('question_id').setAttribute('value', '{{$question->id}}');
+                                             var forma = document.getElementById('voteQuestion-form');
+                                                 forma.setAttribute('action','\\questionupvote');
+                                                 forma.submit();
+                                             ">
+
+                                    <span class="glyphicon glyphicon-chevron-up">
+                                      
+                                    </span>
+                                    <br>
+                                    <small>{{$question->upVotes->count()}}</small>
+                                  </a>
+
+
+
+                                  <!--<form action="/questionupvote" method="post">
+
+                                      <input type="hidden" value="{{$question->id}}" name="id" />
+                                      {{csrf_field()}}
+                                      <button type="submit">
+                                      <span class="glyphicon glyphicon-chevron-up"></span><br>
+                                        <small>
+                                          {{--*App\QuestionEvaluation::where([
+                                                           ['QuestionID','=',$question->QuestionID],
+                                                           ['Username','=','Admini'],
+                                                           ['Vote','=','Yes'],
+                                                   ])->count()--}}
+                                            {{$question->upVotes->count()}}
+                                        </small>
+                                  </button>
+                                  </form>-->
+                              </li>
+
+
+                                <li class="twitter" style="width:33%;">
+                                  <a
+                                     onclick="
+                                     event.preventDefault();
+                                     document.getElementById('question_id').setAttribute('value','{{$question->id}}');
+                                      var forma = document.getElementById('voteQuestion-form');
+                                          forma.setAttribute('action','questiondownvote');
+                                          forma.submit();
+                                             ">
+                                    <span class="glyphicon glyphicon-chevron-down">
+                                      
+                                    </span>
+                                    <br>
+                                    <small>{{$question->downVotes->count()}}</small>
+                                  </a>
+                          <!--<form action="/questiondownvote" method="post">
+                          <input type="hidden" value="{{$question->id}}" name="id" />
+                            {{csrf_field()}}
+                            <button type="submit">
+                            <span class="glyphicon glyphicon-chevron-down"></span><br><small>
+                                    {{$question->downVotes->count()}}
+                          </small></button>
+                          </form>-->
+                          </li>
+                          <li class="google-plus" style="width:33%;"><a href="/questions/{{$question->id}}"><span class="glyphicon glyphicon-comment"></span><br><small>{{$question->allAnswers->count()}}</small></a></li>
+                        </ul>
+                      </div>
+                        
+                      <div class="info">
+
+                      <a  class="title" href="/questions/{{$question->id}}">{{substr($question->title,0,40)}}{{strlen($question->title)>40 ? "..." : ""}}</a>
+                        
+                        <p class="desc">{{ substr($question->content,0,70)}}{{strlen($question->content)>40 ? "..." : ""}}</p>
+                        <ul style="width:auto; float: left;">
+                          <li><a href="/categories">{{$question->category->name}}</a></li>
+                        </ul>
+                        <ul style="width: auto; float: left;" class="pull-right">
+                          <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}}  by <a href="/users/{{$question->user->id}}">{{$question->user->username}}</a></p></li>
+                        </ul>
+                      </div>
+                        </a>
+                    </li>
+                  </ul>
+              
+
+                    <form id="voteQuestion-form"   method="POST" style="display: none;">
+                        <input type="hidden" id= "question_id" name="question_id" />
+                        {{ csrf_field() }}
+                    </form>
+
+              </div>
+              <hr>
+			<h4>Answers :</h4>
+                  <br>
                   <div class="content-box-large box-with-header">
                   @foreach(App\Answer::where('question_id','=',$question->id)->get() as $answer)
 
@@ -131,7 +228,7 @@
                   <div id="result"></div>
                   <h3>Your answer</h3>
                   	{!! Form::open(['route' => ['answers.store' , 'method' => 'POST']]) !!}
-          					{{ Form::label('content','Content:')}}
+          					
           		    		{{ Form::textarea('content',null,array('class' => 'form-control','required'=>'','maxlength'=>'500'))}}
           		    		<input type="hidden" name="id" value={{$question->id}}>
           					{!! Form::submit('Post',['class' => 'btn btn-primary btn-block'])!!}

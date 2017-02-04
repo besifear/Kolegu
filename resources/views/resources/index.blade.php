@@ -30,6 +30,7 @@
 
                          <ul>                             <li><a href="/resources">All</a></li>                             <li><a href="#">Add Later</a></li>                         </ul>
                     </li>
+                    <li class="current"><a href="/users"><i class="glyphicon glyphicon-user"></i>All Users</a></li>
                     <li class="current"><a href="#"><i class="glyphicon glyphicon-home"></i> CV</a></li>
 
                     <!--<li><a href="calendar.html"><i class="glyphicon glyphicon-calendar"></i> Calendar</a></li>

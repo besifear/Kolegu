@@ -62,7 +62,7 @@ class AnswerController extends Controller
 
         $answer->save();
         //redirect to another page
-        /* duhet me u qkomentu.
+        // duhet me u qkomentu.
 
         if (Answer::where('user_id', '=',Auth::user()->id )->count() == 1) {
             if (UserAchievement::where(['user_id', '=', Auth::user()->id], ['achievement_id', '=', '2'])->get() == null) {
@@ -70,7 +70,12 @@ class AnswerController extends Controller
                     'achievement_id' => '2',
                     'user_id' => Auth::user()->id
                 ]);
-                Auth::user()->reputation += Achievement::find('2')->reputationaward;
+
+                if(Auth::user()->reputation==null){
+                    Auth::user()->reputation=0;
+                }
+                Auth::user()->reputation+=Achievement::find('2')->reputationaward;
+                Auth::user()->save();
 
                 Session::flash('success', 'You have posted your first answer! Congrats you won 10 reputation!');
 
@@ -86,7 +91,7 @@ class AnswerController extends Controller
                 }
             }
 
-            */
+            
         Session::flash('success','Your comment was successfully posted!');
 
         return redirect()->route('questions.show', $answer->question->id);

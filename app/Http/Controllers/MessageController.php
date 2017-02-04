@@ -58,9 +58,11 @@ class MessageController extends Controller
             'reciever_id'=>$request->reciever_id,
             'sender_id'=>Auth::user()->id
         ]);
-        return redirect()->action(
+
+        return Redirect::back()->with('message','Message was sent sucsessfully!');
+        /*return redirect()->action(
             'UserController@show', ['id' => $request->reciever_id]
-        )->with('message','Message was sent sucsessfully!');
+        )->with('message','Message was sent sucsessfully!');*/
     }
     /**
      * Display the specified resource.
@@ -146,7 +148,7 @@ class MessageController extends Controller
             }
             $questionsCollection=new Collection($questions);
             Mail::send('emails.popularquestions',['questions'=>$questionsCollection],function($message) use ($user){
-                $message->to($user->email,$user->username)->subject('You\'re daily doze of autism!');
+                $message->to($user->email,$user->username)->subject('You\'re daily doze of knowledge!');
             });
         }
         return redirect('/');

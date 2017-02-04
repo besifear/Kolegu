@@ -10,7 +10,7 @@
                     <div class="panel-body">
                             <div class="media">
                                 <a class="pull-left" href="#">
-                                    <img class="media-object dp img-circle" src="images/facebook.png" style="width: 150px;height:150px;">
+                                    <img class="media-object dp img-circle" src="/images/profilepicture.png" style="width: 150px;height:150px;">
                                 </a>
                                 <div class="media-body">
                                     <h2 class="media-heading">{{$user->username}}<small> Developer</small></h2>
@@ -21,7 +21,7 @@
                                     @endforeach
                                 </div>
                                 <div class="media-side pull-right">
-                                    <p><span class="glyphicon glyphicon-repeat"></span> Member for 10 months</p>
+                                    <p><span class="glyphicon glyphicon-repeat"></span> Joined {{$user->created_at->diffForHumans()}}</p>
                                     <p><span class="glyphicon glyphicon-time"></span> Last seen 32 minutes ago</p>
                                     <hr>
                                     <div class="centered">

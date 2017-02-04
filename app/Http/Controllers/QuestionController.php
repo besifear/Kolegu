@@ -52,6 +52,7 @@ class QuestionController extends Controller
     {
         if(auth::guest())
             return view('auth.login');
+        
         $categories=Category::all();
         return view('questions.create2')->withCategories($categories);
     }
@@ -91,6 +92,7 @@ class QuestionController extends Controller
         //redirect to another page
 
         if(Question::where('questions.user_id','=',Auth::user()->id)->count()==1){
+
 
 
             if(UserAchievement::where([['user_id','=',Auth::user()->id],['achievement_id','=','1']])->get()->count()==0){
