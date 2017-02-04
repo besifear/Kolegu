@@ -10,7 +10,7 @@
                     <div class="panel-body">
                             <div class="media">
                                 <a class="pull-left" href="#">
-                                    <img class="media-object dp img-circle" src="images/facebook.png" style="width: 150px;height:150px;">
+                                    <img class="media-object dp img-circle" src="/images/profilepicture.png" style="width: 150px;height:150px;">
                                 </a>
                                 <div class="media-body">
                                     <h2 class="media-heading">{{$user->username}}<small> Developer</small></h2>
