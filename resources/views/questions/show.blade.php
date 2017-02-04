@@ -22,19 +22,21 @@
                           <li class="facebook" style="width:33%;">
 
 
-                                  <a href="{{ url('/answerupvote') }}"
-                                     onclick="event.preventDefault();
-                                    document.getElementById('upvoteAnswer-form').submit();">
+                              <a
+                                      onclick="
+                                              event.preventDefault();
+                                              document.getElementById('id').setAttribute('value','{{$answer->id}}');
+                                              var forma = document.getElementById('voteAnswer-form');
+                                              forma.setAttribute('action','/answerupvote');
+                                              forma.submit();
+                                              ">
                                     <span class="glyphicon glyphicon-chevron-up">
 
                                     </span>
-                                    <br>
-                                    <small>{{$answer->upVotes->count()}}</small>
-                                  </a>
-                                  <form id="upvoteAnswer-form" action="{{ url('/answerupvote') }}" method="POST" style="display: none;">
-                                      <input type="hidden" value="{{$answer->id}}" name="id" />
-                                      {{ csrf_field() }}
-                                  </form>
+                                  <br>
+                                  <small>{{$answer->upVotes->count()}}</small>
+                              </a>
+
 
                                   <!--<form action="/answerupvote" method="post">
 
@@ -56,19 +58,21 @@
 
                               <li class="twitter" style="width:33%;">
 
-                              <a href="{{ url('/answerdownvote') }}"
-                                     onclick="event.preventDefault();
-                                    document.getElementById('downvoteAnswer-form').submit();">
+                                  <a
+                                          onclick="
+                                                  event.preventDefault();
+                                                  document.getElementById('id').setAttribute('value','{{$answer->id}}');
+                                                  var forma = document.getElementById('voteAnswer-form');
+                                                  forma.setAttribute('action','/answerdownvote');
+                                                  forma.submit();
+                                                  ">
                                     <span class="glyphicon glyphicon-chevron-down">
 
                                     </span>
-                                    <br>
-                                    <small>{{$answer->downVotes->count()}}</small>
+                                      <br>
+                                      <small>{{$answer->downVotes->count()}}</small>
                                   </a>
-                                  <form id="downvoteAnswer-form" action="{{ url('/answerdownvote') }}" method="POST" style="display: none;">
-                                      <input type="hidden" value="{{$answer->id}}" name="id" />
-                                      {{ csrf_field() }}
-                                  </form>
+
 
                                 <!--<form action="/answerdownvote" method="post">
                                 <input type="hidden" value="{{$answer->id}}" name="id" />
@@ -116,6 +120,12 @@
 
 
                     @endforeach
+
+                      <form id="voteAnswer-form"   method="POST" style="display: none;">
+                          <input type="hidden" id= "id" name="id" />
+                          {{ csrf_field() }}
+                      </form>
+
                     </div>
                   </ul>
                   <div id="result"></div>
