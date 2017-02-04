@@ -20,4 +20,16 @@ class SearchController extends Controller
 
         return view('searches.index')->with('questions',$questions)->with('resources',$resources);
     }
+
+    public function searchusers(Request $word)
+    {	
+    	$users=User::where('username', 'like', '%'.$word->word.'%')->orWhere('email', 'like', '%'.$word->word.'%')->get();
+    	
+    		$halfusers = $users->chunk(count($users)/2);
+       		$halfusers->toArray();
+
+        return view('users.index')->with('halfusers0',$halfusers[0])->with('halfusers1',$halfusers[1]);
+    	
+       
+    }
 }

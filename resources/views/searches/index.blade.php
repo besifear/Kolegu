@@ -1,6 +1,6 @@
 @extends('main')
 
-  @section('title',' | Homepage')
+  @section('title',' | Search')
 
   @section('content')
 
@@ -32,6 +32,7 @@
                             <li><a href="#">Add Later</a></li>
                         </ul>
                     </li>
+                    <li class="current"><a href="/users"><i class="glyphicon glyphicon-user"></i>All Users</a></li>
                     <li class="current"><a href="#"><i class="glyphicon glyphicon-home"></i> CV</a></li>
                     @if(!Auth::guest())
                       @if(Auth::user()->role=='Admin')
