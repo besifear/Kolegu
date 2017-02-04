@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 use App\AnswerEvaluation;
 
 use App\Answer;
+use App\User;
+use App\Question;
 
 use Auth;
+
 
 use Redirect;
 class AnswerEvaluationController extends Controller
@@ -105,8 +108,14 @@ class AnswerEvaluationController extends Controller
             $answerEv->vote = 'Yes';
             $answerEv->answer_id = $request->id;
             $answerEv->user_id = Auth::user()->id;
+            $questionAskingUser= User::find((Question::find((Answer::find($request->id))->question_id))->user_id);
+            $questionAskingUser->reputation+=1;
+            $questionAskingUser->save();
         }else{
             $answerEv->vote = 'Yes';
+            $questionAskingUser= User::find((Question::find((Answer::find($request->id))->question_id))->user_id);
+            $questionAskingUser->reputation+=1;
+            $questionAskingUser->save();
         }
 
         //Category::create([$category]);
@@ -133,8 +142,14 @@ class AnswerEvaluationController extends Controller
             $answerEv->vote = 'No';
             $answerEv->answer_id= $request->id;
             $answerEv->user_id = Auth::user()->id;
+            $questionAskingUser= User::find((Question::find((Answer::find($request->id))->question_id))->user_id);
+            $questionAskingUser->reputation-=1;
+            $questionAskingUser->save();
         }else{
             $answerEv->vote = 'No';
+            $questionAskingUser= User::find((Question::find((Answer::find($request->id))->question_id))->user_id);
+            $questionAskingUser->reputation-=1;
+            $questionAskingUser->save();
         }
         //Category::create([$category]);
 

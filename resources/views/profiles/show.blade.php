@@ -112,36 +112,39 @@
                                                         <div class="social">
                                                             <ul>
                                                               <li class="facebook" style="width:33%;">
-                                                                      <a href="{{ url('/questionupvote') }}"
-                                                                         onclick="event.preventDefault();
-                                                                        document.getElementById('upvoteQuestion-form').submit();">
+                                                                      <a onclick="
+                                                                              event.preventDefault();
+                                                                              document.getElementById('question_id').setAttribute('value','{{$question->id}}');
+                                                                              var forma = document.getElementById('question-form');
+                                                                              forma.setAttribute('action','/questionupvote');
+                                                                              forma.submit();
+                                                                              ">
                                                                         <span class="glyphicon glyphicon-chevron-up">
                                                                           
                                                                         </span>
                                                                         <br>
                                                                         <small>{{$question->upVotes->count()}}</small>
                                                                       </a>
-                                                                      <form id="upvoteQuestion-form" action="{{ url('/questionupvote') }}" method="POST" style="display: none;">
-                                                                          <input type="hidden" value="{{$question->id}}" name="id" />
-                                                                          {{ csrf_field() }}
-                                                                      </form>
+
                                                                   </li>
 
                                                                   <li class="twitter" style="width:33%;">
 
                                                                     <a href="{{ url('/questiondownvote') }}"
-                                                                     onclick="event.preventDefault();
-                                                                    document.getElementById('downvoteQuestion-form').submit();">
+                                                                     onclick="
+                                                                             event.preventDefault();
+                                                                             document.getElementById('question_id').setAttribute('value','{{$question->id}}');
+                                                                             var forma = document.getElementById('question-form');
+                                                                             forma.setAttribute('action','/questiondownvote');
+                                                                             forma.submit();
+                                                                             ">
                                                                     <span class="glyphicon glyphicon-chevron-down">
                                                                       
                                                                     </span>
                                                                     <br>
                                                                     <small>{{$question->downVotes->count()}}</small>
                                                                   </a>
-                                                                  <form id="downvoteQuestion-form" action="{{ url('/questiondownvote') }}" method="POST" style="display: none;">
-                                                                      <input type="hidden" value="{{$question->id}}" name="id" />
-                                                                      {{ csrf_field() }}
-                                                                  </form>
+
                                                                   </li>
                                                               <li class="google-plus" style="width:33%;">
                                                               <a href="/questions/{{$question->id}}"><span class="glyphicon glyphicon-comment"></span><br><small>
@@ -164,6 +167,11 @@
                                             </ul>
                                         <hr>
                                       @endforeach
+                                          <form id="question-form" action="" method="POST" style="display: none;">
+                                              <input type="hidden" value="" name="question_id" id="question_id" />
+                                              {{ csrf_field() }}
+                                          </form>
+
                                       </div>
                                     </div>
                                     <div class="tab-pane fade in" id="tab2">

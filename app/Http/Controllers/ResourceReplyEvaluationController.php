@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\ResourceReply;
 use App\ResourceReplyEvaluation;
+use App\User;
+use App\ResourceEvaluation;
+
 
 use Illuminate\Http\Request;
+use Redirect;
 
 
 use Auth;
@@ -13,8 +17,98 @@ use Session;
 
 class ResourceReplyEvaluationController extends Controller
 {
+
+    public function upVote(Request $request){
+        if(Auth::guest())
+            return view('auth.login');
+        if (Auth::user()->reputation==null){
+            $useri = User::find(Auth::user()->id);
+            $useri->reputation=0;
+            $useri->save();
+        }
+
+        $resourceEv=ResourceReplyEvaluation::where([
+            ['resourcereply_id','=',$request->resourceReplyId],
+            ['user_id','=',Auth::user()->id],
+        ])->first();
+
+        if(($resourceEv)==null) {
+            $resourceEv = new ResourceReplyEvaluation;
+            $resourceEv->vote = 'Yes';
+            $resourceEv->resourcereply_id= $request->resourceReplyId;
+            $resourceEv->user_id = Auth::user()->id;
+            $resourceEv->save();
+            $resourceAskingUser= User::find((Resourcereply::find($request->resourceReplyId))->user_id);
+            $resourceAskingUser->reputation+=1;
+            $resourceAskingUser->save();
+
+        }else {
+            if ($resourceEv->vote != 'Yes') {
+                $resourceEv->vote = 'Yes';
+                $resourceEv->save();
+                $resourceAskingUser= User::find((Resourcereply::find($request->resourceReplyId))->user_id);
+                $resourceAskingUser->reputation+=2;
+                $resourceAskingUser->save();
+
+            } else{
+                $resourceEv->delete();
+                $resourceAskingUser= User::find((Resourcereply::find($request->resourceReplyId))->user_id);
+                $resourceAskingUser->reputation-=1;
+                $resourceAskingUser->save();
+            }
+
+        }
+        
+
+        return Redirect::back();
+    }
+
+public function downVote(Request $request){
+        if(Auth::guest())
+            return view('auth.login');
+        if (Auth::user()->reputation==null){
+            $useri = User::find(Auth::user()->id);
+            $useri->reputation=0;
+            $useri->save();
+        }
+
+        $resourceEv=ResourceReplyEvaluation::where([
+            ['resourcereply_id','=',$request->resourceReplyId],
+            ['user_id','=',Auth::user()->id],
+        ])->first();
+
+        if(($resourceEv)==null) {
+            $resourceEv = new ResourceReplyEvaluation;
+            $resourceEv->vote = 'No';
+            $resourceEv->resourcereply_id= $request->resourceReplyId;
+            $resourceEv->user_id = Auth::user()->id;
+            $resourceEv->save();
+            $resourceAskingUser= User::find((Resourcereply::find($request->resourceReplyId))->user_id);
+            $resourceAskingUser->reputation-=1;
+            $resourceAskingUser->save();
+
+        }else {
+            if ($resourceEv->vote != 'No') {
+                $resourceEv->vote = 'No';
+                $resourceEv->save();
+                $resourceAskingUser= User::find((Resourcereply::find($request->resourceReplyId))->user_id);
+                $resourceAskingUser->reputation-=2;
+                $resourceAskingUser->save();
+
+            } else{
+                $resourceEv->delete();
+                $resourceAskingUser= User::find((Resourcereply::find($request->resourceReplyId))->user_id);
+                $resourceAskingUser->reputation+=1;
+                $resourceAskingUser->save();
+            }
+
+        }
+        
+
+        return Redirect::back();
+    }
     
-    public function upVote(Request $request)
+   /* public function upVote(Request $request)
     {
         if (Auth::guest())
             return view('auth.login');

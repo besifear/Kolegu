@@ -19,7 +19,6 @@ class SuggestionController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->role=='Admin')
             return view('suggestions.index')->withSuggestions(Suggestion::all());
     }
 
@@ -60,13 +59,12 @@ class SuggestionController extends Controller
 
     public function show($id)
     {
-        if(Auth::user()->role=='Admin'){
             $suggestion=Suggestion::find($id);
             return view ('suggestions.show')->with(array(
                 'suggestion'=>$suggestion,
                 'sender'=>User::find($suggestion->user_id)
             ));
-        }
+
         return redirect::back();
     }
 
