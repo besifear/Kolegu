@@ -62,6 +62,7 @@ class AnswerController extends Controller
 
         $answer->save();
         //redirect to another page
+        /* duhet me u qkomentu.
 
         if(Answer::where(Auth::user()->id,'=','user_id')->count()==1){
             if(UserAchievement::where(['user_id','=',Auth::user()->id],['achievement_id','=','2'])->get()==null){
@@ -85,7 +86,7 @@ class AnswerController extends Controller
                 }
             }
 
-
+            */
         Session::flash('success','Your comment was successfully posted!');
 
         return redirect()->route('questions.show',$answer->question->id);

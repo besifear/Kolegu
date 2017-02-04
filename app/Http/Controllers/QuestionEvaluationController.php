@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 
 use App\QuestionEvaluation;
 use App\Category;
+use App\User;
 
 use Session;
 use Auth;
 use Redirect;
+
 
 class QuestionEvaluationController extends Controller
 {
@@ -50,6 +52,11 @@ class QuestionEvaluationController extends Controller
     public function upVote(Request $request){
         if(Auth::guest())
             return view('auth.login');
+        if (Auth::user()->reputation==null){
+            $useri = User::find(Auth::user()->id);
+            $useri->reputation=0;
+            $useri->save();
+        }
 
         $questionEv=QuestionEvaluation::where([
             ['question_id','=',$request->question_id],
