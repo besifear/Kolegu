@@ -29,7 +29,6 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse col-sm-4 col-xs-12 pull-right" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="/resources/create"><b class="glyphicon glyphicon-cloud-upload "></b> Shto Resurse</a></li>
             <li><a href="/questions/create"><b class="glyphicon glyphicon-send"></b> Pyet</a></li>
           <li><a href="/"><b class="glyphicon glyphicon-comment"></b> Pergjigju</a></li>
 

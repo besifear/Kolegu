@@ -50,7 +50,8 @@ class MessageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        
         Message::create([
             'subject'=>$request->subject,
             'content'=>$request->content,
