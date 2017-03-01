@@ -138,9 +138,19 @@ color: gray;
 .facebook:hover a span {
 color: rgb(79, 213, 248) !important;
 }
-.twitter:hover a span {
-color: rgb(221, 75, 57) !important;
+
+.aqua a span{
+    color: rgb(79, 213, 248);
 }
+
+.twitter:hover a span {
+    color: rgb(221, 75, 57) !important;
+}
+
+.lava a span{
+    color: rgb(221, 75, 57);
+}
+
 .google-plus:hover a span {
 color: rgb(75, 110, 168) !important;
 }

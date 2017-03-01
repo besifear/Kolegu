@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 use App\QuestionEvaluation;
+use Auth;
 
 class Question extends Model
 {
@@ -13,9 +14,25 @@ class Question extends Model
         return $this->hasMany('App\QuestionEvaluation','question_id')->where('Vote','=','Yes');
 	}
 
-	public function downVotes(){
+    public function getMyUpVote(){
+        return $this->hasOne('App\QuestionEvaluation','question_id')->where([
+            ['user_id','=',Auth::user()->id] ,
+            ['vote','=','Yes'],
+        ]);
+    }
+
+    public function downVotes(){
         return $this->hasMany('App\QuestionEvaluation','question_id')->where('Vote','=','No');
     }
+
+    public function getMyDownVote(){
+        return $this->hasOne('App\QuestionEvaluation','question_id')->where([
+            ['user_id','=',Auth::user()->id] ,
+            ['vote','=','No'],
+        ]);
+    }
+
+
 
     public function allEvaluations(){
     	return $this->hasMany('App\QuestionEvaluation','question_id');

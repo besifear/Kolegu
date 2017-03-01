@@ -78,8 +78,11 @@
                       <div class="social">
                         <ul>
 
-                              <li class="facebook" style="width:33%;">
-
+                            @if ($question->getMyUpVote!= null)
+                                <li class="facebook aqua" style="width:33%;">
+                            @else
+                                <li class="facebook" style="width:33%;">
+                            @endif
                                   <a
                                      onclick="event.preventDefault();
                                     document.getElementById('question_id').setAttribute('value', '{{$question->id}}');
@@ -89,7 +92,7 @@
                                              ">
 
                                     <span class="glyphicon glyphicon-chevron-up">
-                                      
+
                                     </span>
                                     <br>
                                     <small>{{$question->upVotes->count()}}</small>
@@ -116,7 +119,12 @@
                               </li>
 
 
-                                <li class="twitter" style="width:33%;">
+                                @if($question->getMyDownVote!=null)
+                                    <li class="facebook lava" style="width:33%;">
+                                @else
+                                    <li class="twitter" style="width:33%;">
+                                @endif
+                                        
                                   <a
                                      onclick="
                                      event.preventDefault();
@@ -162,8 +170,10 @@
               <hr>
               @endforeach
 
+                    /* Me javascript i vjen route .*/
                     <form id="voteQuestion-form"   method="POST" style="display: none;">
                         <input type="hidden" id= "question_id" name="question_id" />
+
                         {{ csrf_field() }}
                     </form>
 
@@ -184,13 +194,11 @@
                       
                       <div class="info">
                         <a  class="title" href="/questions/{{$topquestion->id}}">• {{substr($topquestion->title,0,20)}}{{strlen($topquestion->title)>20 ? "..." : ""}}</a>
-                        
-                        
+
                       </div>
                         </a>
                     </li>
                   </ul>
-
               </div>
               </div>
             </div>

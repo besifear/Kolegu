@@ -173,7 +173,19 @@ class QuestionController extends Controller
 
 
         }
-        return view ('questions.index')->withQuestions($questions);
+
+        $topquestion=new Question;
+
+
+        foreach($questions as $testquestion){
+            if( empty($topquestion) OR ($testquestion->upVotes->count()>$topquestion->upVotes->count()) )
+            {
+                $topquestion=$testquestion;
+            }
+
+        }
+
+        return view ('questions.index')->withQuestions($questions)->with('topquestion',$topquestion);
     }
 
     /**
