@@ -49,14 +49,10 @@
                         <li>
                             <a href="#" data-toggle="modal" data-target="#suggestionModal">Send Suggestion</a>
                         </li>
-                        @if(Auth::check())
-                            @if(Auth::user()->role=='Admin')
                                 <li class="divider"></li>
                                 <li>
                                     <a href="{{ route('suggestions.index') }}">See Suggestions</a>
                                 </li>
-                            @endif
-                        @endif
                         <li class="divider"></li>
                         <li><a href="#">Something else here</a></li>
                         <li class="divider"></li>

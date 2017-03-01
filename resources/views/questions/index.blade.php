@@ -124,7 +124,7 @@
                                 @else
                                     <li class="twitter" style="width:33%;">
                                 @endif
-                                        
+
                                   <a
                                      onclick="
                                      event.preventDefault();
