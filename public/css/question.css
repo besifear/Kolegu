@@ -140,7 +140,7 @@ color: rgb(79, 213, 248) !important;
 }
 
 .aqua a span{
-    color: rgb(79, 213, 248);
+    color: rgba(79, 213, 248,0.8);
 }
 
 .twitter:hover a span {
@@ -148,7 +148,7 @@ color: rgb(79, 213, 248) !important;
 }
 
 .lava a span{
-    color: rgb(221, 75, 57);
+    color: rgba(221, 75, 57, 0.8);
 }
 
 .google-plus:hover a span {
