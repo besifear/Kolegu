@@ -21,12 +21,17 @@
                                     @endforeach
                                 </div>
                                 <div class="media-side pull-right">
-                                    <p><span class="glyphicon glyphicon-repeat"></span> Joined {{$user->created_at->diffForHumans()}}</p>
-                                    <p><span class="glyphicon glyphicon-time"></span> Last seen 32 minutes ago</p>
+                                    <p><span class="glyphicon glyphicon-time"></span> Joined {{$user->created_at->diffForHumans()}}</p>
+                                    @if($user->reputation==null)
+                                    <p><span class="glyphicon glyphicon-certificate"></span> Reputation : 0             </p>
+                                    
+                                    @elseif($user->reputation!=null)
+                                    <p><span class="glyphicon glyphicon-certificate"></span> Reputation : {{$user->reputation}}           </p>
+                                    @endif
                                     <hr>
                                     <div class="centered">
-                                        <a style="margin-right: 12px;" href="#" data-toggle="modal" data-target="#messageModal" class="btn btn-primary btn-sm center-block col-lg-5"><i class="fa fa-envelope"></i></a>
-                                        <a href="/messages" style="margin-left: 12px;"  data-toggle="modal" data-target="#inboxModal" class="btn btn-warning btn-sm center-block col-lg-5"><i class="fa fa-inbox"></i></a>
+                                        <a style="margin-right: 12px;" href="#" data-toggle="modal" data-target="#messageModal" class="btn btn-primary btn-sm center-block btn-block col-lg-5"><i class="fa fa-envelope"></i></a>
+                                        
                                             <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                               <div class="modal-dialog">
                                             	<div class="modal-content">
@@ -155,7 +160,7 @@
                                                           
                                                           <div class="info answerinfo">
                                                           <a class="questionLink title" href="/questions/{{$question->id}}">{{substr($question->title,0,40)}}{{strlen($question->title)>40 ? "..." : ""}}</a>
-                                                            <p class="desc">{{ substr($question->content,0,70)}}{{strlen($question->content)>40 ? "..." : ""}}</p>
+                                                            <p class="desc">{!! substr(strip_tags($question->content),0,70)!!}{!!strlen($question->content)>40 ? "..." : ""!!}</p>
                                                             <ul style="width:auto; float: left;">
                                                               <li><a href="/categories">{{$question->category->name}}</a></li>
                                                             </ul>

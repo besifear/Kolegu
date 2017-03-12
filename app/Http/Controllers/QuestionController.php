@@ -26,7 +26,7 @@ class QuestionController extends Controller
     {   
 
 
-        $questions=Question::orderBy('id', 'DESC')->get();
+        $questions=Question::orderBy('id', 'DESC')->paginate(10);
 
         $topquestion=new Question;
 
@@ -69,7 +69,7 @@ class QuestionController extends Controller
             return view('auth.login');
          //validate data
         $this -> validate($request ,array(
-                'title' => 'required | max:50|unique:questions',
+                'title' => 'required | max:50',
                 'content'  => 'required | max:500'
             ));
 
@@ -81,6 +81,7 @@ class QuestionController extends Controller
 
         $question->title = $request->title;
         $question->content = $request->content;
+
         $question->category_id = $request->category_id;
         $question->user_id = Auth::user()->id;
 

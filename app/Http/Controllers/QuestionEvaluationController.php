@@ -9,10 +9,10 @@ use App\Category;
 use App\Question;
 use App\User;
 
-
 use Session;
 use Auth;
 use Redirect;
+
 
 class QuestionEvaluationController extends Controller
 {
@@ -53,6 +53,11 @@ class QuestionEvaluationController extends Controller
     public function upVote(Request $request){
         if(Auth::guest())
             return view('auth.login');
+        if (Auth::user()->reputation==null){
+            $useri = User::find(Auth::user()->id);
+            $useri->reputation=0;
+            $useri->save();
+        }
 
         $questionEv=QuestionEvaluation::where([
             ['question_id','=',$request->question_id],
@@ -90,9 +95,14 @@ class QuestionEvaluationController extends Controller
         return Redirect::back();
     }
 
-    public function downVote(Request $request){
+        public function downVote(Request $request){
         if(Auth::guest())
             return view('auth.login');
+        if (Auth::user()->reputation==null){
+            $useri = User::find(Auth::user()->id);
+            $useri->reputation=0;
+            $useri->save();
+        }
 
         $questionEv=QuestionEvaluation::where([
             ['question_id','=',$request->question_id],
@@ -109,15 +119,15 @@ class QuestionEvaluationController extends Controller
             $questionAskingUser->reputation-=1;
             $questionAskingUser->save();
 
-        }else{
-            if($questionEv->vote!='No'){
+        }else {
+            if ($questionEv->vote != 'No') {
                 $questionEv->vote = 'No';
                 $questionEv->save();
                 $questionAskingUser= User::find((Question::find($request->question_id))->user_id);
                 $questionAskingUser->reputation-=2;
                 $questionAskingUser->save();
-            }
-            else{
+
+            } else{
                 $questionEv->delete();
                 $questionAskingUser= User::find((Question::find($request->question_id))->user_id);
                 $questionAskingUser->reputation+=1;
@@ -125,11 +135,7 @@ class QuestionEvaluationController extends Controller
             }
 
         }
-        //Category::create([$category]);
-
-
-        //redirect to another page
-
+        
 
         return Redirect::back();
     }
