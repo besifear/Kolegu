@@ -63,7 +63,7 @@ class AnswerController extends Controller
         $answer->save();
         //redirect to another page
         // duhet me u qkomentu.
-
+        /*
         if (Answer::where('user_id', '=',Auth::user()->id )->count() == 1) {
             if (UserAchievement::where(['user_id', '=', Auth::user()->id], ['achievement_id', '=', '2'])->get() == null) {
                 UserAchievement::create([
@@ -90,12 +90,13 @@ class AnswerController extends Controller
                     Session::flash('success', 'You have posted five answers! Congrats you won 25 reputation!');
                 }
             }
-
+*/
             
         Session::flash('success','Your comment was successfully posted!');
 
         return redirect()->route('questions.show', $answer->question->id);
     }
+
 
     /**
      * Display the specified resource.

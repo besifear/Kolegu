@@ -22,7 +22,7 @@ class ResourceController extends Controller
     public function index()
     {
 
-        $resources=Resource::orderBy('id', 'DESC')->get();
+        $resources=Resource::orderBy('id', 'DESC')->paginate(10);
 
         return view('resources.index')->with('resources',$resources);
 

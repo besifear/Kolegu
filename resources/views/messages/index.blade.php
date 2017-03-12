@@ -132,67 +132,75 @@
                     </div>-->
             </div>
             <hr>
-
+            
             <form id="messagesForm" action="" method="POST">
-                @foreach($messages as $message)
             <div class="row">
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div class="tab-pane fade in active" id="home">
-                            <div class="list-group" >
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="home">
+                        <div class="list-group" >
+                            @foreach($messages as $message)
+                        
+                                <!-- Tab panes -->
+                                
+                                    
+                                        
 
-                                <div class="list-group-item" >
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="ids[]" id="ids[]" value="{{$message->id}}">
-                                        </label>
-                                    </div>
-                                    <a href="/messages/{{$message->id}}" >
-                                        <span class="name" style="min-width: 120px;
-                                            display: inline-block;">{{$message->sender->username}}</span> <span class="">{{$message->subject}}</span>
-                                        <span class="text-muted" style="font-size: 12px;">{{$message->content}}</span>
-                                        <span
-                                            class="badge pull-right">{{$message->created_at->diffForHumans()}}</span>
-                                            <span class="pull-right"><span class="glyphicon glyphicon-ok">
-                                            </span></span>
-                                    </a>
-                                </div>
-    <!--
-                                <div class="modal fade" id="inboxModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content">
-                                          <div class="modal-header">
-                                              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                              <h4 class="modal-title" id="lineModalLabel">Message</h4>
-                                          </div>
-                                          <div class="modal-body">
+                                            <div class="list-group-item" >
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="ids[]" id="ids[]" value="{{$message->id}}">
+                                                    </label>
+                                                </div>
+                                                <a href="/messages/{{$message->id}}" >
+                                                    <span class="name" style="min-width: 120px;
+                                                        display: inline-block;">{{$message->sender->username}}</span> <span class="">{{$message->subject}}</span>
+                                                    <span class="text-muted" style="font-size: 12px;">{{$message->content}}</span>
+                                                    <span
+                                                        class="badge pull-right">{{$message->created_at->diffForHumans()}}</span>
+                                                        <span class="pull-right"><span class="glyphicon glyphicon-ok">
+                                                        </span></span>
+                                                </a>
+                                            </div>
+                <!--
+                                            <div class="modal fade" id="inboxModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                  <div class="modal-content">
+                                                      <div class="modal-header">
+                                                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                          <h4 class="modal-title" id="lineModalLabel">Message</h4>
+                                                      </div>
+                                                      <div class="modal-body">
 
 
-                                              <ul class="event-list">
-                                                <li>
-                                                  <div class="info">
-                                                    <h2 class="title">Question</h2>
-                                                    <hr>
-                                                    <p class="desc">Description</p>
-                                                    <ul style="width: auto; float: left;" class="pull-right">
-                                                      <li><p style="font-size: 9pt;">Sent by <a>IlliPilli</a></p></li>
-                                                    </ul>
+                                                          <ul class="event-list">
+                                                            <li>
+                                                              <div class="info">
+                                                                <h2 class="title">Question</h2>
+                                                                <hr>
+                                                                <p class="desc">Description</p>
+                                                                <ul style="width: auto; float: left;" class="pull-right">
+                                                                  <li><p style="font-size: 9pt;">Sent by <a>IlliPilli</a></p></li>
+                                                                </ul>
+                                                              </div>
+                                                            </li>
+                                                          </ul>
+
+                                                      </div>
                                                   </div>
-                                                </li>
-                                              </ul>
+                                                </div>
+                                            </div>
+                                            -->
+                                        
+                                    
+                                
 
-                                          </div>
-                                      </div>
-                                    </div>
-                                </div>
-                                -->
-                            </div>
+                        
+                                @endforeach
+                                {{ csrf_field() }}
                         </div>
                     </div>
-
+                </div>
             </div>
-                @endforeach
-                {{ csrf_field() }}
             </form>
 
         </div>

@@ -29,7 +29,6 @@
                         </ul>
                     </li>
                     <li class="current"><a href="/users"><i class="glyphicon glyphicon-user"></i>All Users</a></li>
-                    <li class="current"><a href="#"><i class="glyphicon glyphicon-home"></i> CV</a></li>
                     @if(!Auth::guest())
                       @if(Auth::user()->role=='Admin')
                     <li class="current"><a href="/sendemailtousers"><i class="glyphicon glyphicon-envelope"></i> Email Users</a></li>
@@ -56,7 +55,7 @@
               <div class="input-group">
                   <input type="text" class="form-control" placeholder="Search Users" name="word">
                   <div class="input-group-btn">
-                      <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                      <button style="height: 34px;" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                   </div>
               </div>
               {!! Form::close() !!}

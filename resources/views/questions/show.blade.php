@@ -5,9 +5,10 @@
 @section('content')
 	<div class="row">
 		<div class="col-md-8">
+    
 			
-    <h3>Question :</h3>
-      <div class="content-box-large box-with-header">
+    <h3>Question:</h3>
+      <div class="content-box-large box-with-header clearfix">
                 
                 
                 
@@ -87,12 +88,12 @@
 
                       <a  class="title" href="/questions/{{$question->id}}">{{substr($question->title,0,40)}}{{strlen($question->title)>40 ? "..." : ""}}</a>
                         
-                        <p class="desc">{{ substr($question->content,0,70)}}{{strlen($question->content)>40 ? "..." : ""}}</p>
+                        <p class="desc">{!! $question->content!!}</p>
                         <ul style="width:auto; float: left;">
                           <li><a href="/categories">{{$question->category->name}}</a></li>
                         </ul>
                         <ul style="width: auto; float: left;" class="pull-right">
-                          <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}}  by <a href="/users/{{$question->user->id}}">{{$question->user->username}}</a></p></li>
+                          <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}} by <a href="/users/{{$question->user->id}}">{{$question->user->username}}</a></p></li>
                         </ul>
                       </div>
                         </a>
@@ -104,10 +105,10 @@
                         <input type="hidden" id= "question_id" name="question_id" />
                         {{ csrf_field() }}
                     </form>
+                    </div>
 
-              </div>
               <hr>
-			<h4>Answers :</h4>
+			<h4>Answers:</h4>
                   <br>
                   <div class="content-box-large box-with-header">
                   @foreach(App\Answer::where('question_id','=',$question->id)->get() as $answer)

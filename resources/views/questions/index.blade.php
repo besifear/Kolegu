@@ -24,7 +24,6 @@
                         </ul>
                     </li>
                     <li class="current"><a href="/users"><i class="glyphicon glyphicon-user"></i>All Users</a></li>
-                    <li class="current"><a href="#"><i class="glyphicon glyphicon-home"></i> CV</a></li>
                     @if(!Auth::guest())
                       @if(Auth::user()->role=='Admin')
                     <li class="current"><a href="/sendemailtousers"><i class="glyphicon glyphicon-envelope"></i> Email Users</a></li>
@@ -148,7 +147,7 @@
 
                       <a  class="title" href="/questions/{{$question->id}}">{{substr($question->title,0,40)}}{{strlen($question->title)>40 ? "..." : ""}}</a>
                         
-                        <p class="desc">{{ substr($question->content,0,70)}}{{strlen($question->content)>40 ? "..." : ""}}</p>
+                        <p class="desc">{!! substr(strip_tags($question->content),0,70)!!}{!!strlen($question->content)>40 ? "..." : ""!!}</p>
                         <ul style="width:auto; float: left;">
                           <li><a href="/categories">{{$question->category->name}}</a></li>
                         </ul>
@@ -161,6 +160,9 @@
                   </ul>
               <hr>
               @endforeach
+              <div class="text-center">
+                  {!! $questions->links(); !!}
+              </div>
 
                     <form id="voteQuestion-form"   method="POST" style="display: none;">
                         <input type="hidden" id= "question_id" name="question_id" />
