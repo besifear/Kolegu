@@ -78,10 +78,14 @@
                       <div class="social">
                         <ul>
 
-                            @if ($question->getMyUpVote!= null)
-                                <li class="facebook aqua" style="width:33%;">
+                            @if(auth::user() != null)
+                                @if ($question->getMyUpVote!= null)
+                                    <li class="facebook aqua" style="width:33%;">
+                                @else
+                                    <li class="facebook" style="width:33%;">
+                                @endif
                             @else
-                                <li class="facebook" style="width:33%;">
+                                <li class="twitter" style="width:33%;">
                             @endif
                                   <a
                                      onclick="event.preventDefault();
@@ -119,8 +123,14 @@
                               </li>
 
 
-                                @if($question->getMyDownVote!=null)
-                                    <li class="facebook lava" style="width:33%;">
+                                @if(auth::user() != null)
+
+                                    @if($question->getMyDownVote!=null)
+                                        <li class="twitter lava" style="width:33%;">
+                                    @else
+                                        <li class="twitter" style="width:33%;">
+                                    @endif
+
                                 @else
                                     <li class="twitter" style="width:33%;">
                                 @endif
@@ -170,7 +180,7 @@
               <hr>
               @endforeach
 
-                    /* Me javascript i vjen route .*/
+                    <!-- Route caktohet nga upvote ose downvote qe klikohet -->
                     <form id="voteQuestion-form"   method="POST" style="display: none;">
                         <input type="hidden" id= "question_id" name="question_id" />
 

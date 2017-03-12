@@ -73,7 +73,7 @@
                 <div class="content-box-large box-with-header">
                   <ul class="event-list">
                     <li>
-                      <div class="social">
+                         <div class="social">
                         <ul>
                           <li class="facebook" style="width:33%;"><a href="#"><span class="glyphicon glyphicon-chevron-up"></span><br><small>136</small></a></li>
                           <li class="twitter" style="width:33%;"><a href="#"><span class="glyphicon glyphicon-chevron-down"></span><br><small>42</small></a></li>
