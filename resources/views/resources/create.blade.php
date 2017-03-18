@@ -73,16 +73,7 @@
             </div>
           </div>
           <div class="col-md-4">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="content-box-header">
-                  <div class="panel-title">Rules</div>
-                </div>
-                <div class="content-box-large box-with-header">
-                  Ju lutemi postoni pyetje serioze.
-              </div>
-              </div>
-            </div>
+            @include('partials.rules')
           </div>
 
         </div>

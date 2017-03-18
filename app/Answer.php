@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Answer extends Model
 {
@@ -15,9 +16,23 @@ class Answer extends Model
         return $this->belongsTo('App\Question');
     }
 
+    public function getMyUpVote(){
+        return $this->hasOne('App\AnswerEvaluation','answer_id')->where([
+            ['user_id','=',Auth::user()->id] ,
+            ['vote','=','Yes'],
+        ]);
+    }
+
     public function upVotes(){
         return $this->hasMany('App\AnswerEvaluation','answer_id')->where('Vote','=','Yes');
 	}
+
+    public function getMyDownVote(){
+        return $this->hasOne('App\AnswerEvaluation','answer_id')->where([
+            ['user_id','=',Auth::user()->id] ,
+            ['vote','=','No'],
+        ]);
+    }
 
 	public function downVotes(){
         return $this->hasMany('App\AnswerEvaluation','answer_id')->where('Vote','=','No');

@@ -10,6 +10,13 @@ use Auth;
 class Question extends Model
 {
 
+    protected $fillable = [
+        'title',
+        'content',
+        'category_id',
+        'user_id',
+    ];
+
     public function upVotes(){
         return $this->hasMany('App\QuestionEvaluation','question_id')->where('Vote','=','Yes');
 	}

@@ -22,16 +22,15 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-
     {   
 
 
         $questions=Question::orderBy('id', 'DESC')->paginate(10);
-
+        $questions2=Question::all();
         $topquestion=new Question;
 
         
-        foreach($questions as $testquestion){
+        foreach($questions2 as $testquestion){
             if( empty($topquestion) OR ($testquestion->upVotes->count()>$topquestion->upVotes->count()) )
             {
                 $topquestion=$testquestion;
@@ -54,7 +53,7 @@ class QuestionController extends Controller
             return view('auth.login');
         
         $categories=Category::all();
-        return view('questions.create2')->withCategories($categories);
+        return view('questions.create')->withCategories($categories);
     }
 
     /**
@@ -92,6 +91,7 @@ class QuestionController extends Controller
         $question->save();
         //redirect to another page
 
+        /*  dekomento se shpejti duhet me kriju achievements
         if(Question::where('questions.user_id','=',Auth::user()->id)->count()==1){
 
 
@@ -133,7 +133,7 @@ class QuestionController extends Controller
         {
             Session::flash('success','Your question was successfully saved!');
         }   
-
+        */
         return redirect()->route('questions.index');
     }
 
@@ -163,15 +163,14 @@ class QuestionController extends Controller
     public function filter($orderBy){
         if($orderBy == "Newest"){
 
-            $questions = Question::orderBy('created_at', 'desc')->get();
+            $questions= Question::orderBy('created_at', 'desc')->paginate(10);
         }
         elseif ($orderBy == "A-Z" ){
-            $questions = Question::orderBy('title')->get();
+            $questions= Question::orderBy('title')->paginate(10);
 
         }
         elseif ($orderBy == "Z-A"){
-            $questions = Question::orderBy('title' ,'desc')->get();
-
+            $questions= Question::orderBy('title','desc')->paginate(10);
 
         }
 
