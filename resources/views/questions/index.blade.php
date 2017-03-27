@@ -41,7 +41,7 @@
 
               <!-- Pyetjet me foorloop -->
               @foreach($questions as $question)
-                @include('questions.singlequestion')                
+                @include('questions.singlequestion')
               @endforeach
               <div class="text-center">
                   {{ $questions->links() }}
@@ -51,9 +51,13 @@
               </div>
             </div>
           </div>
-          <!-- Right Side Bar -->
-          @include('partials.rightsidebar')
-
+            <div class="col-md-4">
+                <div class="row">
+                    <!-- Right Side Bar Begining -->
+                    @include('partials.rightsidebar')
+                    <!-- Right Side Bar ending -->
+                </div>
+            </div>
         </div>
       </div>
       </div>

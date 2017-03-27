@@ -1,30 +1,11 @@
-@import url("http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,400italic");
-/*@import url("//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css");*/
-/*body {
-padding: 60px 0px;
-background-color: rgb(220, 220, 220);
-}*/
-
 .info > a{
     color: rgb(0,0,0);
 }
-.info > p{
-    padding-left: 10px;
-}
+
 .info > a:hover , .info > a:visited{
     text-decoration:none;
     margin-left:0;
 }
-
-div.trending-side-bar ul{
-  list-style-type: none;
-}
-
-div.trending-side-bar li{
-  list-style-type: none;
-  text-decoration: none;
-}
-
 
 .event-list {
 list-style: none;
