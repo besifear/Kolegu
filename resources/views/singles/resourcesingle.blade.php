@@ -5,21 +5,23 @@
                 <ul>
                     <li class="facebook" style="width:33%;">
                         <a
-                                onclick="event.preventDefault();
+                                onclick="
+
+                                        event.preventDefault();
                                         document.getElementById('resource_id').setAttribute('value', '{{$resource->id}}');
-                                        var forma = document.getElementById('voteResource-form');
-                                        forma.setAttribute('action','\\resourceupvote');
+                                        var forma =  document.getElementById('voteResource-form');
+                                        forma.setAttribute('action', '/resourceupvote');
                                         forma.submit();
                                         ">
                                     <span class="glyphicon glyphicon-chevron-up">
+                                        
                                     </span>
                             <br>
                             <small>{{$resource->votes('Yes')->count()}}</small>
                         </a>
-                        {{$resource->votes('Yes')->count()}}
                         </small>
                         </button>
-                        </form>-->
+                        </form>
 
                     </li>
                     <li class="twitter" style="width:33%;">
