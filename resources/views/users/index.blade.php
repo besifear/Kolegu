@@ -34,7 +34,7 @@
                       <ul class="thumbnails">
                           @foreach($users as $user)
                           <li class="clearfix col-lg-6">
-                              @include('singles.user')
+                              @include('singles.usersingle')
                            </li>
                            @endforeach
                       </ul>

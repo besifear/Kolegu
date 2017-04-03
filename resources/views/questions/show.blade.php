@@ -8,9 +8,12 @@
 
     <h3>Question:</h3>
       <div class="content-box-large box-with-header clearfix">
-        <!-- Show's a question -->
-        @include('questions.singlequestion')
-        @include('questions.voteform')   
+        <!-- Single Formatted Question Beginning -->
+        @include('singles.questionsingle')
+        <!-- Single Formatted Question Ending -->
+        <!-- Question Upvote/Downvote Form Beginning-->
+        @include('forms.questionvoteform')
+        <!-- Question Upvote/Downvote Form Beginning-->
       </div>
 
               <hr>
@@ -18,26 +21,31 @@
                   <br>
                   <div class="content-box-large box-with-header">
                   @foreach(App\Answer::where('question_id','=',$question->id)->get() as $answer)
-                    @include('questions.singleanswer')
+                      <!-- Single Formatted Answer Beginning -->
+                      @include('singles.answersingle')
+                      <!-- Single Formatted Answer Ending-->
                   @endforeach
+                      <!-- Answer Upvote/Downvote Form Beginning-->
+                      @include('forms.answervoteform')
+                      <!-- Answer Upvote/Downvote Form Ending-->
 
-                      <form id="voteAnswer-form"   method="POST" style="display: none;">
-                          <input type="hidden" id= "id" name="id" />
-                          {{ csrf_field() }}
-                      </form>
 
                     </div>
                   </ul>
                   <div id="result"></div>
                   <h3>Your answer</h3>
-                  	@include('questions.createanswerform')	
+                    <!-- Answer Create Form Beginning-->
+                  	@include('forms.answercreateform')
+                    <!-- Answer Create Form Ending-->
 					       <br><br>
 		</div>
-		@include('questions.sidebareditdelete')	
-	</div>	
+        <!-- Edit Delete Side Bar Beginning -->
+		@include('questions.sidebareditdelete')
+        <!-- Edit Delete Side Bar Ending -->
+    </div>
 @stop
 
 @section('scripts')
-    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <!-- Share on Social media side !!!NEEDS FIX o b-i!!!  Go to www.addthis.com/dashboard to customize your tools -->
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-585fc7f429fa1254"></script>
 @stop

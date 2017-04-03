@@ -20,16 +20,18 @@
               <div class="col-md-12">
 
                 <div class="content-box-large clearfix">
-                  <!-- forma per shtimin e pyetjeve -->
-                  @include('questions.createquestionform')
+                  <!-- Question create Form Beginning-->
+                  @include('forms.questioncreateform')
+                  <!-- Question create Form Ending-->
                   <br><br>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-md-4">
-            <!-- Right Side Bar contains Rules -->
+            <!-- Right Rules Side Bar Beginning -->
             @include('partials.rules')
+            <!-- Right Rules Side Bar Ending -->
           </div>
 
         </div>
