@@ -45,7 +45,7 @@
                             <div class="col-sm-6">
                                 <a href="#" class="btn btn-primary btn-block">Edit</a>
                             </div>
-                            <!-- Resource Destroy Form Beginning -->
+                        <!-- Resource Destroy Form Beginning -->
                         @include('forms.resourcedestroyform')
                         <!-- Resource Destroy Form Ending -->
                         </div>

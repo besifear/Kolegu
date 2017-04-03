@@ -42,13 +42,12 @@
                                 @include('singles.resourcesingle')
                                 <!-- Single Resource Answer Ending-->
                             @endforeach
+                            <!-- Resource Upvote/Downvote Form Beginning-->
+                            @include('forms.resourcevoteform')
+                            <!-- Resource Upvote/Downvote Form Ending-->
                             <div class="text-center">
                                 {!! $resources->links() !!}
                             </div>
-                            <form id="voteResource-form" method="POST" style="display: none;">
-                                <input type="hidden" id="resource_id" name="resource_id"/>
-                                {{ csrf_field()}}
-                            </form>
                         </div>
                     </div>
                 </div>
