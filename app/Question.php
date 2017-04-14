@@ -2,19 +2,21 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-use App\QuestionEvaluation;
 use Auth;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Question extends Model
 {
+
+    use SoftDeletes;
 
     protected $fillable = [
         'title',
         'content',
         'category_id',
         'user_id',
+        'votes'
     ];
 
     public function upVotes(){
@@ -48,6 +50,7 @@ class Question extends Model
     public function allAnswers(){
         return $this->hasMany('App\Answer','question_id');
     }
+
 
     public function user(){
         return $this->belongsTo('App\User');

@@ -16,16 +16,6 @@ background-color: rgb(220, 220, 220);
     margin-left:0;
 }
 
-div.trending-side-bar ul{
-  list-style-type: none;
-}
-
-div.trending-side-bar li{
-  list-style-type: none;
-  text-decoration: none;
-}
-
-
 .event-list {
 list-style: none;
 font-family: 'Lato', sans-serif;
@@ -187,7 +177,7 @@ color: rgb(75, 110, 168) !important;
     }
     .event-list > li > .info {
       overflow: hidden;
-      width: 93%;
+      width: 92%;
     }
     .event-list > li > time,
     .event-list > li > img {
@@ -208,7 +198,7 @@ color: rgb(75, 110, 168) !important;
     }
     .event-list > li > .info > ul {
       /*position: relative;*/
-      margin-top: 44px;
+      /*margin-top: 44px;*/
       left: 0px;
       bottom: 0px;
     }
@@ -237,4 +227,25 @@ color: rgb(75, 110, 168) !important;
   .info {
     width: 10%;
   }
+}
+
+.index-list{
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+.index-list-item{
+    /*height: 150px;*/
+}
+
+div.trending-side-bar ul{
+    list-style-type: none;
+}
+
+li.trending-side-bar-item{
+    height: 15px;
+}
+
+div.trending-side-bar ul li.trending-side-bar-item div.info a.title{
+    font-size: 16px;
 }

@@ -2,44 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Achievement;
-use App\UserAchievement;
-use Illuminate\Http\Request;
-
-use App\Question;
-use App\Category;
-use App\User;
 
 use Auth;
 use Session;
+use App\User;
+use App\Question;
+use App\Category;
+use App\Achievement;
+use App\UserAchievement;
+use Illuminate\Http\Request;
+use App\Service\QuestionService;
+use App\Http\Requests\StoreQuestionRequest;
+use App\Http\Requests\DeleteQuestionRequest;
+use App\Http\Controllers\Traits\RewardsAchievements;
+use App\BusinessLogic\Interfaces\QuestionInterface;
+use App\BusinessLogic\Interfaces\CategoryInterface;
 
 
 class QuestionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    use RewardsAchievements;
+
+    private $questionService;
+
+    public function __construct(QuestionService $questionService){
+        $this->middleware('auth', ['except' => ['index', 'show', 'filter']]);
+        $this->questionService = $questionService;
+    }
+
     public function index()
-    {   
-
-
-        $questions=Question::orderBy('id', 'DESC')->paginate(10);
-        $questions2=Question::all();
-        $topquestion=new Question;
-
-        
-        foreach($questions2 as $testquestion){
-            if( empty($topquestion) OR ($testquestion->upVotes->count()>$topquestion->upVotes->count()) )
-            {
-                $topquestion=$testquestion;
-            }
-            
-        }
-        
-
-        return view('questions.index')->with('questions',$questions)->with('topquestion',$topquestion);
+    {
+        $questions = $this->questionService->questionInterface->orderBy('id', 'DESC')->paginate(5);
+        $topquestions = $this->questionService->topQuestion();
+        return view('questions.index', compact('questions', 'topquestions'));
     }
 
     /**
@@ -49,91 +45,21 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        if(auth::guest())
-            return view('auth.login');
-        
-        $categories=Category::all();
-        return view('questions.create')->withCategories($categories);
+        $categories = $this->questionService->categoryInterface->all();
+        return view('questions.create', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(StoreQuestionRequest $request)
     {
-        if(auth::guest())
-            return view('auth.login');
-         //validate data
-        $this -> validate($request ,array(
-                'title' => 'required | max:50',
-                'content'  => 'required | max:500'
-            ));
-
-        //save to database
-        
-        $question=new Question;
-
-        
-
-        $question->title = $request->title;
-        $question->content = $request->content;
-
-        $question->category_id = $request->category_id;
-        $question->user_id = Auth::user()->id;
-
-        
-
-        //Category::create([$category]);
-
-        $question->save();
-        //redirect to another page
-
-        /*  dekomento se shpejti duhet me kriju achievements
-        if(Question::where('questions.user_id','=',Auth::user()->id)->count()==1){
-
-
-
-            if(UserAchievement::where([['user_id','=',Auth::user()->id],['achievement_id','=','1']])->get()->count()==0){
-                UserAchievement::create([
-                    'achievement_id'=>'1',
-                    'user_id'=>Auth::user()->id
-                ]);
-
-                if(Auth::user()->reputation==null){
-                    Auth::user()->reputation=0;
-                }
-                Auth::user()->reputation+=Achievement::find('1')->reputationaward;
-                Auth::user()->save();
-
-                Session::flash('success','You have posted your first question! Congrats you won 10 reputation!');
-            }
-        } else if(Question::where('questions.user_id','=',Auth::user()->id)->count()==5){
-            
-            if(UserAchievement::where([['user_id','=',Auth::user()->id],['achievement_id','=','3']])->get()->count()==0){
-                UserAchievement::create([
-                    'achievement_id'=>'3',
-                    'user_id'=>Auth::user()->id
-                ]);
-                
-                if(Auth::user()->reputation==null){
-                    Auth::user()->reputation=0;
-                }
-                Auth::user()->reputation+=Achievement::find('3')->reputationaward;
-                Auth::user()->save();
-                Session::flash('success','You have posted five questions! Congrats you won 25 reputation!');
-            }
-        }
-
-
-
-        else
-        {
-            Session::flash('success','Your question was successfully saved!');
-        }   
-        */
+        $this->questionService->questionInterface->create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'category_id' => $request->category_id,
+            'votes' => 0,
+            'user_id' => Auth::id()
+        ]);
+        $this->checkForQuestionAchievements(Auth::user());
+        session::flash('success', $this->flashMessage);
         return redirect()->route('questions.index');
     }
 
@@ -145,8 +71,8 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        $question=Question::find($id);
-        return view ('questions.show')->withQuestion($question);
+        $question=$this->questionService->questionInterface->find($id);
+        return view ('questions.show',compact('question'));
     }
 
     /**
@@ -161,31 +87,9 @@ class QuestionController extends Controller
     }
 
     public function filter($orderBy){
-        if($orderBy == "Newest"){
-
-            $questions= Question::orderBy('created_at', 'desc')->paginate(10);
-        }
-        elseif ($orderBy == "A-Z" ){
-            $questions= Question::orderBy('title')->paginate(10);
-
-        }
-        elseif ($orderBy == "Z-A"){
-            $questions= Question::orderBy('title','desc')->paginate(10);
-
-        }
-
-        $topquestion=new Question;
-
-
-        foreach($questions as $testquestion){
-            if( empty($topquestion) OR ($testquestion->upVotes->count()>$topquestion->upVotes->count()) )
-            {
-                $topquestion=$testquestion;
-            }
-
-        }
-
-        return view ('questions.index')->withQuestions($questions)->with('topquestion',$topquestion);
+        $questions = $this->questionService->filter($orderBy);
+        $topquestions = $this->questionService->topQuestion();
+        return view ('questions.index',compact('questions','topquestions'));
     }
 
     /**
@@ -197,37 +101,24 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //incomplete
+        $question = Question::find($id);
+        Question::update([
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  DeleteQuestionRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DeleteQuestionRequest $request)
     {
-        if(auth::guest())
-            return view('auth.login');
-        $question=Question::find($id);
-
-        $evaluations=$question->allEvaluations;
-
-        $answers=$question->allAnswers;
-
-        foreach($evaluations as $eval){
-            $eval->delete();
-        }
-
-        foreach($answers as $answer){
-            $answer->delete();
-        }
-        
-        $question->delete();
-
+        $this->questionService->delete($request->id);
         return redirect()->route('questions.index');
-        
     }
     
 }

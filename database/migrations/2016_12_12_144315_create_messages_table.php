@@ -15,17 +15,14 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function(Blueprint $table)
         {
-            $table->integer('id', true);
+            $table->increments('id', true);
             $table->string('subject',100);
             $table->string('content', 500);
             $table->string('status',3);
+            $table->integer('sender_id')->unsigned();
+            $table->integer('reciever_id')->unsigned();
             $table->timestamps();
-            $table->integer('sender_id');
-            $table->integer('reciever_id');
-
-            $table->foreign('sender_id')->references('id')->on('users');
-            $table->foreign('reciever_id')->references('id')->on('users');
-
+            $table->softDeletes();
         });
     }
 

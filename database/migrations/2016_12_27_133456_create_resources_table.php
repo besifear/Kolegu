@@ -16,15 +16,17 @@ class CreateResourcesTable extends Migration
         Schema::create('resources', function(Blueprint $table)
         {
             
-            $table->integer('id', true);
+            $table->increments('id', true);
             $table->string('title',50);
             $table->string('content', 500);
             $table->string('filename');
             $table->string('mime');
             $table->string('original_filename');
+            $table->integer('category_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
-            $table->integer('category_id');
-            $table->integer('user_id');
+            $table->softDeletes();
+
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('user_id')->references('id')->on('users');
         });

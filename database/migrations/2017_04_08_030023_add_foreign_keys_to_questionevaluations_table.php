@@ -14,8 +14,8 @@ class AddForeignKeysToQuestionevaluationsTable extends Migration {
 	{
 		Schema::table('questionevaluations', function(Blueprint $table)
 		{
-			$table->foreign('question_id', 'fk_questionEvaluation_question_id')->references('id')->on('questions')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-			$table->foreign('user_id', 'fk_questionEvaluation_user_id')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+			$table->foreign('question_id', 'fk_questionEvaluation_question_id')->references('id')->on('questions');
+			$table->foreign('user_id', 'fk_questionEvaluation_user_id')->references('id')->on('users');
 		});
 	}
 

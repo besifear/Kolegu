@@ -15,11 +15,11 @@ class CreateAchievementsTable extends Migration
     {
         Schema::create('achievements', function(Blueprint $table)
         {
-            $table->integer('id', true);
+            $table->increments('id', true);
+            $table->string('name',50)->unique();
             $table->string('description',300);
-            $table->integer('reputationaward');
+            $table->integer('reputationaward')->unsigned();
             $table->string('difficulty',20);
-
         });
     }
 

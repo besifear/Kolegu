@@ -8,12 +8,12 @@
 
     <h3>Question:</h3>
       <div class="content-box-large box-with-header clearfix">
-        <!-- Single Formatted Question Beginning -->
+        <!-- single formatted question beginning -->
         @include('singles.questionsingle')
-        <!-- Single Formatted Question Ending -->
-        <!-- Question Upvote/Downvote Form Beginning-->
+        <!-- single formatted question ending -->
+        <!-- question upvote/downvote form beginning-->
         @include('forms.questionvoteform')
-        <!-- Question Upvote/Downvote Form Beginning-->
+        <!-- question upvote/downvote form beginning-->
       </div>
 
               <hr>

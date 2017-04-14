@@ -20,7 +20,9 @@ return [
     |--------------------------------------------------------------------------
     |
     | This value determines the "environment" your application is currently
-    | running in. This may determine how you prefer to configure various
+    |xdebug.scream = 0
+xdebug.cli_color = 1
+xdebug.show_local_vars = o running in. This may determine how you prefer to configure various
     | services your application utilizes. Set this in your ".env" file.
     |
     */
@@ -136,7 +138,8 @@ return [
     */
 
     'providers' => [
-
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
         /*
          * Laravel Framework Service Providers...
          */
@@ -179,6 +182,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*Iniciates Interfaces as Repositorys in Controllers*/
+        App\Providers\AppRepositoryProvider::class,
     ],
 
     /*

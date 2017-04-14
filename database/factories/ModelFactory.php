@@ -1,5 +1,9 @@
 <?php
 
+use App\User;
+use App\Answer;
+use App\Question;
+use App\Category;
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -15,9 +19,58 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
+        'username' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+        'reputation' => 0,
+        'role' => $faker->boolean(5) ? 'Admin' : 'User',
+        'rank' => 'undefined'
     ];
 });
+
+$factory->define(App\Question::class, function (Faker\Generator $faker){
+
+    return  [
+        'title' => $faker->company,
+        'content' => $faker->paragraphs(1, true),
+        'category_id' => $faker->numberBetween(1, Category::all()->count()),
+        'user_id' => $faker->numberBetween(1, User::all()->count()),
+        'votes' => 0
+    ];
+});
+
+$factory->define(App\Category::class, function (Faker\Generator $faker){
+    return [
+        'name' => $faker->company,
+        'description' => substr($faker->paragraphs(1, true), 0 , 20)
+    ];
+});
+
+$factory->define(App\QuestionEvaluation::class, function (Faker\Generator $faker){
+     return [
+        'vote' => $faker->boolean(75) ? 'Yes' : 'No',
+        'question_id' => $faker->numberBetween(1, Question::all()->count()),
+        'user_id' => $faker->numberBetween(1, User::all()->count())
+     ];
+});
+
+$factory->define(App\Answer::class, function(Faker\Generator $faker){
+    return [
+        'content' => $faker->paragraphs(1, true),
+        'totalVotes' => 0,
+        'question_id' => $faker->numberBetween(1, Question::all()->count()),
+        'user_id' => $faker->numberBetween(1, User::all()->count())
+    ];
+});
+
+$factory->define(App\AnswerEvaluation::class, function(Faker\Generator $faker){
+    return [
+        'vote' => $faker->boolean(75) ? 'Yes' : 'No',
+        'answer_id' => $faker->numberBetween(1, Answer::all()->count()),
+        'user_id' => $faker->numberBetween(1, User::all()->count())
+    ];
+});
+
+
+

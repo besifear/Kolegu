@@ -15,11 +15,13 @@ class CreateResourcerepliesTable extends Migration
     {
         Schema::create('resourcereplies', function(Blueprint $table)
         {
-            $table->integer('id', true);
+            $table->increments('id', true);
             $table->string('content', 500);
+            $table->integer('resource_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
-            $table->integer('resource_id');
-            $table->integer('user_id');
+            $table->softDeletes();
+
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('resource_id')->references('id')->on('resources');
 

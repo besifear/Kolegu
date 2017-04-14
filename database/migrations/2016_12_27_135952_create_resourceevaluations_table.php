@@ -15,13 +15,12 @@ class CreateResourceevaluationsTable extends Migration
     {
         Schema::create('resourceevaluations', function(Blueprint $table)
         {
-            $table->integer('id', true);
+            $table->increments('id', true);
             $table->string('vote',3);
-            $table->integer('resource_id');
-            $table->integer('user_id');
+            $table->integer('resource_id')->unsigned();
+            $table->integer('user_id')->unsigned();
 
-            $table->foreign('resource_id')->references('id')->on('resources');
-            $table->foreign('user_id')->references('id')->on('users');
+
 
         });
     }

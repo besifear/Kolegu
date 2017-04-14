@@ -15,11 +15,11 @@ class CreateSuggestionsTable extends Migration
     {
          Schema::create('suggestions', function(Blueprint $table)
         {
-            $table->integer('id', true);
+            $table->increments('id', true);
             $table->string('title', 50);
             $table->string('content', 600);
             $table->timestamps();
-            $table->integer('user_id');
+            $table->integer('user_id')->unsigned();
 
             $table->foreign('user_id')->references('id')->on('users');
 

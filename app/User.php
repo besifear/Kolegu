@@ -2,12 +2,19 @@
 
 namespace App;
 
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
+
+    public function owns($relation){
+       return $relation->user_id == Auth::id();
+    }
 
     public function messages(){
        return $this->hasMany('App\Message','reciever_id');
@@ -21,13 +28,37 @@ class User extends Authenticatable
         return $this->hasMany('App\SelectedCategory');
     }
 
+
+    public function numberOf($model){
+        $model = 'App\\'.$model;
+        return $model::where('user_id', Auth::id())
+            ->get()->count();
+    }
+
+
+
+
+    public function questions(){
+        return $this->hasMany('App\Question');
+    }
+
+    public function userAchievements(){
+        return $this->hasMany('App\UserAchievement');
+    }
+
+
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password',
+        'username',
+        'email',
+        'password',
+        'reputation',
+        'role'
     ];
 
     /**

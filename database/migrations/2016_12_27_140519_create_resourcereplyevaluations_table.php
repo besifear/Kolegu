@@ -15,14 +15,10 @@ class CreateResourcereplyevaluationsTable extends Migration
     {
         Schema::create('resourcereplyevaluations', function(Blueprint $table)
         {
-            $table->integer('id', true);
+            $table->increments('id', true);
             $table->string('vote',3);
-            $table->integer('resourcereply_id');
-            $table->integer('user_id');
-
-            $table->foreign('resourcereply_id')->references('id')->on('resourcereplies');
-            $table->foreign('user_id')->references('id')->on('users');
-
+            $table->integer('resourcereply_id')->unsigned();
+            $table->integer('user_id')->unsigned();
         });
     }
     /**

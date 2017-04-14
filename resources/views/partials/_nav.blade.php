@@ -17,7 +17,7 @@
     <div class="col-md-10 col-sm-10 col-xs-8">
         {!! Form::open(array('route' => 'searches' ,'class'=>'navbar-form')) !!}
           <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search" name="word">
+              <input type="text" class="form-control" placeholder="Kërko" name="word">
               <div class="input-group-btn">
                   <button style="height: 34px;" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
               </div>
@@ -39,7 +39,7 @@
             <li><a href="{{ url('/register') }}"><b class="fa fa-key"></b> Register</a></li>
         @else
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-bell"></b> Notifications</a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-bell"></b> Njoftime</a>
                 <ul class="dropdown-menu">
                     <li><a href="/messages">Messages
                             @if(Auth::user()->unseenMessages->count()!=0)
@@ -106,18 +106,20 @@
 
 
             <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-user"></b> User</a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-user"></b>{{Auth::user()->username}} </a>
         <ul class="dropdown-menu">
-          <li><a href="/users/{{Auth::user()->id}}">Profile</a></li>
-          <li><a href="#">Settings</a></li>
-          <li><a href="/categories/create">Create Category</a></li>
-          <li><a href="/Kategorite">Selected Categories</a></li>
-          <li><a href="/achievements">See Achievements</a></li>
-          <li><a href="/achievements/create">Create Achievement</a></li>
+          <li><a href="/users/{{Auth::user()->id}}">Profili</a></li>
+          <li><a href="/Kategorite">Kategoritë e Zgjedhura</a></li>
+          <li><a href="/achievements">Shiko Arritjet</a></li>
+          @if(Auth::user()->role === 'Admin')
+          <li><a href="/categories/create">Krijo Kategori</a></li>
+          <li><a href="/achievements/create">Krijo Arritje</a></li>
+          @endif
+          <li><a href="#">Kushtet</a></li>
           <li class="divider"></li>
           <li><a href="{{ url('/logout') }}"
                  onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">Logout
+                    document.getElementById('logout-form').submit();">shkyçu
               </a>
               <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                   {{ csrf_field() }}

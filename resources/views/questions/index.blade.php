@@ -16,15 +16,15 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="content-box-header">
-                  <div class="panel-title">Actions</div>
+                  <div class="panel-title">Pyetjet</div>
                   <div class="pull-right">
                       <div class="btn-group">
                           <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                              Actions
+                              Filtro
                               <span class="caret"></span>
                           </button>
                           <ul class="dropdown-menu pull-right" role="menu">
-                              <li><a href="/order/Newest">Newest</a>
+                              <li><a href="/order/Newest">Më të rejat</a>
                               </li>
                               <li><a href="/order/A-Z">A-Z</a>
                               </li>
@@ -36,12 +36,17 @@
                 </div>
 
                 <div class="content-box-large box-with-header">
-
+                    <ul class = "index-list">
               @foreach($questions as $question)
-                <!-- Single Formatted Question Beginning -->
-                @include('singles.questionsingle')
-                <!-- Single Formatted Question Ending-->
+
+                    <li class = "index-list-item">
+                        <!-- Single Formatted Question Beginning -->
+                        @include('singles.questionsingle')
+                        <!-- Single Formatted Question Ending-->
+                    </li>
+
               @endforeach
+                    </ul>
               <div class="text-center">
                 <!-- Questions Pagination Links Beginning-->
                 {{ $questions->links() }}

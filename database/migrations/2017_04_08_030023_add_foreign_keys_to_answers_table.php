@@ -14,8 +14,10 @@ class AddForeignKeysToAnswersTable extends Migration {
 	{
 		Schema::table('answers', function(Blueprint $table)
 		{
-			$table->foreign('question_id', 'fk_answer_question_id')->references('id')->on('questions')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-			$table->foreign('user_id', 'fk_answer_user_id')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+			$table->foreign('question_id', 'fk_answer_question_id')->references('id')->on('questions')
+                ->onUpdate('RESTRICT')->onDelete('RESTRICT');
+			$table->foreign('user_id', 'fk_answer_user_id')->references('id')->on('users')
+                ->onUpdate('RESTRICT')->onDelete('RESTRICT');
 		});
 	}
 

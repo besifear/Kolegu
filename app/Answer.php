@@ -2,11 +2,15 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Auth;
+use Illuminate\Database\Eloquent\softDeletes;
+use Illuminate\Database\Eloquent\Model;
+
 
 class Answer extends Model
 {
+
+    use SoftDeletes;
 
     public function user(){
       return $this->belongsTo('App\User');

@@ -14,12 +14,9 @@ class CreateSelectedcategoriesTable extends Migration {
 	{
 		Schema::create('selectedcategories', function(Blueprint $table)
 		{
-			$table->integer('id', true);
-			$table->integer('category_id');
-			$table->integer('user_id');
-
-			$table->foreign('category_id')->references('id')->on('categories');
-        	$table->foreign('user_id')->references('id')->on('users');
+			$table->increments('id', true);
+			$table->integer('category_id')->unsigned();
+			$table->integer('user_id')->unsigned();
 		});
 	}
 

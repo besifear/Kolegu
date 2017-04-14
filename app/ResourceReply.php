@@ -2,10 +2,13 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeltes;
 use Illuminate\Database\Eloquent\Model;
 
 class ResourceReply extends Model
 {
+
+    use SoftDeltes;
 
     public function user(){
         return $this->belongsTo ('App\User');

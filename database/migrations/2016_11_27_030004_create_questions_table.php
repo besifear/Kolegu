@@ -14,15 +14,17 @@ class CreateQuestionsTable extends Migration {
 	{
 		Schema::create('questions', function(Blueprint $table)
 		{
-			$table->integer('id', true);
+			$table->increments('id', true);
 			$table->string('title', 50);
 			$table->string('content', 500);
-			$table->integer('category_id');
-			$table->integer('user_id');
-			$table->timestamps();
+            $table->integer('votes');
+			$table->integer('category_id')->unsigned();
+			$table->integer('user_id')->unsigned();
+		    $table->softDeletes();
+            $table->timestamps();
 
-			$table->foreign('category_id')->references('id')->on('categories');
-        	$table->foreign('user_id')->references('id')->on('users');
+//			$table->foreign('category_id')->references('id')->on('categories');
+//        	$table->foreign('user_id')->references('id')->on('users');
 		});
 	}
 

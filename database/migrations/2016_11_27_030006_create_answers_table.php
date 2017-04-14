@@ -14,14 +14,16 @@ class CreateAnswersTable extends Migration {
 	{
 		Schema::create('answers', function(Blueprint $table)
 		{
-			$table->integer('id', true);
+			$table->increments('id', true);
 			$table->string('content', 500);
-			$table->timestamps();
-			$table->integer('question_id');
-			$table->integer('user_id');
             $table->integer('totalVotes')->default(0);
-			$table->foreign('question_id')->references('id')->on('questions');
-        	$table->foreign('user_id')->references('id')->on('users');
+			$table->integer('question_id')->unsigned();
+			$table->integer('user_id')->unsigned();
+            $table->timestamps();
+            $table->softDeletes();
+
+//			$table->foreign('question_id')->references('id')->on('questions');
+//        	$table->foreign('user_id')->references('id')->on('users');
 
 		});
 	}

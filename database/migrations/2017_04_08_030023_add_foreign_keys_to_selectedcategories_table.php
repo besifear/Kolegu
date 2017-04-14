@@ -14,8 +14,8 @@ class AddForeignKeysToSelectedcategoriesTable extends Migration {
 	{
 		Schema::table('selectedcategories', function(Blueprint $table)
 		{
-			$table->foreign('category_id', 'fk_selectedcategory_category_id')->references('id')->on('categories')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-			$table->foreign('user_id', 'fk_selectedcategory_user_id')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+			$table->foreign('category_id', 'fk_selectedcategory_category_id')->references('id')->on('categories');
+			$table->foreign('user_id', 'fk_selectedcategory_user_id')->references('id')->on('users');
 		});
 	}
 

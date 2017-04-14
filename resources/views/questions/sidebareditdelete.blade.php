@@ -17,8 +17,8 @@
       						<a href="#" class="btn btn-primary btn-block">Edit</a>
       					</div>
       						<div class="col-sm-6">
-      							{!! Form::open(['route' => ['questions.destroy' , $question->id], 'method' => 'DELETE']) !!}
-
+      							{!! Form::open(['route' => ['questions.destroy', $question->id], 'method' => 'DELETE']) !!}
+								{!! Form::hidden('id', $question->id , ['name' => 'id']) !!}
       							{!! Form::submit('Delete',['class' => 'btn btn-danger btn-block'])!!}
 
       							{!! Form::close()!!}

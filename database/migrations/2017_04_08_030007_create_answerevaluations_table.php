@@ -14,15 +14,11 @@ class CreateAnswerevaluationsTable extends Migration {
 	{
 		Schema::create('answerevaluations', function(Blueprint $table)
 		{
-			$table->integer('id', true);
+			$table->increments('id', true);
 			$table->string('vote', 3);
-			$table->integer('answer_id');
-			$table->integer('user_id');
+			$table->integer('answer_id')->unsigned();
+			$table->integer('user_id')->unsigned();
 			$table->unique(['answer_id','user_id'], 'AnswerIDUsername');
-
-			$table->foreign('answer_id')->references('id')->on('answers');
-        	$table->foreign('user_id')->references('id')->on('users');
-
 		});
 	}
 

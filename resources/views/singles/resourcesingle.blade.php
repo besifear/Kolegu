@@ -6,7 +6,6 @@
                     <li class="facebook" style="width:33%;">
                         <a
                                 onclick="
-
                                         event.preventDefault();
                                         document.getElementById('resource_id').setAttribute('value', '{{$resource->id}}');
                                         var forma =  document.getElementById('voteResource-form');
@@ -14,7 +13,7 @@
                                         forma.submit();
                                         ">
                                     <span class="glyphicon glyphicon-chevron-up">
-                                        
+
                                     </span>
                             <br>
                             <small>{{$resource->votes('Yes')->count()}}</small>

@@ -12,15 +12,15 @@
            <!-- Sub menu -->
            <ul>
 
-          <li><a href="/resources">All</a></li>
-          <li><a href="/resources/create">Add Resources</a></li>
+          <li><a href="/resources">Të gjitha Resurset</a></li>
+          <li><a href="/resources/create">Shto një Resurs</a></li>
 
           </ul>
       </li>
-      <li class="current"><a href="/users"><i class="glyphicon glyphicon-user"></i>All Users</a></li>
+      <li class="current"><a href="/users"><i class="glyphicon glyphicon-user"></i>Të gjithë Përdoruesit</a></li>
       @if(!Auth::guest())
         @if(Auth::user()->role=='Admin')
-      <li class="current"><a href="/sendemailtousers"><i class="glyphicon glyphicon-envelope"></i> Email Users</a></li>
+      <li class="current"><a href="/sendemailtousers"><i class="glyphicon glyphicon-envelope"></i>Dërgoju Email Përdoruesve</a></li>
 
         @endif
       @endif
