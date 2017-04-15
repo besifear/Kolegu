@@ -1,6 +1,6 @@
     <div class="trending-side-bar col-md-12">
       <div class="content-box-header">
-        <div class="panel-title">Top Trending</div>
+        <div class="panel-title">Pyetje Aktuale</div>
       </div>
       <div class="content-box-large box-with-header">
         <ul class="event-list trending-side-bar">

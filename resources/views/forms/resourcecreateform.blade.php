@@ -1,15 +1,15 @@
 {!! Form::open(array('route' => 'resources.store','files' => true,'data-parsley-validate'=>'')) !!}
 <h3 style="margin-bottom: 25px; text-align: left;">Upload Resources</h3>
 
-{{ Form::label('title','Title:')}}
+{{ Form::label('title','Titulli:')}}
 {{ Form::text('title',null,array('class' => 'form-control','required'=>'','maxlength'=>'50'))}}
 <br>
 
-{{ Form::label('content','Content:')}}
+{{ Form::label('content','Përmbajtja:')}}
 {{ Form::textarea('content',null,array('class' => 'form-control','required'=>'','maxlength'=>'500'))}}
 <br>
 
-{{ Form::label('categoryname','Category:')}}
+{{ Form::label('categoryname','Kategoria:')}}
 <select name="category_id" class="form-control">
     @foreach($categories as $category)
         <option value="{{$category->id}}">{{$category->name}}</option>
@@ -20,7 +20,7 @@
 <div class="input-group">
                                 <span class="input-group-btn">
                                     <button id="fake-file-button-browse" type="button" class="btn btn-default">
-                                        <span class="glyphicon glyphicon-file"></span> Select file
+                                        <span class="glyphicon glyphicon-file"></span> Shto File
                                     </button>
                                 </span>
     <input type="file" name="filefield" id="files-input-upload" style="display:none">
@@ -42,5 +42,5 @@
     });
 </script>
 
-{{ Form::submit('Post Resources',array('class' => 'btn btn-primary btn-md pull-right','style' => 'margin-top : 20px' ))}}
+{{ Form::submit('Shto Resoursin',array('class' => 'btn btn-primary btn-md pull-right','style' => 'margin-top : 20px' ))}}
 {!! Form::close() !!}

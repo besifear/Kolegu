@@ -176,7 +176,6 @@ class CategoryController extends Controller
                  ['user_id',Auth::user()->id]
              ])->delete();
         }
-
-        return redirect('/Kategorite');
+        return response()->json(Category::find($category_id));
     }
 }

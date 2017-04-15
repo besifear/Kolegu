@@ -35,29 +35,24 @@
 
 
         @if(Auth::guest())
-            <li><a href="{{url('/login')}}"><b class="glyphicon glyphicon-log-in"></b> Login</a></li>
-            <li><a href="{{ url('/register') }}"><b class="fa fa-key"></b> Register</a></li>
+            <li><a href="{{url('/login')}}"><b class="glyphicon glyphicon-log-in"></b> Kyçu</a></li>
+            <li><a href="{{ url('/register') }}"><b class="fa fa-key"></b> Regjistrohu</a></li>
         @else
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-bell"></b> Njoftime</a>
                 <ul class="dropdown-menu">
-                    <li><a href="/messages">Messages
+                    <li><a href="/messages">Mesazhet
                             @if(Auth::user()->unseenMessages->count()!=0)
                             ({{Auth::user()->unseenMessages->count()}})
                             @endif
                         </a></li>
                     <li class="divider"></li>
                     <li>
-                        <a href="#" data-toggle="modal" data-target="#suggestionModal">Send Suggestion</a>
+                        <a href="#" data-toggle="modal" data-target="#suggestionModal">Dërgo Sygjerim</a>
                     </li>
-                            <li class="divider"></li>
                             <li>
-                                <a href="{{ route('suggestions.index') }}">See Suggestions</a>
+                                <a href="{{ route('suggestions.index') }}">Shiko Sygjerimet</a>
                             </li>
-                    <li class="divider"></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
                 </ul>
             </li>
 
@@ -106,7 +101,7 @@
 
 
             <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-user"></b>{{Auth::user()->username}} </a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-user"></b> {{Auth::user()->username}} </a>
         <ul class="dropdown-menu">
           <li><a href="/users/{{Auth::user()->id}}">Profili</a></li>
           <li><a href="/Kategorite">Kategoritë e Zgjedhura</a></li>

@@ -26,7 +26,7 @@ class QuestionController extends Controller
 
     public function index()
     {
-        $questions = $this->questionService->orderBy('id', 'DESC')->paginate(10);
+        $questions = $this->questionService->questionInterface->orderBy('id', 'DESC')->paginate(10);
         $topquestions = $this->questionService->topQuestion();
         return response()->json($questions);
     }

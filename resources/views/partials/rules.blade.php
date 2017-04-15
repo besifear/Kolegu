@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12">
     <div class="content-box-header">
-      <div class="panel-title">Rules</div>
+      <div class="panel-title">Rregullat</div>
     </div>
     <div class="content-box-large box-with-header">
       Ju lutemi postoni pyetje serioze.
