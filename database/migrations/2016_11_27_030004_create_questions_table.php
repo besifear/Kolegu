@@ -19,12 +19,10 @@ class CreateQuestionsTable extends Migration {
 			$table->string('content', 500);
             $table->integer('votes');
 			$table->integer('category_id')->unsigned();
+			$table->integer('answer_id')->unsigned()->nullable();
 			$table->integer('user_id')->unsigned();
 		    $table->softDeletes();
             $table->timestamps();
-
-//			$table->foreign('category_id')->references('id')->on('categories');
-//        	$table->foreign('user_id')->references('id')->on('users');
 		});
 	}
 
