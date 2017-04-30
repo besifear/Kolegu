@@ -66,8 +66,10 @@ class UserController extends Controller
     public function show($id)
     {
         $user=User::find($id);
-
-        return view ('profiles.show')->withUser($user);
+        $questions = \App\Question::where('user_id','=',$user->id)->paginate(5);
+        $answers = \App\Answer::where('user_id','=',$user->id)->paginate(5);
+        $resources = \App\Resource::where('user_id','=',$user->id)->paginate(5);
+        return view ('profiles.show',compact('user','questions','answers', 'resources'));
     }
 
     /**
