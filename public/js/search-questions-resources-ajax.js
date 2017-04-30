@@ -12,10 +12,14 @@ $(document).ready(function(){
 
     $(document).keyup(function(e) {
         if (e.keyCode == 27) { // escape key maps to keycode `27`
-    	$('#close-modal-button').click();
+    	
     	$('#search-input').blur();
        }
    });
+    
+    $('#search-input').on('focusout',function(){
+    	$('#close-modal-button').click();
+    });
     
     $('#search-input').on('input',function(){
     	
@@ -34,13 +38,19 @@ $(document).ready(function(){
                      "word": searchKeyWords
                  },
                 success: function (data) {
+                	if(data.questions.length == 0 && data.resources.length == 0){
+            			$('#search-title').text('Nuk ka rezultat!');
+            			if($('#search-result-list').length){
+                    		$('#search-result-list').remove();
+                    	}
+                    	
+                	}else{	
+                	$('#search-title').text('Rezultati kërkimit:');
+                	
                 	if($('#search-result-list').length){
                 		$('#search-result-list').remove();
                 	}
-                	if(data.questions.length == 0 && data.resources.length == 0){
-            			$('#search-title').text('Nuk ka rezultat!');
-                	}else{	
-                	$('#search-title').text('Rezultati kërkimit:');
+                	
                 	modalBody.append(
                 			'<ul id="search-result-list" class="search-result-list">'
                 	);
