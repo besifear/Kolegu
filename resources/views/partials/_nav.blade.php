@@ -14,16 +14,7 @@
 
     <a class="navbar-brand" href="/">K</a>
 
-    <div class="col-md-10 col-sm-10 col-xs-8">
-        {!! Form::open(array('route' => 'searches' ,'class'=>'navbar-form')) !!}
-          <div class="input-group">
-              <input type="text" class="form-control" placeholder="Kërko" name="word">
-              <div class="input-group-btn">
-                  <button style="height: 34px;" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-              </div>
-          </div>
-          {!! Form::close() !!}
-    </div>
+    @include('partials.search')
 
   </div>
 

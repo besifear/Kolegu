@@ -14,7 +14,9 @@ class AddCorrectAnswerToQuestion extends Migration
     public function up()
     {
         Schema::table('questions', function(Blueprint $table){
-            $table->foreign('answer_id', 'fk_question_answer_id')->unsigned()->nullablle()->references('id')->on('answers')->change();
+
+        	$table->integer('answer_id')->unsigned()->nullable();
+        	$table->foreign('answer_id', 'fk_question_answer_id')->references('id')->on('answers');
         });
     }
 

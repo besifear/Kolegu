@@ -20,6 +20,17 @@ class SearchController extends Controller
 
         return view('searches.index')->with('questions',$questions)->with('resources',$resources);
     }
+    
+    public function searchForJSON(Request $request){
+   		if(strlen($request->word) === 0){
+   			return null;
+   		}
+   		
+    	$questions=Question::where('title', 'like', '%'.$request->word.'%')->orWhere('content', 'like', '%'.$request->word.'%')->take(5)->get();
+    	
+    	$resources=Resource::where('title', 'like', '%'.$request->word.'%')->orWhere('content', 'like', '%'.$request->word.'%')->take(5)->get();
+    	return response()->json(compact('questions', 'resources'));    	
+    }
 
     public function searchusers(Request $word)
     {	

@@ -79,7 +79,7 @@
                               <div class="tab-content">
                                     <div class="tab-pane fade in active" id="tab1">
                                      <div class="content-box-large box-with-header">
-                                      @foreach(App\Question::where('user_id','=',$user->id)->get() as $question)
+                                      @foreach($questions as $question)
                                           <!-- Single Formatted Question Beginning -->
                                           @include('singles.questionsingle')
                                           <!-- Single Formatted Question Ending-->
@@ -88,11 +88,16 @@
                                       @include('forms.questionvoteform')
                                       <!-- Question Upvote/Downvote Form Ending-->
                                       </div>
+                                      <div class="text-center">
+                                        <!-- Questions Pagination Links Beginning-->
+                                        {{ $questions->links() }}
+                                        <!-- Questions Pagination Links Ending-->
+                                      </div>
                                     </div>
                                     <div class="tab-pane fade in" id="tab2">
 
                                     <div class="content-box-large box-with-header">
-                                      @foreach(App\Answer::where('user_id','=',$user->id)->get() as $answer)
+                                      @foreach($answers as $answer)
                                           <!-- Single Formatted Answer Beginning -->
                                           @include('singles.answerprofilesingle')
                                           <!-- Single Formatted Answer Ending-->
@@ -100,10 +105,15 @@
                                       <!-- Answer Upvote/Downvote Form Beginning-->
                                       @include('forms.answervoteform')
                                       <!-- Answer Upvote/Downvote Form Ending-->
+                                      </div>
+                                      <div class="text-center">
+                                        <!-- Questions Pagination Links Beginning-->
+                                        {{ $answers->links() }}
+                                        <!-- Questions Pagination Links Ending-->
                                       </div> 
                                     </div>
                                     <div class="tab-pane fade in" id="tab3">
-                                      @foreach(App\Resource::where('user_id','=',$user->id)->get() as $resource)
+                                      @foreach($resources as $resource)
                                           <!-- Single Formatted Resource Beginning -->
                                           @include('singles.resourcesingle')
                                           <!-- Single Formatted Resource Ending-->
@@ -111,6 +121,11 @@
                                       <!-- Resource Upvote/Downvote Form Beginning-->
                                       @include('forms.resourcevoteform')
                                       <!-- Resource Upvote/Downvote Form Ending-->
+                                      <div class="text-center">
+                                        <!-- Questions Pagination Links Beginning-->
+                                        {{ $resources->links() }}
+                                        <!-- Questions Pagination Links Ending-->
+                                      </div>
                                     </div>
                               </div>
                         </div>
