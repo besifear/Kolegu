@@ -20,13 +20,12 @@ $(document).ready(function(){
     $('#search-input').on('input',function(){
     	
     	var searchKeyWords = $(this).val();
-        
-    	if(searchKeyWords.length === 0){
-    		$('#search-title').val('Shkruaj që t kërkosh!');
-    		if($('#search-result-list').length){
-        		$('#search-result-list').remove();
-        	}
+    	if(searchKeyWords.length == 0){
+    		
+    		$('#search-modal-content').removeClass('in');
+    		
     	}else{
+    		$('#search-modal-content').addClass('in');
     		$.ajax({
                 type: "GET",
                 url: url,
@@ -35,11 +34,13 @@ $(document).ready(function(){
                      "word": searchKeyWords
                  },
                 success: function (data) {
-            		$('#search-title').text('Rezultati kërkimit:');
                 	if($('#search-result-list').length){
                 		$('#search-result-list').remove();
                 	}
-                	
+                	if(data.questions.length == 0 && data.resources.length == 0){
+            			$('#search-title').text('Nuk ka rezultat!');
+                	}else{	
+                	$('#search-title').text('Rezultati kërkimit:');
                 	modalBody.append(
                 			'<ul id="search-result-list" class="search-result-list">'
                 	);
@@ -47,7 +48,7 @@ $(document).ready(function(){
                 	var resultList = $('#search-result-list');
                 	
                 	if(data.questions.length !== 0){
-	                	resultList.append('<h4> Questions </h4>');
+	                	resultList.append('<h4> Pyetje </h4>');
 	                	$.each(data.questions, function(key, value){	
 	                			resultList.append(
 	                    	        	'<li id = "questions-"'+value.id+'" >'+
@@ -61,7 +62,7 @@ $(document).ready(function(){
 	                	});
                 	}
                 	if(data.resources.length !== 0){
-                		resultList.append('<h4> Resources </h4>');
+                		resultList.append('<h4> Resurse </h4>');
                     	$.each(data.resources, function(key, value){	
                     			resultList.append(
                         	        	'<li id = "resources-"'+value.id+'" >'+
@@ -74,15 +75,15 @@ $(document).ready(function(){
                 				);
                     	});
                 	}
+                }
                 },
                 error: function (ts) {
                     console.log(csrfToken);
                     alert(ts.responseText);
                 }
             });
-    	}
-    		
 
+    	}
     });
     
 
