@@ -16,7 +16,8 @@ class Question extends Model
         'content',
         'category_id',
         'user_id',
-        'votes'
+        'votes',
+        'answer_id'
     ];
 
     public function upVotes(){

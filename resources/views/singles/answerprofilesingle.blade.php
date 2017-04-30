@@ -1,4 +1,3 @@
-
 <ul class="event-list answer">
 <li>
   <div class="social">
@@ -66,33 +65,7 @@
     </div>
 </li>
 </ul> 
-      @if($question->answer_id != $answer->id)
-      <div class="pull-left">
-          @if(Auth::check())
-              @if(Auth::user()->id==$question->user_id)
-                @if(Auth::user()->id!=$answer->user_id)
-                    {{ Form::open(['route' => ['questions.update', $question->id], 'method' => 'PUT']) }}
-                    {{ Form::hidden ('answer_id',$answer->id) }}
-                    {{ Form::submit('Përgjigjja e saktë',['class' => 'btn btn-success btn-xs'])}}
-                    {{ Form::close()}}
-                @endif    
-              @endif
-          @endif
-          <br>
-      </div>
-      @elseif($question->answer_id = $answer->id)
-      <div class="pull-left">
-          @if(Auth::check())
-              @if(Auth::user()->id==$question->user_id)
-                  {{ Form::open(['route' => ['questions.update', $question->id], 'method' => 'PUT']) }}
-                  {{ Form::hidden ('answer_id','null') }}
-                  {{ Form::submit('Largo përgjigjjen e saktë',['class' => 'btn btn-danger btn-xs'])}}
-                  {{ Form::close()}}
-              @endif
-          @endif
-          <br>
-      </div>
-      @endif
+      
       <div class="pull-right">
           @if(Auth::check())
               @if(Auth::user()->id==$answer->user_id)

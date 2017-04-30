@@ -6,7 +6,7 @@
 	<div class="row">
 		<div class="col-md-8">
 
-    <h3>Question:</h3>
+    <h3>Pyetja:</h3>
       <div class="content-box-large box-with-header clearfix">
         <!-- single formatted question beginning -->
         @include('singles.questionsingle')
@@ -16,11 +16,10 @@
         <!-- question upvote/downvote form beginning-->
       </div>
 
-              <hr>
-			<h4>Answers:</h4>
-                  <br>
-                  <div class="content-box-large box-with-header">
-                  @foreach(App\Answer::where('question_id','=',$question->id)->get() as $answer)
+      <div class="content-box-large box-with-header">
+      
+                  @foreach(App\Answer::where('id','=',$question->answer_id)->get() as $answer)
+                    <h4>Përgjigjja e saktë</h4>
                       <!-- Single Formatted Answer Beginning -->
                       @include('singles.answersingle')
                       <!-- Single Formatted Answer Ending-->
@@ -30,10 +29,25 @@
                       <!-- Answer Upvote/Downvote Form Ending-->
 
 
+      </div>        
+			<h4>Përgjigjjet:</h4>
+                  <br>
+                  <div class="content-box-large box-with-header">
+                  @foreach(App\Answer::where([['question_id','=',$question->id],['id','!=',$question->answer_id]])->get() as $answer)
+                      <!-- Single Formatted Answer Beginning -->
+                      @include('singles.answersingle')
+                      <!-- Single Formatted Answer Ending-->
+                      
+                  @endforeach
+                      <!-- Answer Upvote/Downvote Form Beginning-->
+                      @include('forms.answervoteform')
+                      <!-- Answer Upvote/Downvote Form Ending-->
+
+
                     </div>
                   </ul>
                   <div id="result"></div>
-                  <h3>Your answer</h3>
+                  <h3>Përgjigjja juaj</h3>
                     <!-- Answer Create Form Beginning-->
                   	@include('forms.answercreateform')
                     <!-- Answer Create Form Ending-->

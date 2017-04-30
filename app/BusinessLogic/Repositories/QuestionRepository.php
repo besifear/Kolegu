@@ -37,4 +37,9 @@ class QuestionRepository implements QuestionInterface{
             ['user_id', Auth::id()]
         ])->exists());
     }
+
+    public function update($id, $attributes){
+        $question = Question::find($id);
+        $question->update($attributes);
+    }
 }

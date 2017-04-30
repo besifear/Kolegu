@@ -11,19 +11,21 @@
 |
 */
 
+//Home Controllers
+
 Route::get('/', 'QuestionController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'QuestionController@index');
+//End Home Controllers
+//////////////
+//Question Controllers 
 
-Route::get('/profile',function(){
-	return view('pages.profile');
-});
+Route::resource('questions','QuestionController');
 
-Route::get('/upload',function(){
-	return view('pages.upload');
-});
+//End Question Controller
+/////////////////
 
 Route::get('/order/{orderBy}','QuestionController@filter',compact('orderBy'));
 
@@ -32,8 +34,6 @@ Route::get('/orderresources/{orderBy}','ResourceController@filter',compact('orde
 Route::resource('posts','PostController');
 
 Route::resource('categories','CategoryController');
-
-Route::resource('questions','QuestionController');
 
 Route::resource('questionsev','QuestionEvaluationController');
 
@@ -104,5 +104,11 @@ Route::post('searchusers', ['as' => 'searchusers', 'uses' => 'SearchController@s
 		    'as' => 'addentry', 'uses' => 'FileEntryController@add']);
 	
 
+	Route::get('/profile',function(){
+		return view('pages.profile');
+	});
 
+	Route::get('/upload',function(){
+		return view('pages.upload');
+	});
 //END TEST

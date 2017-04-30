@@ -77,4 +77,14 @@ class QuestionService{
     public function ownsQuestion($id){
         return $this->questionInterface->ownsQuestion($id);
     }
+
+    public function update($id, $attributes){
+        unset($attributes['_token']);
+        unset($attributes['_method']);
+        if($attributes['answer_id']=='null'){
+            $attributes['answer_id']=null;
+        }
+        return $this->questionInterface->update($id,$attributes);
+    }
+
 }

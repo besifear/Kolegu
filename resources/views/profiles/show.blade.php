@@ -94,7 +94,7 @@
                                     <div class="content-box-large box-with-header">
                                       @foreach(App\Answer::where('user_id','=',$user->id)->get() as $answer)
                                           <!-- Single Formatted Answer Beginning -->
-                                          @include('singles.answersingle')
+                                          @include('singles.answerprofilesingle')
                                           <!-- Single Formatted Answer Ending-->
                                       @endforeach
                                       <!-- Answer Upvote/Downvote Form Beginning-->
