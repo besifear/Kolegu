@@ -11,6 +11,8 @@
 
     <div class="page-content">
 
+	@include('partials.searchmodal')
+
     @include('partials._messages')
 
     @yield('content')

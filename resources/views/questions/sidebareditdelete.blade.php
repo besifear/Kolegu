@@ -1,3 +1,6 @@
+<br>
+<br>
+<br>
 <div class="col-md-4">
 			<div class="well">
 				<dl class="dl-horizontal">

@@ -15,4 +15,6 @@ interface QuestionInterface{
     public function delete($id);
 
     public function ownsQuestion($id);
+
+    public function update($id, $attributes);
 }

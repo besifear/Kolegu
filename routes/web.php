@@ -11,19 +11,21 @@
 |
 */
 
+//Home Controllers
+
 Route::get('/', 'QuestionController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'QuestionController@index');
+//End Home Controllers
+//////////////
+//Question Controllers 
 
-Route::get('/profile',function(){
-	return view('pages.profile');
-});
+Route::resource('questions','QuestionController');
 
-Route::get('/upload',function(){
-	return view('pages.upload');
-});
+//End Question Controller
+/////////////////
 
 Route::get('/order/{orderBy}','QuestionController@filter',compact('orderBy'));
 
@@ -32,8 +34,6 @@ Route::get('/orderresources/{orderBy}','ResourceController@filter',compact('orde
 Route::resource('posts','PostController');
 
 Route::resource('categories','CategoryController');
-
-Route::resource('questions','QuestionController');
 
 Route::resource('questionsev','QuestionEvaluationController');
 
@@ -87,12 +87,17 @@ Route::post('answerdownvote','AnswerEvaluationController@downVote');
 
 Route::get('sendEmail', 'UserController@sendEmail');
 
+Route::get('searches', 'SearchController@searchForJSON');
+
 Route::post('searches', ['as' => 'searches', 'uses' => 'SearchController@search']);
 
 Route::post('searchusers', ['as' => 'searchusers', 'uses' => 'SearchController@searchusers']);
- 
 
+Route::post('profile', 'UserController@update_avatar');
 
+Route::get('/upload',function(){
+	return view('pages.upload');
+});
 
 //TEST
 
@@ -104,5 +109,11 @@ Route::post('searchusers', ['as' => 'searchusers', 'uses' => 'SearchController@s
 		    'as' => 'addentry', 'uses' => 'FileEntryController@add']);
 	
 
+	Route::get('/profile',function(){
+		return view('pages.profile');
+	});
 
+	Route::get('/upload',function(){
+		return view('pages.upload');
+	});
 //END TEST

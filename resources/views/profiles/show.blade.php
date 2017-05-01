@@ -10,11 +10,86 @@
                     <div class="panel-body">
                             <div class="media">
                                 <a class="pull-left" href="#">
-                                    <img class="media-object dp img-circle" src="/images/profilepicture.png" style="width: 150px;height:150px;">
+                                    <div id="profilePicDiv">
+                                        <img 
+                                        @if(Auth::id() == $user->id)
+                                        data-toggle="modal" data-target="#editAvatarModal" 
+                                        @endif
+                                        class="media-object dp img-circle"
+                                         src="/images/{{ $user->avatar }}" style="width: 150px;height:150px;">
+                                        @if(Auth::id() == $user->id)
+                                        <span id="editProfilePic">Click to edit avatar</span>
+                                        @endif
+                                    </div>
                                 </a>
+                                <div class="modal fade" id="editAvatarModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                          <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                              <h4 class="modal-title" id="lineModalLabel">Edit Avatar</h4>
+                                          </div>
+                                          <div class="modal-body">
+
+                                              <!-- content goes here -->
+                                              <form enctype="multipart/form-data" action="/profile" method="POST">
+                                                <div class="form-group text-center">
+                                                    <label class="btn btn-file btn-block btn-danger">
+                                                        <i class="glyphicon glyphicon-picture"></i> Browse a new avatar
+                                                        <input type="file" name="avatar" style="display: none;">
+                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    </label>
+                                                </div>
+                                                <input type="submit" class="btn btn-default btn-block">
+                                              </form>
+
+                                          </div>
+                                      </div>
+                                    </div>
+                                </div>
                                 <div class="media-body">
-                                    <h2 class="media-heading">{{$user->username}}<small> Developer</small></h2>
+                                    <h2 class="media-heading">{{$user->nickname}} <small> {{$user->role}} </small>
+                                    <a style="font-size: 16px; text-decoration: none;" href="#" data-toggle="modal" data-target="#editProfileModal">
+                                    <small style="color:#ff6666 !important;" class="glyphicon glyphicon-edit"></small><small style="color:#ff6666 !important;"> Edit</small>
+                                    </a></h2>
+
+
+                                    <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Mbylle</span></button>
+                                                    <h4 class="modal-title" id="lineModalLabel">Ndrysho Profilin</h4>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                    <!-- content goes here -->
+                                                    {!! Form::open(['route'=>['users.update',$user->id],'method'=>'PUT','data-parsley-validate'=>'']) !!}
+                                                    <div class = "form-group">
+                                                    {!! Form::label('nickname','Nofka:') !!}
+                                                    {!! Form::text('nickname',$user->nickname,['class'=>'form-control','maxlength'=>'50'])!!}
+                                                    </div>
+                                                    <div class = "form-group">
+                                                    {!! Form::label('description','Përshkrimi:') !!}
+                                                    {!! Form::textarea('description',null,['class'=>'form-control','maxlength'=>'1000'])!!}
+                                                    </div>
+                                                    <br>
+                                                    {!! Form::submit('Përditso Profilin',array('class' => 'btn btn-default btn-md pull-left'))!!}
+                                                    <br>
+                                                    <br>
+                                                    {!! Form::close() !!}
+                                                </div>
+                                            </div>
+                                          </div>
+                                        </div>
+
+
+                                    @if( $user->description )
+                                        <h4>{{ $user->description }}</h4>
+                                    @else
+
                                     <h4>Software Developer at <a href="#">Kitrrat.io</a></h4>
+                                    @endif
                                     <hr style="margin:8px auto">
                                     @foreach(App\SelectedCategory::where('user_id','=',$user->id)->get() as $selectedcategory)
                                       <span class="label label-info">{{$selectedcategory->category->name}}</span>
@@ -79,7 +154,7 @@
                               <div class="tab-content">
                                     <div class="tab-pane fade in active" id="tab1">
                                      <div class="content-box-large box-with-header">
-                                      @foreach(App\Question::where('user_id','=',$user->id)->get() as $question)
+                                      @foreach($questions as $question)
                                           <!-- Single Formatted Question Beginning -->
                                           @include('singles.questionsingle')
                                           <!-- Single Formatted Question Ending-->
@@ -88,22 +163,32 @@
                                       @include('forms.questionvoteform')
                                       <!-- Question Upvote/Downvote Form Ending-->
                                       </div>
+                                      <div class="text-center">
+                                        <!-- Questions Pagination Links Beginning-->
+                                        {{ $questions->links() }}
+                                        <!-- Questions Pagination Links Ending-->
+                                      </div>
                                     </div>
                                     <div class="tab-pane fade in" id="tab2">
 
                                     <div class="content-box-large box-with-header">
-                                      @foreach(App\Answer::where('user_id','=',$user->id)->get() as $answer)
+                                      @foreach($answers as $answer)
                                           <!-- Single Formatted Answer Beginning -->
-                                          @include('singles.answersingle')
+                                          @include('singles.answerprofilesingle')
                                           <!-- Single Formatted Answer Ending-->
                                       @endforeach
                                       <!-- Answer Upvote/Downvote Form Beginning-->
                                       @include('forms.answervoteform')
                                       <!-- Answer Upvote/Downvote Form Ending-->
+                                      </div>
+                                      <div class="text-center">
+                                        <!-- Questions Pagination Links Beginning-->
+                                        {{ $answers->links() }}
+                                        <!-- Questions Pagination Links Ending-->
                                       </div> 
                                     </div>
                                     <div class="tab-pane fade in" id="tab3">
-                                      @foreach(App\Resource::where('user_id','=',$user->id)->get() as $resource)
+                                      @foreach($resources as $resource)
                                           <!-- Single Formatted Resource Beginning -->
                                           @include('singles.resourcesingle')
                                           <!-- Single Formatted Resource Ending-->
@@ -111,6 +196,11 @@
                                       <!-- Resource Upvote/Downvote Form Beginning-->
                                       @include('forms.resourcevoteform')
                                       <!-- Resource Upvote/Downvote Form Ending-->
+                                      <div class="text-center">
+                                        <!-- Questions Pagination Links Beginning-->
+                                        {{ $resources->links() }}
+                                        <!-- Questions Pagination Links Ending-->
+                                      </div>
                                     </div>
                               </div>
                         </div>
@@ -118,7 +208,15 @@
             <div class="col-lg-2">
                 <div class="content-box">
                     <div class="panel-body">
-                        Achievements go here
+                        Lista e Arritjeve:
+                        <br><br>
+                        @foreach($achievements as $achievement)
+                          <div>
+                            <hr>
+                            <p>{{$achievement->name}} : </p>
+                            <p>{{$achievement->reputationaward}} Reputacion </p>
+                          </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

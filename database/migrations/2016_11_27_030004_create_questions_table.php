@@ -22,9 +22,6 @@ class CreateQuestionsTable extends Migration {
 			$table->integer('user_id')->unsigned();
 		    $table->softDeletes();
             $table->timestamps();
-
-//			$table->foreign('category_id')->references('id')->on('categories');
-//        	$table->foreign('user_id')->references('id')->on('users');
 		});
 	}
 

@@ -101,12 +101,8 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //incomplete
-        $question = Question::find($id);
-        Question::update([
-            'title' => $request->title,
-            'content' => $request->content,
-        ]);
+        $this->questionService->update($id, $request->all());
+        return redirect()->back();
     }
 
     /**

@@ -20,6 +20,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
     return [
         'username' => $faker->name,
+        'nickname' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
@@ -36,7 +37,9 @@ $factory->define(App\Question::class, function (Faker\Generator $faker){
         'content' => $faker->paragraphs(1, true),
         'category_id' => $faker->numberBetween(1, Category::all()->count()),
         'user_id' => $faker->numberBetween(1, User::all()->count()),
-        'votes' => 0
+        'votes' => 0,
+		'answer_id' => null
+    		
     ];
 });
 

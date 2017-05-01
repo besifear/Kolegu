@@ -22,9 +22,6 @@ class CreateAnswersTable extends Migration {
             $table->timestamps();
             $table->softDeletes();
 
-//			$table->foreign('question_id')->references('id')->on('questions');
-//        	$table->foreign('user_id')->references('id')->on('users');
-
 		});
 	}
 
