@@ -1,34 +1,39 @@
-console.log('hello It\'s me mario');
+
 $(document).ready(function(){
 
-    var url = "/Kategorite";
-    var availableCategoriesList = $('#available-categories-list');
-    var selectedCategoriesList = $('#selected-categories-list');
+    var url = "/questions/update";
     var csrfToken = $("[name='_token']").first().val();
+    var answersContainer = $('#answer-container');
+    var bestAnswerContainer = $('#best-answer-container');
 
     //delete task and remove it from list
-    $('.moving-category').click(function(){
+    $('.choosing-best-answer').click(function(){
         event.preventDefault();
 
-        var category = $(this);
-        var category_id = category.val();
-        var categoryElement = $('#category-'+category_id);
+        var answerButton = $(this);
+        var answerId = answerButton.val();
+        var answer = $("#answer-"+answerId);
+        var questionId = $("[name='question_id']").first().val();
+        console.log("answer:" +answerId +"pyetja:" +questionId + "  HTML element answer: "+ answer);
              $.ajax({
                 type: "POST",
-                url: url + '/' + category_id,
+                url: url + '/' + questionId,
                  data: {
+                     "_method": "PUT",
                      "_token": csrfToken,
-                     "id": category_id
+                     "id": questionId,
+                     "answer_id":answerId
                  },
                 success: function (data) {
-                    if(category.hasClass('selected-category')){
-                        category.removeClass('selected-category');
-                        categoryElement.prependTo(availableCategoriesList);
-                        category.addClass('available-category');
+                    if(answer.hasClass('remove-best-answer')){
+                        answer.removeClass('remove-best-answer');
+                        answer.appendTo(answersContainer);
+                        answer.addClass('add-best-answer');
+
                     }else if( category.hasClass('available-category')){
-                        category.removeClass('available-category');
-                        categoryElement.appendTo(selectedCategoriesList);
-                        category.addClass('selected-category');
+                        answer.removeClass('add-best-answer');
+                        answer.appendTo(bestAnswerContainer);
+                        answer.addClass('remove-best-answer');
                     }
                 },
                 error: function (ts) {

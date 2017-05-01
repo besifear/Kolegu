@@ -16,13 +16,17 @@
         <!-- question upvote/downvote form beginning-->
       </div>
 
-      <div class="content-box-large box-with-header">
+      <div id="best-answer" class="content-box-large box-with-header">
       
                   @foreach(App\Answer::where('id','=',$question->answer_id)->get() as $answer)
-                    <h4>Përgjigjja e saktë</h4>
-                      <!-- Single Formatted Answer Beginning -->
-                      @include('singles.answersingle')
-                      <!-- Single Formatted Answer Ending-->
+                    <ul id = "best-answer-container">
+                    <li id = "answer-{{$answer->id}}" class = "remove-best-answer" >
+                      <h4>Përgjigjja e saktë</h4>
+                        <!-- Single Formatted Answer Beginning -->
+                        @include('singles.answersingle')
+                        <!-- Single Formatted Answer Ending-->
+                    </li>
+                    </ul>
                   @endforeach
                       <!-- Answer Upvote/Downvote Form Beginning-->
                       @include('forms.answervoteform')
@@ -32,12 +36,15 @@
       </div>        
 			<h4>Përgjigjjet:</h4>
                   <br>
-                  <div class="content-box-large box-with-header">
+                  <div id="answers-list" class="content-box-large box-with-header">
                   @foreach(App\Answer::where([['question_id','=',$question->id],['id','!=',$question->answer_id]])->get() as $answer)
-                      <!-- Single Formatted Answer Beginning -->
-                      @include('singles.answersingle')
-                      <!-- Single Formatted Answer Ending-->
-                      
+                    <ul class = "answer-container">
+                    <li id = "answer-{{$answer->id}}" class = "add-best-answer" >
+                        <!-- Single Formatted Answer Beginning -->
+                        @include('singles.answersingle')
+                        <!-- Single Formatted Answer Ending-->
+                    </li>
+                    </ul>
                   @endforeach
                       <!-- Answer Upvote/Downvote Form Beginning-->
                       @include('forms.answervoteform')
@@ -62,4 +69,6 @@
 @section('scripts')
     <!-- Share on Social media side !!!NEEDS FIX o b-i!!!  Go to www.addthis.com/dashboard to customize your tools -->
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-585fc7f429fa1254"></script>
+    <!-- <script type="text/javascript" src="{{asset('js/choosebestanswer-ajax.js')}}"> 
+    </script> -->
 @stop

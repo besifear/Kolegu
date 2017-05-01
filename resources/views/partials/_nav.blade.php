@@ -1,3 +1,9 @@
+<?php
+  function current_page($uri = "/") {
+    return strstr(request()->path(), $uri);
+  }
+?>
+
 <!-- Navigation Bar -->
 <nav class="navbar navbar-default" role="navigation">
   <div class="shrinkednav">
@@ -21,16 +27,16 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse col-sm-4 col-xs-12 pull-right" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
-        <li><a href="/questions/create"><b class="glyphicon glyphicon-send"></b> Pyet</a></li>
-      <li><a href="/"><b class="glyphicon glyphicon-comment"></b> Pergjigju</a></li>
+        <li class="{{current_page('create') ? 'altactive' : '' }}"><a href="/questions/create"><b class="glyphicon glyphicon-send navIcons"></b> &nbsp;<span class="navButtonText">Pyet</span></a></li>
+        <li class="{{current_page('asd') ? 'altactive' : '' }}"><a href="/"><b class="glyphicon glyphicon-comment navIcons"></b> &nbsp;<span class="navButtonText">Përgjigju</span></a></li>
 
 
         @if(Auth::guest())
-            <li><a href="{{url('/login')}}"><b class="glyphicon glyphicon-log-in"></b> Kyçu</a></li>
-            <li><a href="{{ url('/register') }}"><b class="fa fa-key"></b> Regjistrohu</a></li>
+            <li class="{{current_page('login') ? 'altactive' : '' }}"><a href="{{url('/login')}}"><b class="glyphicon glyphicon-log-in navIcons"></b> &nbsp;<span class="navButtonText">Kyçu</span></a></li>
+            <li class="{{current_page('register') ? 'altactive' : '' }}"><a href="{{ url('/register') }}"><b class="fa fa-key fa-lg"></b> &nbsp;<span class="navButtonText">Regjistrohu</span></a></li>
         @else
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-bell"></b> Njoftime</a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-bell navIcons"></b> &nbsp;<span class="navButtonText">Njoftime</span> </a>
                 <ul class="dropdown-menu">
                     <li><a href="/messages">Mesazhet
                             @if(Auth::user()->unseenMessages->count()!=0)
@@ -39,10 +45,10 @@
                         </a></li>
                     <li class="divider"></li>
                     <li>
-                        <a href="#" data-toggle="modal" data-target="#suggestionModal">Dërgo Sygjerim</a>
+                        <a href="#" data-toggle="modal" data-target="#suggestionModal">Dërgo Sugjerim</a>
                     </li>
                             <li>
-                                <a href="{{ route('suggestions.index') }}">Shiko Sygjerimet</a>
+                                <a href="{{ route('suggestions.index') }}">Shiko Sugjerimet</a>
                             </li>
                 </ul>
             </li>
@@ -71,7 +77,7 @@
                         {{ Form::submit('Send Suggestion',array('class' => 'btn btn-default'))}}
                         {!! Form::close() !!}
                         <!--
-                                        			<form action="messages" method="post">
+                                              <form action="messages" method="post">
                                                         {{csrf_field()}}
                                 <input name="reciver_id" type="hidden" value="{{Auth::user()->id}}">
                                                       <div class="form-group">
@@ -92,8 +98,10 @@
 
 
             <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-user"></b> {{Auth::user()->username}} </a>
-        <ul class="dropdown-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <img class="media-object img-circle" src="/images/{{ Auth::user()->avatar }}" style="margin: -1px 5px 0px 0px; width: 24px; height:24px; float: left;">
+                    <span class="navButtonText">{{Auth::user()->username}}</span></a>
+                <ul class="dropdown-menu">
           <li><a href="/users/{{Auth::user()->id}}">Profili</a></li>
           <li><a href="/Kategorite">Kategoritë e Zgjedhura</a></li>
           <li><a href="/achievements">Shiko Arritjet</a></li>

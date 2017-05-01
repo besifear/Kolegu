@@ -12,6 +12,8 @@ use Mail;
 
 use Redirect;
 
+use Image;
+
 class UserController extends Controller
 {
     /**
@@ -69,7 +71,8 @@ class UserController extends Controller
         $questions = \App\Question::where('user_id','=',$user->id)->paginate(5);
         $answers = \App\Answer::where('user_id','=',$user->id)->paginate(5);
         $resources = \App\Resource::where('user_id','=',$user->id)->paginate(5);
-        return view ('profiles.show',compact('user','questions','answers', 'resources'));
+        $achievements = \App\Achievement::all();
+        return view ('profiles.show',compact('user','questions','answers', 'resources','achievements'));
     }
 
     /**
@@ -92,7 +95,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id)->update($request->all());
     }
 
     /**
@@ -104,5 +107,24 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /*update avatar method*/
+    public function update_avatar(Request $request) {
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(150, 150)->save( public_path('/images/' . $filename ) );
+            $user = Auth::user();
+            $user->avatar = $filename;
+            $user->save();
+        }
+        
+        $user=Auth::user();
+        $questions = \App\Question::where('user_id','=',$user->id)->paginate(5);
+        $answers = \App\Answer::where('user_id','=',$user->id)->paginate(5);
+        $resources = \App\Resource::where('user_id','=',$user->id)->paginate(5);
+        $achievements = \App\Achievement::all();
+        return view ('profiles.show',compact('user','questions','answers', 'resources','achievements'));
     }
 }

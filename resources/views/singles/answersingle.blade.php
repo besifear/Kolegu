@@ -73,7 +73,8 @@
                 @if(Auth::user()->id!=$answer->user_id)
                     {{ Form::open(['route' => ['questions.update', $question->id], 'method' => 'PUT']) }}
                     {{ Form::hidden ('answer_id',$answer->id) }}
-                    {{ Form::submit('Përgjigjja e saktë',['class' => 'btn btn-success btn-xs'])}}
+                    {{ Form::hidden('question_id',$question->id)}}
+                    {{ Form::submit('Përgjigjja e saktë',['value'=>$question->answer_id, 'class' => 'btn btn-success btn-xs choosing-best-answer'])}}
                     {{ Form::close()}}
                 @endif    
               @endif
@@ -86,7 +87,8 @@
               @if(Auth::user()->id==$question->user_id)
                   {{ Form::open(['route' => ['questions.update', $question->id], 'method' => 'PUT']) }}
                   {{ Form::hidden ('answer_id','null') }}
-                  {{ Form::submit('Largo përgjigjjen e saktë',['class' => 'btn btn-danger btn-xs'])}}
+                  {{ Form::hidden('question_id',$question->id)}}
+                  {{ Form::submit('Largo përgjigjjen e saktë',['class' => 'btn btn-danger btn-xs choosing-best-answer'])}}
                   {{ Form::close()}}
               @endif
           @endif

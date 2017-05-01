@@ -93,7 +93,11 @@ Route::post('searches', ['as' => 'searches', 'uses' => 'SearchController@search'
 
 Route::post('searchusers', ['as' => 'searchusers', 'uses' => 'SearchController@searchusers']);
 
+Route::post('profile', 'UserController@update_avatar');
 
+Route::get('/upload',function(){
+	return view('pages.upload');
+});
 
 //TEST
 
