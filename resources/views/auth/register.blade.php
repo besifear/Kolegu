@@ -54,7 +54,7 @@
                                 @endif
                             </div>
                         </div>
-
+                                    
                         <div class="form-group">
                             <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
 
@@ -62,6 +62,18 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    {!! app('captcha')->display(); !!}
+
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                                @endif
+
+                                </div>
+                             </div>   
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
