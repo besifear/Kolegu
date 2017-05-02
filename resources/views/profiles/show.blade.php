@@ -1,19 +1,19 @@
-  @extends('main')
+ @extends('main')
 
   @section('title',' | Homepage')
 
   @section('content')
 
-		<div class="row">
+    <div class="row">
             <div class="col-lg-12">
                 <div class="content-box">
                     <div class="panel-body">
                             <div class="media">
                                 <a class="pull-left" href="#">
                                     <div id="profilePicDiv">
-                                        <img 
+                                        <img
                                         @if(Auth::id() == $user->id)
-                                        data-toggle="modal" data-target="#editAvatarModal" 
+                                        data-toggle="modal" data-target="#editAvatarModal"
                                         @endif
                                         class="media-object dp img-circle"
                                          src="/images/{{ $user->avatar }}" style="width: 150px;height:150px;">
@@ -33,14 +33,36 @@
 
                                               <!-- content goes here -->
                                               <form enctype="multipart/form-data" action="/profile" method="POST">
-                                                <div class="form-group text-center">
+                                                <!--<div class="form-group text-center">
                                                     <label class="btn btn-file btn-block btn-danger">
                                                         <i class="glyphicon glyphicon-picture"></i> Browse a new avatar
                                                         <input type="file" name="avatar" style="display: none;">
                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     </label>
                                                 </div>
-                                                <input type="submit" class="btn btn-default btn-block">
+                                                <input type="submit" class="btn btn-default btn-block">-->
+
+
+
+
+
+
+
+
+                                                <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                        <button id="fake-file-button-browse" type="button" class="btn btn-default">
+                                                            <span class="glyphicon glyphicon-file"></span> Shto foto
+                                                        </button>
+                                                    </span>
+                                                    <input type="file" name="avatar" id="files-input-upload" style="display:none">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <input type="text" id="fake-file-input-name" disabled="disabled" placeholder="File not selected"
+                                                           class="form-control">
+
+                                                </div>
+                                                <br>
+                                                <input id="fake-file-button-upload" type="submit" class="btn btn-default btn-block" disabled="">
                                               </form>
 
                                           </div>
@@ -99,27 +121,27 @@
                                     <p><span class="glyphicon glyphicon-time"></span> Joined {{$user->created_at->diffForHumans()}}</p>
                                     @if($user->reputation==null)
                                     <p><span class="glyphicon glyphicon-certificate"></span> Reputation : 0             </p>
-                                    
+
                                     @elseif($user->reputation!=null)
                                     <p><span class="glyphicon glyphicon-certificate"></span> Reputation : {{$user->reputation}}           </p>
                                     @endif
                                     <hr>
                                     <div class="centered">
                                         <a style="margin-right: 12px;" href="#" data-toggle="modal" data-target="#messageModal" class="btn btn-primary btn-sm center-block btn-block col-lg-5"><i class="fa fa-envelope"></i></a>
-                                        
+
                                             <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                               <div class="modal-dialog">
-                                            	<div class="modal-content">
-                                            		<div class="modal-header">
-                                            			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                            			<h4 class="modal-title" id="lineModalLabel">Send Message</h4>
-                                            		</div>
-                                            		<div class="modal-body">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                  <h4 class="modal-title" id="lineModalLabel">Send Message</h4>
+                                                </div>
+                                                <div class="modal-body">
                                                     <!-- Message Create Form Beginning -->
                                                     @include('forms.messagecreateform')
                                                     <!-- Message Create Form Ending-->
                                                     </div>
-                                            	</div>
+                                              </div>
                                               </div>
                                             </div>
                                     </div>
@@ -185,7 +207,7 @@
                                         <!-- Questions Pagination Links Beginning-->
                                         {{ $answers->links() }}
                                         <!-- Questions Pagination Links Ending-->
-                                      </div> 
+                                      </div>
                                     </div>
                                     <div class="tab-pane fade in" id="tab3">
                                       @foreach($resources as $resource)
@@ -221,5 +243,18 @@
                 </div>
             </div>
         </div>
+
+        <script type="text/javascript">
+            // Fake file upload
+            document.getElementById('fake-file-button-browse').addEventListener('click', function () {
+                document.getElementById('files-input-upload').click();
+            });
+
+            document.getElementById('files-input-upload').addEventListener('change', function () {
+                document.getElementById('fake-file-input-name').value = this.value;
+
+                document.getElementById('fake-file-button-upload').removeAttribute('disabled');
+            });
+        </script>
 
   @stop
