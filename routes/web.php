@@ -109,9 +109,7 @@ Route::get('/upload',function(){
 		    'as' => 'addentry', 'uses' => 'FileEntryController@add']);
 	
 
-	Route::get('/profile',function(){
-		return view('pages.profile');
-	});
+	
 
 	Route::get('/upload',function(){
 		return view('pages.upload');
