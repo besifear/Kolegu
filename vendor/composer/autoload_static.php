@@ -10,12 +10,12 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
-        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
-        'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
@@ -115,6 +115,7 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         array (
             'App\\' => 4,
             'Anhskohbo\\NoCaptcha\\' => 20,
+            'AlbertCht\\InvisibleReCaptcha\\' => 29,
         ),
     );
 
@@ -305,6 +306,10 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         array (
             0 => __DIR__ . '/..' . '/anhskohbo/no-captcha/src',
         ),
+        'AlbertCht\\InvisibleReCaptcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/albertcht/invisible-recaptcha/src',
+        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -377,6 +382,9 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'AddForeignKeysToResourceevaluations' => __DIR__ . '/../..' . '/database/migrations/2017_04_08_153402_add_foreign_keys_to_resourceevaluations.php',
         'AddForeignKeysToResourcereplyevaluations' => __DIR__ . '/../..' . '/database/migrations/2017_04_08_154546_add_foreign_keys_to_resourcereplyevaluations.php',
         'AddForeignKeysToSelectedcategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_08_030023_add_foreign_keys_to_selectedcategories_table.php',
+        'AlbertCht\\InvisibleReCaptcha\\Facades\\InvisibleReCaptcha' => __DIR__ . '/..' . '/albertcht/invisible-recaptcha/src/Facades/InvisibleReCaptcha.php',
+        'AlbertCht\\InvisibleReCaptcha\\InvisibleReCaptcha' => __DIR__ . '/..' . '/albertcht/invisible-recaptcha/src/InvisibleReCaptcha.php',
+        'AlbertCht\\InvisibleReCaptcha\\InvisibleReCaptchaServiceProvider' => __DIR__ . '/..' . '/albertcht/invisible-recaptcha/src/InvisibleReCaptchaServiceProvider.php',
         'Anhskohbo\\NoCaptcha\\Facades\\NoCaptcha' => __DIR__ . '/..' . '/anhskohbo/no-captcha/src/Facades/NoCaptcha.php',
         'Anhskohbo\\NoCaptcha\\NoCaptcha' => __DIR__ . '/..' . '/anhskohbo/no-captcha/src/NoCaptcha.php',
         'Anhskohbo\\NoCaptcha\\NoCaptchaServiceProvider' => __DIR__ . '/..' . '/anhskohbo/no-captcha/src/NoCaptchaServiceProvider.php',
