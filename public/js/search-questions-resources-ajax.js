@@ -1,4 +1,3 @@
-console.log('hello It\'s me mario');
 $(document).ready(function(){
 
     var url = "/searches";
