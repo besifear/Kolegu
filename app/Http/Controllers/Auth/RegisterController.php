@@ -56,7 +56,10 @@ class RegisterController extends Controller
             'username' => 'required|max:255|unique:users',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-            'g-recaptcha-response'=>'required|captcha'
+           
+        ]);
+        $validate = Validator::make(Input::all(), [
+        'g-recaptcha-response' => 'required|captcha'
         ]);
     }
 
@@ -92,7 +95,7 @@ class RegisterController extends Controller
     public function confirmEmail($token)
     {
         User::whereToken($token)->firstOrFail()->hasVerified();
-        return redirect('login')->with('status', 'You are now confirmed. Please login.');
+        return redirect('login')->with('status', 'Jeni konfirmuar,tani mund te kyqeni');
     }
 
 }

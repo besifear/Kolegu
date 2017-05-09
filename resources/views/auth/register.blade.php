@@ -76,13 +76,9 @@
                         </div>
                            <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    {!! app('captcha')->display(); !!}
+                                    {!! app('captcha')->render($lang = null); !!}
 
-                                @if ($errors->has('g-recaptcha-response'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-                                    </span>
-                                @endif
+                              
 
                                 </div>
                              </div>  
