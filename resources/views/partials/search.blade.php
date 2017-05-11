@@ -8,3 +8,5 @@
           </div>
           {!! Form::close() !!}
 </div>
+<div id="livesearchcontainer" class="col-md-8 col-sm-10 col-xs-8">
+</div>

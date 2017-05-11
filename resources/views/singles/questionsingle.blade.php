@@ -23,7 +23,7 @@
                            ">
 
                   <span class="glyphicon glyphicon-chevron-up">
-                    
+
                   </span>
                   <br>
                   <small>{{$question->upVotes->count()}}</small>
@@ -48,7 +48,7 @@
                         forma.submit();
                            ">
                   <span class="glyphicon glyphicon-chevron-down">
-                    
+
                   </span>
                   <br>
                   <small>{{$question->downVotes->count()}}</small>
@@ -57,11 +57,11 @@
         <li class="google-plus" style="width:33%;"><a href="/questions/{{$question->id}}"><span class="glyphicon glyphicon-comment"></span><br><small>{{$question->allAnswers->count()}}</small></a></li>
       </ul>
     </div>
-      
+
     <div class="info">
 
     <a  class="title" href="/questions/{{$question->id}}">{{substr($question->title,0,40)}}{{strlen($question->title)>40 ? "..." : ""}}</a>
-      
+
       <p class="desc">{!! substr($question->content, 0, 120)!!}{{strlen($question->content)>120 ? "..." : ""}}</p>
       <ul style="width:auto; float: left;">
         <li><a href="/categories">{{$question->category->name}}</a></li>
@@ -72,4 +72,19 @@
     </div>
       </a>
   </li>
+  <div class="pull-right">
+    @if(Auth::check())
+    @if(Auth::user()->id==$question->user_id)
+                    {!! Form::open(['route' => ['questions.destroy', $question->id], 'method' => 'DELETE']) !!}
+                    {!! Form::hidden('id', $question->id , ['name' => 'id']) !!}
+                    {!! Form::submit('Fshije',['class' => 'btn btn-danger btn-xs'])!!}
+
+                    {!! Form::close()!!}
+        @endif
+        @endif
+
+    <!--<button class="btn btn-danger btn-xs">Delete</button>-->
+
+    </div><br>
 </ul>
+<br>

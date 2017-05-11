@@ -47,7 +47,7 @@ class UserController extends Controller
     {
         //
     }
-   
+
     public function sendEmail()
     {
         $user = Auth::user();
@@ -113,6 +113,11 @@ class UserController extends Controller
 
     /*update avatar method*/
     public function update_avatar(Request $request) {
+        
+        $this->validate($request, [
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
         if($request->hasFile('avatar')){
             $avatar = $request->file('avatar');
             $filename = time() . '.' . $avatar->getClientOriginalExtension();
@@ -121,7 +126,7 @@ class UserController extends Controller
             $user->avatar = $filename;
             $user->save();
         }
-        
+
         $user=Auth::user();
         $questions = \App\Question::where('user_id','=',$user->id)->paginate(5);
         $answers = \App\Answer::where('user_id','=',$user->id)->paginate(5);
