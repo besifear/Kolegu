@@ -801,3 +801,7 @@ hr { margin-top: 5px;margin-bottom: 10px; }
           text-decoration: none;
           outline: none;
         }
+
+        ul.parsley-errors-list li{
+            color: #B94A48;
+        }

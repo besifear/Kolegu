@@ -4,7 +4,6 @@
 
   @section('stylesheets')
 
-  	{!! Html::style('css/parsley.css')!!}
 
   @stop
   
