@@ -855,6 +855,13 @@ hr { margin-top: 5px;margin-bottom: 10px; }
           text-decoration: none;
           outline: none;
         }
+        .search-modal{
+          margin: 45px 0px 0px 0px;
+
+        }
+        #main-nav-bar{
+          z-index: 10000;
+        }
 
         ul.parsley-errors-list li{
             color: #B94A48;

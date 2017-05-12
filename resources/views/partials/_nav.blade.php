@@ -5,7 +5,7 @@
 ?>
 
 <!-- Navigation Bar -->
-<nav class="navbar navbar-default" role="navigation">
+<nav id="main-nav-bar" class="navbar navbar-default" role="navigation">
   <div class="shrinkednav">
 
   <!-- Brand and toggle get grouped for better mobile display -->

@@ -176,6 +176,7 @@ class CategoryController extends Controller
                  ['user_id',Auth::user()->id]
              ])->delete();
         }
-        return response()->json(Category::find($category_id));
+        //return response()->json(Category::find($category_id));
+        return redirect()->back();
     }
 }
