@@ -73,7 +73,7 @@ Route::post('markasread','MessageController@markAsRead');
 
 Route::post('messagesorderby','MessageController@orderMessagesBy');
 
-Route::get('Kategorite','CategoryController@seeCategories');
+Route::get('Kategorite','CategoryController@seeCategories')->name('Kategorite');
 
 Route::post('Kategorite/{category_id}','CategoryController@selectCategory',compact('category_id'));
 

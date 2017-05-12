@@ -10,6 +10,7 @@ use App\Question;
 use App\Category;
 use App\Achievement;
 use App\UserAchievement;
+use App\Http\Controllers\Redirect;
 use Illuminate\Http\Request;
 use App\Service\QuestionService;
 use App\Http\Requests\StoreQuestionRequest;
@@ -35,7 +36,14 @@ class QuestionController extends Controller
     {
         $questions = $this->questionService->questionInterface->orderBy('id', 'DESC')->paginate(5);
         $topquestions = $this->questionService->topQuestion();
-        return view('questions.index', compact('questions', 'topquestions'));
+
+        if(!Auth::guest()&&Auth::user()->selectedCategories->isEmpty()){
+            return redirect()->route('Kategorite');
+        }else{
+            return view('questions.index', compact('questions', 'topquestions'));
+        }
+
+        
     }
 
     /**
