@@ -61,7 +61,23 @@
 
 		</div>
         <!-- Edit Delete Side Bar Beginning -->
-		@include('questions.sidebareditdelete')
+          <div class="trending-side-bar col-md-3">
+    <div class="content-box-header">
+      <div class="panel-title">Pyetje Aktuale</div>
+    </div>
+    <div class="content-box-large box-with-header">
+      <ul class="event-list trending-side-bar">
+          @foreach($topquestions as $topquestion)
+          <li class="trending-side-bar-item">
+                      <div class="">
+                          <a class="trendingquestion" href="/questions/{{$topquestion->id}}">{{substr($topquestion->title,0,20)}}{{strlen($topquestion->title)>20 ? "..." : ""}}</a>
+                      </div>
+         </li>
+          @endforeach
+      </ul>
+    </div>
+  </div>
+
         <!-- Edit Delete Side Bar Ending -->
     </div>
 @stop

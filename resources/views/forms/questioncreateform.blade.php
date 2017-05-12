@@ -6,9 +6,13 @@
                         'id' => 'title',
                         'required',
                         'class' => 'form-control',
-                        'maxlength' => '50',
-                        'data-parsley-required-message' => 'Pyetja duhet të ketë një titull!',
-                        'data-parsley-trigger' => 'change focusout'
+                        'data-parsley-maxlength' => '50',
+                        'data-parsley-minlength' => '5',
+                        'data-parsley-required-message' => 'Pyetja duhet të ketë një titull',
+                        'data-parsley-maxlength-message' => 'Titulli nuk mund të përmbajë më shumë se 50 karaktera',
+                        'data-parsley-minlength-message' => 'Titulli nuk mund të përmbajë më pak se 5 karaktera',
+                        'data-parsley-trigger' => 'change focusout',
+                      
                       ])}}
                       <br>
  
@@ -16,7 +20,7 @@
                       {{ Form::textarea('content',null,[
                         'id' => 'content',
                         'class' => 'form-control',
-                        'maxlength' => '500',
+                        'maxlength' => '250',
                       ])}}
                       <br>
 

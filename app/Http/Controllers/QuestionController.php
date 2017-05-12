@@ -72,7 +72,8 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question=$this->questionService->questionInterface->find($id);
-        return view ('questions.show',compact('question'));
+        $topquestions = $this->questionService->topQuestion(); 
+        return view ('questions.show',compact('question', 'topquestions'));
     }
 
     /**
