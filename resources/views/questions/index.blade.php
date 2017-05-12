@@ -12,7 +12,7 @@
       </div>
       <div class="col-md-10">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-9">
             <div class="row">
               <div class="col-md-12">
                 <div class="content-box-header">
@@ -59,7 +59,7 @@
               </div>
             </div>
           </div>
-            <div class="col-md-4">
+          <div class="col-md-3">
                 <div class="row">
                     <!-- Right Side Bar Beginning -->
                     @include('partials.rightsidebar')

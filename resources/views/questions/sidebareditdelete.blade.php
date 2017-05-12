@@ -1,7 +1,5 @@
-<br>
-<br>
-<br>
-<div class="col-md-4">
+
+<div class="col-md-3">
 			<div class="well">
 				<dl class="dl-horizontal">
 					<dt>Created At :</dt>
@@ -30,4 +28,4 @@
                     @endif
                     @endif
 			</div>
-		</div>	
+		</div>

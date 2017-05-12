@@ -148,7 +148,7 @@ return array(
     'CreateSettingsTable' => $baseDir . '/database/migrations/2016_12_12_142455_create_settings_table.php',
     'CreateSuggestionsTable' => $baseDir . '/database/migrations/2016_12_12_143906_create_suggestions_table.php',
     'CreateUserachievementsTable' => $baseDir . '/database/migrations/2016_12_27_133019_create_userachievements_table.php',
-    'CreateUsersTable' => $baseDir . '/database/migrations/2016_11_27_030001_create_users_table.php',
+    'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'Cron\\AbstractField' => $vendorDir . '/mtdowling/cron-expression/src/Cron/AbstractField.php',
     'Cron\\CronExpression' => $vendorDir . '/mtdowling/cron-expression/src/Cron/CronExpression.php',
     'Cron\\DayOfMonthField' => $vendorDir . '/mtdowling/cron-expression/src/Cron/DayOfMonthField.php',

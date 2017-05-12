@@ -513,7 +513,7 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'CreateSettingsTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_12_142455_create_settings_table.php',
         'CreateSuggestionsTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_12_143906_create_suggestions_table.php',
         'CreateUserachievementsTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_27_133019_create_userachievements_table.php',
-        'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_27_030001_create_users_table.php',
+        'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/CronExpression.php',
         'Cron\\DayOfMonthField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/DayOfMonthField.php',
