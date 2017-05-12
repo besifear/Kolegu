@@ -2,7 +2,7 @@
 <button id = 'toggle-modal-button' type="button" class="hidden" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="myModal" class=" search-modal modal fade" role="dialog" >
     <!-- Modal content-->
     <div id = "search-modal-content" class=" fade col-md-offset-1 col-md-5 modal-content pushed-down-content">
       <div class="modal-header">
