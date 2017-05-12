@@ -35,7 +35,6 @@
         @foreach($categories as $category)
             <div id = "category-{{$category->id}}" class="col-xs-6 col-md-3">
                 <a  class="thumbnail">
-                 <img src="/images/subjects.png" alt="{{$category->id}}">
                      <form class="categoryform" method="post" action="Kategorite/{{$category->id}}">
                          <button type="submit"  class="btn btn-primary  btn-block moving-category available-category" value = "{{$category->id}}">{{$category->name}}</button>
                         {{csrf_field()}}
