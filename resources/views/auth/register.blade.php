@@ -64,8 +64,9 @@
                                     'data-parsley-required-message' => 'Ke bërë gabim në email',
                                     'data-parsley-trigger'          => 'change focusout',
                                     'data-parsley-type'             => 'email',
+                                    'data-parsley-type-message'     => 'Nuk është email valid',
                                     'data-parsley-maxlength'        => '50',
-                                    'data-parsley-minlength'        => '3',
+                                    'data-parsley-minlength'        => '6',
                                     'data-parsley-minlength-message'=> "Email-i duhet të përmbajë së paku 3 karaktera",
                                     'data-parsley-maxlength-message'=> "Email-i duhet të përmbajë më së shumti 50 karaktera"
                                 ]) !!}
