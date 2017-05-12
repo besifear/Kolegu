@@ -7,6 +7,10 @@ body {
   padding: 0px;
 }
 
+button {
+    outline: none;
+}
+
 .page-content > .row {
   /*margin-left: 0px !important;
   margin-right: 0px !important;*/
@@ -674,7 +678,57 @@ body {
     background-color: #fff;
 }
 
+.navbar-brand {
+    padding: 15px 0px 0px 0px;
+}
+
 /*end nav adjustments*/
+
+/*rightsidebar*/
+.trendingquestion {
+    font-size: 14px;
+}
+
+/*search input changes*/
+#search-input:focus {
+    box-shadow: none;
+}
+
+/*search modal*/
+#livesearchcontainer {
+    margin: 0;
+    width: 66%;
+    margin-top: 42px;
+    margin-left: 125px;
+    padding: 0;
+    background-color: white;
+    position: absolute;
+    z-index: 999;
+    border: 1px solid #dbdbdb;
+}
+
+#livesearchcontainer ul {
+    padding: 0;
+}
+
+#livesearchcontainer ul h4,h6 {
+    padding: 0 0 0 10px;
+}
+
+#addcorrectanswer {
+    background:none;
+    border:none;
+    color: gray;
+    padding-bottom: 10px;
+}
+
+#removecorrectanswer {
+    background:none;
+    border:none;
+    color: #5EBA7D;
+    padding-left: 12px;
+    padding-bottom: 10px;
+}
 
  /*start messages css*/
 .nav-tabs .glyphicon:not(.no-margin) { margin-right:10px; }
@@ -807,4 +861,8 @@ hr { margin-top: 5px;margin-bottom: 10px; }
         }
         #main-nav-bar{
           z-index: 10000;
+        }
+
+        ul.parsley-errors-list li{
+            color: #B94A48;
         }

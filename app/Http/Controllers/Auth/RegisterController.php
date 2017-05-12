@@ -53,10 +53,18 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => 'required|max:255|unique:users',
+            'username' => 'required|min:3|max:255|unique:users',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-            'g-recaptcha-response'=>'required|captcha'
+           
+        ],[
+           'required' => ':attribute-i është i domosdoshëm',
+            'min' => ':attribute-i duhet të ketë së paku :min karaktera',
+            'max' => ':attribute-i mund të ketë më së shumti :max karaktera',
+            'confirmed' => ':attribute-i nuk është i njëjtë në të dy fushat'
+        ]);
+        $validate = Validator::make(Input::all(), [
+        'g-recaptcha-response' => 'required|captcha'
         ]);
     }
 
@@ -92,7 +100,7 @@ class RegisterController extends Controller
     public function confirmEmail($token)
     {
         User::whereToken($token)->firstOrFail()->hasVerified();
-        return redirect('login')->with('status', 'You are now confirmed. Please login.');
+        return redirect('login')->with('status', 'Jeni konfirmuar,tani mund te kyqeni');
     }
 
 }

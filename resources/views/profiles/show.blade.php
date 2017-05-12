@@ -55,14 +55,14 @@
                                                             <span class="glyphicon glyphicon-file"></span> Shto foto
                                                         </button>
                                                     </span>
-                                                    <input type="file" name="avatar" id="files-input-upload" style="display:none">
+                                                    <input type="file" name="avatar" id="files-input-upload" style="display:none" accept="image/*">
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <input type="text" id="fake-file-input-name" disabled="disabled" placeholder="File not selected"
                                                            class="form-control">
 
                                                 </div>
                                                 <br>
-                                                <input id="fake-file-button-upload" type="submit" class="btn btn-default btn-block" disabled="">
+                                                <input id="fake-file-button-upload" type="submit" class="btn btn-default btn-block" disabled value="Shto">
                                               </form>
 
                                           </div>

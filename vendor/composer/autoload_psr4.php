@@ -52,4 +52,5 @@ return array(
     'Barryvdh\\LaravelIdeHelper\\' => array($vendorDir . '/barryvdh/laravel-ide-helper/src'),
     'App\\' => array($baseDir . '/app'),
     'Anhskohbo\\NoCaptcha\\' => array($vendorDir . '/anhskohbo/no-captcha/src'),
+    'AlbertCht\\InvisibleReCaptcha\\' => array($vendorDir . '/albertcht/invisible-recaptcha/src'),
 );

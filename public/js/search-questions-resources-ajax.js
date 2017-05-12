@@ -1,34 +1,39 @@
-console.log('hello It\'s me mario');
 $(document).ready(function(){
+
+    $('div#livesearchcontainer').hide();
+
 
     var url = "/searches";
     var csrfToken = $("[name='_token']").first().val();
     var modalBody = $('#modal-body');
-    
+    var searchBody = $('#livesearchcontainer')
+
     //When the search bar gain's focus it show's the modal
     $('#search-input').on('focus',function(){
-    	$('#toggle-modal-button').click();
+    	//$('#toggle-modal-button').click();
     });
 
     $(document).keyup(function(e) {
         if (e.keyCode == 27) { // escape key maps to keycode `27`
-    	
+
     	$('#search-input').blur();
        }
    });
-    
+
     $('#search-input').on('focusout',function(){
     	$('#close-modal-button').click();
     });
-    
+
     $('#search-input').on('input',function(){
-    	
+
     	var searchKeyWords = $(this).val();
     	if(searchKeyWords.length == 0){
-    		
+            console.log('shit is good');
+            $('div#livesearchcontainer').hide();
     		$('#search-modal-content').removeClass('in');
-    		
+            $('#close-modal-button').click();
     	}else{
+            $('div#livesearchcontainer').show();
     		$('#search-modal-content').addClass('in');
     		$.ajax({
                 type: "GET",
@@ -43,37 +48,36 @@ $(document).ready(function(){
             			if($('#search-result-list').length){
                     		$('#search-result-list').remove();
                     	}
-                    	
-                	}else{	
+
+                	}else{
                 	$('#search-title').text('Rezultati kërkimit:');
-                	
+
                 	if($('#search-result-list').length){
                 		$('#search-result-list').remove();
                 	}
-                	
-                	modalBody.append(
-                			'<ul id="search-result-list" class="search-result-list">'
+
+                	searchBody.append(
+                			'<ul id="search-result-list" class="search-result-list" style="list-style: none;">'
                 	);
-                	
+
                 	var resultList = $('#search-result-list');
-                	
+
                 	if(data.questions.length !== 0){
 	                	resultList.append('<h4> Pyetje </h4>');
-	                	$.each(data.questions, function(key, value){	
+	                	$.each(data.questions, function(key, value){
 	                			resultList.append(
 	                    	        	'<li id = "questions-"'+value.id+'" >'+
 	                                		'<a href= "/questions/'+value.id+'">'+
-		                    	        		'<hr/>' +
+		                    	        		'<hr style="clear: both;">' +
 		                            			'<h6>'+ value.title +'</h6>' +
-		                                		'<hr/>' +
 	                                		'</a>' +
-	                                	'</li>'	
+	                                	'</li>'
 	            				);
 	                	});
                 	}
                 	if(data.resources.length !== 0){
                 		resultList.append('<h4> Resurse </h4>');
-                    	$.each(data.resources, function(key, value){	
+                    	$.each(data.resources, function(key, value){
                     			resultList.append(
                         	        	'<li id = "resources-"'+value.id+'" >'+
 	                        	        	'<a href= "/resources/'+value.id+'">'+
@@ -81,7 +85,7 @@ $(document).ready(function(){
 	                                			'<h6>'+ value.title +'</h6>' +
 	                                    		'<hr/>' +
 	                                		'</a>'+
-                                		'</li>'	
+                                		'</li>'
                 				);
                     	});
                 	}
@@ -95,7 +99,7 @@ $(document).ready(function(){
 
     	}
     });
-    
+
 
 
 

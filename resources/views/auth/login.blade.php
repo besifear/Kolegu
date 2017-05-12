@@ -10,14 +10,33 @@
                 <div class="panel-heading">Login</div>
                 @include('partials.flash')
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {{ csrf_field() }}
-
+                    {!!  Form::open([
+                            'url'                       => url('/login'),
+                            'class'                     => 'form-horizontal',
+                            'role'                      => 'form',            
+                            'id'                        => 'login-form',
+                            'method'                    => 'POST',
+                            'data-parsley-validate', 
+                    ]) !!}
                         <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
                             <label for="username" class="col-md-4 control-label">Username</label>
 
                             <div class="col-md-6">
-                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+
+                                {!! Form::text('username', null, [
+                                'class'                         => 'form-control',
+                                'type'                          => 'text',
+                                'autofocus',
+                                'id'                            => 'username',
+                                'value'                         => "{{old('username')}}",
+                                'data-parsley-required-message' => 'Username-i është obligativ',
+                                'data-parsley-trigger'          => 'change focusout',
+                                'data-parsley-type'             => 'alphanum',
+                                'data-parsley-minlength'        => '5',
+                                'data-parsley-maxlength'        => '50',
+                                'data-parsley-minlength-message'=> "Username-i duhet të përmbajë së paku 5 karaktera",
+                                'data-parsley-maxlength-message'=> "Username-i duhet të përmbajë më së shumti 50 karaktera"
+                            ]) !!}
 
                                 @if ($errors->has('username'))
                                     <span class="help-block">
@@ -31,7 +50,19 @@
                             <label for="password" class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                    {!! Form::password('password', [
+                                    'id'                            => 'password',
+                                    'name'                          => 'password',
+                                    'type'                          => 'password',
+                                    'class'                         => 'form-control',
+                                    'data-parsley-required-message' => 'Ke bërë gabim në password',
+                                    'data-parsley-trigger'          => 'change focusout',
+                                    'data-parsley-minlength'        => '6',
+                                    'data-parsley-maxlength'        => '50',
+                                    'data-parsley-minlength-message'=> "Password-i duhet të përmbajë së paku 6 karaktera",
+                                    'data-parsley-maxlength-message'=> "Password-i duhet të përmbajë më së shumti 50 karaktera",
+                                    'data-parsley-type'             => 'alphanum'
+                                ]) !!}
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -62,7 +93,7 @@
                                 </a>
                             </div>
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

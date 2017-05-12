@@ -25,7 +25,7 @@ class StoreQuestionRequest extends FormRequest
     {
         return [
                 'title' => 'required | max:50',
-                'content'  => 'required | max:500'
+                'content'  => 'max:500'
         ];
     }
 }
