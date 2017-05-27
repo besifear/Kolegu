@@ -722,12 +722,26 @@ body {
     padding-bottom: 10px;
 }
 
+#addcorrectanswer:hover {
+    transform: scale(1.15);
+}
+
 #removecorrectanswer {
     background:none;
     border:none;
     color: #5EBA7D;
     padding-left: 12px;
     padding-bottom: 10px;
+}
+
+#removecorrectanswer:hover {
+    transform: scale(1.15);
+    color: #D2322D;
+}
+
+footer {
+    margin-bottom: 0 !important;
+    margin-top: 10px;
 }
 
  /*start messages css*/
@@ -831,7 +845,7 @@ hr { margin-top: 5px;margin-bottom: 10px; }
 }
 
  .scrollToTop {
-          bottom: 35px;
+          bottom: 20px;
           display: none;
           font-size: 32px;
           font-weight: bold;

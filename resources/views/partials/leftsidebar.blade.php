@@ -17,7 +17,7 @@
 
           </ul>
       </li>
-      <li class="current"><a href="/users"><i class="glyphicon glyphicon-user"></i>Të gjithë Përdoruesit</a></li>
+      <li class="current"><a href="/users"><i class="glyphicon glyphicon-user"></i>Përdoruesit</a></li>
       @if(!Auth::guest())
         @if(Auth::user()->role=='Admin')
       <li class="current"><a href="/sendemailtousers"><i class="glyphicon glyphicon-envelope"></i>Dërgoju Email Përdoruesve</a></li>
