@@ -43,7 +43,7 @@
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 4px;
-    background: #fff url('http://i.imgur.com/zdwqHyr.png') no-repeat 0 51px;
+    background: #fff url('http://i.imgur.com/b70twm0.png') no-repeat 0 51px;
     }
     #block_error div{
     padding: 100px 40px 0 186px;
@@ -62,7 +62,7 @@
 <body marginwidth="0" marginheight="0">
     <div id="block_error">
         <div>
-         <h2>Error 503. &nbspS'kemi per momentin</h2>
+         <h2>Error 404. &nbspS'kemi</h2>
         <p>
         Hup se po t'qi maxhupin e nans<br />
         This website is temporarily unable to service your request as it has exceeded it’s resource limit. Please check back shortly.

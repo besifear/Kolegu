@@ -1,6 +1,6 @@
 <!-- Left Side Bar -->
 
-<div class="sidebar content-box" style="display: block;">
+<div class="sidebar content-box hidden-sm hidden-xs" style="display: block;">
   <ul class="nav">
       <!-- Main menu -->
 

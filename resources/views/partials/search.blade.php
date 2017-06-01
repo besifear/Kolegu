@@ -1,4 +1,4 @@
-<div class="col-md-10 col-sm-10 col-xs-8">
+<div class="col-md-9 col-sm-8 col-xs-6" id="search">
         {!! Form::open(array('route' => 'searches' ,'class'=>'navbar-form')) !!}
           <div class="input-group">
               <input id = "search-input" class="form-control"  autocomplete="off" type="text" placeholder="Kërko" name="word">
@@ -7,6 +7,7 @@
               </div>
           </div>
           {!! Form::close() !!}
-</div>
-<div id="livesearchcontainer" class="col-md-8 col-sm-10 col-xs-8">
+
+          <div id="livesearchcontainer">
+          </div>
 </div>

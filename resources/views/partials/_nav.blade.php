@@ -9,7 +9,7 @@
   <div class="shrinkednav">
 
   <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header col-lg-7 col-md-12 col-sm-5 col-xs-12">
+  <div class="navbar-header col-lg-7 col-md-6 col-sm-6 col-xs-12">
 
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
       <span class="sr-only">Toggle navigation</span>
@@ -40,9 +40,12 @@
                 <ul class="dropdown-menu">
                     <li><a href="/messages">Mesazhet
                             @if(Auth::user()->unseenMessages->count()!=0)
-                            ({{Auth::user()->unseenMessages->count()}})
+                            <span class="badge pull-right">
+                            {{Auth::user()->unseenMessages->count()}}
+                            </span>
                             @endif
-                        </a></li>
+
+                    </a></li>
                     <li class="divider"></li>
                     <li>
                         <a href="#" data-toggle="modal" data-target="#suggestionModal">Dërgo Sugjerim</a>
@@ -102,18 +105,18 @@
                     <img class="media-object img-circle" src="/images/{{ Auth::user()->avatar }}" style="margin: -1px 5px 0px 0px; width: 24px; height:24px; float: left;">
                     <span class="navButtonText">{{Auth::user()->username}}</span></a>
                 <ul class="dropdown-menu">
-          <li><a href="/users/{{Auth::user()->id}}">Profili</a></li>
-          <li><a href="/Kategorite">Kategoritë e Zgjedhura</a></li>
-          <li><a href="/achievements">Shiko Arritjet</a></li>
+          <li><a href="/users/{{Auth::user()->id}}">Profili<span class="glyphicon glyphicon-user pull-right"></span></a></li>
+          <li><a href="/Kategorite">Kategoritë <span class="fa fa-navicon pull-right"></span></a></li>
+          <li><a href="/achievements">Arritjet <span class="fa fa-trophy pull-right"></span></a></li>
           @if(Auth::user()->role === 'Admin')
           <li><a href="/categories/create">Krijo Kategori</a></li>
           <li><a href="/achievements/create">Krijo Arritje</a></li>
           @endif
-          <li><a href="#">Kushtet</a></li>
+          <li><a href="#">Kushtet <span class="fa fa-newspaper-o pull-right"></span></a></li>
           <li class="divider"></li>
           <li><a href="{{ url('/logout') }}"
                  onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">Çkyçu
+                    document.getElementById('logout-form').submit();">Çkyçu<span class="fa fa-power-off pull-right"></span>
               </a>
               <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                   {{ csrf_field() }}

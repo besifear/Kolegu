@@ -20,4 +20,6 @@
             menubar: false
 
         });
+
+        tinymce.get('tinyMCEForm').triggerSave();
     </script>
