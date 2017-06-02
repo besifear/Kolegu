@@ -866,3 +866,7 @@ hr { margin-top: 5px;margin-bottom: 10px; }
         ul.parsley-errors-list li{
             color: #B94A48;
         }
+
+.modal-dialog{
+  margin-top: 65px;
+}

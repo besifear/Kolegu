@@ -5,9 +5,12 @@ namespace App;
 use Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Question extends Model
 {
+
+    public $timeSinceCreated;
 
     use SoftDeletes;
 
@@ -20,9 +23,12 @@ class Question extends Model
         'answer_id'
     ];
 
+    
+
     public function upVotes(){
         return $this->hasMany('App\QuestionEvaluation','question_id')->where('Vote','=','Yes');
-	}
+    }
+
 
     public function getMyUpVote(){
         return $this->hasOne('App\QuestionEvaluation','question_id')->where([
@@ -45,7 +51,7 @@ class Question extends Model
 
 
     public function allEvaluations(){
-    	return $this->hasMany('App\QuestionEvaluation','question_id');
+        return $this->hasMany('App\QuestionEvaluation','question_id');
     }
 
     public function allAnswers(){
@@ -61,5 +67,5 @@ class Question extends Model
         return $this->belongsTo('App\Category');
     }
 
-	
+    
 }

@@ -10,8 +10,6 @@ use App\Http\Requests\DeleteQuestionRequest;
 use App\Http\Controllers\Traits\RewardsAchievements;
 use App\BusinessLogic\Interfaces\QuestionInterface;
 use App\BusinessLogic\Interfaces\CategoryInterface;
-
-
 class QuestionController extends Controller
 {
 
@@ -26,8 +24,15 @@ class QuestionController extends Controller
 
     public function index()
     {
-        $questions = $this->questionService->questionInterface->orderBy('id', 'DESC')->paginate(10);
-        $topquestions = $this->questionService->topQuestion();
+        $withKeys = ['upVotes',
+                     'downVotes',
+                     'allAnswers',
+                     'user',
+                     'category'
+        ];
+        $questions = $this->questionService->questionInterface->orderBy('id', 'DESC')->with($withKeys)
+            ->take(10)->get();
+        
         return response()->json($questions);
     }
 

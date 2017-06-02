@@ -63,9 +63,9 @@ class RegisterController extends Controller
             'max' => ':attribute-i mund të ketë më së shumti :max karaktera',
             'confirmed' => ':attribute-i nuk është i njëjtë në të dy fushat'
         ]);
-        $validate = Validator::make(Input::all(), [
-        'g-recaptcha-response' => 'required|captcha'
-        ]);
+        // $validate = Validator::make(Input::all(), [
+        // 'g-recaptcha-response' => 'required|captcha'
+        // ]);
     }
 
     /**
