@@ -1,4 +1,4 @@
-    <div class="trending-side-bar col-md-12">
+    <div class="trending-side-bar col-md-12 hidden-sm hidden-xs">
       <div class="content-box-header">
         <div class="panel-title">Pyetje Aktuale</div>
       </div>

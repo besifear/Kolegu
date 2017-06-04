@@ -25,6 +25,7 @@ class QuestionController extends Controller
     public function index()
     {
         $withKeys = ['upVotes',
+<<<<<<< HEAD
             'downVotes',
             'allAnswers',
             'user',
@@ -32,6 +33,16 @@ class QuestionController extends Controller
         ];
         $questions = $this->questionService->questionInterface->orderBy('id', 'DESC')->with($withKeys)->paginate(10);
 
+=======
+                     'downVotes',
+                     'allAnswers',
+                     'user',
+                     'category'
+        ];
+        $questions = $this->questionService->questionInterface->orderBy('id', 'DESC')->with($withKeys)
+            ->take(10)->get();
+        
+>>>>>>> 13dbda0c894b75ce9c20e5224dbce07a43e1848b
         return response()->json($questions);
     }
 

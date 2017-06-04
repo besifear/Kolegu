@@ -1,13 +1,15 @@
 {!! Form::open([
 	'route' => ['answers.store' ,
 	'method' => 'POST'],
-	'data-parsley-validate'
+	'data-parsley-validate',
+	'id' => 'tinyMCEForm',
 ]) !!}
 
 {{ Form::textarea('content',null,array(
   	'class' => 'form-control','maxlength'=>'250',
+	'pattern' => '\S(.*\S)?',
     'id' => 'content',
-    'required',
+	'name' => 'content',
     'data-parsley-maxlength' => '250',
     'data-parsley-minlength' => '20',
     'data-parsley-required-message' => 'Përgjigjja nuk mund të jetë e zbrazët',
@@ -17,6 +19,6 @@
 
 ))}}
   <input type="hidden" name="id" value={{$question->id}}>
-{!! Form::submit('Post',['class' => 'btn btn-primary btn-block'])!!}
+{!! Form::submit('Përgjigju',['class' => 'btn btn-primary btn-md pull-right', 'style' => 'margin-top : 10px'])!!}
 
-{!! Form::close()!!}  
+{!! Form::close()!!}

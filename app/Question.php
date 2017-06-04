@@ -23,9 +23,12 @@ class Question extends Model
         'answer_id'
     ];
 
+    
+
     public function upVotes(){
         return $this->hasMany('App\QuestionEvaluation','question_id')->where('Vote','=','Yes');
-	}
+    }
+
 
 
     public function getMyUpVote(){
@@ -49,7 +52,7 @@ class Question extends Model
 
 
     public function allEvaluations(){
-    	return $this->hasMany('App\QuestionEvaluation','question_id');
+        return $this->hasMany('App\QuestionEvaluation','question_id');
     }
 
     public function allAnswers(){
@@ -71,5 +74,4 @@ class Question extends Model
 //        $diff_date = $carbonated_date->diffForHumans(Carbon::now());
 //        return $diff_date;
 //    }
-	
 }

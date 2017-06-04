@@ -9,7 +9,7 @@
             @include('singles.resourcesingle')
             <!-- Single Resource Answer Ending-->
             <hr>
-            <h4>Replys</h4>
+            <h4>Komentet</h4>
             <hr>
             <div class="content-box-large box-with-header">
             @foreach(App\ResourceReply::where('resource_id','=',$resource->id)->get() as $resourceReply)
@@ -22,7 +22,7 @@
             <!-- Resource Reply Vote Form Ending -->
             </div>
             <div id="result"></div>
-            <h3>Your Reply</h3>
+            <h3>Komenti juaj</h3>
             <!-- Resource Reply Create Form Beginning -->
             @include('forms.resourcereplycreateform')
             <!-- Resource Reply Create Form Ending -->

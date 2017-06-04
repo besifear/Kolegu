@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     @include('partials._head')
-  </head>  
+  </head>
   <body>
   <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
 
@@ -18,12 +18,12 @@
     @yield('content')
 
     @include('partials._footer')
-      
+
     </div> <!-- end of .page-content -->
-    
+
 
     @include('partials._javascript')
-    
+
     @yield('scripts')
 
   </body>

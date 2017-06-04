@@ -13,10 +13,10 @@
                     {!!  Form::open([
                             'url'                       => url('/login'),
                             'class'                     => 'form-horizontal',
-                            'role'                      => 'form',            
+                            'role'                      => 'form',
                             'id'                        => 'login-form',
                             'method'                    => 'POST',
-                            'data-parsley-validate', 
+                            'data-parsley-validate',
                     ]) !!}
                         <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
                             <label for="username" class="col-md-4 control-label">Username</label>
@@ -76,7 +76,7 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember"> Më kujto
+                                        <input type="checkbox" name="remember"> <p style="padding-top: 3px;">Më kujto</p>
                                     </label>
                                 </div>
                             </div>

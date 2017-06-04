@@ -28,7 +28,7 @@
                           <!-- Single Formatted Answer Ending-->
                       </li>
                       </ul>
-					  <br>
+					  <hr>
                     @endforeach
                         <!-- Answer Upvote/Downvote Form Beginning-->
                         @include('forms.answervoteform')
@@ -42,6 +42,7 @@
 			  <!-- Single Formatted Answer Ending-->
 		  </li>
 	  	  </ul>
+		  <hr>
 		@endforeach
 			<!-- Answer Upvote/Downvote Form Beginning-->
 			@include('forms.answervoteform')
@@ -87,4 +88,7 @@
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-585fc7f429fa1254"></script>
     <!-- <script type="text/javascript" src="{{asset('js/choosebestanswer-ajax.js')}}">
     </script> -->
+
+      <!-- TinyMce Javascript ka hapsire per optimizim me zevendsu me javascript file -->
+    @include('questions.tinymce')
 @stop

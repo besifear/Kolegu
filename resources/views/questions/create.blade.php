@@ -6,7 +6,7 @@
 
 
   @stop
-  
+
   @section('content')
 
   	<div class="row">
@@ -41,5 +41,5 @@
 
   @section('scripts')
     <!-- TinyMce Javascript ka hapsire per optimizim me zevendsu me javascript file -->
-  	@include('questions.tinymce')
+  @include('questions.tinymce')
   @stop
