@@ -30,6 +30,8 @@ class QuestionController extends Controller
     public function __construct(QuestionService $questionService){
         $this->middleware('auth', ['except' => ['index', 'show', 'filter']]);
         $this->questionService = $questionService;
+        $testArray = ['une' => 'Besnik',
+                     'ti' => 'Edon' ];
     }
 
     public function index()

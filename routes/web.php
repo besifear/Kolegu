@@ -17,6 +17,7 @@ Route::get('/', 'QuestionController@index');
 
 Auth::routes();
 
+
 Route::get('/home', 'QuestionController@index');
 //End Home Controllers
 //////////////

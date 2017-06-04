@@ -5,9 +5,12 @@ namespace App;
 use Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Question extends Model
 {
+
+    public $timeSinceCreated;
 
     use SoftDeletes;
 
@@ -23,6 +26,7 @@ class Question extends Model
     public function upVotes(){
         return $this->hasMany('App\QuestionEvaluation','question_id')->where('Vote','=','Yes');
 	}
+
 
     public function getMyUpVote(){
         return $this->hasOne('App\QuestionEvaluation','question_id')->where([
@@ -61,5 +65,11 @@ class Question extends Model
         return $this->belongsTo('App\Category');
     }
 
+//    public function getCreatedAtAttribute(){
+//        $carbonated_date = Carbon::parse($this->attributes['created_at']);
+//        //  Assuming today was 2016-07-27 12:45:32
+//        $diff_date = $carbonated_date->diffForHumans(Carbon::now());
+//        return $diff_date;
+//    }
 	
 }

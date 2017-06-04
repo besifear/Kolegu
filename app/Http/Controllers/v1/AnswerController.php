@@ -4,35 +4,22 @@ namespace App\Http\Controllers\v1;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Service\QuestionService;
-use App\Http\Requests\StoreQuestionRequest;
-use App\Http\Requests\DeleteQuestionRequest;
-use App\Http\Controllers\Traits\RewardsAchievements;
-use App\BusinessLogic\Interfaces\QuestionInterface;
-use App\BusinessLogic\Interfaces\CategoryInterface;
-class QuestionController extends Controller
+
+class AnswerController extends Controller
 {
 
-    use RewardsAchievements;
-
-    private $questionService;
-
-    public function __construct(QuestionService $questionService){
-        $this->middleware('auth', ['except' => ['index', 'show']]);
-        $this->questionService = $questionService;
+    public function __construct(){
+        $this->middleware('auth');
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $withKeys = ['upVotes',
-            'downVotes',
-            'allAnswers',
-            'user',
-            'category'
-        ];
-        $questions = $this->questionService->questionInterface->orderBy('id', 'DESC')->with($withKeys)->paginate(10);
 
-        return response()->json($questions);
     }
 
     /**
@@ -42,7 +29,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //Shouldn't be implemented in the mobile api
+        //
     }
 
     /**
@@ -53,7 +40,14 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this->validate($request, array(
+            'content' => 'required | max:500| unique:answers'
+        ));
+
+        Answer::create($request->all());
+
+        return response(200)->json('success!');
     }
 
     /**
@@ -64,15 +58,7 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        $withKeys = ['upVotes',
-            'downVotes',
-            'allAnswersWithUser',
-            'user',
-            'category'
-        ];
-        $question=$this->questionService->questionInterface->where('id',$id)->with($withKeys)->get();
-
-        return response()->json($question);
+        //
     }
 
     /**
@@ -83,7 +69,7 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        // shouldn't be implemented in the mobile api
+        //
     }
 
     /**
