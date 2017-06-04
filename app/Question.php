@@ -62,6 +62,11 @@ class Question extends Model
         return $this->hasMany('App\Answer','question_id');
     }
 
+    public function allAnswersWithUser(){
+        
+        return $this->hasMany('App\Answer','question_id')->with('user');
+        
+    }
 
     public function user(){
         return $this->belongsTo('App\User');

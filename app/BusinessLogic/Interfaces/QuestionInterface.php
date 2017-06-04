@@ -17,4 +17,6 @@ interface QuestionInterface{
     public function ownsQuestion($id);
 
     public function update($id, $attributes);
+
+    public function where($column,$operator,$value,$boolean);
 }
