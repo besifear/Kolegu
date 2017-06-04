@@ -42,4 +42,8 @@ class QuestionRepository implements QuestionInterface{
         $question = Question::find($id);
         $question->update($attributes);
     }
+    
+    public function where($column,$operator=null,$value=null,$boolean='and'){
+        return Question::where($column,$operator,$value,$boolean);
+    }
 }
