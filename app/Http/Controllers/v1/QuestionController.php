@@ -18,7 +18,7 @@ class QuestionController extends Controller
     private $questionService;
 
     public function __construct(QuestionService $questionService){
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('jwt.auth', ['except' => ['index', 'show']]);
         $this->questionService = $questionService;
     }
 
