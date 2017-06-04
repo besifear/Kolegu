@@ -94,7 +94,7 @@ class RegisterController extends Controller
         
         Mail::to($user->email)->send(new ConfirmationEmail($user));
 
-        return back()->with('status','Please confirm your email address.');
+        return back()->with('status','Ju lutem konfirmoni email-in tuaj.');
        
     }
     public function confirmEmail($token)

@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    $('.footer').css('margin-top', $(document).height() - ( $('.page-content').height() + $('.footer').height()) - 12 );
 
 
   $(".submenu > a").click(function(e) {
@@ -17,16 +18,15 @@ $(document).ready(function(){
     }
   });
 
+  $(".btn-pref .btn").click(function () {
+      $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+      // $(".tab").addClass("active"); // instead of this do the below
+      $(this).removeClass("btn-default").addClass("btn-primary");
+  });
+
 });
 
-//profile js
-$(document).ready(function() {
-$(".btn-pref .btn").click(function () {
-    $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
-    // $(".tab").addClass("active"); // instead of this do the below
-    $(this).removeClass("btn-default").addClass("btn-primary");
-});
-});
+
 
 //messages select all js
 $('.selectall').click(function() {
@@ -56,3 +56,15 @@ $(document).ready(function(){
   });
 
 });
+
+if ($(window).width() > 767) {
+  // Add slideDown animation to Bootstrap dropdown when expanding.
+  $('.dropdown').on('show.bs.dropdown', function() {
+    $(this).find('.dropdown-menu').first().stop(true, true).slideDown('fast');
+  });
+
+  // Add slideUp animation to Bootstrap dropdown when collapsing.
+  $('.dropdown').on('hide.bs.dropdown', function() {
+    $(this).find('.dropdown-menu').first().stop(true, true).slideUp('fast');
+  });
+}

@@ -28,7 +28,7 @@
                           <!-- Single Formatted Answer Ending-->
                       </li>
                       </ul>
-					  <br>
+					  <hr>
                     @endforeach
                         <!-- Answer Upvote/Downvote Form Beginning-->
                         @include('forms.answervoteform')
@@ -42,6 +42,7 @@
 			  <!-- Single Formatted Answer Ending-->
 		  </li>
 	  	  </ul>
+		  <hr>
 		@endforeach
 			<!-- Answer Upvote/Downvote Form Beginning-->
 			@include('forms.answervoteform')
@@ -61,7 +62,23 @@
 
 		</div>
         <!-- Edit Delete Side Bar Beginning -->
-		@include('questions.sidebareditdelete')
+          <div class="trending-side-bar col-md-3">
+    <div class="content-box-header">
+      <div class="panel-title">Pyetje Aktuale</div>
+    </div>
+    <div class="content-box-large box-with-header">
+      <ul class="event-list trending-side-bar">
+          @foreach($topquestions as $topquestion)
+          <li class="trending-side-bar-item">
+                      <div class="">
+                          <a class="trendingquestion" href="/questions/{{$topquestion->id}}">{{substr($topquestion->title,0,20)}}{{strlen($topquestion->title)>20 ? "..." : ""}}</a>
+                      </div>
+         </li>
+          @endforeach
+      </ul>
+    </div>
+  </div>
+
         <!-- Edit Delete Side Bar Ending -->
     </div>
 @stop
@@ -71,4 +88,7 @@
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-585fc7f429fa1254"></script>
     <!-- <script type="text/javascript" src="{{asset('js/choosebestanswer-ajax.js')}}">
     </script> -->
+
+      <!-- TinyMce Javascript ka hapsire per optimizim me zevendsu me javascript file -->
+    @include('questions.tinymce')
 @stop

@@ -33,9 +33,9 @@
                 <div class="col-lg-12">
                       <ul class="thumbnails">
                           @foreach($users as $user)
-                          <li class="clearfix col-lg-6">
-                              @include('singles.usersingle')
-                           </li>
+                            <li class="clearfix col-lg-6">
+                                @include('singles.usersingle')
+                             </li>
                            @endforeach
                       </ul>
               </div>

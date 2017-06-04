@@ -1,9 +1,9 @@
 <div class="thumbnail clearfix">
     <a  href="/users/{{$user->id}}">
-        <img src="/images/profilepicture100x100.png" alt="profilepic" class="pull-left clearfix img-circle"></a>
+        <img src="/images/{{ $user->avatar }}" alt="profilepic" class="pull-left clearfix img-circle" style="width: 100px;height:100px;"></a>
     <div class="caption pull-left">
-        <h4>
-            <a href="/users/{{$user->id}}">{{$user->username}}</a>
-        </h4>
+        <h2>
+            <a href="/users/{{$user->id}}" style="text-decoration: none;  ">{{$user->username}}</a>
+        </h2>
     </div>
 </div>

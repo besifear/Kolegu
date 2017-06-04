@@ -1,4 +1,4 @@
-<footer class="text-muted well text-center">
+<footer class="footer text-muted well text-center">
 	<div class="col-lg-2">
 		<a href="#" class="pull-left">Qëllimi ynë</a><br>
 		<a href="#" data-toggle="modal" data-target="#suggestionModal" class="pull-left">Dërgo Sygjerime</a>

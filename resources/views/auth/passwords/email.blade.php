@@ -1,4 +1,6 @@
-@extends('layouts.app')
+@extends('main')
+
+@section('title',' | Reset password')
 
 <!-- Main Content -->
 @section('content')
