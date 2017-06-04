@@ -51,9 +51,17 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreQuestionRequest $request)
     {
-        //
+        $this->questionService->questionInterface->create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'category_id' => $request->category_id,
+            'votes' => 0,
+            'user_id' => $request->id
+        ]);
+        $this->checkForQuestionAchievements(Auth::user());
+        return response()->json('success');
     }
 
     /**
