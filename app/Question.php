@@ -13,8 +13,10 @@ class Question extends Model
     use SoftDeletes;
 
     protected $appends = [
-        'diff_for_humans'
+        'diff_for_humans',
     ];
+
+
     protected $fillable = [
         'title',
         'content',
