@@ -10,10 +10,11 @@ use Carbon\Carbon;
 class Question extends Model
 {
 
-    public $timeSinceCreated;
-
     use SoftDeletes;
 
+    protected $appends = [
+        'diff_for_humans'
+    ];
     protected $fillable = [
         'title',
         'content',
@@ -68,10 +69,9 @@ class Question extends Model
         return $this->belongsTo('App\Category');
     }
 
-//    public function getCreatedAtAttribute(){
-//        $carbonated_date = Carbon::parse($this->attributes['created_at']);
-//        //  Assuming today was 2016-07-27 12:45:32
-//        $diff_date = $carbonated_date->diffForHumans(Carbon::now());
-//        return $diff_date;
-//    }
+    public function getDiffForHumansAttribute(){
+       $carbonated_date = Carbon::parse($this->attributes['created_at']);
+       $diff_date = $carbonated_date->diffForHumans(Carbon::now());
+       return $diff_date;
+    }
 }
