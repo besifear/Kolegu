@@ -44,7 +44,7 @@
                     </div>
                     <button type="button" class="btn btn-default" data-toggle="tooltip" title="Refresh"
                             onclick="history.go(0);">
-                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-refresh"></span>&nbsp;&nbsp;&nbsp;</button>
+                        <span class="glyphicon glyphicon-refresh"></span></button>
                     <!-- Single button -->
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -76,7 +76,7 @@
                 </form>
 
                 <div class="btn-group" style="float:right;">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <button style="padding-left: 5px; padding-right: 5px;" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         Order By<span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
@@ -131,19 +131,19 @@
                         </div>
                     </div>-->
             </div>
-            <hr>
-            
+            <br>
+
             <form id="messagesForm" action="" method="POST">
             <div class="row">
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="home">
                         <div class="list-group" >
                             @foreach($messages as $message)
-                        
+
                                 <!-- Tab panes -->
-                                
-                                    
-                                        
+
+
+
 
                                             <div class="list-group-item" >
                                                 <div class="checkbox">
@@ -152,14 +152,14 @@
                                                     </label>
                                                 </div>
                                                 <a href="/messages/{{$message->id}}" >
-                                                    <span class="name" style="min-width: 120px;
-                                                        display: inline-block;">{{$message->sender->username}}</span> <span class="">{{$message->subject}}</span>
+                                                    <span class="name" style="min-width: 85px;
+                                                        display: inline-block;">{{$message->sender->username}}</span> <span class="text-muted">{{$message->subject}}</span>
                                                     <span class="text-muted" style="font-size: 12px;">{{$message->content}}</span>
-                                                    <span
-                                                        class="badge pull-right">{{$message->created_at->diffForHumans()}}</span>
-                                                        <span class="pull-right"><span class="glyphicon glyphicon-ok">
-                                                        </span></span>
                                                 </a>
+                                                    <span class="badge pull-right">{{$message->created_at->diffForHumans()}}</span>
+                                                    <a href="#"><span class="pull-right"><span class="glyphicon glyphicon-ok">
+                                                        </span></span></a>
+
                                             </div>
                 <!--
                                             <div class="modal fade" id="inboxModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -190,11 +190,11 @@
                                                 </div>
                                             </div>
                                             -->
-                                        
-                                    
-                                
 
-                        
+
+
+
+
                                 @endforeach
                                 {{ csrf_field() }}
                         </div>

@@ -1,4 +1,4 @@
-<footer class="footer text-muted well text-center">
+<footer class="footer text-muted text-center">
 	<div class="col-lg-2">
 		<a href="#" class="pull-left">Qëllimi ynë</a><br>
 		<a href="#" data-toggle="modal" data-target="#suggestionModal" class="pull-left">Dërgo Sygjerime</a>
@@ -29,7 +29,7 @@
 		  </div>
 		</div>
 	</div><br><br>
-	<div class="col-lg-10">
-		<p class="col-lg-offset-1">Të Drejtat Autoriale <a href="#">Kolegu</a></p>
+	<div class="col-lg-11">
+		<p class="col-lg-offset-1">Të Drejtat Autoriale <a href="#">tregomshqip</a></p>
 	</div><br>
 </footer>
