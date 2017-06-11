@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\v1;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Service\QuestionService;
@@ -18,7 +19,6 @@ class QuestionController extends Controller
     private $questionService;
 
     public function __construct(QuestionService $questionService){
-        $this->middleware('jwt.auth', ['except' => ['index', 'show']]);
         $this->questionService = $questionService;
     }
 
@@ -31,7 +31,6 @@ class QuestionController extends Controller
             'category'
         ];
         $questions = $this->questionService->questionInterface->orderBy('id', 'DESC')->with($withKeys)->paginate(10);
-
         return response()->json($questions);
     }
 
@@ -51,7 +50,7 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreQuestionRequest $request)
+    public function store(Request $request)
     {
         $this->questionService->questionInterface->create([
             'title' => $request->title,
@@ -60,7 +59,7 @@ class QuestionController extends Controller
             'votes' => 0,
             'user_id' => $request->id
         ]);
-        $this->checkForQuestionAchievements(Auth::user());
+        $this->checkForQuestionAchievements(User::find($request->id));
         return response()->json('success');
     }
 
