@@ -136,12 +136,6 @@ class CategoryController extends Controller
             ->where('user_id','=',Auth::user()->id)->get(['categories.id'])
         )->get(['categories.id','name','description']);
 
-        /*
-            OLD QUERY per gjdo rast mos e fshij !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        $categories=Category::leftJoin('SelectedCategories','category_id','=','categories.id')->distinct()
-            ->where('user_id','!=',Auth::user()->id)->orWhereNull('user_id')->get(['categories.id','name','description']);
-        */
-
         //qetu kthehen arrayi prej databazes per kategorite qe i ka zgjedh useri.
         $userCategories=SelectedCategory::where('user_id','=',Auth::user()->id)->get();
 

@@ -70,7 +70,7 @@ trait RewardsAchievements{
      * Set's the flash message that will be shown to the user.
      */
     public function setFlashMessage(){
-        $this->messageContent = $this->achievement->description . ' Urime, ke fituar '
+        $this->flashMessage = $this->achievement->description . ' Urime, ke fituar '
             . $this->achievement->reputationaward . ' reputation!';
     }
 

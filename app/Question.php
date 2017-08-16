@@ -40,6 +40,8 @@ class Question extends Model
             ['user_id','=',Auth::user()->id] ,
             ['vote','=','No'],
         ]);
+
+
     }
 
 
