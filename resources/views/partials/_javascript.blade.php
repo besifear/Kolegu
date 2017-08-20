@@ -8,7 +8,6 @@
     <!-- <script type="text/javascript" src="{{ URL::asset('https://code.jquery.com/jquery.js') }}"></script> -->
     <script type="text/javascript" src="{{ URL::asset('js/jquery.js') }}"></script>    
 
-
 	<script type="text/javascript" src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
    
     <script src="{{URL::asset('js/custom.js')}}"></script>
@@ -20,3 +19,4 @@
      otherwise the user configuration would be overwritten by default -->
     <script src = "{{asset('js/parsley-config.js')}}"></script>
     <script src = "{{asset('js/parsley.min.js')}}"></script>
+    <script src="{{ mix('/js/reactjs.js') }}"></script>

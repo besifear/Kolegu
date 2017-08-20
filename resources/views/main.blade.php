@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     @include('partials._head')
-    <script type="text/javascript" src="{{ URL::asset('js/jquery.js') }}"></script>
+    
   </head>
   <body>
   <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>

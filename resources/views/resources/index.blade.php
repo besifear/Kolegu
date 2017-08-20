@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="content-box-header">
-                                <div class="panel-title">Actions</div>
+                                <div class="panel-title">Resurset</div>
                                 <div class="pull-right">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default btn-xs dropdown-toggle"

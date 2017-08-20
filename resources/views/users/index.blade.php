@@ -40,16 +40,21 @@
                   {!! Form::close() !!}
                   </div>
 
-                    <div>
-                          <ul class="thumbnails">
-                              @foreach($users as $user)
-                              <li class="clearfix col-lg-4">
-                                  @include('singles.usersingle')
-                               </li>
-                               @endforeach
-                          </ul>
-                  </div>
-                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+              <ul class="thumbnails">
+                  @foreach($users as $user)
+                  <li class="clearfix col-lg-4">
+                      @include('singles.usersingle')
+                   </li>
+                  @endforeach
+              </ul>
+          </div>
+          
+        </div>
         </div>
 
         </div>

@@ -3,7 +3,6 @@
   @section('title',' | Homepage')
 
   @section('content')
-
       <div class="row">
       <div class="col-md-2">
       <!-- Left Side Bar Beginning-->
@@ -37,6 +36,10 @@
 
                 <div class="content-box-large box-with-header">
                     <ul class = "index-list">
+
+
+              {{-- reactjs <div id= "questions-list"></div>--}}
+
               @foreach($questions as $question)
 
                     <li class = "index-list-item">

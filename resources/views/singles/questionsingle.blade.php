@@ -69,7 +69,7 @@
 
         <a  class="title" href="/questions/{{$question->id}}">{{substr($question->title,0,40)}}{{strlen($question->title)>40 ? "..." : ""}}</a>
 
-          <p class="desc">{!! substr($question->content, 0, 120)!!}{{strlen($question->content)>120 ? "..." : ""}}</p>
+          <p class="desc">{!! substr($question->content, 0, 120)!!}{!!strlen($question->content)>120 ? "..." : ""!!}</p>
           <ul style="width:auto; float: left;">
             <li><a href="/categories">{{$question->category->name}}</a></li>
           </ul>

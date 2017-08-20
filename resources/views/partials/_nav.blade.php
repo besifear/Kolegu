@@ -4,8 +4,8 @@
   }
 ?>
 
-<!-- Navigation Bar -->
-<nav id="main-nav-bar" class="navbar navbar-default" role="navigation">
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="shrinkednav">
 
   <!-- Brand and toggle get grouped for better mobile display -->
@@ -36,7 +36,7 @@
             <li class="{{current_page('register') ? 'altactive' : '' }}"><a href="{{ url('/register') }}"><b class="fa fa-key fa-lg"></b> &nbsp;<span class="navButtonText">Regjistrohu</span></a></li>
         @else
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-bell navIcons"></b> &nbsp;<span class="navButtonText">Njoftime</span> </a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-bell navIcons"></b> &nbsp;<span class="navButtonText">Njoftime<span class="caret pull-right" style="margin-top:9px;"></span></span> </a>
                 <ul class="dropdown-menu">
                     <li><a href="/messages">Mesazhet
                             @if(Auth::user()->unseenMessages->count()!=0)
@@ -79,21 +79,6 @@
                             </div>
                         {{ Form::submit('Send Suggestion',array('class' => 'btn btn-default'))}}
                         {!! Form::close() !!}
-                        <!--
-                                              <form action="messages" method="post">
-                                                        {{csrf_field()}}
-                                <input name="reciver_id" type="hidden" value="{{Auth::user()->id}}">
-                                                      <div class="form-group">
-                                                        <label for="exampleInputEmail1">Subject</label>
-                                                        <input name="subject" type="text"  class="form-control" id="exampleInputEmail1" placeholder="">
-                                                      </div>
-                                                      <div class="form-group">
-                                                        <label for="exampleInputPassword1">Message</label>
-                                                        <textarea name="message" class="form-control"  id="exampleInputPassword1" placeholder=""></textarea>
-                                                      </div>
-                                                      <button type="submit" class="btn btn-default">Submit</button>
-                                                    </form>
-                                                    -->
                         </div>
                     </div>
                 </div>
@@ -102,7 +87,8 @@
 
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img class="media-object img-circle" src="/images/{{ Auth::user()->avatar }}" style="margin: -1px 5px 0px 0px; width: 24px; height:24px; float: left;">
+
+                    <img class="media-object img-circle" src="/images/avatars/{{ Auth::user()->avatar }}" style="margin: -1px 5px 0px 0px; width: 24px; height:24px; float: left;">
                     <span class="navButtonText">{{Auth::user()->username}}</span></a>
                 <ul class="dropdown-menu">
           <li><a href="/users/{{Auth::user()->id}}">Profili<span class="glyphicon glyphicon-user pull-right"></span></a></li>

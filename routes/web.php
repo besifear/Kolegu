@@ -17,6 +17,7 @@ Route::get('/', 'QuestionController@index');
 
 Auth::routes();
 
+
 Route::get('/home', 'QuestionController@index');
 //End Home Controllers
 //////////////
@@ -26,6 +27,8 @@ Route::resource('questions','QuestionController');
 
 //End Question Controller
 /////////////////
+
+Route::get('/test', 'QuestionController@test');
 
 Route::get('/order/{orderBy}','QuestionController@filter',compact('orderBy'));
 

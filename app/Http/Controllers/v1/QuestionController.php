@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\v1;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Service\QuestionService;
@@ -10,8 +11,6 @@ use App\Http\Requests\DeleteQuestionRequest;
 use App\Http\Controllers\Traits\RewardsAchievements;
 use App\BusinessLogic\Interfaces\QuestionInterface;
 use App\BusinessLogic\Interfaces\CategoryInterface;
-
-
 class QuestionController extends Controller
 {
 
@@ -20,14 +19,18 @@ class QuestionController extends Controller
     private $questionService;
 
     public function __construct(QuestionService $questionService){
-        $this->middleware('auth', ['except' => ['index', 'show']]);
         $this->questionService = $questionService;
     }
 
     public function index()
     {
-        $questions = $this->questionService->questionInterface->orderBy('id', 'DESC')->paginate(10);
-        $topquestions = $this->questionService->topQuestion();
+        $withKeys = ['upVotes',
+            'downVotes',
+            'allAnswers',
+            'user',
+            'category'
+        ];
+        $questions = $this->questionService->questionInterface->orderBy('id', 'DESC')->with($withKeys)->paginate(10);
         return response()->json($questions);
     }
 
@@ -49,7 +52,15 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->questionService->questionInterface->create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'category_id' => $request->category_id,
+            'votes' => 0,
+            'user_id' => $request->id
+        ]);
+        $this->checkForQuestionAchievements(User::find($request->id));
+        return response()->json('success');
     }
 
     /**
@@ -60,7 +71,15 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        //
+        $withKeys = ['upVotes',
+            'downVotes',
+            'allAnswersWithUser',
+            'user',
+            'category'
+        ];
+        $question=$this->questionService->questionInterface->where('id',$id)->with($withKeys)->get();
+
+        return response()->json($question);
     }
 
     /**

@@ -18,33 +18,33 @@ class QuestionService{
     }
 
     public function topQuestion(){
-        if(Auth::check() && ! Auth::user()->selectedCategories->isEmpty()){
-            $userCategories = Auth::user()->selectedCategories;
-        }else{
-            $userCategories = $this->categoryInterface->all();
-        }
+        // if(Auth::check() && ! Auth::user()->selectedCategories->isEmpty()){
+        //     $userCategories = Auth::user()->selectedCategories;
+        // }else{
+        //     $userCategories = $this->categoryInterface->all();
+        // }
 
-        $topQuestions = (new Question())->newQuery();
-        $firstWhere = true;
+        // $topQuestions = (new Question())->newQuery();
+        // $firstWhere = true;
 
-        foreach($userCategories as $category)
-        {
-            if ($firstWhere)
-            {
-                $topQuestions->where([
-                    ['category_id', $category->id],
-                    ['votes', Question::where('category_id', $category->id)->max('votes')]
-                ]);
-                $firstWhere = false;
-            }else{
-                $topQuestions->orWhere([
-                    ['category_id', $category->id],
-                    ['votes', Question::where('category_id', $category->id)->max('votes')]
-                ]);
-            }
-        }
+        // foreach($userCategories as $category)
+        // {
+        //     if ($firstWhere)
+        //     {
+        //         $topQuestions->where([
+        //             ['category_id', $category->id],
+        //             ['votes', Question::where('category_id', $category->id)->max('votes')]
+        //         ]);
+        //         $firstWhere = false;
+        //     }else{
+        //         $topQuestions->orWhere([
+        //             ['category_id', $category->id],
+        //             ['votes', Question::where('category_id', $category->id)->max('votes')]
+        //         ]);
+        //     }
+        // }
 
-        return $topQuestions->inRandomOrder()->take(5)->get();
+        return Question::inRandomOrder()->take(5)->get();
     }
 
     public function filter($orderBy){

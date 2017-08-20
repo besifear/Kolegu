@@ -20,3 +20,14 @@ Route::get('/user', function (Request $request) {
 Route::resource('/v1/questions', v1\QuestionController::class, [
     'except' => ['create', 'edit']
 ]);
+
+Route::resource('/v1/answers', v1\AnswerController::class, [
+    'except' => ['create', 'edit']
+]);
+
+Route::resource('/v1/categories', v1\CategoryController::class,[
+	'except' => ['create', 'edit']
+]);
+
+Route::post('/v1/authenticate', 'v1\AuthenticateController@authenticate');
+Route::post('/v1/getuser', 'v1\AuthenticateController@getAuthenticatedUser');
