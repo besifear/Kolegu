@@ -5,7 +5,7 @@
 ?>
 
 <!-- Navigation Bar -->
-<nav id="main-nav-bar" class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="shrinkednav">
 
   <!-- Brand and toggle get grouped for better mobile display -->
@@ -102,7 +102,7 @@
 
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img class="media-object img-circle" src="/images/{{ Auth::user()->avatar }}" style="margin: -1px 5px 0px 0px; width: 24px; height:24px; float: left;">
+                    <img class="media-object img-circle" src="/images/avatars/{{ Auth::user()->avatar }}" style="margin: -1px 5px 0px 0px; width: 24px; height:24px; float: left;">
                     <span class="navButtonText">{{Auth::user()->username}}</span></a>
                 <ul class="dropdown-menu">
           <li><a href="/users/{{Auth::user()->id}}">Profili<span class="glyphicon glyphicon-user pull-right"></span></a></li>
