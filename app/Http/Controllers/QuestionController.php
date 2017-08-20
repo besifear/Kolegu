@@ -18,7 +18,7 @@ use App\Http\Requests\DeleteQuestionRequest;
 use App\Http\Controllers\Traits\RewardsAchievements;
 use App\BusinessLogic\Interfaces\QuestionInterface;
 use App\BusinessLogic\Interfaces\CategoryInterface;
-
+use JavaScript;
 
 class QuestionController extends Controller
 {
@@ -30,8 +30,6 @@ class QuestionController extends Controller
     public function __construct(QuestionService $questionService){
         $this->middleware('auth', ['except' => ['index', 'show', 'filter']]);
         $this->questionService = $questionService;
-        $testArray = ['une' => 'Besnik',
-                     'ti' => 'Edon' ];
     }
 
     public function index()
@@ -39,13 +37,27 @@ class QuestionController extends Controller
         $questions = $this->questionService->questionInterface->orderBy('id', 'DESC')->paginate(5);
         $topquestions = $this->questionService->topQuestion();
 
+        $reactVariablesArray = [
+            'questions' => $questions,
+            'currentUser' => Auth::user(),
+            'token' => Session::token()
+        ];
+
+        if( !Auth::guest() ){
+            $reactVariablesArray['currentUserId'] = Auth::id();
+        }
+
+        JavaScript::put( $reactVariablesArray );
+
         if(!Auth::guest()&&Auth::user()->selectedCategories->isEmpty()){
             return redirect()->route('Kategorite');
         }else{
             return view('questions.index', compact('questions', 'topquestions'));
         }
+    }
 
-        
+    public function test(){
+        return Question::all();
     }
 
     /**

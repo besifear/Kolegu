@@ -5,7 +5,7 @@
 ?>
 
 <!-- Navigation Bar -->
-<nav id="main-nav-bar" class="navbar navbar-default" role="navigation">
+<nav id="main-nav-bar" class="col-lg-12 navbar navbar-default" role="navigation">
   <div class="shrinkednav">
 
   <!-- Brand and toggle get grouped for better mobile display -->
@@ -130,3 +130,4 @@
 
   </div>
 </nav>
+<div id="main-nav-bar-filler"></div>
