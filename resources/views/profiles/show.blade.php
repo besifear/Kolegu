@@ -17,7 +17,7 @@
                                             data-toggle="modal" data-target="#editAvatarModal"
                                             @endif
                                             class="media-object dp img-circle"
-                                             src="/images/{{ $user->avatar }}" style="width: 150px;height:150px;">
+                                             src="/images/avatars/{{ $user->avatar }}" style="width: 150px;height:150px;">
                                             @if(Auth::id() == $user->id)
                                             <span id="editProfilePic">Click to edit avatar</span>
                                             @endif
@@ -232,8 +232,11 @@
                         @foreach($achievements as $achievement)
                           <div>
                             <hr>
-                            <p>{{$achievement->name}} : </p>
-                            <p>{{$achievement->reputationaward}} Reputacion </p>
+                            <p class="text-center">{{$achievement->name}}</p>
+                            <p class="text-center">
+                              <img src="/images/achievements/{{ $achievement->icon }}">
+                            </p>
+                            {{-- <p>{{$achievement->reputationaward}} Reputacion </p> --}}
                           </div>
                         @endforeach
                     </div>

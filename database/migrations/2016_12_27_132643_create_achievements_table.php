@@ -18,6 +18,7 @@ class CreateAchievementsTable extends Migration
             $table->increments('id', true);
             $table->string('name',50)->unique();
             $table->string('description',300);
+            $table->string('icon', 100);
             $table->integer('reputationaward')->unsigned();
             $table->string('difficulty',20);
         });
