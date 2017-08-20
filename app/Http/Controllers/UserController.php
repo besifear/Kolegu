@@ -14,6 +14,8 @@ use Redirect;
 
 use Image;
 
+use File;
+
 class UserController extends Controller
 {
     /**
@@ -119,10 +121,22 @@ class UserController extends Controller
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        $user = User::find(Auth::user()->id);
+
         if($request->hasFile('avatar')){
             $avatar = $request->file('avatar');
             $filename = time() . '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(150, 150)->save( public_path('/images/' . $filename ) );
+
+            if ($user->avatar !== 'profilepicture.png') {
+                $file = public_path('/images/avatars/' . $user->avatar);
+
+                if (File::exists($file)) {
+                    unlink($file);
+                }
+            }
+
+            Image::make($avatar)->fit(150, 150)
+            	->save( public_path('/images/avatars/' . $filename ) );
             $user = Auth::user();
             $user->avatar = $filename;
             $user->save();

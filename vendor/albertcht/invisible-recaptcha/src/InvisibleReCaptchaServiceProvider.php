@@ -3,6 +3,7 @@
 namespace AlbertCht\InvisibleReCaptcha;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\Compilers\BladeCompiler;
 
 class InvisibleReCaptchaServiceProvider extends ServiceProvider
 {
@@ -13,10 +14,9 @@ class InvisibleReCaptchaServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $app = $this->app;
         $this->bootConfig();
-        $this->app['validator']->extend('captcha', function ($attribute, $value) use ($app) {
-            return $app['captcha']->verifyResponse($value, $app['request']->getClientIp());
+        $this->app['validator']->extend('captcha', function ($attribute, $value) {
+            return $this->app['captcha']->verifyResponse($value, $this->app['request']->getClientIp());
         });
     }
 
@@ -34,6 +34,10 @@ class InvisibleReCaptchaServiceProvider extends ServiceProvider
                 $app['config']['captcha.hideBadge'],
                 $app['config']['captcha.debug']
             );
+        });
+
+        $this->app->resolving('view', function () {
+            $this->addBladeDirective($this->app['blade.compiler']);
         });
     }
 
@@ -61,5 +65,16 @@ class InvisibleReCaptchaServiceProvider extends ServiceProvider
     public function provides()
     {
         return ['captcha'];
+    }
+
+    /**
+     * @param BladeCompiler $blade
+     * @return void
+     */
+    public function addBladeDirective(BladeCompiler $blade)
+    {
+        $blade->directive('captcha', function ($lang) {
+            return "<?php echo app('captcha')->render(" . ($lang ? "'$lang'" : '') . '); ?>';
+        });
     }
 }

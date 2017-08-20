@@ -169,6 +169,7 @@ xdebug.show_local_vars = o running in. This may determine how you prefer to conf
         Intervention\Image\ImageServiceProvider::class,
         AlbertCht\InvisibleReCaptcha\InvisibleReCaptchaServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -187,7 +188,8 @@ xdebug.show_local_vars = o running in. This may determine how you prefer to conf
 
         /*Iniciates Interfaces as Repositorys in Controllers*/
         App\Providers\AppRepositoryProvider::class,
-    ],
+
+        ],
 
     /*
     |--------------------------------------------------------------------------

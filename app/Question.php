@@ -14,6 +14,13 @@ class Question extends Model
 
     protected $appends = [
         'diff_for_humans',
+        'my_up_vote',
+        'my_down_vote',
+        'question_up_votes',
+        'question_down_votes',
+        'question_all_answers',
+        'question_category',
+        'question_owner'
     ];
 
 
@@ -82,5 +89,39 @@ class Question extends Model
        $carbonated_date = Carbon::parse($this->attributes['created_at']);
        $diff_date = $carbonated_date->diffForHumans(Carbon::now());
        return $diff_date;
+    }
+
+    public function getMyUpVoteAttribute(){
+        if (Auth::check()){
+            return $this->getMyUpVote()->get()->count();
+        }
+        return 0;
+    }
+
+    public function getMyDownVoteAttribute(){
+        if (Auth::check()){
+            return $this->getMyDownVote()->get()->count();
+        }
+        return 0;
+    }
+
+    public function getQuestionUpVotesAttribute(){
+        return $this->upVotes()->get()->count();
+    }
+
+    public function getQuestionDownVotesAttribute(){
+        return $this->downVotes()->get()->count();
+    }
+
+    public function getQuestionAllAnswersAttribute(){
+        return $this->allAnswers()->get()->count();
+    }
+
+    public function getQuestionCategoryAttribute(){
+        return $this->category()->first();
+    }
+
+    public function getQuestionOwnerAttribute(){
+        return $this->user()->first(['id','username']);
     }
 }

@@ -28,6 +28,8 @@ Route::resource('questions','QuestionController');
 //End Question Controller
 /////////////////
 
+Route::get('/test', 'QuestionController@test');
+
 Route::get('/order/{orderBy}','QuestionController@filter',compact('orderBy'));
 
 Route::get('/orderresources/{orderBy}','ResourceController@filter',compact('orderBy'));

@@ -15,7 +15,7 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        '3919eeb97e98d4648304477f8ef734ba' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/Random.php',
+        'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
@@ -44,6 +44,8 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         ),
         'S' => 
         array (
+            'Symfony\\Polyfill\\Util\\' => 22,
+            'Symfony\\Polyfill\\Php56\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Yaml\\' => 23,
             'Symfony\\Component\\VarDumper\\' => 28,
@@ -70,6 +72,10 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
             'Psr\\Http\\Message\\' => 17,
             'PhpParser\\' => 10,
         ),
+        'N' => 
+        array (
+            'Namshi\\JOSE\\' => 12,
+        ),
         'M' => 
         array (
             'Monolog\\' => 8,
@@ -78,6 +84,7 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         array (
             'League\\Flysystem\\' => 17,
             'Laravel\\Tinker\\' => 15,
+            'Laracasts\\Utilities\\JavaScript\\' => 31,
         ),
         'I' => 
         array (
@@ -98,6 +105,7 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         array (
             'Dotenv\\' => 7,
             'Doctrine\\Instantiator\\' => 22,
+            'Doctrine\\Common\\Inflector\\' => 26,
             'Doctrine\\Common\\Cache\\' => 22,
             'Doctrine\\Common\\Annotations\\' => 28,
             'Doctrine\\Common\\' => 16,
@@ -151,6 +159,14 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Tests\\' => 
         array (
             0 => __DIR__ . '/../..' . '/tests',
+        ),
+        'Symfony\\Polyfill\\Util\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-util',
+        ),
+        'Symfony\\Polyfill\\Php56\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php56',
         ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
@@ -228,6 +244,10 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
         ),
+        'Namshi\\JOSE\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/namshi/jose/src/Namshi/JOSE',
+        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
@@ -239,6 +259,10 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Laravel\\Tinker\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
+        ),
+        'Laracasts\\Utilities\\JavaScript\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laracasts/utilities/src',
         ),
         'Intervention\\Image\\' => 
         array (
@@ -271,6 +295,10 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Doctrine\\Instantiator\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
+        ),
+        'Doctrine\\Common\\Inflector\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
         ),
         'Doctrine\\Common\\Cache\\' => 
         array (
@@ -319,13 +347,6 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
     );
 
     public static $prefixesPsr0 = array (
-        'S' => 
-        array (
-            'System' => 
-            array (
-                0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
-            ),
-        ),
         'P' => 
         array (
             'Prophecy\\' => 
@@ -337,26 +358,11 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
                 0 => __DIR__ . '/..' . '/erusev/parsedown',
             ),
         ),
-        'N' => 
-        array (
-            'Net' => 
-            array (
-                0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
-            ),
-            'Namshi\\JOSE' => 
-            array (
-                0 => __DIR__ . '/..' . '/namshi/jose/src',
-            ),
-        ),
         'M' => 
         array (
             'Mockery' => 
             array (
                 0 => __DIR__ . '/..' . '/mockery/mockery/library',
-            ),
-            'Math' => 
-            array (
-                0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
             ),
         ),
         'J' => 
@@ -370,13 +376,6 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
                 0 => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src',
             ),
         ),
-        'F' => 
-        array (
-            'File' => 
-            array (
-                0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
-            ),
-        ),
         'D' => 
         array (
             'Doctrine\\DBAL\\' => 
@@ -387,20 +386,9 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
             array (
                 0 => __DIR__ . '/..' . '/doctrine/lexer/lib',
             ),
-            'Doctrine\\Common\\Inflector\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/doctrine/inflector/lib',
-            ),
             'Doctrine\\Common\\Collections\\' => 
             array (
                 0 => __DIR__ . '/..' . '/doctrine/collections/lib',
-            ),
-        ),
-        'C' => 
-        array (
-            'Crypt' => 
-            array (
-                0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
             ),
         ),
         'B' => 
@@ -505,6 +493,7 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Barryvdh\\LaravelIdeHelper\\Console\\ModelsCommand' => __DIR__ . '/..' . '/barryvdh/laravel-ide-helper/src/Console/ModelsCommand.php',
         'Barryvdh\\LaravelIdeHelper\\Generator' => __DIR__ . '/..' . '/barryvdh/laravel-ide-helper/src/Generator.php',
         'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider' => __DIR__ . '/..' . '/barryvdh/laravel-ide-helper/src/IdeHelperServiceProvider.php',
+        'Barryvdh\\LaravelIdeHelper\\Macro' => __DIR__ . '/..' . '/barryvdh/laravel-ide-helper/src/Macro.php',
         'Barryvdh\\LaravelIdeHelper\\Method' => __DIR__ . '/..' . '/barryvdh/laravel-ide-helper/src/Method.php',
         'Barryvdh\\Reflection\\DocBlock' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock.php',
         'Barryvdh\\Reflection\\DocBlock\\Context' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Context.php',
@@ -570,17 +559,6 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Cron\\MinutesField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/MinutesField.php',
         'Cron\\MonthField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/MonthField.php',
         'Cron\\YearField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/YearField.php',
-        'Crypt_AES' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/AES.php',
-        'Crypt_Base' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/Base.php',
-        'Crypt_Blowfish' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/Blowfish.php',
-        'Crypt_DES' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/DES.php',
-        'Crypt_Hash' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/Hash.php',
-        'Crypt_RC2' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/RC2.php',
-        'Crypt_RC4' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/RC4.php',
-        'Crypt_RSA' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/RSA.php',
-        'Crypt_Rijndael' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/Rijndael.php',
-        'Crypt_TripleDES' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/TripleDES.php',
-        'Crypt_Twofish' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/Twofish.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
@@ -629,13 +607,17 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Doctrine\\Common\\Cache\\ChainCache' => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache/ChainCache.php',
         'Doctrine\\Common\\Cache\\ClearableCache' => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache/ClearableCache.php',
         'Doctrine\\Common\\Cache\\CouchbaseCache' => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache/CouchbaseCache.php',
+        'Doctrine\\Common\\Cache\\ExtMongoDBCache' => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache/ExtMongoDBCache.php',
         'Doctrine\\Common\\Cache\\FileCache' => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache/FileCache.php',
         'Doctrine\\Common\\Cache\\FilesystemCache' => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache/FilesystemCache.php',
         'Doctrine\\Common\\Cache\\FlushableCache' => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache/FlushableCache.php',
+        'Doctrine\\Common\\Cache\\LegacyMongoDBCache' => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache/LegacyMongoDBCache.php',
         'Doctrine\\Common\\Cache\\MemcacheCache' => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache/MemcacheCache.php',
         'Doctrine\\Common\\Cache\\MemcachedCache' => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache/MemcachedCache.php',
         'Doctrine\\Common\\Cache\\MongoDBCache' => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache/MongoDBCache.php',
+        'Doctrine\\Common\\Cache\\MultiDeleteCache' => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache/MultiDeleteCache.php',
         'Doctrine\\Common\\Cache\\MultiGetCache' => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache/MultiGetCache.php',
+        'Doctrine\\Common\\Cache\\MultiOperationCache' => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache/MultiOperationCache.php',
         'Doctrine\\Common\\Cache\\MultiPutCache' => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache/MultiPutCache.php',
         'Doctrine\\Common\\Cache\\PhpFileCache' => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache/PhpFileCache.php',
         'Doctrine\\Common\\Cache\\PredisCache' => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache/PredisCache.php',
@@ -801,13 +783,16 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Doctrine\\DBAL\\Exception\\ConstraintViolationException' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Exception/ConstraintViolationException.php',
         'Doctrine\\DBAL\\Exception\\DatabaseObjectExistsException' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Exception/DatabaseObjectExistsException.php',
         'Doctrine\\DBAL\\Exception\\DatabaseObjectNotFoundException' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Exception/DatabaseObjectNotFoundException.php',
+        'Doctrine\\DBAL\\Exception\\DeadlockException' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Exception/DeadlockException.php',
         'Doctrine\\DBAL\\Exception\\DriverException' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Exception/DriverException.php',
         'Doctrine\\DBAL\\Exception\\ForeignKeyConstraintViolationException' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Exception/ForeignKeyConstraintViolationException.php',
         'Doctrine\\DBAL\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Exception/InvalidArgumentException.php',
         'Doctrine\\DBAL\\Exception\\InvalidFieldNameException' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Exception/InvalidFieldNameException.php',
+        'Doctrine\\DBAL\\Exception\\LockWaitTimeoutException' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Exception/LockWaitTimeoutException.php',
         'Doctrine\\DBAL\\Exception\\NonUniqueFieldNameException' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Exception/NonUniqueFieldNameException.php',
         'Doctrine\\DBAL\\Exception\\NotNullConstraintViolationException' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Exception/NotNullConstraintViolationException.php',
         'Doctrine\\DBAL\\Exception\\ReadOnlyException' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Exception/ReadOnlyException.php',
+        'Doctrine\\DBAL\\Exception\\RetryableException' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Exception/RetryableException.php',
         'Doctrine\\DBAL\\Exception\\ServerException' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Exception/ServerException.php',
         'Doctrine\\DBAL\\Exception\\SyntaxErrorException' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Exception/SyntaxErrorException.php',
         'Doctrine\\DBAL\\Exception\\TableExistsException' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Exception/TableExistsException.php',
@@ -832,6 +817,7 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Doctrine\\DBAL\\Platforms\\Keywords\\OracleKeywords' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Platforms/Keywords/OracleKeywords.php',
         'Doctrine\\DBAL\\Platforms\\Keywords\\PostgreSQL91Keywords' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Platforms/Keywords/PostgreSQL91Keywords.php',
         'Doctrine\\DBAL\\Platforms\\Keywords\\PostgreSQL92Keywords' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Platforms/Keywords/PostgreSQL92Keywords.php',
+        'Doctrine\\DBAL\\Platforms\\Keywords\\PostgreSQL94Keywords' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Platforms/Keywords/PostgreSQL94Keywords.php',
         'Doctrine\\DBAL\\Platforms\\Keywords\\PostgreSQLKeywords' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Platforms/Keywords/PostgreSQLKeywords.php',
         'Doctrine\\DBAL\\Platforms\\Keywords\\ReservedKeywordsValidator' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Platforms/Keywords/ReservedKeywordsValidator.php',
         'Doctrine\\DBAL\\Platforms\\Keywords\\SQLAnywhere11Keywords' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Platforms/Keywords/SQLAnywhere11Keywords.php',
@@ -848,6 +834,7 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Doctrine\\DBAL\\Platforms\\OraclePlatform' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Platforms/OraclePlatform.php',
         'Doctrine\\DBAL\\Platforms\\PostgreSQL91Platform' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Platforms/PostgreSQL91Platform.php',
         'Doctrine\\DBAL\\Platforms\\PostgreSQL92Platform' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Platforms/PostgreSQL92Platform.php',
+        'Doctrine\\DBAL\\Platforms\\PostgreSQL94Platform' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Platforms/PostgreSQL94Platform.php',
         'Doctrine\\DBAL\\Platforms\\PostgreSqlPlatform' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Platforms/PostgreSqlPlatform.php',
         'Doctrine\\DBAL\\Platforms\\SQLAnywhere11Platform' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Platforms/SQLAnywhere11Platform.php',
         'Doctrine\\DBAL\\Platforms\\SQLAnywhere12Platform' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Platforms/SQLAnywhere12Platform.php',
@@ -924,7 +911,11 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Doctrine\\DBAL\\Types\\BlobType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/BlobType.php',
         'Doctrine\\DBAL\\Types\\BooleanType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/BooleanType.php',
         'Doctrine\\DBAL\\Types\\ConversionException' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/ConversionException.php',
+        'Doctrine\\DBAL\\Types\\DateImmutableType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/DateImmutableType.php',
+        'Doctrine\\DBAL\\Types\\DateIntervalType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/DateIntervalType.php',
+        'Doctrine\\DBAL\\Types\\DateTimeImmutableType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/DateTimeImmutableType.php',
         'Doctrine\\DBAL\\Types\\DateTimeType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/DateTimeType.php',
+        'Doctrine\\DBAL\\Types\\DateTimeTzImmutableType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/DateTimeTzImmutableType.php',
         'Doctrine\\DBAL\\Types\\DateTimeTzType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/DateTimeTzType.php',
         'Doctrine\\DBAL\\Types\\DateType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/DateType.php',
         'Doctrine\\DBAL\\Types\\DecimalType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/DecimalType.php',
@@ -932,13 +923,16 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Doctrine\\DBAL\\Types\\GuidType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/GuidType.php',
         'Doctrine\\DBAL\\Types\\IntegerType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/IntegerType.php',
         'Doctrine\\DBAL\\Types\\JsonArrayType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/JsonArrayType.php',
+        'Doctrine\\DBAL\\Types\\JsonType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/JsonType.php',
         'Doctrine\\DBAL\\Types\\ObjectType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/ObjectType.php',
         'Doctrine\\DBAL\\Types\\SimpleArrayType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/SimpleArrayType.php',
         'Doctrine\\DBAL\\Types\\SmallIntType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/SmallIntType.php',
         'Doctrine\\DBAL\\Types\\StringType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/StringType.php',
         'Doctrine\\DBAL\\Types\\TextType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/TextType.php',
+        'Doctrine\\DBAL\\Types\\TimeImmutableType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/TimeImmutableType.php',
         'Doctrine\\DBAL\\Types\\TimeType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/TimeType.php',
         'Doctrine\\DBAL\\Types\\Type' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/Type.php',
+        'Doctrine\\DBAL\\Types\\VarDateTimeImmutableType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/VarDateTimeImmutableType.php',
         'Doctrine\\DBAL\\Types\\VarDateTimeType' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Types/VarDateTimeType.php',
         'Doctrine\\DBAL\\Version' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Version.php',
         'Doctrine\\DBAL\\VersionAwarePlatformDriver' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/VersionAwarePlatformDriver.php',
@@ -957,6 +951,7 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Dotenv\\Validator' => __DIR__ . '/..' . '/vlucas/phpdotenv/src/Validator.php',
         'EverythingTableSeeder' => __DIR__ . '/../..' . '/database/seeds/EverythingTableSeeder.php',
         'Faker\\Calculator\\Iban' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Calculator/Iban.php',
+        'Faker\\Calculator\\Inn' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Calculator/Inn.php',
         'Faker\\Calculator\\Luhn' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Calculator/Luhn.php',
         'Faker\\DefaultGenerator' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/DefaultGenerator.php',
         'Faker\\Documentor' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Documentor.php',
@@ -989,6 +984,7 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Faker\\Provider\\Company' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/Company.php',
         'Faker\\Provider\\DateTime' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/DateTime.php',
         'Faker\\Provider\\File' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/File.php',
+        'Faker\\Provider\\HtmlLorem' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/HtmlLorem.php',
         'Faker\\Provider\\Image' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/Image.php',
         'Faker\\Provider\\Internet' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/Internet.php',
         'Faker\\Provider\\Lorem' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/Lorem.php',
@@ -1005,8 +1001,10 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Faker\\Provider\\ar_JO\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ar_JO/Person.php',
         'Faker\\Provider\\ar_JO\\Text' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ar_JO/Text.php',
         'Faker\\Provider\\ar_SA\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ar_SA/Address.php',
+        'Faker\\Provider\\ar_SA\\Color' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ar_SA/Color.php',
         'Faker\\Provider\\ar_SA\\Company' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ar_SA/Company.php',
         'Faker\\Provider\\ar_SA\\Internet' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ar_SA/Internet.php',
+        'Faker\\Provider\\ar_SA\\Payment' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ar_SA/Payment.php',
         'Faker\\Provider\\ar_SA\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ar_SA/Person.php',
         'Faker\\Provider\\ar_SA\\Text' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ar_SA/Text.php',
         'Faker\\Provider\\at_AT\\Payment' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/at_AT/Payment.php',
@@ -1054,6 +1052,12 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Faker\\Provider\\de_DE\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/de_DE/Person.php',
         'Faker\\Provider\\de_DE\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/de_DE/PhoneNumber.php',
         'Faker\\Provider\\de_DE\\Text' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/de_DE/Text.php',
+        'Faker\\Provider\\el_CY\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/el_CY/Address.php',
+        'Faker\\Provider\\el_CY\\Company' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/el_CY/Company.php',
+        'Faker\\Provider\\el_CY\\Internet' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/el_CY/Internet.php',
+        'Faker\\Provider\\el_CY\\Payment' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/el_CY/Payment.php',
+        'Faker\\Provider\\el_CY\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/el_CY/Person.php',
+        'Faker\\Provider\\el_CY\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/el_CY/PhoneNumber.php',
         'Faker\\Provider\\el_GR\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/el_GR/Address.php',
         'Faker\\Provider\\el_GR\\Company' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/el_GR/Company.php',
         'Faker\\Provider\\el_GR\\Payment' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/el_GR/Payment.php',
@@ -1070,10 +1074,17 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Faker\\Provider\\en_GB\\Payment' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/en_GB/Payment.php',
         'Faker\\Provider\\en_GB\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/en_GB/Person.php',
         'Faker\\Provider\\en_GB\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/en_GB/PhoneNumber.php',
+        'Faker\\Provider\\en_HK\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/en_HK/Address.php',
+        'Faker\\Provider\\en_HK\\Internet' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/en_HK/Internet.php',
+        'Faker\\Provider\\en_HK\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/en_HK/PhoneNumber.php',
         'Faker\\Provider\\en_IN\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/en_IN/Address.php',
         'Faker\\Provider\\en_IN\\Internet' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/en_IN/Internet.php',
         'Faker\\Provider\\en_IN\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/en_IN/Person.php',
         'Faker\\Provider\\en_IN\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/en_IN/PhoneNumber.php',
+        'Faker\\Provider\\en_NG\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/en_NG/Address.php',
+        'Faker\\Provider\\en_NG\\Internet' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/en_NG/Internet.php',
+        'Faker\\Provider\\en_NG\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/en_NG/Person.php',
+        'Faker\\Provider\\en_NG\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/en_NG/PhoneNumber.php',
         'Faker\\Provider\\en_NZ\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/en_NZ/Address.php',
         'Faker\\Provider\\en_NZ\\Internet' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/en_NZ/Internet.php',
         'Faker\\Provider\\en_NZ\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/en_NZ/PhoneNumber.php',
@@ -1106,6 +1117,7 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Faker\\Provider\\es_ES\\Payment' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/es_ES/Payment.php',
         'Faker\\Provider\\es_ES\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/es_ES/Person.php',
         'Faker\\Provider\\es_ES\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/es_ES/PhoneNumber.php',
+        'Faker\\Provider\\es_ES\\Text' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/es_ES/Text.php',
         'Faker\\Provider\\es_PE\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/es_PE/Address.php',
         'Faker\\Provider\\es_PE\\Company' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/es_PE/Company.php',
         'Faker\\Provider\\es_PE\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/es_PE/Person.php',
@@ -1115,6 +1127,8 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Faker\\Provider\\es_VE\\Internet' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/es_VE/Internet.php',
         'Faker\\Provider\\es_VE\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/es_VE/Person.php',
         'Faker\\Provider\\es_VE\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/es_VE/PhoneNumber.php',
+        'Faker\\Provider\\fa_IR\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/fa_IR/Address.php',
+        'Faker\\Provider\\fa_IR\\Company' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/fa_IR/Company.php',
         'Faker\\Provider\\fa_IR\\Internet' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/fa_IR/Internet.php',
         'Faker\\Provider\\fa_IR\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/fa_IR/Person.php',
         'Faker\\Provider\\fa_IR\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/fa_IR/PhoneNumber.php',
@@ -1122,6 +1136,7 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Faker\\Provider\\fi_FI\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/fi_FI/Address.php',
         'Faker\\Provider\\fi_FI\\Company' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/fi_FI/Company.php',
         'Faker\\Provider\\fi_FI\\Internet' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/fi_FI/Internet.php',
+        'Faker\\Provider\\fi_FI\\Payment' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/fi_FI/Payment.php',
         'Faker\\Provider\\fi_FI\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/fi_FI/Person.php',
         'Faker\\Provider\\fi_FI\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/fi_FI/PhoneNumber.php',
         'Faker\\Provider\\fr_BE\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/fr_BE/Address.php',
@@ -1131,6 +1146,7 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Faker\\Provider\\fr_BE\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/fr_BE/Person.php',
         'Faker\\Provider\\fr_BE\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/fr_BE/PhoneNumber.php',
         'Faker\\Provider\\fr_CA\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/fr_CA/Address.php',
+        'Faker\\Provider\\fr_CA\\Company' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/fr_CA/Company.php',
         'Faker\\Provider\\fr_CA\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/fr_CA/Person.php',
         'Faker\\Provider\\fr_CH\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/fr_CH/Address.php',
         'Faker\\Provider\\fr_CH\\Company' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/fr_CH/Company.php',
@@ -1148,10 +1164,12 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Faker\\Provider\\fr_FR\\Text' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/fr_FR/Text.php',
         'Faker\\Provider\\he_IL\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/he_IL/Address.php',
         'Faker\\Provider\\he_IL\\Company' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/he_IL/Company.php',
+        'Faker\\Provider\\he_IL\\Payment' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/he_IL/Payment.php',
         'Faker\\Provider\\he_IL\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/he_IL/Person.php',
         'Faker\\Provider\\he_IL\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/he_IL/PhoneNumber.php',
         'Faker\\Provider\\hr_HR\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/hr_HR/Address.php',
         'Faker\\Provider\\hr_HR\\Company' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/hr_HR/Company.php',
+        'Faker\\Provider\\hr_HR\\Payment' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/hr_HR/Payment.php',
         'Faker\\Provider\\hr_HR\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/hr_HR/Person.php',
         'Faker\\Provider\\hr_HR\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/hr_HR/PhoneNumber.php',
         'Faker\\Provider\\hu_HU\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/hu_HU/Address.php',
@@ -1199,6 +1217,7 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Faker\\Provider\\ja_JP\\Text' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ja_JP/Text.php',
         'Faker\\Provider\\ka_GE\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ka_GE/Address.php',
         'Faker\\Provider\\ka_GE\\Color' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ka_GE/Color.php',
+        'Faker\\Provider\\ka_GE\\Company' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ka_GE/Company.php',
         'Faker\\Provider\\ka_GE\\DateTime' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ka_GE/DateTime.php',
         'Faker\\Provider\\ka_GE\\Internet' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ka_GE/Internet.php',
         'Faker\\Provider\\ka_GE\\Payment' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ka_GE/Payment.php',
@@ -1222,6 +1241,7 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Faker\\Provider\\lt_LT\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/lt_LT/Address.php',
         'Faker\\Provider\\lt_LT\\Company' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/lt_LT/Company.php',
         'Faker\\Provider\\lt_LT\\Internet' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/lt_LT/Internet.php',
+        'Faker\\Provider\\lt_LT\\Payment' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/lt_LT/Payment.php',
         'Faker\\Provider\\lt_LT\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/lt_LT/Person.php',
         'Faker\\Provider\\lt_LT\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/lt_LT/PhoneNumber.php',
         'Faker\\Provider\\lv_LV\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/lv_LV/Address.php',
@@ -1281,10 +1301,12 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Faker\\Provider\\ro_MD\\Payment' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ro_MD/Payment.php',
         'Faker\\Provider\\ro_MD\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ro_MD/Person.php',
         'Faker\\Provider\\ro_MD\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ro_MD/PhoneNumber.php',
+        'Faker\\Provider\\ro_MD\\Text' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ro_MD/Text.php',
         'Faker\\Provider\\ro_RO\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ro_RO/Address.php',
         'Faker\\Provider\\ro_RO\\Payment' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ro_RO/Payment.php',
         'Faker\\Provider\\ro_RO\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ro_RO/Person.php',
         'Faker\\Provider\\ro_RO\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ro_RO/PhoneNumber.php',
+        'Faker\\Provider\\ro_RO\\Text' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ro_RO/Text.php',
         'Faker\\Provider\\ru_RU\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ru_RU/Address.php',
         'Faker\\Provider\\ru_RU\\Color' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ru_RU/Color.php',
         'Faker\\Provider\\ru_RU\\Company' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ru_RU/Company.php',
@@ -1318,6 +1340,11 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Faker\\Provider\\sv_SE\\Payment' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/sv_SE/Payment.php',
         'Faker\\Provider\\sv_SE\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/sv_SE/Person.php',
         'Faker\\Provider\\sv_SE\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/sv_SE/PhoneNumber.php',
+        'Faker\\Provider\\th_TH\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/th_TH/Address.php',
+        'Faker\\Provider\\th_TH\\Company' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/th_TH/Company.php',
+        'Faker\\Provider\\th_TH\\Internet' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/th_TH/Internet.php',
+        'Faker\\Provider\\th_TH\\Payment' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/th_TH/Payment.php',
+        'Faker\\Provider\\th_TH\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/th_TH/PhoneNumber.php',
         'Faker\\Provider\\tr_TR\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/tr_TR/Address.php',
         'Faker\\Provider\\tr_TR\\Color' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/tr_TR/Color.php',
         'Faker\\Provider\\tr_TR\\DateTime' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/tr_TR/DateTime.php',
@@ -1332,6 +1359,7 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Faker\\Provider\\uk_UA\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/uk_UA/Person.php',
         'Faker\\Provider\\uk_UA\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/uk_UA/PhoneNumber.php',
         'Faker\\Provider\\uk_UA\\Text' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/uk_UA/Text.php',
+        'Faker\\Provider\\uk_Ua\\Payment' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/uk_UA/Payment.php',
         'Faker\\Provider\\vi_VN\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/vi_VN/Address.php',
         'Faker\\Provider\\vi_VN\\Color' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/vi_VN/Color.php',
         'Faker\\Provider\\vi_VN\\Internet' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/vi_VN/Internet.php',
@@ -1356,13 +1384,9 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Faker\\Provider\\zh_TW\\Text' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/zh_TW/Text.php',
         'Faker\\UniqueGenerator' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/UniqueGenerator.php',
         'Faker\\ValidGenerator' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/ValidGenerator.php',
-        'File_ANSI' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/File/ANSI.php',
-        'File_ASN1' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/File/ASN1.php',
-        'File_ASN1_Element' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/File/ASN1.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
-        'File_X509' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/File/X509.php',
         'GuzzleHttp\\Client' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Client.php',
         'GuzzleHttp\\ClientInterface' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/ClientInterface.php',
         'GuzzleHttp\\Cookie\\CookieJar' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/CookieJar.php',
@@ -1507,8 +1531,8 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Illuminate\\Auth\\AuthServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/AuthServiceProvider.php',
         'Illuminate\\Auth\\Authenticatable' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Authenticatable.php',
         'Illuminate\\Auth\\AuthenticationException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/AuthenticationException.php',
+        'Illuminate\\Auth\\Console\\AuthMakeCommand' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Console/AuthMakeCommand.php',
         'Illuminate\\Auth\\Console\\ClearResetsCommand' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Console/ClearResetsCommand.php',
-        'Illuminate\\Auth\\Console\\MakeAuthCommand' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Console/MakeAuthCommand.php',
         'Illuminate\\Auth\\CreatesUserProviders' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/CreatesUserProviders.php',
         'Illuminate\\Auth\\DatabaseUserProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/DatabaseUserProvider.php',
         'Illuminate\\Auth\\EloquentUserProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/EloquentUserProvider.php',
@@ -1732,6 +1756,7 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Relations/BelongsTo.php',
         'Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Relations/BelongsToMany.php',
         'Illuminate\\Database\\Eloquent\\Relations\\Concerns\\InteractsWithPivotTable' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Relations/Concerns/InteractsWithPivotTable.php',
+        'Illuminate\\Database\\Eloquent\\Relations\\Concerns\\SupportsDefaultModels' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Relations/Concerns/SupportsDefaultModels.php',
         'Illuminate\\Database\\Eloquent\\Relations\\HasMany' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Relations/HasMany.php',
         'Illuminate\\Database\\Eloquent\\Relations\\HasManyThrough' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Relations/HasManyThrough.php',
         'Illuminate\\Database\\Eloquent\\Relations\\HasOne' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Relations/HasOne.php',
@@ -2333,6 +2358,12 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/ConsoleColor.php',
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/InvalidStyleException.php',
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
+        'Laracasts\\Utilities\\JavaScript\\JavaScriptFacade' => __DIR__ . '/..' . '/laracasts/utilities/src/JavaScriptFacade.php',
+        'Laracasts\\Utilities\\JavaScript\\JavaScriptServiceProvider' => __DIR__ . '/..' . '/laracasts/utilities/src/JavaScriptServiceProvider.php',
+        'Laracasts\\Utilities\\JavaScript\\LaravelViewBinder' => __DIR__ . '/..' . '/laracasts/utilities/src/LaravelViewBinder.php',
+        'Laracasts\\Utilities\\JavaScript\\PHPToJavaScriptTransformer' => __DIR__ . '/..' . '/laracasts/utilities/src/PHPToJavaScriptTransformer.php',
+        'Laracasts\\Utilities\\JavaScript\\ViewBinder' => __DIR__ . '/..' . '/laracasts/utilities/src/ViewBinder.php',
+        'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
         'Laravel\\Tinker\\TinkerCaster' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerCaster.php',
         'Laravel\\Tinker\\TinkerServiceProvider' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerServiceProvider.php',
@@ -2383,7 +2414,6 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'League\\Flysystem\\Util\\MimeType' => __DIR__ . '/..' . '/league/flysystem/src/Util/MimeType.php',
         'League\\Flysystem\\Util\\StreamHasher' => __DIR__ . '/..' . '/league/flysystem/src/Util/StreamHasher.php',
         'MakeUsernameUniqueOnUsers' => __DIR__ . '/../..' . '/database/migrations/2017_04_30_122118_make_username_unique_on_users.php',
-        'Math_BigInteger' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Math/BigInteger.php',
         'Mockery' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
         'Mockery\\Adapter\\Phpunit\\MockeryTestCase' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryTestCase.php',
@@ -2564,15 +2594,13 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Namshi\\JOSE\\Signer\\SecLib\\RSA' => __DIR__ . '/..' . '/namshi/jose/src/Namshi/JOSE/Signer/SecLib/RSA.php',
         'Namshi\\JOSE\\Signer\\SignerInterface' => __DIR__ . '/..' . '/namshi/jose/src/Namshi/JOSE/Signer/SignerInterface.php',
         'Namshi\\JOSE\\SimpleJWS' => __DIR__ . '/..' . '/namshi/jose/src/Namshi/JOSE/SimpleJWS.php',
-        'Net_SCP' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Net/SCP.php',
-        'Net_SFTP' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Net/SFTP.php',
-        'Net_SFTP_Stream' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Net/SFTP/Stream.php',
-        'Net_SSH1' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Net/SSH1.php',
-        'Net_SSH2' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Net/SSH2.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
+        'PHPUnit\\Framework\\AssertionFailedError' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/AssertionFailedError.php',
         'PHPUnit\\Framework\\BaseTestListener' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',
+        'PHPUnit\\Framework\\Test' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/Test.php',
         'PHPUnit\\Framework\\TestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/TestCase.php',
         'PHPUnit\\Framework\\TestListener' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/TestListener.php',
+        'PHPUnit\\Framework\\TestSuite' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/TestSuite.php',
         'PHPUnit_Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit_Extensions_GroupTestSuite' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',
         'PHPUnit_Extensions_PhptTestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/PhptTestCase.php',
@@ -2949,7 +2977,6 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'Parsedown' => __DIR__ . '/..' . '/erusev/parsedown/Parsedown.php',
-        'ParsedownTest' => __DIR__ . '/..' . '/erusev/parsedown/test/ParsedownTest.php',
         'PhpParser\\Autoloader' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Autoloader.php',
         'PhpParser\\Builder' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Builder.php',
         'PhpParser\\BuilderAbstract' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/BuilderAbstract.php',
@@ -3266,6 +3293,7 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Psy\\CodeCleaner\\CodeCleanerPass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/CodeCleanerPass.php',
         'Psy\\CodeCleaner\\ExitPass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/ExitPass.php',
         'Psy\\CodeCleaner\\FinalClassPass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/FinalClassPass.php',
+        'Psy\\CodeCleaner\\FunctionContextPass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/FunctionContextPass.php',
         'Psy\\CodeCleaner\\FunctionReturnInWriteContextPass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/FunctionReturnInWriteContextPass.php',
         'Psy\\CodeCleaner\\ImplicitReturnPass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/ImplicitReturnPass.php',
         'Psy\\CodeCleaner\\InstanceOfPass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/InstanceOfPass.php',
@@ -3277,6 +3305,7 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Psy\\CodeCleaner\\NamespacePass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/NamespacePass.php',
         'Psy\\CodeCleaner\\NoReturnValue' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/NoReturnValue.php',
         'Psy\\CodeCleaner\\PassableByReferencePass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/PassableByReferencePass.php',
+        'Psy\\CodeCleaner\\RequirePass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/RequirePass.php',
         'Psy\\CodeCleaner\\StaticConstructorPass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/StaticConstructorPass.php',
         'Psy\\CodeCleaner\\StrictTypesPass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/StrictTypesPass.php',
         'Psy\\CodeCleaner\\UseStatementPass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/UseStatementPass.php',
@@ -4050,8 +4079,11 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'Symfony\\Component\\Yaml\\Unescaper' => __DIR__ . '/..' . '/symfony/yaml/Unescaper.php',
         'Symfony\\Component\\Yaml\\Yaml' => __DIR__ . '/..' . '/symfony/yaml/Yaml.php',
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
-        'System_SSH_Agent' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/System/SSH/Agent.php',
-        'System_SSH_Agent_Identity' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/System/SSH/Agent.php',
+        'Symfony\\Polyfill\\Php56\\Php56' => __DIR__ . '/..' . '/symfony/polyfill-php56/Php56.php',
+        'Symfony\\Polyfill\\Util\\Binary' => __DIR__ . '/..' . '/symfony/polyfill-util/Binary.php',
+        'Symfony\\Polyfill\\Util\\BinaryNoFuncOverload' => __DIR__ . '/..' . '/symfony/polyfill-util/BinaryNoFuncOverload.php',
+        'Symfony\\Polyfill\\Util\\BinaryOnFuncOverload' => __DIR__ . '/..' . '/symfony/polyfill-util/BinaryOnFuncOverload.php',
+        'Symfony\\Polyfill\\Util\\TestListener' => __DIR__ . '/..' . '/symfony/polyfill-util/TestListener.php',
         'Tests\\CreatesApplication' => __DIR__ . '/../..' . '/tests/CreatesApplication.php',
         'Tests\\Feature\\ExampleTest' => __DIR__ . '/../..' . '/tests/Feature/ExampleTest.php',
         'Tests\\TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
@@ -4144,6 +4176,7 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Factory\\StaticMethod' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Factory/StaticMethod.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Factory\\Strategy' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Factory/Strategy.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Formatter' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Formatter.php',
+        'phpDocumentor\\Reflection\\DocBlock\\Tags\\Formatter\\AlignFormatter' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Formatter/AlignFormatter.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Formatter\\PassthroughFormatter' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Formatter/PassthroughFormatter.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Generic' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Generic.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Link' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Link.php',
@@ -4178,9 +4211,12 @@ class ComposerStaticInitbde655a528a8f8e2b76d8a9f1b57041a
         'phpDocumentor\\Reflection\\Types\\ContextFactory' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/ContextFactory.php',
         'phpDocumentor\\Reflection\\Types\\Float_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Float_.php',
         'phpDocumentor\\Reflection\\Types\\Integer' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Integer.php',
+        'phpDocumentor\\Reflection\\Types\\Iterable_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Iterable_.php',
         'phpDocumentor\\Reflection\\Types\\Mixed' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Mixed.php',
         'phpDocumentor\\Reflection\\Types\\Null_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Null_.php',
+        'phpDocumentor\\Reflection\\Types\\Nullable' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Nullable.php',
         'phpDocumentor\\Reflection\\Types\\Object_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Object_.php',
+        'phpDocumentor\\Reflection\\Types\\Parent_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Parent_.php',
         'phpDocumentor\\Reflection\\Types\\Resource' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Resource.php',
         'phpDocumentor\\Reflection\\Types\\Scalar' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Scalar.php',
         'phpDocumentor\\Reflection\\Types\\Self_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Self_.php',
