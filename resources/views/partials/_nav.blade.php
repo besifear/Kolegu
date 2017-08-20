@@ -116,4 +116,3 @@
 
   </div>
 </nav>
-<div id="main-nav-bar-filler"></div>
