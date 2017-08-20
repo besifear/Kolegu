@@ -108,7 +108,7 @@
                                     <h4>Software Developer at <a href="#">Kitrrat.io</a></h4>
                                     @endif
                                     <hr style="margin:8px auto">
-                                    @foreach(App\SelectedCategory::where('user_id','=',$user->id)->get() as $selectedcategory)
+                                    @foreach($selectedcategories as $selectedcategory)
                                       <span class="label label-info">{{$selectedcategory->category->name}}</span>
                                     @endforeach
                                 </div>

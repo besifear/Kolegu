@@ -94,9 +94,9 @@
                                     'data-parsley-required-message' => 'Ke bërë gabim në password',
                                     'data-parsley-trigger'          => 'change focusout',
                                     'data-parsley-minlength'        => '6',
-                                    'data-parsley-maxlength'        => '50',
+                                    'data-parsley-maxlength'        => '500',
                                     'data-parsley-minlength-message'=> "Password-i duhet të përmbajë së paku 6 karaktera",
-                                    'data-parsley-maxlength-message'=> "Password-i duhet të përmbajë më së shumti 50 karaktera",
+                                    'data-parsley-maxlength-message'=> "Password-i duhet të përmbajë më së shumti 500 karaktera",
                                     'data-parsley-type'             => 'alphanum'
                                 ]) !!}
 
