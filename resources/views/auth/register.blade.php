@@ -81,9 +81,9 @@
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <label for="inputPassword" class="sr-only">Password</label>
+							
+							    <div class="col-md-6">
+                                <label for="inputPassword" class="sr-only" >Password</label>
 
                                 {!! Form::password('password', [
                                     'id'                            => 'password',
@@ -91,13 +91,14 @@
                                     'type'                          => 'password',
                                     'class'                         => 'form-control',
                                     'required',
+                                    'data-toggle'					=> 'popover',
+                                    'data-content'					=>  'Shkruaj passwordin',
                                     'data-parsley-required-message' => 'Ke bërë gabim në password',
                                     'data-parsley-trigger'          => 'change focusout',
                                     'data-parsley-minlength'        => '6',
                                     'data-parsley-maxlength'        => '50',
                                     'data-parsley-minlength-message'=> "Password-i duhet të përmbajë së paku 6 karaktera",
-                                    'data-parsley-maxlength-message'=> "Password-i duhet të përmbajë më së shumti 50 karaktera",
-                                    'data-parsley-type'             => 'alphanum'
+                                    'data-parsley-maxlength-message'=> "Password-i duhet të përmbajë më së shumti 50 karaktera"
                                 ]) !!}
 
                                 @if ($errors->has('password'))
@@ -147,3 +148,8 @@
     </div>
 </div>
 @stop
+
+@section('scripts')
+	<script src="{{URL::asset('js/strengthmeter.js')}}"></script>
+@stop
+
