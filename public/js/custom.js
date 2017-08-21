@@ -60,11 +60,11 @@ $(document).ready(function(){
 if ($(window).width() > 767) {
   // Add slideDown animation to Bootstrap dropdown when expanding.
   $('.dropdown').on('show.bs.dropdown', function() {
-    $(this).find('.dropdown-menu').first().stop(true, true).slideDown('fast');
+    $(this).find('.dropdown-menu').first().stop(true, true).slideDown(100);
   });
 
   // Add slideUp animation to Bootstrap dropdown when collapsing.
   $('.dropdown').on('hide.bs.dropdown', function() {
-    $(this).find('.dropdown-menu').first().stop(true, true).slideUp('fast');
+    $(this).find('.dropdown-menu').first().stop(true, true).slideUp(100);
   });
 }
