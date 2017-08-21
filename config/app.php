@@ -170,7 +170,7 @@ xdebug.show_local_vars = o running in. This may determine how you prefer to conf
         AlbertCht\InvisibleReCaptcha\InvisibleReCaptchaServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
-
+        Laravel\Socialite\SocialiteServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -241,6 +241,7 @@ xdebug.show_local_vars = o running in. This may determine how you prefer to conf
         'Image' => Intervention\Image\Facades\Image::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];
