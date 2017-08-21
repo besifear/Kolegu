@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     @include('partials._head')
-    
+    @yield('styles') 
   </head>
   <body>
   <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>

@@ -2,6 +2,10 @@
 
 @section('title',' | Login')
 
+@section('styles')
+    <link href="/css/signin.css" rel="stylesheet">
+@stop
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -81,20 +85,23 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="col-md-8 col-md-offset-2">
+                            <div class="col-md-6 col-sm-6 col-xs-6 col-md-offset-3">
+                                <button type="submit" class="btn btn-lg btn-primary btn-block login-btn">
                                     Kyçu
                                 </button>
+                            </div>
 
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">
                                     Ke harruar passwordin?
                                 </a>
                             </div>
                         </div>
+                        @include('partials.socials')
                     {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
+@stop

@@ -72,6 +72,9 @@ class User extends Authenticatable
         return $this->hasMany('App\UserAchievement');
     }
 
+    public function social(){
+        return $this->hasMany('App\Social');
+    }
 
 
     /**
@@ -103,5 +106,7 @@ class User extends Authenticatable
 
         $this->save();
     }
+
+
 
 }
