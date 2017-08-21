@@ -1,0 +1,44 @@
+.facebook{
+    background-color: #4863ae;
+    border-color: #4863ae;
+    color: white;
+}
+.facebook:hover{
+    background-color: #2871aa;
+    border-color: #2871aa;
+    color: white;
+}
+.twitter{
+    background-color: #46c0fb;
+    border-color: #46c0fb;
+    color: white;
+}
+.twitter:hover{
+    background-color: #00c7fb;
+    border-color: #00c7fb;
+    color: white;
+}
+.google{
+    background-color: #DD4B39;
+    border-color: #DD4B39;
+    color: white;
+}
+.google:hover{
+    background-color: #e15f4f;
+    border-color:#e15f4f;
+    color: white;
+}
+.github{
+    background-color: #4183C4;
+    border-color: #4183C4;
+    color: white;
+}
+.github:hover{
+    background-color: #5490ca;
+    border-color:#5490ca;
+    color: white;
+}
+
+.margin-bottom-10{
+    margin-bottom: 10px;
+}
