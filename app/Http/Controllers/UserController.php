@@ -147,6 +147,7 @@ class UserController extends Controller
         $answers = \App\Answer::where('user_id','=',$user->id)->paginate(5);
         $resources = \App\Resource::where('user_id','=',$user->id)->paginate(5);
         $achievements = \App\Achievement::all();
-        return view ('profiles.show',compact('user','questions','answers', 'resources','achievements'));
+        $selectedcategories = \App\SelectedCategory::where('user_id','=',$user->id)->get();
+        return view ('profiles.show',compact('user','questions','answers', 'resources','achievements','selectedcategories'));
     }
 }
