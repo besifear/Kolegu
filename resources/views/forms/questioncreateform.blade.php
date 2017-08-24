@@ -21,6 +21,13 @@
                         'id' => 'content',
                         'class' => 'form-control',
                         'maxlength' => '250',
+                        'required',
+                        'data-parsley-maxlength' => '50',
+                        'data-parsley-minlength' => '5',
+                        'data-parsley-required-message' => 'Pyetja duhet të ketë përmbajtje',
+                        'data-parsley-maxlength-message' => 'Titulli nuk mund të përmbajë më shumë se 50 karaktera',
+                        'data-parsley-minlength-message' => 'Titulli nuk mund të përmbajë më pak se 5 karaktera',
+                        'data-parsley-trigger' => 'change focusout',
                       ])}}
                       <br>
 
@@ -36,4 +43,6 @@
                         'class' => 'btn btn-primary btn-md pull-right',
                         'style' => 'margin-top : 20px',
                         ))}}
+
+                      <input name="image" type="file" id="upload" class="hidden" onchange="">
                   {!! Form::close() !!}

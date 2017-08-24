@@ -163,6 +163,10 @@ footer .copy{
    border:0px;
 }
 
+.dropdown-menu>li>a {
+  white-space: unset;
+}
+
 .header .dropdown-menu li a:hover{
    background:none !important;
    color:#666 !important;
@@ -656,14 +660,13 @@ body {
     top: 4px;
 }
 
-/*active fix*/
-.navbar-right li:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-}
-
 /*nav styling fix*/
 .navbar {
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.01), 0 6px 10px 0 rgba(0, 0, 0, 0.01);
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
+    background: none;
 }
 
 .altactive {
@@ -760,6 +763,8 @@ footer {
 .pager {
     color: orange;
 }
+
+
 
  /*start messages css*/
 .nav-tabs .glyphicon:not(.no-margin) { margin-right:10px; }
@@ -951,17 +956,6 @@ hr { margin-top: 5px;margin-bottom: 10px; }
           margin: 45px 0px 0px 0px;
 
         }
-<<<<<<< HEAD
-        #main-nav-bar{
-          z-index: 10000;
-          position: fixed;
-        }
-
-        #main-nav-bar-filler{
-            height: 55px;
-        }
-=======
->>>>>>> f350910fadf8f47b8a8e4ee8838c0faff6fac26e
 
         ul.parsley-errors-list li{
             color: #B94A48;
@@ -976,6 +970,10 @@ hr { margin-top: 5px;margin-bottom: 10px; }
 
 
 @media (min-width: 768px) {
+    .navbar-right li:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
     /*dropdown menu edits*/
     .dropdown-menu > li > a {
         color: #428bca;
@@ -1069,3 +1067,31 @@ hr { margin-top: 5px;margin-bottom: 10px; }
 }
 .popover.danger>.popover-title {
     color:#a94442;
+}
+
+.mce-branding-powered-by {
+  display: none;
+}
+
+pre {
+  margin-left: 10px;
+  border-radius: 0px;
+}
+
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline:0px !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
+}

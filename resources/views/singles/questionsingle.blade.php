@@ -102,7 +102,7 @@
 
     </div>
     <br>
- <hr style="margin-top: 10px;">
+ <hr id="question-seperator" style="margin-top: 10px;">
 </ul>
 
 </div>

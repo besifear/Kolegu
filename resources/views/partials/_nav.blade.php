@@ -11,7 +11,7 @@
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header col-lg-7 col-md-6 col-sm-6 col-xs-12">
 
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
       <span class="sr-only">Toggle navigation</span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
@@ -25,10 +25,10 @@
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse col-sm-4 col-xs-12 pull-right" id="bs-example-navbar-collapse-1">
+  <div class="col-sm-4 col-xs-12 pull-right collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
         <li class="{{current_page('questions/create') ? 'altactive' : '' }}"><a href="/questions/create"><b class="glyphicon glyphicon-send navIcons"></b> &nbsp;<span class="navButtonText">Pyet</span></a></li>
-        <li class="{{current_page('asd') ? 'altactive' : '' }}"><a href="/"><b class="glyphicon glyphicon-comment navIcons"></b> &nbsp;<span class="navButtonText">Përgjigju</span></a></li>
+        <li class="{{current_page('$nspb') ? 'altactive' : '' }}"><a href="/"><b class="glyphicon glyphicon-comment navIcons"></b> &nbsp;<span class="navButtonText">Përgjigju</span></a></li>
 
 
         @if(Auth::guest())
@@ -93,25 +93,26 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
                     <img class="media-object img-circle" src="/images/avatars/{{ Auth::user()->avatar }}" style="margin: -1px 5px 0px 0px; width: 24px; height:24px; float: left;">
-                    <span class="navButtonText">{{Auth::user()->username}}</span></a>
+                    <span class="navButtonText">{{Auth::user()->username}}</span>
+                </a>
                 <ul class="dropdown-menu">
-          <li><a href="/users/{{Auth::user()->id}}">Profili<span class="glyphicon glyphicon-user pull-right"></span></a></li>
-          <li><a href="/Kategorite">Kategoritë <span class="fa fa-navicon pull-right"></span></a></li>
-          <li><a href="/achievements">Arritjet <span class="fa fa-trophy pull-right"></span></a></li>
-          @if(Auth::user()->role === 'Admin')
-          <li><a href="/categories/create">Krijo Kategori</a></li>
-          <li><a href="/achievements/create">Krijo Arritje</a></li>
-          @endif
-          <li><a href="#">Kushtet <span class="fa fa-newspaper-o pull-right"></span></a></li>
-          <li class="divider"></li>
-          <li><a href="{{ url('/logout') }}"
-                 onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">Çkyçu<span class="fa fa-power-off pull-right"></span>
-              </a>
-              <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                  {{ csrf_field() }}
-              </form>
-          </li>
+                  <li><a href="/users/{{Auth::user()->id}}">Profili<span class="glyphicon glyphicon-user pull-right"></span></a></li>
+                  <li><a href="/Kategorite">Kategoritë <span class="fa fa-navicon pull-right"></span></a></li>
+                  <li><a href="/achievements">Arritjet <span class="fa fa-trophy pull-right"></span></a></li>
+                  @if(Auth::user()->role === 'Admin')
+                  <li><a href="/categories/create">Krijo Kategori</a></li>
+                  <li><a href="/achievements/create">Krijo Arritje</a></li>
+                  @endif
+                  <li><a href="#">Kushtet <span class="fa fa-newspaper-o pull-right"></span></a></li>
+                  <li class="divider"></li>
+                  <li><a href="{{ url('/logout') }}"
+                         onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">Çkyçu<span class="fa fa-power-off pull-right"></span>
+                      </a>
+                      <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                          {{ csrf_field() }}
+                      </form>
+                  </li>
         </ul>
       </li>
             @endif

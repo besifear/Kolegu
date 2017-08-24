@@ -125,3 +125,7 @@ Route::get('/upload',function(){
 		return view('pages.upload');
 	});
 //END TEST
+
+Route::get('/restest', function(){
+	return view('restest');
+});
