@@ -19,8 +19,6 @@ class CreateUsersTable extends Migration {
             $table->string('nickname', 50);
             $table->string('email')->unique();
             $table->binary('password', 128);
-            $table->boolean('verified')->default(false);
-            $table->string('token')->nullable();
             $table->rememberToken();
             $table->string('description', 1000)->nullable();
             $table->string('avatar', 100)->nullable()->default('profilepicture.png');

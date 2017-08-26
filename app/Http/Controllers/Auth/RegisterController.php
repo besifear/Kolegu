@@ -86,21 +86,5 @@ class RegisterController extends Controller
         ]);
     }
 
-      public function register(Request $request)
-    {
-        $this->validator($request->all())->validate();
-
-        event(new Registered($user = $this->create($request->all())));
-        
-        Mail::to($user->email)->send(new ConfirmationEmail($user));
-
-        return back()->with('status','Ju lutem konfirmoni email-in tuaj.');
-       
-    }
-    public function confirmEmail($token)
-    {
-        User::whereToken($token)->firstOrFail()->hasVerified();
-        return redirect('login')->with('status', 'Jeni konfirmuar,tani mund te kyqeni');
-    }
 
 }
