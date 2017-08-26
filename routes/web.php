@@ -10,9 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Email Confirm Controllers
+Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
+//End of confrim email controllers
 //Home Controllers
-
 Route::get('/', 'QuestionController@index');
 
 Auth::routes();
@@ -125,3 +126,6 @@ Route::get('/upload',function(){
 		return view('pages.upload');
 	});
 //END TEST
+
+
+
