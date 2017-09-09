@@ -24,7 +24,7 @@ class SocialController extends Controller
 
         if (empty($providerKey)) {
 
-            return view('pages.status')
+            return view('auth.login')
                 ->with('error','No such provider');
 
         }

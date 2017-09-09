@@ -6,7 +6,7 @@
 @if ($level == 'error')
 # Whoops!
 @else
-# Hello!
+# Përshëndetje!
 @endif
 @endif
 
@@ -51,8 +51,7 @@ Regards,<br>{{ config('app.name') }}
 {{-- Subcopy --}}
 @isset($actionText)
 @component('mail::subcopy')
-If you’re having trouble clicking the "{{ $actionText }}" button, copy and paste the URL below
-into your web browser: [{{ $actionUrl }}]({{ $actionUrl }})
+Nëse hasni në probleme duke klikuar butonin "Rivendos Fjalëkalimin" , atëherë kopjoni dhe vendosni URL-në më poshtë në web-shfletuesin tuaj  [{{ $actionUrl }}]({{ $actionUrl }})
 @endcomponent
 @endisset
 @endcomponent
