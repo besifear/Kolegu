@@ -9,11 +9,12 @@
   
   @section('content')
 
-      @if(!$userCategories->isEmpty())
+      
           <hr>
           <div class="row">
-              <h1>Selected Categories:</h1>
+              <h1>Kategoritë e zgjedhura: </h1>
                 <div id="selected-categories-list">
+                @if(!$userCategories->isEmpty())
               @foreach($userCategories as $userCategory)
                   <div id = "category-{{$userCategory->category->id}}" class="col-xs-6 col-md-3">
                       <a  class="thumbnail">
@@ -25,12 +26,13 @@
                       </a>
                   </div>
               @endforeach
+              @endif
                 </div>
           </div>
-      @endif
+      
 
   <div class="row">
-    <h1>Available Categories:</h1>
+    <h1>Kategoritë e pazgjedhura:</h1>
       <div id="available-categories-list">
         @foreach($categories as $category)
             <div id = "category-{{$category->id}}" class="col-xs-6 col-md-3">
