@@ -5,26 +5,29 @@
     @yield('styles') 
   </head>
   <body>
-  <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+    <div id = "app"> 
+      <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
 
-    <!-- Default Bootstrap Navbar -->
-    @include('partials._nav')
+        <!-- Default Bootstrap Navbar -->
+        @include('partials._nav')
 
-    <div class="page-content">
+        <div class="page-content">
 
-	@include('partials.searchmodal')
+      	@include('partials.searchmodal')
 
-    @include('partials._messages')
+        @include('partials._messages')
 
-    @yield('content')
+        @yield('content')
 
-    @include('partials._footer')
+        @include('partials._footer')
 
-    </div> <!-- end of .page-content -->
+        </div> <!-- end of .page-content -->
 
+    </div>
+    <!-- Sherben per vuejs -->
+    @include('footer')
 
     @include('partials._javascript')
-
     @yield('scripts')
 
   </body>

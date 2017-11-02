@@ -46,7 +46,8 @@ $factory->define(App\Question::class, function (Faker\Generator $faker){
 $factory->define(App\Category::class, function (Faker\Generator $faker){
     return [
         'name' => $faker->company,
-        'description' => substr($faker->paragraphs(1, true), 0 , 20)
+        'description' => substr($faker->paragraphs(1, true), 0 , 20),
+        'parent_id' => $faker->boolean(80) ? null : $faker->numberBetween(1, Category::all()->count()) 
     ];
 });
 

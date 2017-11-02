@@ -12,7 +12,7 @@
 
   	<div class="row">
   		<div class="col-md-8 col-md-offset-2">
-  		<h1>Krijo Kategori të re</h1>
+  		<h1>Krijo Etikete të re</h1>
   		<hr>
   		{!! Form::open(array('route' => 'categories.store','data-parsley-validate'=>'')) !!}
 
@@ -22,13 +22,22 @@
         'required'=>'',
         'maxlength'=>'50',
         'data-parsley-maxlength' => '50',
-        'data-parsley-minlength' => '5',
+        'data-parsley-minlength' => '2',
         'data-parsley-required-message' => 'Titulli nuk mund të jetë e zbrazët',
         'data-parsley-maxlength-message' => 'Titulli mund të ketë më së shumti 50 karaktera',
         'data-parsley-minlength-message' => 'Titulli nuk mund të përmbajë më pak se 5 karakte ra',
         'data-parsley-trigger' => 'change focusout',
  
       ))}}
+
+
+        {{ Form::label('categoryparent','Kategoria Prind:')}}
+          <select name="category_id" class="form-control" >
+          @foreach($categories as $category)
+          
+            <option value="{{$category->id}}">{{$category->name}}</option>
+          @endforeach
+          </select>
 
 		    {{ Form::label('description','Përshkrimi:')}}
 		    {{ Form::textarea('description',null,array(
@@ -44,7 +53,8 @@
   
         ))}}
 
-		    {{ Form::submit('Krijo Kategorinë',array('class' => 'btn btn-primary btn-lg btn-block','style' => 'margin-top : 20px' ))}}
+
+		    {{ Form::submit('Krijo Etiketën',array('class' => 'btn btn-primary btn-lg btn-block','style' => 'margin-top : 20px' ))}}
 		{!! Form::close() !!}
   		</div>
   	</div>

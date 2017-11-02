@@ -2,18 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\BusinessLogic\Interfaces\CategoryInterface;
+
+use JavaScript;
+
 use Illuminate\Http\Request;
 
-use App\Category;
-
 use App\SelectedCategory;
+
+use App\Category;
 
 use Session;
 
 use Auth;
 
+
 class CategoryController extends Controller
 {
+  
+    public $categoryInterface;
+
+    public function __construct(CategoryInterface $categoryRepository){
+        $this->middleware('auth', ['except' => ['index', 'show', 'filter']]);
+        $this->categoryInterface = $categoryRepository; 
+    }
+
+
    /**
      * Display a listing of the resource.
      *
@@ -46,6 +60,17 @@ class CategoryController extends Controller
         return view('categories.create');
     }
 
+    public function createTag(){
+        if(auth::guest())
+            return view('auth.login');
+        if(!auth::user()->role=='Admin')
+            return redirect('/');
+
+        $categories = $this->categoryInterface->all();
+
+        return view( 'categories.create-tag')->withCategories($categories);        
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -71,8 +96,8 @@ class CategoryController extends Controller
 
         $category->name = $request->name;
         $category->description = $request->description;
+        $category->parent_id = $request->category_id; 
         
-
         //Category::create([$category]);
 
         $category->save();
@@ -137,11 +162,31 @@ class CategoryController extends Controller
         )->get(['categories.id','name','description']);
 
         //qetu kthehen arrayi prej databazes per kategorite qe i ka zgjedh useri.
-        $userCategories=SelectedCategory::where('user_id','=',Auth::user()->id)->get();
+        $userCategories=Category::whereIN(
+            'id', SelectedCategory::where('user_id','=',Auth::user()->id)->pluck('id')
+        )->get();
+        //$userCategories=SelectedCategory::where('user_id','=',Auth::user()->id)->get();
+
+
+            JavaScript::put( compact('categories', 'userCategories' ) );
 
             return view ('categories.categoriesuser')->with(
                 array('categories'=>$categories,'userCategories'=>$userCategories));
-        }
+    }
+
+    public function getUserCategories(){
+            //qetu kthehen arrayi prej databazes per kategorite qe i ka zgjedh useri.
+            $selectedCategories=Category::whereIN(
+                'id', SelectedCategory::where('user_id','=',Auth::user()->id)->pluck('category_id')
+            )->get();
+
+            $remainingCategories=Category::distinct()->whereNotIn('categories.id',
+                Category::join('selectedcategories','category_id','=','categories.id')->distinct()
+                ->where('user_id','=',Auth::user()->id)->get(['categories.id'])
+            )->get(['categories.id','name','description']);
+
+            return compact('selectedCategories', 'remainingCategories');        
+    }    
 
         /*
           Metoda selectCategory nqs nuk e ka t'zgjedht qet kategori shkon ja shton te selected categories
@@ -153,7 +198,6 @@ class CategoryController extends Controller
                 ['category_id', $category_id],
                 ['user_id',Auth::user()->id]
             ])->first();
-
         //e kqyr a o null
         if($selectedCategory==null){
 

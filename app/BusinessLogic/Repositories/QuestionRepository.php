@@ -46,4 +46,8 @@ class QuestionRepository implements QuestionInterface{
     public function where($column,$operator=null,$value=null,$boolean='and'){
         return Question::where($column,$operator,$value,$boolean);
     }
+
+    public function getNthQuestion( $nthQuestion ){
+        return Question::where('user_id', Auth::id() )->orderBy( 'id','desc' )->skip( $nthQuestion - 1 )->first();
+    }
 }

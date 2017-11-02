@@ -14,6 +14,6 @@
 
     {{Html::style('css/styles.css')}}
     {!! Html::style('css/parsley.css')!!}
-    <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
     @yield('stylesheets')

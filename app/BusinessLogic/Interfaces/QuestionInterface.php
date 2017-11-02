@@ -19,4 +19,7 @@ interface QuestionInterface{
     public function update($id, $attributes);
 
     public function where($column,$operator,$value,$boolean);
+
+    public function getNthQuestion( $nthQuestion );
+
 }

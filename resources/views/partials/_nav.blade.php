@@ -100,6 +100,7 @@
           <li><a href="/achievements">Arritjet <span class="fa fa-trophy pull-right"></span></a></li>
           @if(Auth::user()->role === 'Admin')
           <li><a href="/categories/create">Krijo Kategori</a></li>
+          <li><a href="/createtag">Krijo Etikete</a></li>
           <li><a href="/achievements/create">Krijo Arritje</a></li>
           @endif
           <li><a href="#">Kushtet <span class="fa fa-newspaper-o pull-right"></span></a></li>
