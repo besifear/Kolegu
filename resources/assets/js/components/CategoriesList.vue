@@ -3,11 +3,10 @@
       <div v-show = "notEmpty(selectedCategories)">
             <div class="row">
                 <h1>Selected Categories:</h1>
-                <div id="selected-categories-list">
-                    <category-item v-for=" category in selectedCategories "
-                    v-bind:key="category.id" v-bind:category= "category">
-                        <div v-on:click="degradeCategory(category)"  class="btn btn-primary btn-block
-                        open-modal moving-category selected-category" >{{category.name}}</div>
+                <div>
+                    <category-item v-for="category in selectedCategories" v-bind:key="category.id" 
+                	v-on:move-category="degradeCategory( category )">
+                       	{{category.name}} 
                     </category-item>
                 </div>
             </div>
@@ -18,11 +17,10 @@
       <div v-show = "notEmpty(remainingCategories)">
         <div class="row">
           <h1>Available Categories:</h1>
-            <div id="available-categories-list">
-                <category-item v-for=" category in remainingCategories "
-                v-bind:key="category.id" v-bind:category= "category">
-                    <div v-on:click="promoteCategory(category)" class="btn btn-primary btn-block
-                    open-modal moving-category selected-category" >   {{category.name}}</div>
+            <div id>
+                <category-item v-for=" category in remainingCategories " v-bind:key="category.id" 
+            	v-on:move-category="promoteCategory( category )">
+                    {{category.name}}
                 </category-item>
             </div>
         </div>
@@ -36,7 +34,8 @@
         data: function() {
             return{
                 selectedCategories: [], 
-                remainingCategories: []
+                remainingCategories: [],
+                bussyCategories: []
             }
         },
         methods: {
@@ -44,19 +43,29 @@
                 return categories.length != 0;
             },
             promoteCategory( category ){
-                this.promoteOrDegradeCategoryAjaxRequest( category.id );
-                this.remainingCategories.splice( this.remainingCategories.indexOf( category ) , 1  );
-                this.selectedCategories.push( category );
+
+               	if ( this.categoryIsFree( category.id ) ){ 
+	               	this.bussyCategories.push( category.id ); 
+	                this.promoteOrDegradeCategoryAjaxRequest( category.id );
+	                this.remainingCategories.splice( this.remainingCategories.indexOf( category ) , 1  );
+	                this.selectedCategories.push( category ); 
+                }
             },
             degradeCategory( category ){
-                this.promoteOrDegradeCategoryAjaxRequest( category.id );
-                this.selectedCategories.splice( this.selectedCategories.indexOf( category ) , 1  );
-                this.remainingCategories.push( category );
+               	if ( this.categoryIsFree( category.id ) ){ 
+	               	this.bussyCategories.push( category.id ); 
+	                this.promoteOrDegradeCategoryAjaxRequest( category.id );
+	                this.selectedCategories.splice( this.selectedCategories.indexOf( category ) , 1  );
+	                this.remainingCategories.push( category );
+           		} 
+            },
+            categoryIsFree( category ){
+            	return this.bussyCategories.indexOf( category ) == -1;
             },
             promoteOrDegradeCategoryAjaxRequest(categoryId){
-                var csrfToken = $("[name='_token']").first().val();
+               	var csrfToken = $("[name='_token']").first().val();
                 var url = '/Kategorite/'+categoryId;
-
+               	var component = this; 
                 $.ajax({
                     type: "POST",
                     url: url,
@@ -64,6 +73,7 @@
                         "_token": csrfToken
                     },
                     success: function (data) {
+                    	component.bussyCategories.splice( component.bussyCategories.indexOf( categoryId ), 1 );
                     },
                     error: function (ts) {
                         alert(ts.responseText);

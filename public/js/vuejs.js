@@ -131,6 +131,8 @@ module.exports = function normalizeComponent (
 
 window.Vue = __webpack_require__(8);
 
+window.Event = new Vue({});
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -190,14 +192,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             selectedCategories: [],
-            remainingCategories: []
+            remainingCategories: [],
+            bussyCategories: []
         };
     },
     methods: {
@@ -205,26 +206,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return categories.length != 0;
         },
         promoteCategory: function promoteCategory(category) {
-            this.promoteOrDegradeCategoryAjaxRequest(category.id);
-            this.remainingCategories.splice(this.remainingCategories.indexOf(category), 1);
-            this.selectedCategories.push(category);
+
+            if (this.categoryIsFree(category.id)) {
+                this.bussyCategories.push(category.id);
+                this.promoteOrDegradeCategoryAjaxRequest(category.id);
+                this.remainingCategories.splice(this.remainingCategories.indexOf(category), 1);
+                this.selectedCategories.push(category);
+            }
         },
         degradeCategory: function degradeCategory(category) {
-            this.promoteOrDegradeCategoryAjaxRequest(category.id);
-            this.selectedCategories.splice(this.selectedCategories.indexOf(category), 1);
-            this.remainingCategories.push(category);
+            if (this.categoryIsFree(category.id)) {
+                this.bussyCategories.push(category.id);
+                this.promoteOrDegradeCategoryAjaxRequest(category.id);
+                this.selectedCategories.splice(this.selectedCategories.indexOf(category), 1);
+                this.remainingCategories.push(category);
+            }
+        },
+        categoryIsFree: function categoryIsFree(category) {
+            return this.bussyCategories.indexOf(category) == -1;
         },
         promoteOrDegradeCategoryAjaxRequest: function promoteOrDegradeCategoryAjaxRequest(categoryId) {
             var csrfToken = $("[name='_token']").first().val();
             var url = '/Kategorite/' + categoryId;
-
+            var component = this;
             $.ajax({
                 type: "POST",
                 url: url,
                 data: {
                     "_token": csrfToken
                 },
-                success: function success(data) {},
+                success: function success(data) {
+                    component.bussyCategories.splice(component.bussyCategories.indexOf(categoryId), 1);
+                },
                 error: function error(ts) {
                     alert(ts.responseText);
                 }
@@ -336,7 +349,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col-xs-6 col-md-3"
   }, [_c('a', {
     staticClass: "thumbnail"
-  }, [_vm._t("default")], 2)])
+  }, [_c('div', {
+    staticClass: "btn btn-primary btn-block open-modal",
+    on: {
+      "click": function($event) {
+        _vm.$emit('move-category')
+      }
+    }
+  }, [_vm._t("default")], 2)])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -362,24 +382,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }]
   }, [_c('div', {
     staticClass: "row"
-  }, [_c('h1', [_vm._v("Selected Categories:")]), _vm._v(" "), _c('div', {
-    attrs: {
-      "id": "selected-categories-list"
-    }
-  }, _vm._l((_vm.selectedCategories), function(category) {
+  }, [_c('h1', [_vm._v("Selected Categories:")]), _vm._v(" "), _c('div', _vm._l((_vm.selectedCategories), function(category) {
     return _c('category-item', {
       key: category.id,
-      attrs: {
-        "category": category
-      }
-    }, [_c('div', {
-      staticClass: "btn btn-primary btn-block\n                    open-modal moving-category selected-category",
       on: {
-        "click": function($event) {
+        "move-category": function($event) {
           _vm.degradeCategory(category)
         }
       }
-    }, [_vm._v(_vm._s(category.name))])])
+    }, [_vm._v("\n                   \t" + _vm._s(category.name) + " \n                ")])
   }))])]), _vm._v(" "), _c('hr', {
     directives: [{
       name: "show",
@@ -398,22 +409,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row"
   }, [_c('h1', [_vm._v("Available Categories:")]), _vm._v(" "), _c('div', {
     attrs: {
-      "id": "available-categories-list"
+      "id": ""
     }
   }, _vm._l((_vm.remainingCategories), function(category) {
     return _c('category-item', {
       key: category.id,
-      attrs: {
-        "category": category
-      }
-    }, [_c('div', {
-      staticClass: "btn btn-primary btn-block\n                open-modal moving-category selected-category",
       on: {
-        "click": function($event) {
+        "move-category": function($event) {
           _vm.promoteCategory(category)
         }
       }
-    }, [_vm._v("   " + _vm._s(category.name))])])
+    }, [_vm._v("\n                " + _vm._s(category.name) + "\n            ")])
   }))])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
