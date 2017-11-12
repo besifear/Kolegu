@@ -13,8 +13,6 @@
 
         <div class="page-content">
 
-      	@include('partials.searchmodal')
-
         @include('partials._messages')
 
         @yield('content')
@@ -24,8 +22,6 @@
         </div> <!-- end of .page-content -->
 
     </div>
-    <!-- Sherben per vuejs -->
-    @include('footer')
 
     @include('partials._javascript')
     @yield('scripts')

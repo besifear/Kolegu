@@ -13,7 +13,6 @@
     <script src="{{URL::asset('js/custom.js')}}"></script>
     <script src="{{URL::asset('js/fontawesome.js')}}"></script>
     <!-- <script src="https://use.fontawesome.com/62b05711ad.js"></script> -->
-    <script src = "{{asset('js/search-questions-resources-ajax.js')}}"></script>
 
     <!-- The order of the parsley js files must remain like this,
      otherwise the user configuration would be overwritten by default -->

@@ -20,7 +20,7 @@
 
     <a class="navbar-brand" href="/"><img src="/images/tregomlogo.png" alt="logo" height="20px"></a>
 
-    @include('partials.search')
+    <search indexname = "questions"></search>
 
   </div>
 
