@@ -3,14 +3,15 @@
 namespace App;
 
 use Auth;
+use Carbon\Carbon;
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Carbon\Carbon;
 
 class Question extends Model
 {
 
-    use SoftDeletes;
+    use SoftDeletes, Searchable;
 
     protected $appends = [
         'diff_for_humans',

@@ -138,8 +138,6 @@ xdebug.show_local_vars = o running in. This may determine how you prefer to conf
     */
 
     'providers' => [
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-        Laravel\Tinker\TinkerServiceProvider::class,
         /*
          * Laravel Framework Service Providers...
          */
@@ -165,16 +163,18 @@ xdebug.show_local_vars = o running in. This may determine how you prefer to conf
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        /*
+         * Package Service Providers...
+         */
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         AlbertCht\InvisibleReCaptcha\InvisibleReCaptchaServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        /*
-         * Package Service Providers...
-         */
-
+        Laravel\Scout\ScoutServiceProvider::class,
         //
 
         /*

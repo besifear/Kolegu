@@ -5,12 +5,13 @@ namespace App;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Scout\Searchable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use Notifiable,SoftDeletes;
+    use Notifiable,SoftDeletes, Searchable;
 
     /**
      * The attributes that are mass assignable.
