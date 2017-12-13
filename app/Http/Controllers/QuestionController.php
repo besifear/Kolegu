@@ -67,8 +67,14 @@ class QuestionController extends Controller
      */
     public function create()
     {
+        if ( isset( $_GET['t'] ) ){
+            $title = $_GET['t'];
+        }else{
+            $title = "";
+        }
+
         $categories = $this->questionService->categoryInterface->all();
-        return view('questions.create', compact('categories'));
+        return view('questions.create', compact('categories', 'title'));
     }
 
     public function store(StoreQuestionRequest $request)
