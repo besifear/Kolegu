@@ -30,7 +30,7 @@
 			      displayKey: 'title',
 			      templates: {
 			        suggestion: function(suggestion) {
-						return `<article>
+						return `<article class="search-result-item">
 									<p> ` +suggestion._highlightResult.title.value + `</p>	
 								</article> `;
 			        }

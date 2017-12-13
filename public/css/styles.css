@@ -11,11 +11,6 @@ button {
     outline: none;
 }
 
-em{
-  background-color: yellow;
-  font-style: normal;
-}
-
 .page-content > .row {
   width: 90%;
   margin: auto;
@@ -713,12 +708,13 @@ body {
 .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
   cursor: pointer;
   padding: 5px 4px;
+  font-weight: bold;
 }
 .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
   background-color: #B2D7FF;
 }
 .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
-  font-weight: bold;
+  font-weight: normal;
   font-style: normal;
 }
 
