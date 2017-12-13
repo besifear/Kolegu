@@ -1,8 +1,8 @@
 <template>
 	<div class="col-md-9 col-sm-8 col-xs-6" id="search">
 	          <div class="input-group">
-	              <input v-model="query" v-on:keyup="search" debounce="500" id = "search-input" class="form-control"  
-	              autocomplete="off" type="text" placeholder="Kërko" name="word">
+	              <input id = "search-input" v-model="query" class="form-control"autocomplete="off"
+	               type="text" placeholder="Kërko" name="word">
 	              <div class="input-group-btn">
 	                  <button style="height: 34px;" class="btn btn-default" type="submit">
 	                  	<i class="glyphicon glyphicon-search"></i>
@@ -48,8 +48,24 @@
 				return this.items.length
 			}
 		},
-		created(){
+		mounted(){
 	       	this.index = window.search.initIndex(this.indexname);
+	       		var autocomplete = require('autocomplete.js');
+	       	  	autocomplete('#search-input', { hint: false }, [
+			    {
+			      source: autocomplete.sources.hits( this.index, { hitsPerPage: 5 }),
+			      displayKey: 'title',
+			      templates: {
+			        suggestion: function(suggestion) {
+						return `<article>
+									<p> ` +suggestion._highlightResult.title.value + `</p>	
+								</article> `;
+			        }
+			      }
+			    }
+			  ]).on('autocomplete:selected', function(event, suggestion, dataset) {
+			    window.location="/questions/"+ suggestion.id;
+			  });
 		}
 	}
 </script>

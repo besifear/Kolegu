@@ -4,6 +4,8 @@ window.Vue = require('vue');
 
 window.Event = new Vue({});
 
+window.autcomplete = require('autocomplete.js');
+
 var algoliasearch = require('algoliasearch'); 
 
 window.search = algoliasearch("969BNCLV39", "875bae542d6515d93af2367a758cfefd");
@@ -16,8 +18,6 @@ window.search = algoliasearch("969BNCLV39", "875bae542d6515d93af2367a758cfefd");
 
 // Vue.component('example', require('./components/Example.vue'));
 Vue.component('search', require('./components/Search.vue'));
-
-Vue.component('search-result-item', require('./components/SearchResultItem.vue'))
 
 Vue.component('categories-list', require('./components/CategoriesList.vue'));
 
