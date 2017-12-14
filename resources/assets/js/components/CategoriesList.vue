@@ -2,7 +2,7 @@
     <div class= "row">
       <div v-show = "notEmpty(selectedCategories)">
             <div class="row">
-                <h1>Selected Categories:</h1>
+                <h1>Kategorite e Zgjedhura:</h1>
                 <div>
                     <category-item v-for="category in selectedCategories" v-bind:key="category.id" 
                 	v-on:move-category="degradeCategory( category )">
@@ -14,9 +14,9 @@
 
       <hr v-show = "notEmpty( selectedCategories )" />
 
-      <div v-show = "notEmpty(remainingCategories)">
+      <div v-show = "notEmpty( remainingCategories )">
         <div class="row">
-          <h1>Available Categories:</h1>
+          <h1>Kategorite e Ofruara:</h1>
             <div id>
                 <category-item v-for=" category in remainingCategories " v-bind:key="category.id" 
             	v-on:move-category="promoteCategory( category )">
@@ -25,8 +25,13 @@
             </div>
         </div>
       </div>
-
-        </div>
+        
+        <hr v-show=" this.selectedCategories.length >= 5"/> 
+        <a href="/" v-show=" this.selectedCategories.length >= 5 " class="btn btn-danger col-xs-12 col-md-12">
+            Mjaft Zgjodha! Dua Te Vazhdoj.
+        </a>
+        
+    </div>
 </template>
 
 <script>
@@ -57,7 +62,7 @@
 	                this.promoteOrDegradeCategoryAjaxRequest( category.id );
 	                this.selectedCategories.splice( this.selectedCategories.indexOf( category ) , 1  );
 	                this.remainingCategories.push( category );
-           		} 
+                } 
             },
             categoryIsFree( category ){
             	return this.bussyCategories.indexOf( category ) == -1;
