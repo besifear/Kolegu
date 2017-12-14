@@ -20,14 +20,14 @@
 
     <a class="navbar-brand" href="/"><img src="/images/tregomlogo.png" alt="logo" height="20px"></a>
 
-    @include('partials.search')
+    <search indexname = "questions"></search>
 
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse col-sm-4 col-xs-12 pull-right" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
-        <li class="{{current_page('create') ? 'altactive' : '' }}"><a href="/questions/create"><b class="glyphicon glyphicon-send navIcons"></b> &nbsp;<span class="navButtonText">Pyet</span></a></li>
+        <li class="{{current_page('questions/create') ? 'altactive' : '' }}"><a href="/questions/create"><b class="glyphicon glyphicon-send navIcons"></b> &nbsp;<span class="navButtonText">Pyet</span></a></li>
         <li class="{{current_page('asd') ? 'altactive' : '' }}"><a href="/"><b class="glyphicon glyphicon-comment navIcons"></b> &nbsp;<span class="navButtonText">Përgjigju</span></a></li>
 
 
@@ -50,9 +50,13 @@
                     <li>
                         <a href="#" data-toggle="modal" data-target="#suggestionModal">Dërgo Sugjerim</a>
                     </li>
-                            <li>
-                                <a href="{{ route('suggestions.index') }}">Shiko Sugjerimet</a>
-                            </li>
+                    <li>
+                        <a href="{{ route('suggestions.index') }}">Shiko Sugjerimet</a>
+                    </li>
+                    <li>
+                        <a href="/password.reset">Rivendos Fjalëkalimin</a>
+                    </li>
+
                 </ul>
             </li>
 
@@ -96,6 +100,7 @@
           <li><a href="/achievements">Arritjet <span class="fa fa-trophy pull-right"></span></a></li>
           @if(Auth::user()->role === 'Admin')
           <li><a href="/categories/create">Krijo Kategori</a></li>
+          <li><a href="/createtag">Krijo Etikete</a></li>
           <li><a href="/achievements/create">Krijo Arritje</a></li>
           @endif
           <li><a href="#">Kushtet <span class="fa fa-newspaper-o pull-right"></span></a></li>
@@ -116,4 +121,3 @@
 
   </div>
 </nav>
-<div id="main-nav-bar-filler"></div>

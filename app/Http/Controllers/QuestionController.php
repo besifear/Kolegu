@@ -12,7 +12,7 @@ use App\Achievement;
 use App\UserAchievement;
 use App\Http\Controllers\Redirect;
 use Illuminate\Http\Request;
-use App\Service\QuestionService;
+use App\Services\QuestionService;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Http\Requests\DeleteQuestionRequest;
 use App\Http\Controllers\Traits\RewardsAchievements;

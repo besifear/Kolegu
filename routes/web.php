@@ -17,6 +17,13 @@ Route::get('/', 'QuestionController@index');
 
 Auth::routes();
 
+$s = 'social.';
+Route::get('/social/redirect/{provider}',   ['as' => $s . 'redirect',   'uses' => 'SocialController@getSocialRedirect']);
+Route::get('/social/handle/{provider}',     ['as' => $s . 'handle',     'uses' => 'SocialController@getSocialHandle']);
+
+
+Route::get('/redirect', 'SocialAuthFacebookController@redirect');
+Route::get('/callback', 'SocialAuthFacebookController@callback');
 
 Route::get('/home', 'QuestionController@index');
 //End Home Controllers
@@ -36,6 +43,8 @@ Route::get('/orderresources/{orderBy}','ResourceController@filter',compact('orde
 
 Route::resource('posts','PostController');
 
+Route::post('getUserCategories','CategoryController@getUserCategories');
+Route::get('createtag','CategoryController@createTag');
 Route::resource('categories','CategoryController');
 
 Route::resource('questionsev','QuestionEvaluationController');

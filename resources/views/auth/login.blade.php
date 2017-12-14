@@ -2,6 +2,10 @@
 
 @section('title',' | Login')
 
+@section('styles')
+    <link href="/css/signin.css" rel="stylesheet">
+@stop
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -19,7 +23,7 @@
                             'data-parsley-validate',
                     ]) !!}
                         <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                            <label for="username" class="col-md-4 control-label">Username</label>
+                            <label for="username" class="col-md-4 control-label">Username ose email :</label>
 
                             <div class="col-md-6">
 
@@ -31,7 +35,6 @@
                                 'value'                         => "{{old('username')}}",
                                 'data-parsley-required-message' => 'Username-i është obligativ',
                                 'data-parsley-trigger'          => 'change focusout',
-                                'data-parsley-type'             => 'alphanum',
                                 'data-parsley-minlength'        => '5',
                                 'data-parsley-maxlength'        => '50',
                                 'data-parsley-minlength-message'=> "Username-i duhet të përmbajë së paku 5 karaktera",
@@ -47,7 +50,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                            <label for="password" class="col-md-4 control-label">Fjalëkalimi :</label>
 
                             <div class="col-md-6">
                                     {!! Form::password('password', [
@@ -58,10 +61,9 @@
                                     'data-parsley-required-message' => 'Ke bërë gabim në password',
                                     'data-parsley-trigger'          => 'change focusout',
                                     'data-parsley-minlength'        => '6',
-                                    'data-parsley-maxlength'        => '50',
+                                    'data-parsley-maxlength'        => '500',
                                     'data-parsley-minlength-message'=> "Password-i duhet të përmbajë së paku 6 karaktera",
-                                    'data-parsley-maxlength-message'=> "Password-i duhet të përmbajë më së shumti 50 karaktera",
-                                    'data-parsley-type'             => 'alphanum'
+                                    'data-parsley-maxlength-message'=> "Password-i duhet të përmbajë më së shumti 500 karaktera"
                                 ]) !!}
 
                                 @if ($errors->has('password'))
@@ -83,20 +85,23 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="col-md-8 col-md-offset-2">
+                            <div class="col-md-6 col-sm-6 col-xs-6 col-md-offset-3">
+                                <button type="submit" class="btn btn-lg btn-primary btn-block login-btn">
                                     Kyçu
                                 </button>
+                            </div>
 
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">
                                     Ke harruar passwordin?
                                 </a>
                             </div>
                         </div>
+                        @include('partials.socials')
                     {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
+@stop

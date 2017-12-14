@@ -57,7 +57,7 @@ class UserController extends Controller
         Mail::send('questions/indexanswered', ['user' => $user], function ($m) use ($user) {
             $m->from('edonzi@outlook.com', 'Your Application');
 
-            $m->to($user->email, $user->name)->subject('Po bojka o baaab!');
+        $m->to($user->email, $user->name)->subject('Po bojka o baaab!');
         });
     }
 
@@ -74,7 +74,8 @@ class UserController extends Controller
         $answers = \App\Answer::where('user_id','=',$user->id)->paginate(5);
         $resources = \App\Resource::where('user_id','=',$user->id)->paginate(5);
         $achievements = \App\Achievement::all();
-        return view ('profiles.show',compact('user','questions','answers', 'resources','achievements'));
+        $selectedcategories = \App\SelectedCategory::where('user_id','=',$user->id)->get();
+        return view ('profiles.show',compact('user','questions','answers', 'resources','achievements','selectedcategories'));
     }
 
     /**
@@ -146,6 +147,7 @@ class UserController extends Controller
         $answers = \App\Answer::where('user_id','=',$user->id)->paginate(5);
         $resources = \App\Resource::where('user_id','=',$user->id)->paginate(5);
         $achievements = \App\Achievement::all();
-        return view ('profiles.show',compact('user','questions','answers', 'resources','achievements'));
+        $selectedcategories = \App\SelectedCategory::where('user_id','=',$user->id)->get();
+        return view ('profiles.show',compact('user','questions','answers', 'resources','achievements','selectedcategories'));
     }
 }

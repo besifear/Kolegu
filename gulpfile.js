@@ -1,6 +1,6 @@
 const elixir = require('laravel-elixir');
 
-require('laravel-elixir-webpack-react');
+require('laravel-elixir-vue');
 
 /*
  |--------------------------------------------------------------------------

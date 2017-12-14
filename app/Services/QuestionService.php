@@ -1,13 +1,21 @@
 <?php
 
-namespace App\Service;
+namespace App\Services;
 
-use App\Question;
-use Illuminate\Support\Facades\Auth;
+
 use App\BusinessLogic\Interfaces\QuestionInterface;
 use App\BusinessLogic\Interfaces\CategoryInterface;
+use App\Exceptions\QuestionsExceededException;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use App\Question;
+use DateTimeZone;
 
 class QuestionService{
+
+    const HOURLIMIT = 10;
+    const NTHQUESTION = 10;
+
 
     public $questionInterface;
     public $categoryInterface;
@@ -85,6 +93,36 @@ class QuestionService{
             $attributes['answer_id']=null;
         }
         return $this->questionInterface->update($id,$attributes);
+    }
+
+    public function authorizedToAskQuestion(){
+        return $this->withinQuestionLimit();
+    }
+
+    public function getCurrentTime(){
+        return Carbon::now(new DateTimeZone('Europe/Monaco'));
+    }
+
+    private function withinQuestionLimit(){
+        $question = $this->questionInterface->getNthQuestion( self::NTHQUESTION );
+        if ( $question != null ){
+
+            $nthQuestionCreatedDate = $question->created_at;
+            $allowedTime = $this->getCurrentTime()->subHours( self::HOURLIMIT );
+
+            if ( $nthQuestionCreatedDate->gt($allowedTime) ){
+                $this->raiseQuestionsExceededException($nthQuestionCreatedDate, $allowedTime);
+            }
+        }
+
+        return true;
+    }
+
+    private function raiseQuestionsExceededException( $nthQuestionCreatedDate, $allowedTime ){
+        $hours = $nthQuestionCreatedDate->diffInHours( $allowedTime );
+        $minutes = ( $nthQuestionCreatedDate->diffInMinutes($allowedTime) % 60 );
+        $message = "Keni tejkaluar numrin e pyetjeve te lejuara! Pytjen e radhes mund ta shtroni pas $hours orëve dhe $minutes minutave!";
+        throw new QuestionsExceededException( $message );
     }
 
 }

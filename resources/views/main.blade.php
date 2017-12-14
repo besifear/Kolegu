@@ -2,31 +2,28 @@
 <html lang="en">
   <head>
     @include('partials._head')
-
+    @yield('styles') 
   </head>
   <body>
-    <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+    <div id = "app"> 
+      <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
 
-    <!-- Default Bootstrap Navbar -->
-    @include('partials._nav')
+        <!-- Default Bootstrap Navbar -->
+        @include('partials._nav')
 
-    <div class="page-content">
+        <div class="page-content">
 
-      @include('partials.searchmodal')
+        @include('partials._messages')
 
-      @include('partials._messages')
+        @yield('content')
 
-      @yield('content')
+        @include('partials._footer')
 
-      @include('partials._footer')
-      @include('footer');
+        </div> <!-- end of .page-content -->
 
-      <div id= "example"></div>
-    </div> <!-- end of .page-content -->
-
+    </div>
 
     @include('partials._javascript')
-
     @yield('scripts')
 
   </body>

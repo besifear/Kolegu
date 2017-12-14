@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => 'App',
 
     /*
     |--------------------------------------------------------------------------
@@ -138,8 +138,6 @@ xdebug.show_local_vars = o running in. This may determine how you prefer to conf
     */
 
     'providers' => [
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-        Laravel\Tinker\TinkerServiceProvider::class,
         /*
          * Laravel Framework Service Providers...
          */
@@ -165,16 +163,18 @@ xdebug.show_local_vars = o running in. This may determine how you prefer to conf
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        /*
+         * Package Service Providers...
+         */
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         AlbertCht\InvisibleReCaptcha\InvisibleReCaptchaServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
-
-        /*
-         * Package Service Providers...
-         */
-
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        Laravel\Scout\ScoutServiceProvider::class,
         //
 
         /*
@@ -241,6 +241,7 @@ xdebug.show_local_vars = o running in. This may determine how you prefer to conf
         'Image' => Intervention\Image\Facades\Image::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];

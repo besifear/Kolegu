@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -39,8 +39,32 @@ class LoginController extends Controller
 
     }
 
-    public function username(){
-
-        return 'username';
+    public function field(){
+        if(filter_var(request()->username,FILTER_VALIDATE_EMAIL)){
+            return 'email';
+        }
+        else{
+            return 'username';
+        }
     }
+
+    public function login(){
+        $errors = [$this->username() => trans('auth.failed')];
+        if(Auth::attempt([$this->field() => request()->username , 'password' => request()->password])){
+            return redirect()->intended('/');
+        }
+        else{
+            return redirect()->back()->withErrors($errors);
+        }
+    }
+
+    // public function username(){
+
+    //     return 'username';
+
+    //     // $login = request()->input('login');
+    //     // $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+    //     // request()->merge([$field => $login]);
+    //     // return $field;
+    // }
 }

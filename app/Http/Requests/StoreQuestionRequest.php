@@ -3,9 +3,18 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Services\QuestionService;
 
 class StoreQuestionRequest extends FormRequest
 {
+
+    private $questionService;
+
+    public function __construct(QuestionService $questionService){
+        $this->questionService = $questionService;
+    }
+
+    
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -13,7 +22,7 @@ class StoreQuestionRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->questionService->authorizedToAskQuestion();
     }
 
     /**
