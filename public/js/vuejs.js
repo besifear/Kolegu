@@ -1693,9 +1693,8 @@ module.exports = "0.29.0";
 
 /***/ }),
 /* 25 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
 // require('./bootstrap');
 
 window.Vue = __webpack_require__(71);
@@ -8218,11 +8217,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: {
@@ -8230,30 +8224,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	data: function data() {
 		return {
+			index: {},
 			query: "",
-			items: [],
-			index: {}
+			results: []
 		};
 	},
 
 	methods: {
-		search: function search() {
-			if (this.query.length == 0) {
-				this.items = [];
-			} else {
-				this.index.search(this.query, function (error, results) {
-					this.items = results.hits;
-				}.bind(this));
+		addQuestion: function addQuestion() {
+			if (this.results.length === 0) {
+				window.location = "/questions/create?t=" + this.query;
 			}
 		}
 	},
 	computed: {
-		hasSearchResult: function hasSearchResult() {
-			return this.items.length;
+		searchBarAction: function searchBarAction() {
+			console.log('result.length = ' + this.results.length);
+			console.log('query.length = ' + this.query.length);
+
+			if (this.results.length === 0 && this.query.length > 2) {
+				return "Shtro Pyetjen <i class=\"glyphicon glyphicon-flash\"></i>";
+			} else {
+				return "<i class=\"glyphicon glyphicon-search\"></i>";
+			}
 		}
 	},
-	created: function created() {
+	mounted: function mounted() {
 		this.index = window.search.initIndex(this.indexname);
+		var autocomplete = __webpack_require__(20);
+		autocomplete('#search-input', { hint: false }, [{
+			source: autocomplete.sources.hits(this.index, { hitsPerPage: 5 }),
+			displayKey: 'title',
+			templates: {
+				suggestion: function (suggestion) {
+					this.results.push(suggestion);
+					return "<article class=\"search-result-item\">\n\t\t\t\t\t\t\t\t<p> " + suggestion._highlightResult.title.value + "</p>\t\n\t\t\t\t\t\t\t</article> ";
+				}.bind(this)
+			}
+		}]).on('autocomplete:selected', function (event, suggestion, dataset) {
+			window.location = "/questions/" + suggestion.id;
+		}).on('autocomplete:empty', function () {
+			this.results.splice(0, this.results.length);
+		}.bind(this));
 	}
 });
 
@@ -10724,7 +10736,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
-      "debounce": "500",
       "id": "search-input",
       "autocomplete": "off",
       "type": "text",
@@ -10735,55 +10746,30 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.query)
     },
     on: {
-      "keyup": _vm.search,
+      "keydown": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.addQuestion($event)
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.query = $event.target.value
       }
     }
-  }), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c('div', {
-    attrs: {
-      "id": "livesearchcontainer"
-    }
-  }, [_c('ul', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.hasSearchResult),
-      expression: "hasSearchResult"
-    }],
-    staticClass: "search-result-list",
-    staticStyle: {
-      "list-style": "none"
-    },
-    attrs: {
-      "id": "search-result-list"
-    }
-  }, [_vm._m(1), _vm._v(" "), _vm._l((_vm.items), function(item) {
-    return _c('search-result-item', {
-      key: item.id,
-      attrs: {
-        "item": item
-      }
-    })
-  })], 2)])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  }), _vm._v(" "), _c('div', {
     staticClass: "input-group-btn"
   }, [_c('button', {
     staticClass: "btn btn-default",
     staticStyle: {
       "height": "34px"
     },
-    attrs: {
-      "type": "submit"
+    domProps: {
+      "innerHTML": _vm._s(_vm.searchBarAction)
+    },
+    on: {
+      "click": _vm.addQuestion
     }
-  }, [_c('i', {
-    staticClass: "glyphicon glyphicon-search"
-  })])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('li', [_c('h4', [_vm._v(" Pyetje ")])])
-}]}
+  })])])])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
