@@ -2,7 +2,7 @@
                       <h3 style="margin-bottom: 25px; text-align: left;">Shtro Pyetje</h3>
 
                       {{ Form::label('title','Titulli:')}}
-                      {{ Form::text('title',null,[
+                      {{ Form::text('title', $title ,[
                         'id' => 'title',
                         'required',
                         'class' => 'form-control',
