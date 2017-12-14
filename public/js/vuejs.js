@@ -1254,8 +1254,9 @@ module.exports = function merge(destination/* , sources */) {
 /* 23 */,
 /* 24 */,
 /* 25 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 // require('./bootstrap');
 
 window.Vue = __webpack_require__(71);
