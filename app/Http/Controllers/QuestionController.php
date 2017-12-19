@@ -86,7 +86,7 @@ class QuestionController extends Controller
             'votes' => 0,
             'user_id' => Auth::id()
         ]);
-        $this->checkForQuestionAchievements(Auth::user());
+        $this->checkForAchievements( "Question", Auth::user() );
         session::flash('success', $this->flashMessage);
         return redirect()->route('questions.index');
     }

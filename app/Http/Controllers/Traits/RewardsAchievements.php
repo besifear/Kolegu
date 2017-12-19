@@ -19,19 +19,30 @@ trait RewardsAchievements{
     /**
      * @var string
      */
-    private $flashMessage = 'Pyetja juaj eshte shtruar!';
+    private $flashMessage;
     /**
      * @var App\User
      */
     private $user;
+    private $modelName;
 
     /**
      * Checks for achievements that will be rewarded when asking a question
      */
-    public function checkForQuestionAchievements($user){
+    public function checkForAchievements($modelName, $user){
         $this->user = $user;
-        $this->sumAchievementCheck('Question','Pyetja Pare', 1);
-        $this->sumAchievementCheck('Question','Pyetja Peste', 5);
+        $this->modelName = $modelName;  
+        switch( $this->modelName ){
+            case "Question":
+                $this->flashMessage = 'Pyetja juaj eshte shtruar!';
+                break;
+            case "Answer":
+                $this->flashMessage = 'Pergjigja juaj eshte dhene!';
+                break;
+        }
+        
+        $this->sumAchievementCheck( 1 );
+        $this->sumAchievementCheck( 5 );
     }
 
     /**
@@ -42,10 +53,10 @@ trait RewardsAchievements{
      * [2] Set's the flash message that will be shown to the user
      * [3] Set's in motion the process of rewarding an Achievement
      */
-    public function sumAchievementCheck($model, $achievementName, $sum){
-        $this->achievement = Achievement::findByName($achievementName);
+    public function sumAchievementCheck( $sum ){
+        $this->achievement = Achievement::findByIdentifier("{$this->modelName}{$sum}");
         //[1]
-        if($this->user->numberOf($model) == $sum && $this->notAchieved($this->achievement))
+        if($this->user->numberOf( $this->modelName ) == $sum && $this->notAchieved($this->achievement))
         {
             //[2]
             $this->setFlashMessage();

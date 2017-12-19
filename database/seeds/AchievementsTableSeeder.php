@@ -12,33 +12,34 @@ class AchievementsTableSeeder extends Seeder
     public function run()
     {
         DB::table('achievements')->insert(
-            $this->tableArray('Pyetja Pare', 'Ke shtruar pytjen e pare ne TregomShqiip!', 'bronze.png',
+            $this->tableArray('Question1','Pyetja Pare', 'Ke shtruar pytjen e pare ne TregomShqip!', 'bronze.png',
                 10, 'easy')
         );
 
         DB::table('achievements')->insert(
-            $this->tableArray('Pergjigjja Pare','Ke dhene pergjigjjen e pare ne TregomShqiip!', 'bronze.png',
+            $this->tableArray('Answer1','Pergjigjja Pare','Ke dhene pergjigjjen e pare ne TregomShqip!', 'bronze.png',
                 10, 'easy')
         );
 
         DB::table('achievements')->insert(
-            $this->tableArray('Pyetja Peste','Ke shtruar pese pyetje ne TregomShqiip!', 'silver.png',
+            $this->tableArray('Question5','Pyetja Peste','Ke shtruar pese pyetje ne TregomShqip!', 'silver.png',
                 25, 'medium')
         );
 
         DB::table('achievements')->insert(
-            $this->tableArray('Pergjigjja Peste','Ke dhene pese pergjigjje ne TregomShqiip!', 'silver.png',
+            $this->tableArray('Answer5','Pergjigjja Peste','Ke dhene pese pergjigjje ne TregomShqip!', 'silver.png',
             25, 'medium')
         );
     }
 
-    public function tableArray($name, $description, $icon, $reputationAward, $difficulty){
+    public function tableArray( $identifier, $name, $description, $icon, $reputationAward, $difficulty){
         return [
-            'name' => $name,
-           'description' => $description,
-           'icon' => $icon,
+           'identifier'      => $identifier,
+           'name'            => $name,
+           'description'     => $description,
+           'icon'            => $icon,
            'reputationaward' => $reputationAward,
-           'difficulty' => $difficulty,
+           'difficulty'      => $difficulty,
         ];
     }
 }

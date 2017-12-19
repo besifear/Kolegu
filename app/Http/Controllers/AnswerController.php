@@ -5,14 +5,31 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Answer;
 
-use Session;
 use Auth;
+use Session;
 use Redirect;
 use App\Achievement;
 use App\UserAchievement;
+use App\Services\AnswerService;
+use App\Http\Requests\StoreAnswerRequest;
+use App\Http\Controllers\Traits\RewardsAchievements;
 
 class AnswerController extends Controller
 {
+    use RewardsAchievements;
+
+    private $answerService;
+
+    /**
+     *  AnswerController manages are requests that are made to manipulate with the Answer model. 
+     * 
+     * @param AnswerService | AnswerService holds all the BusinessLogic for the Answer model.
+     */
+    public function __construct( AnswerService $answerService ){
+        $this->answerService = $answerService; 
+        $this->middleware( 'auth' ); 
+    }    
+
     /**
      * Display a listing of the resource.
      *
@@ -39,65 +56,17 @@ class AnswerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAnswerRequest $request)
     {
-        if (auth::guest())
-            return view('auth.login');
-        //validate data
-        $this->validate($request, array(
 
-            'content' => 'required | max:500| unique:answers'
-        ));
-
-        //save to database
-
-        $answer = new Answer;
-
-        $answer->content = $request->content;
-        $answer->question_id = $request->id;
-        $answer->user_id = Auth::user()->id;
-
-
-        //Category::create([$category]);
-
-        $answer->save();
-        //redirect to another page
-
-        // duhet me u qkomentu.
-        /*
-
-        if (Answer::where('user_id', '=',Auth::user()->id )->count() == 1) {
-            if (UserAchievement::where(['user_id', '=', Auth::user()->id], ['achievement_id', '=', '2'])->get() == null) {
-                UserAchievement::create([
-                    'achievement_id' => '2',
-                    'user_id' => Auth::user()->id
-                ]);
-
-                if(Auth::user()->reputation==null){
-                    Auth::user()->reputation=0;
-                }
-                Auth::user()->reputation+=Achievement::find('2')->reputationaward;
-                Auth::user()->save();
-
-                Session::flash('success', 'You have posted your first answer! Congrats you won 10 reputation!');
-
-            } else if (Answer::where(Auth::user()->id, '=', 'user_id')->count() == 5) {
-                if (UserAchievement::where(['user_id', '=', Auth::user()->id], ['achievement_id', '=', '4'])->get() == null) {
-                    UserAchievement::create([
-                        'achievement_id' => '4',
-                        'user_id' => Auth::user()->id
-                    ]);
-                    Auth::user()->reputation += Achievement::find('4')->reputationaward;
-
-                    Session::flash('success', 'You have posted five answers! Congrats you won 25 reputation!');
-                }
-            }
-
-*/
-
-        Session::flash('success','Your comment was successfully posted!');
-
-
+        $answer = $this->answerService->storeAnswer([
+            'content'       => $request->content,
+            'question_id'   => $request->id,
+            'user_id'       => Auth::id()
+        ]);
+        
+        $this->checkForAchievements( "Answer", Auth::user() );
+        Session::flash('success', $this->flashMessage );
         return redirect()->route('questions.show', $answer->question->id);
     }
 

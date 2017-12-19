@@ -39,8 +39,7 @@ class QuestionRepository implements QuestionInterface{
     }
 
     public function update($id, $attributes){
-        $question = Question::find($id);
-        $question->update($attributes);
+        Question::find( $id )->update( $attributes );
     }
     
     public function where($column,$operator=null,$value=null,$boolean='and'){

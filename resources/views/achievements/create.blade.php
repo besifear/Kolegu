@@ -1,6 +1,6 @@
  @extends('main')
 
-  @section('title',' | Create Achievement')
+  @section('title',' | Krijo Arritje')
 
   @section('stylesheets')
 
@@ -20,7 +20,7 @@
 
                 <div class="content-box-large clearfix">
                   {!! Form::open(array('route' => 'achievements.store','data-parsley-validate'=>'')) !!}
-                      <h3 style="margin-bottom: 25px; text-align: left;">Create Achievement</h3>
+                      <h3 style="margin-bottom: 25px; text-align: left;">Krijo Arritje</h3>
 
                       {{ Form::label('description','Description:')}}
                       {{ Form::text('description',null,array('class' => 'form-control','required'=>'','maxlength'=>'300','placeholder'=>'Description'))}}
@@ -39,7 +39,7 @@
                        
                       </select>
 
-                      {{ Form::submit('Create Achievement',array('class' => 'btn btn-primary btn-md pull-right','style' => 'margin-top : 20px' ))}}
+                      {{ Form::submit('Krijo Arritje',array('class' => 'btn btn-primary btn-md pull-right','style' => 'margin-top : 20px' ))}}
                   {!! Form::close() !!}
                   <br><br>
                 </div>

@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;
+use App\Exceptions\AnswersExceededException;
 use App\Exceptions\QuestionsExceededException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -46,8 +47,10 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
 
-        if($exception instanceof QuestionsExceededException){
-            
+        if( 
+            $exception instanceof QuestionsExceededException || 
+            $exception instanceof AnswersExceededException
+        ){
             return redirect()->back()->withErrors( $exception->getMessage());
         }
 

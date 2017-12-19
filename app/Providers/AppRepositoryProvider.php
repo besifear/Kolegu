@@ -13,7 +13,8 @@ class AppRepositoryProvider extends ServiceProvider{
         public function register(){
             $models = array(
                 'Question',
-                'Category'
+                'Category',
+                'Answer'
             );
 
             foreach ($models as $idx => $model){

@@ -12,6 +12,12 @@ class Answer extends Model
 
     use SoftDeletes;
 
+    protected $fillable = [
+        'content',
+        'question_id',
+        'user_id'
+    ];
+
     public function user(){
       return $this->belongsTo('App\User');
     }

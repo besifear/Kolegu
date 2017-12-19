@@ -99,7 +99,7 @@ class QuestionService{
         return $this->withinQuestionLimit();
     }
 
-    public function getCurrentTime(){
+    private function getCurrentTime(){
         return Carbon::now(new DateTimeZone('Europe/Monaco'));
     }
 
