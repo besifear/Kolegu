@@ -18,17 +18,18 @@
 
 		<h4>Përgjigjet</h4>
         <hr>
-
+          <answer-list questionid="{{$question->id}}"></answer-list>
+                    
 
                     @foreach(App\Answer::where('id','=',$question->answer_id)->get() as $answer)
                       <ul class = "event-list answer answer-container clearfix" id = "best-answer-container" style="list-style: none;">
-                      <li id = "answer-{{$answer->id}}" class = "remove-best-answer" >
-                          <!-- Single Formatted Answer Beginning -->
-                          @include('singles.answersingle')
-                          <!-- Single Formatted Answer Ending-->
-                      </li>
+                        <li id = "answer-{{$answer->id}}" class = "remove-best-answer" >
+                            <!-- Single Formatted Answer Beginning -->
+                            @include('singles.answersingle')
+                            <!-- Single Formatted Answer Ending-->
+                        </li>
                       </ul>
-					  <hr>
+					             <hr>
                     @endforeach
                         <!-- Answer Upvote/Downvote Form Beginning-->
                         @include('forms.answervoteform')

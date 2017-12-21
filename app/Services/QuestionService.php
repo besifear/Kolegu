@@ -25,6 +25,10 @@ class QuestionService{
         $this->categoryInterface = $categoryRepository;
     }
 
+    public function find( $id ){
+        return $this->questionInterface->find( $id );
+    } 
+
     public function topQuestion(){
         // if(Auth::check() && ! Auth::user()->selectedCategories->isEmpty()){
         //     $userCategories = Auth::user()->selectedCategories;

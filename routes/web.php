@@ -43,6 +43,8 @@ Route::get('/orderresources/{orderBy}','ResourceController@filter',compact('orde
 
 Route::resource('posts','PostController');
 
+Route::post('getQuestionAnswers/{id}', 'AnswerController@getQuestionAnswers');
+
 Route::post('getUserCategories','CategoryController@getUserCategories');
 Route::get('createtag','CategoryController@createTag');
 Route::resource('categories','CategoryController');

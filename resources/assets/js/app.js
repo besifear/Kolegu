@@ -23,6 +23,10 @@ Vue.component('categories-list', require('./components/CategoriesList.vue'));
 
 Vue.component('category-item', require('./components/CategoryItem.vue'));
 
+Vue.component('answer-item', require('./components/AnswerItem.vue'));
+
+Vue.component('answer-list', require('./components/AnswerList.vue'));
+
 const app = new Vue({
     el: '#app',
     data: {

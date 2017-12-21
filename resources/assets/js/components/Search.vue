@@ -35,9 +35,6 @@
 		},
 		computed:{
 			searchBarAction(){
-				console.log( 'result.length = ' + this.results.length );
-				console.log( 'query.length = ' + this.query.length );
-					
 				if ( this.results.length === 0 && this.query.length > 2 ){
 					return `Shtro Pyetjen <i class="glyphicon glyphicon-flash"></i>`;
 				}else{
