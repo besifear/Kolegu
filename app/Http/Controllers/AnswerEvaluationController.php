@@ -98,6 +98,12 @@ class AnswerEvaluationController extends Controller
         //
     }
 
+    /**
+     * Stores the upvote or the downvote of a user for a Answer and gives or removes 
+     * reputation to the User who supplied the answer
+     *  
+     * @param  \Illuminate\Http\Request $request | Holds the Request data of the client that made the upvote or downvote
+     */
     public function vote(Request $request)
     {
         $questionAskingUser= User::find( $request->question_author_id );
@@ -105,7 +111,6 @@ class AnswerEvaluationController extends Controller
         $answerEv = $answer->getMyVote;
          
         if ( $answerEv == null ){
-        var_dump( 'here 1' ); 
             AnswerEvaluation::create([
                 'vote'      => $request->vote == 1 ? 'Yes' : 'No',
                 'answer_id' => $answer->id,
@@ -118,7 +123,6 @@ class AnswerEvaluationController extends Controller
             $questionAskingUser->reputation+=1;
             $questionAskingUser->save();
         }else if($answerEv->vote == 'No' && $request->vote == 1){
-        var_dump( 'here 2' ); 
             $answerEv->vote = 'Yes';
             $answerEv->save();
 
@@ -131,7 +135,6 @@ class AnswerEvaluationController extends Controller
             $questionAskingUser->reputation-=2;
             $questionAskingUser->save();
         }else{
-        var_dump( 'here3' );
             $answerEv->delete();
             if ( $answerEv->vote == 'Yes'){
                 $questionAskingUser->reputation-=1;
@@ -142,102 +145,4 @@ class AnswerEvaluationController extends Controller
         }
     }
 
-    public function upVote(Request $request){
-        if(Auth::guest())
-            return view('auth.login');
-
-        $answer = Answer::find($request->id);
-        // qetu me e ndru qeta
-        dd( $request->input() );
-        $questionAskingUser= Answer::find( $request->id )->question->user; 
-        //User::find((Question::find((Answer::find($request->id))->question_id))->user_id);
-
-        $answerEv=AnswerEvaluation::where([
-            ['answer_id','=',$answer->id],
-            ['user_id','=',Auth::user()->id],
-        ])->first();
-
-
-
-
-        // Nqs nuk ka pasur vlersim paraprak
-        if(($answerEv)==null) {
-            $answerEv = new AnswerEvaluation;
-            $answerEv->vote = 'Yes';
-            $answerEv->answer_id = $request->id;
-            $answerEv->user_id = Auth::user()->id;
-            $questionAskingUser->reputation+=1;
-            $answer->totalVotes+= 1;
-            $questionAskingUser->save();
-        }else{
-        // Nqs ka pas vlersim negative paraprak
-            if($answerEv->vote == 'No'){
-
-                $answerEv->vote = 'Yes';
-                $questionAskingUser->reputation+=2;
-                $questionAskingUser->save();
-            }else{
-
-        // nqs e ka upvote e ka kliku edhe niher e ka hek upvote in
-                $answerEv->delete();
-                $questionAskingUser->reputation-=1;
-                $questionAskingUser->save();
-            }
-
-        }
-
-        //Category::create([$category]);
-
-        $answerEv->save();
-        //redirect to another page
-
-        
-         return Redirect::back();
-        //return redirect('questions/2');
-    }
-
-    public function downVote(Request $request){
-
-        $answer = Answer::find($request->id);
-        
-        $questionAskingUser= Answer::find( $request->id )->question->user; 
-
-        $answerEv=AnswerEvaluation::where([
-            ['answer_id','=',$request->id],
-            ['user_id','=',Auth::user()->id],
-        ])->first();
-
-
-
-        // Nqs nuk ka pasur vlersim paraprak
-        if(($answerEv)==null) {
-            $answerEv = new AnswerEvaluation;
-            $answerEv->vote = 'No';
-            $answerEv->answer_id = $request->id;
-            $answerEv->user_id = Auth::user()->id;
-            $questionAskingUser->reputation+=1;
-            $answer->totalVotes-= 1;
-            $questionAskingUser->save();
-        }else{
-            // Nqs ka pas vlersim pozitiv paraprak
-            if($answerEv->vote == 'Yes'){
-                $answerEv->vote = 'No';
-                $questionAskingUser->reputation-=2;
-                $questionAskingUser->save();
-            }else{
-                // nqs e ka downvote e ka kliku edhe niher e ka hek downvote in
-                $answerEv->delete();
-                $questionAskingUser->reputation+=1;
-                $questionAskingUser->save();
-            }
-
-        }
-        //Category::create([$category]);
-
-        $answerEv->save();
-        //redirect to another page
-
-        return Redirect::back();
-        //return redirect('questions/2');
-    }
 }

@@ -82,7 +82,6 @@
 	            		"question_author_id": this.question_author_id
 	                },
 	                success: function (data) {
-	               		console.log( data ); 
 	                },
 	                error: function (ts) {
 	                    alert(ts.responseText);
