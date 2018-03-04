@@ -125,14 +125,18 @@ class QuestionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request | Holds The data of the Request that was made to update this question
+     * @param  int  $id | Holds the id of the question that will be updated
+     * @return \Illuminate\Http\Response 
      */
     public function update(Request $request, $id)
     {
-        $this->questionService->update($id, $request->all());
-        return redirect()->back();
+        $allowedModifications = ['answer_id' => null ];
+        $requestedModifications = array_intersect_key( $request->all(), $allowedModifications );
+        if ( $requestedModifications['answer_id'] == 'remove-best-answer' ){
+            $requestedModifications['answer_id'] = null; 
+        }
+        $this->questionService->update( $id, $requestedModifications );
     }
 
     /**

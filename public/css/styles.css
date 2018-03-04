@@ -766,7 +766,7 @@ div#search{
     padding-bottom: 10px;
 }
 
-#removecorrectanswer:hover {
+#removecorrectanswer:hover span{
     transform: scale(1.15);
     color: #D2322D;
 }

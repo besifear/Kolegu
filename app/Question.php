@@ -21,7 +21,8 @@ class Question extends Model
         'question_down_votes',
         'question_all_answers',
         'question_category',
-        'question_owner'
+        'question_owner',
+        'is_my_question'
     ];
 
 
@@ -124,5 +125,12 @@ class Question extends Model
 
     public function getQuestionOwnerAttribute(){
         return $this->user()->first(['id','username']);
+    }
+
+    public function getIsMyQuestionAttribute(){
+        if( Auth::guest() ){
+            return false;
+        }
+        return $this->getQuestionOwnerAttribute()->id == Auth::id();
     }
 }

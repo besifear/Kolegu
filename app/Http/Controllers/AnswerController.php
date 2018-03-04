@@ -29,7 +29,9 @@ class AnswerController extends Controller
     public function __construct( AnswerService $answerService, QuestionService $questionService ){
         $this->answerService = $answerService; 
         $this->questionService = $questionService; 
-        $this->middleware( 'auth' ); 
+        $this->middleware(
+            'auth', 
+            ['except' => ['getQuestionAnswers'] ] ); 
     }    
 
     /**
@@ -89,7 +91,7 @@ class AnswerController extends Controller
      * @return [type]     [description]
      */
     public function getQuestionAnswers( $id ){
-        return $this->questionService->find( $id )->allAnswers;
+       return $this->questionService->find( $id )->allAnswers;
     }
 
     /**
@@ -123,19 +125,6 @@ class AnswerController extends Controller
      */
     public function destroy($id)
     {
-        $answer=Answer::find($id);
-
-        $evaluations=$answer->allEvaluations;
-
-        
-
-        foreach($evaluations as $eval){
-            $eval->delete();
-        }
-
-        
-        $answer->delete();
-
-        return Redirect::back();
+        //
     }
 }

@@ -32,7 +32,7 @@ class Answer extends Model
       return $this->belongsTo('App\User');
     }
     public function getCreatorAttribute(){
-        return $this->user()->get();
+        return $this->user()->first();
     }
 
     public function question(){
@@ -43,6 +43,12 @@ class Answer extends Model
        $carbonated_date = Carbon::parse($this->attributes['created_at']);
        $diff_date = $carbonated_date->diffForHumans(Carbon::now());
        return $diff_date;
+    }
+
+    public function getMyVote(){
+        return $this->hasOne('App\AnswerEvaluation','answer_id')->where([
+            ['user_id','=',Auth::user()->id]
+        ]);
     }
 
     public function getMyUpVote(){

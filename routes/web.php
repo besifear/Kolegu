@@ -43,7 +43,7 @@ Route::get('/orderresources/{orderBy}','ResourceController@filter',compact('orde
 
 Route::resource('posts','PostController');
 
-Route::post('getQuestionAnswers/{id}', 'AnswerController@getQuestionAnswers');
+Route::get('getQuestionAnswers/{id}', 'AnswerController@getQuestionAnswers');
 
 Route::post('getUserCategories','CategoryController@getUserCategories');
 Route::get('createtag','CategoryController@createTag');
@@ -94,6 +94,8 @@ Route::post('Kategorite/{category_id}','CategoryController@selectCategory',compa
 Route::post('questionupvote','QuestionEvaluationController@upVote');
 
 Route::post('questiondownvote','QuestionEvaluationController@downVote');
+
+Route::post( 'answer-vote', 'AnswerEvaluationController@vote');
 
 Route::post('answerupvote','AnswerEvaluationController@upVote');
 

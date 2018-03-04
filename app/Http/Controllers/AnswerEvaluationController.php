@@ -17,6 +17,10 @@ use Redirect;
 class AnswerEvaluationController extends Controller
 {
 
+    function __construct()
+    {
+        $this->middleware( ['auth']); 
+    }
 
     /**
      * Display a listing of the resource.
@@ -94,13 +98,59 @@ class AnswerEvaluationController extends Controller
         //
     }
 
+    public function vote(Request $request)
+    {
+        $questionAskingUser= User::find( $request->question_author_id );
+        $answer = Answer::find($request->answer_id);
+        $answerEv = $answer->getMyVote;
+         
+        if ( $answerEv == null ){
+        var_dump( 'here 1' ); 
+            AnswerEvaluation::create([
+                'vote'      => $request->vote == 1 ? 'Yes' : 'No',
+                'answer_id' => $answer->id,
+                'user_id'   => Auth::id()
+            ]);
+            
+            $answer->totalVotes += 1;
+            $answer->save();
+            
+            $questionAskingUser->reputation+=1;
+            $questionAskingUser->save();
+        }else if($answerEv->vote == 'No' && $request->vote == 1){
+        var_dump( 'here 2' ); 
+            $answerEv->vote = 'Yes';
+            $answerEv->save();
+
+            $questionAskingUser->reputation+=2;
+            $questionAskingUser->save();
+        }else if($answerEv->vote == 'Yes' && $request->vote == 0){
+            $answerEv->vote = 'No';
+            $answerEv->save();
+
+            $questionAskingUser->reputation-=2;
+            $questionAskingUser->save();
+        }else{
+        var_dump( 'here3' );
+            $answerEv->delete();
+            if ( $answerEv->vote == 'Yes'){
+                $questionAskingUser->reputation-=1;
+            }else{
+                $questionAskingUser->reputation+=1;
+            }
+            $questionAskingUser->save();
+        }
+    }
+
     public function upVote(Request $request){
         if(Auth::guest())
             return view('auth.login');
 
         $answer = Answer::find($request->id);
         // qetu me e ndru qeta
-        $questionAskingUser= User::find((Question::find((Answer::find($request->id))->question_id))->user_id);
+        dd( $request->input() );
+        $questionAskingUser= Answer::find( $request->id )->question->user; 
+        //User::find((Question::find((Answer::find($request->id))->question_id))->user_id);
 
         $answerEv=AnswerEvaluation::where([
             ['answer_id','=',$answer->id],
@@ -147,11 +197,10 @@ class AnswerEvaluationController extends Controller
     }
 
     public function downVote(Request $request){
-        if(Auth::guest())
-            return view('auth.login');
 
         $answer = Answer::find($request->id);
-        $questionAskingUser= User::find((Question::find((Answer::find($request->id))->question_id))->user_id);
+        
+        $questionAskingUser= Answer::find( $request->id )->question->user; 
 
         $answerEv=AnswerEvaluation::where([
             ['answer_id','=',$request->id],

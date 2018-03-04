@@ -18,8 +18,12 @@
 
 		<h4>Përgjigjet</h4>
         <hr>
-          <answer-list questionid="{{$question->id}}"></answer-list>
-                    
+          <answer-list 
+            question_id="{{$question->id}}" 
+            question_author_id="{{$question->user_id}}"
+            best_answer_id="{{$question->answer_id}}"
+            is_my_question="{{$question->is_my_question}}" >
+          </answer-list>
 
                     @foreach(App\Answer::where('id','=',$question->answer_id)->get() as $answer)
                       <ul class = "event-list answer answer-container clearfix" id = "best-answer-container" style="list-style: none;">
