@@ -15,5 +15,7 @@
     {{Html::style('css/styles.css')}}
     {!! Html::style('css/parsley.css')!!}
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+    <!-- Select2 --> 
+    <link href="{{ asset('/css/select2.css') }}" rel="stylesheet">
 
     @yield('stylesheets')

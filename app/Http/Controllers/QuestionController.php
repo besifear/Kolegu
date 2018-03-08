@@ -18,6 +18,7 @@ use App\Http\Requests\DeleteQuestionRequest;
 use App\Http\Controllers\Traits\RewardsAchievements;
 use App\BusinessLogic\Interfaces\QuestionInterface;
 use App\BusinessLogic\Interfaces\CategoryInterface;
+use App\Services\QuestionCategoriesService;
 use JavaScript;
 
 class QuestionController extends Controller
@@ -25,11 +26,12 @@ class QuestionController extends Controller
 
     use RewardsAchievements;
 
-    private $questionService;
+    private $questionService, $questionCategoriesService;
 
-    public function __construct(QuestionService $questionService){
+    public function __construct(QuestionService $questionService, QuestionCategoriesService $questionCategoriesService){
         $this->middleware('auth', ['except' => ['index', 'show', 'filter']]);
         $this->questionService = $questionService;
+        $this->questionCategoriesService = $questionCategoriesService; 
     }
 
     public function index()
@@ -79,13 +81,15 @@ class QuestionController extends Controller
 
     public function store(StoreQuestionRequest $request)
     {
-        $this->questionService->questionInterface->create([
+        $question = $this->questionService->questionInterface->create([
             'title' => $request->title,
             'content' => $request->content,
-            'category_id' => $request->category_id,
             'votes' => 0,
             'user_id' => Auth::id()
         ]);
+
+        $this->questionCategoriesService->create( $question->id, $request->categories_list );
+        
         $this->checkForAchievements( "Question", Auth::user() );
         session::flash('success', $this->flashMessage);
         return redirect()->route('questions.index');

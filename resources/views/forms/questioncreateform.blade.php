@@ -25,7 +25,8 @@
                       <br>
 
                       {{ Form::label('categoryname','Kategoria:')}}
-                      <select name="category_id" class="form-control" >
+                      <select id = "categories_list" name="categories_list[]" 
+                      class="form-control" multiple="multiple">
                       @foreach($categories as $category)
                         <option value="{{$category->id}}">{{$category->name}}</option>
                       @endforeach

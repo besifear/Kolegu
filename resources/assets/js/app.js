@@ -1,5 +1,8 @@
 // require('./bootstrap');
 
+// TODO: Select2 should be required here which it does but it does not get stored..!!
+var select2 = require('select2');
+	
 window.Vue = require('vue');
 
 window.Event = new Vue({});
@@ -9,6 +12,7 @@ window.autcomplete = require('autocomplete.js');
 var algoliasearch = require('algoliasearch'); 
 
 window.search = algoliasearch("969BNCLV39", "875bae542d6515d93af2367a758cfefd");
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -18,7 +18,6 @@ class CreateQuestionsTable extends Migration {
 			$table->string('title', 50);
 			$table->string('content', 500);
             $table->integer('votes');
-			$table->integer('category_id')->unsigned();
 			$table->integer('user_id')->unsigned();
 		    $table->softDeletes();
             $table->timestamps();

@@ -4,6 +4,7 @@ use App\User;
 use App\Answer;
 use App\Question;
 use App\Category;
+use App\QuestionCategories;
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -35,7 +36,6 @@ $factory->define(App\Question::class, function (Faker\Generator $faker){
     return  [
         'title' => $faker->company,
         'content' => $faker->paragraphs(1, true),
-        'category_id' => $faker->numberBetween(1, Category::all()->count()),
         'user_id' => $faker->numberBetween(1, User::all()->count()),
         'votes' => 0,
 		'answer_id' => null
@@ -44,10 +44,18 @@ $factory->define(App\Question::class, function (Faker\Generator $faker){
 });
 
 $factory->define(App\Category::class, function (Faker\Generator $faker){
+   
     return [
         'name' => $faker->company,
         'description' => substr($faker->paragraphs(1, true), 0 , 20),
         'parent_id' => $faker->boolean(80) ? null : $faker->numberBetween(1, Category::all()->count()) 
+    ];
+});
+
+$factory->define(App\QuestionCategories::class, function(Faker\Generator $faker){
+    return [
+        'question_id' => $faker->numberBetween( 1, Question::all()->count()),
+        'category_id' => $faker->numberBetween( 1, Category::all()->count())
     ];
 });
 

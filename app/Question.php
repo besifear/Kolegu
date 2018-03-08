@@ -20,7 +20,7 @@ class Question extends Model
         'question_up_votes',
         'question_down_votes',
         'question_all_answers',
-        'question_category',
+        'question_categories_list',
         'question_owner',
         'is_my_question'
     ];
@@ -29,7 +29,6 @@ class Question extends Model
     protected $fillable = [
         'title',
         'content',
-        'category_id',
         'user_id',
         'votes',
         'answer_id'
@@ -83,8 +82,8 @@ class Question extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function category(){
-        return $this->belongsTo('App\Category');
+    public function categoriesList(){
+        return $this->hasMany('App\QuestionCategories');
     }
 
     public function getDiffForHumansAttribute(){
@@ -119,8 +118,8 @@ class Question extends Model
         return $this->allAnswers()->get()->count();
     }
 
-    public function getQuestionCategoryAttribute(){
-        return $this->category()->first();
+    public function getQuestionCategoriesListAttribute(){
+        return $this->categoriesList()->get();
     }
 
     public function getQuestionOwnerAttribute(){

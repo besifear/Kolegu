@@ -40,6 +40,7 @@
   @stop
 
   @section('scripts')
-    <!-- TinyMce Javascript ka hapsire per optimizim me zevendsu me javascript file -->
+    <!-- TinyMce Javascript ka hapsire per optimizim me zevendsu me javascript file -->  
   @include('questions.tinymce')
+    {{Html::script('js/createquestionform.js') }}
   @stop

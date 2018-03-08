@@ -84,7 +84,11 @@
 	                success: function (data) {
 	                },
 	                error: function (ts) {
-	                    alert(ts.responseText);
+	                	if ( ts.responseText.includes('"error":"Unauthenticated."') ){
+	                		window.location = "/login";	
+	                	}else{
+	                    	alert(ts.responseText);
+	                	}
 	                }
 	            });				
 			},
@@ -125,7 +129,7 @@
 	                	}else{
 	                		this.modifiable_best_answer_id = suppliedAnswerId;
 	                	}	
-	                }.bind( this),
+	                }.bind(this),
 	                error: function (ts) {
 	                    alert(ts.responseText);
 	                }

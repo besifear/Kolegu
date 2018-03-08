@@ -71,7 +71,9 @@
 
           <p class="desc">{!! substr($question->content, 0, 120)!!}{!!strlen($question->content)>120 ? "..." : ""!!}</p>
           <ul style="width:auto; float: left;">
-            <li><a href="/categories">{{$question->category->name}}</a></li>
+            @foreach( $question->question_categories_list as $questionCategory )
+              <li><a href="/categories/{{$questionCategory->category->id}}">{{ $questionCategory->category->name }}</a></li>
+            @endforeach
           </ul>
           <ul style="width: auto; float: left;" class="pull-right">
             <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}} by <a href="/users/{{$question->user->id}}">{{$question->user->username}}</a></p></li>
@@ -127,7 +129,9 @@
 
           <p class="desc">{!! substr($question->content, 0, 120)!!}{{strlen($question->content)>120 ? "..." : ""}}</p>
           <ul style="width:auto; float: left;">
-            <li><a href="/categories">{{$question->category->name}}</a></li>
+            @foreach( $question->question_categories_list as $questionCategory )
+              <li><a href="/categories/{{$questionCategory->category->id}}">{{ $questionCategory->category->name }}</a></li>
+            @endforeach
           </ul>
           <ul style="width: auto; float: left;" class="pull-right">
             <li><p style="font-size: 9pt;">Posted {{$question->created_at->diffForHumans()}} by <a href="/users/{{$question->user->id}}">{{$question->user->username}}</a></p></li>

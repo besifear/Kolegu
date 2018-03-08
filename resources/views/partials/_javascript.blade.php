@@ -18,4 +18,6 @@
      otherwise the user configuration would be overwritten by default -->
     <script src = "{{asset('js/parsley-config.js')}}"></script>
     <script src = "{{asset('js/parsley.min.js')}}"></script>
-    <script src = "{{asset('js/vuejs.js')}}"></script>
+    <script src = "{{asset('js/app.js')}}"></script>
+    <!-- Select2 --> 
+    <script src = "{{asset('js/select2.full.min.js')}}"></script>

@@ -15,11 +15,15 @@ class EverythingTableSeeder extends Seeder
             factory(App\Category::class, 3)->create()->each(function ($category) use ($user){
                 factory(App\Question::class, 5)->create([
                     'user_id' =>$user->id,
-                    'category_id' =>$category->id
                 ])->each(function ($question) use ($user, $category){
                     factory(App\QuestionEvaluation::class, 1)->create([
                         'user_id' =>$user->id,
                         'question_id' =>$question->id
+                    ]);
+
+                    factory(App\QuestionCategories::class, 1)->create([
+                        'question_id' => $question->id,
+                        'category_id' => $category->id
                     ]);
 
                     factory(App\Answer::class, 3)->create([

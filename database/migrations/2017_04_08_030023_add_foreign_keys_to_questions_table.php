@@ -14,7 +14,6 @@ class AddForeignKeysToQuestionsTable extends Migration {
 	{
 		Schema::table('questions', function(Blueprint $table)
 		{
-			$table->foreign('category_id', 'fk_question_category_id')->references('id')->on('categories')->onUpdate('RESTRICT')->onDelete('RESTRICT');
 			$table->foreign('user_id', 'fk_question_user_id')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
 		});
 	}
@@ -29,7 +28,6 @@ class AddForeignKeysToQuestionsTable extends Migration {
 	{
 		Schema::table('questions', function(Blueprint $table)
 		{
-			$table->dropForeign('fk_question_category_id');
 			$table->dropForeign('fk_question_user_id');
 		});
 	}

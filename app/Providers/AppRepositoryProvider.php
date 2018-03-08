@@ -14,7 +14,8 @@ class AppRepositoryProvider extends ServiceProvider{
             $models = array(
                 'Question',
                 'Category',
-                'Answer'
+                'Answer',
+                'QuestionCategories'
             );
 
             foreach ($models as $idx => $model){
