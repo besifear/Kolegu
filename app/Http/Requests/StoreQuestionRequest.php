@@ -33,8 +33,8 @@ class StoreQuestionRequest extends FormRequest
     public function rules()
     {
         return [
-                'title' => 'required | max:50',
-                'content'  => 'max:500'
-          ];
+            'title' => 'required | max:50',
+            'content'  => 'max:500'
+        ];
     }
 }

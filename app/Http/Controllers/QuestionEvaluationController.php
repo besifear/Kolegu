@@ -2,21 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\QuestionEvaluation;
+use Auth;
+use Session;
+use Redirect;
+use App\User;
 use App\Category;
 use App\Question;
-use App\User;
-
-use Session;
-use Auth;
-use Redirect;
-
+use App\QuestionEvaluation;
+use Illuminate\Http\Request;
+use App\Services\QuestionService;
 
 class QuestionEvaluationController extends Controller
 {
+    private $questionService;
 
+    public function __construct(QuestionService $questionService)
+    {
+        $this->middleware('auth', [ 'except' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy'] ] );
+        $this->questionService = $questionService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -65,6 +69,7 @@ class QuestionEvaluationController extends Controller
         ])->first();
 
         $question = Question::find($request->question_id);
+        $questionAskingUser = $this->questionService->find($request->question_id)->user;
 
         if(($questionEv)==null) {
             $questionEv = new QuestionEvaluation;
@@ -72,7 +77,6 @@ class QuestionEvaluationController extends Controller
             $questionEv->question_id= $request->question_id;
             $questionEv->user_id = Auth::user()->id;
             $questionEv->save();
-            $questionAskingUser= User::find((Question::find($request->question_id))->user_id);
             $question->votes += 1;
             $question->save();
             $questionAskingUser->reputation+=1;
@@ -82,7 +86,6 @@ class QuestionEvaluationController extends Controller
             if ($questionEv->vote != 'Yes') {
                 $questionEv->vote = 'Yes';
                 $questionEv->save();
-                $questionAskingUser= User::find((Question::find($request->question_id))->user_id);
                 $questionAskingUser->reputation+=2;
                 $question->votes += 2;
                 $question->save();
@@ -90,7 +93,6 @@ class QuestionEvaluationController extends Controller
 
             } else{
                 $questionEv->delete();
-                $questionAskingUser= User::find((Question::find($request->question_id))->user_id);
                 $question->votes -= 1;
                 $question->save();
                 $questionAskingUser->reputation-=1;
@@ -117,40 +119,34 @@ class QuestionEvaluationController extends Controller
             ['user_id','=',Auth::user()->id],
         ])->first();
 
-            $question = Question::find($request->question_id);
+        $question = Question::find($request->question_id);
+        $questionAskingUser = $this->questionService->find($request->question_id)->user;
 
-
-            if(($questionEv)==null) {
+        if(($questionEv)==null) {
             $questionEv = new QuestionEvaluation;
             $questionEv->vote = 'No';
             $questionEv->question_id= $request->question_id;
             $questionEv->user_id = Auth::user()->id;
             $questionEv->save();
-            $questionAskingUser= User::find((Question::find($request->question_id))->user_id);
             $question->votes -= 1;
             $question->save();
             $questionAskingUser->reputation-=1;
             $questionAskingUser->save();
-
         }else {
             if ($questionEv->vote != 'No') {
                 $questionEv->vote = 'No';
                 $questionEv->save();
-                $questionAskingUser= User::find((Question::find($request->question_id))->user_id);
                 $question->votes -= 2;
                 $question->save();
                 $questionAskingUser->reputation-=2;
                 $questionAskingUser->save();
-
-            } else{
+            }else{
                 $questionEv->delete();
-                $questionAskingUser= User::find((Question::find($request->question_id))->user_id);
                 $question->votes += 1;
                 $question->save();
                 $questionAskingUser->reputation+=1;
                 $questionAskingUser->save();
             }
-
         }
         
 
