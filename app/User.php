@@ -62,11 +62,12 @@ class User extends Authenticatable
             ->get()->count();
     }
 
-
-
-
     public function questions(){
         return $this->hasMany('App\Question');
+    }
+
+    public function answers(){
+        return $this->hasMany('App\Answer')->orderBy( 'votes', 'desc' );
     }
 
     public function userAchievements(){

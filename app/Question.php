@@ -69,7 +69,7 @@ class Question extends Model
     }
 
     public function allAnswers(){
-        return $this->hasMany('App\Answer','question_id');
+        return $this->hasMany('App\Answer','question_id')->orderBy('votes', 'desc');
     }
 
     public function allAnswersWithUser(){

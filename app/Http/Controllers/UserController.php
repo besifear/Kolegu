@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\User;
-
 use Auth;
-
 use Mail;
-
-use Redirect;
-
-use Image;
-
 use File;
+use Image;
+use Redirect;
+use App\User;
+use Illuminate\Http\Request;
+use App\Services\AnswerService;
 
 class UserController extends Controller
 {
+    private $answerService;
+
+    function __construct( AnswerService $answerService ){
+        $this->answerService = $answerService;
+    } 
+
     /**
      * Display a listing of the resource.
      *
@@ -71,7 +72,7 @@ class UserController extends Controller
     {
         $user=User::find($id);
         $questions = \App\Question::where('user_id','=',$user->id)->paginate(5);
-        $answers = \App\Answer::where('user_id','=',$user->id)->paginate(5);
+        $answers = $user->answers()->paginate(5);         
         $resources = \App\Resource::where('user_id','=',$user->id)->paginate(5);
         $achievements = \App\Achievement::all();
         $selectedcategories = \App\SelectedCategory::where('user_id','=',$user->id)->get();

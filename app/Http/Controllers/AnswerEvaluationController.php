@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\AnswerEvaluation;
-
-use App\Answer;
-use App\User;
-use App\Question;
-
 use Auth;
-
-
 use Redirect;
+use App\User;
+use App\Answer;
+use App\Question;
+use App\AnswerEvaluation;
+use Illuminate\Http\Request;
+use App\Http\Requests\VoteAnswerRequest;
+
 class AnswerEvaluationController extends Controller
 {
 
@@ -104,8 +101,9 @@ class AnswerEvaluationController extends Controller
      *  
      * @param  \Illuminate\Http\Request $request | Holds the Request data of the client that made the upvote or downvote
      */
-    public function vote(Request $request)
+    public function vote( VoteAnswerRequest $request)
     {
+        
         $questionAskingUser= User::find( $request->question_author_id );
         $answer = Answer::find($request->answer_id);
         $answerEv = $answer->getMyVote;
@@ -118,17 +116,22 @@ class AnswerEvaluationController extends Controller
             ]);
             
             $answer->totalVotes += 1;
-            $answer->save();
-            
+            //TODO: refractor $request->vote so that it returns -1 for downvote in ( AnswerItem.vue && AnswerList.vue ) 
+            //so that it doesn't have to be refractored in the line below.
+            $requestVote = $request->vote == 1 ? 1 : -1;
+            $answer->modifyVoteCount( $requestVote ); 
+
             $questionAskingUser->reputation+=1;
             $questionAskingUser->save();
         }else if($answerEv->vote == 'No' && $request->vote == 1){
+            $answer->modifyVoteCount(2);
             $answerEv->vote = 'Yes';
             $answerEv->save();
 
             $questionAskingUser->reputation+=2;
             $questionAskingUser->save();
         }else if($answerEv->vote == 'Yes' && $request->vote == 0){
+            $answer->modifyVoteCount(-2);
             $answerEv->vote = 'No';
             $answerEv->save();
 
@@ -137,12 +140,15 @@ class AnswerEvaluationController extends Controller
         }else{
             $answerEv->delete();
             if ( $answerEv->vote == 'Yes'){
+                $answer->modifyVoteCount(-1);
                 $questionAskingUser->reputation-=1;
             }else{
+                $answer->modifyVoteCount(1);
                 $questionAskingUser->reputation+=1;
             }
             $questionAskingUser->save();
         }
+        $answer->save();
     }
 
 }

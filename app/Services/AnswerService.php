@@ -62,7 +62,8 @@ class AnswerService{
    	private function raiseAnswersExceededException( $nthAnswerCreatedDate, $allowedTime ){
         $hours = $nthAnswerCreatedDate->diffInHours( $allowedTime );
         $minutes = ( $nthAnswerCreatedDate->diffInMinutes($allowedTime) % 60 );
-        $message = "Keni tejkaluar numrin e pergjigjjeve te lejuara! Pergjigjjen e radhes mund ta shtroni pas $hours orëve dhe $minutes minutave!";
+        $message = "Keni tejkaluar numrin e pergjigjjeve te lejuara! "
+                  ."Pergjigjjen e radhes mund ta shtroni pas $hours orëve dhe $minutes minutave!";
         throw new AnswersExceededException( $message );
    	}
 }

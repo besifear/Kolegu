@@ -99,6 +99,11 @@ class Answer extends Model
     	return $this->hasMany('App\AnswerEvaluation','answer_id');
     }
 
-
+    public function modifyVoteCount( $modificationValue ){
+        if ( $modificationValue < -2 || $modificationValue > 2 ){
+            throw new \Exception( 'Can\t do dis te-ne-ne-ne! ' );
+        }
+        $this->votes += $modificationValue;
+    }
 
 }

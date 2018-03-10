@@ -16,9 +16,11 @@
               <a
                       onclick="
                               event.preventDefault();
-                              document.getElementById('id').setAttribute('value','{{$answer->id}}');
+                              document.getElementById('answer_id').setAttribute('value','{{$answer->id}}');
+                              $('#question_author_id').val( {{ $answer->question->user_id }});
+                              $('#vote').val(1);
                               var forma = document.getElementById('voteAnswer-form');
-                              forma.setAttribute('action','/answerupvote');
+                              forma.setAttribute('action','/answer-vote');
                               forma.submit();
                               ">
                     <span class="glyphicon glyphicon-chevron-up">
@@ -44,9 +46,11 @@
                   <a
                           onclick="
                                   event.preventDefault();
-                                  document.getElementById('id').setAttribute('value','{{$answer->id}}');
+                                  document.getElementById('answer_id').setAttribute('value','{{$answer->id}}');
+                                  $('#question_author_id').val( {{ $answer->question->user_id }});
+                                  $('#vote').val(0); 
                                   var forma = document.getElementById('voteAnswer-form');
-                                  forma.setAttribute('action','/answerdownvote');
+                                  forma.setAttribute('action','/answer-vote');
                                   forma.submit();
                                   ">
                     <span class="glyphicon glyphicon-chevron-down">
@@ -96,9 +100,11 @@
                 <a
                         onclick="
                                 event.preventDefault();
-                                document.getElementById('id').setAttribute('value','{{$answer->id}}');
+                                document.getElementById('answer_id').setAttribute('value','{{$answer->id}}');
+                                $('#question_author_id').val( {{ $answer->question->user_id }});
+                                $('#vote').val(1); 
                                 var forma = document.getElementById('voteAnswer-form');
-                                forma.setAttribute('action','/answerupvote');
+                                forma.setAttribute('action','/answer-vote');
                                 forma.submit();
                                 ">
                       <span class="glyphicon glyphicon-chevron-up">
@@ -124,9 +130,11 @@
                     <a
                             onclick="
                                     event.preventDefault();
-                                    document.getElementById('id').setAttribute('value','{{$answer->id}}');
+                                    document.getElementById('answer_id').setAttribute('value','{{$answer->id}}');
+                                    $('#question_author_id').val( {{ $answer->question->user_id }});
+                                    $('#vote').val(0); 
                                     var forma = document.getElementById('voteAnswer-form');
-                                    forma.setAttribute('action','/answerdownvote');
+                                    forma.setAttribute('action','/answer-vote');
                                     forma.submit();
                                     ">
                       <span class="glyphicon glyphicon-chevron-down">
