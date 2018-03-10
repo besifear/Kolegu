@@ -16,6 +16,7 @@ class CreateAnswersTable extends Migration {
 		{
 			$table->increments('id', true);
 			$table->string('content', 500);
+           	$table->integer('votes')->default(0); 
             $table->integer('totalVotes')->default(0);
 			$table->integer('question_id')->unsigned();
 			$table->integer('user_id')->unsigned();
